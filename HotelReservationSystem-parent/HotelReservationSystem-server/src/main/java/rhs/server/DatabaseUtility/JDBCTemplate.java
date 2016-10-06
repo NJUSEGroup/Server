@@ -2,6 +2,9 @@ package rhs.server.DatabaseUtility;
 
 import java.util.List;
 
+import javax.sql.DataSource;
+
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -11,8 +14,8 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
 
-public class JDBCTemplateHelper {
-	static NamedParameterJdbcTemplate jdbcHelper = new NamedParameterJdbcTemplate(JDBCUtils.getDataSource());
+public class JDBCTemplate {
+	private static NamedParameterJdbcTemplate jdbcHelper = new NamedParameterJdbcTemplate((DataSource) new ClassPathXmlApplicationContext("applicationContext.xml").getBean("dataSource"));
 	
 	
 	public static <T> void update(String sql, T t) {

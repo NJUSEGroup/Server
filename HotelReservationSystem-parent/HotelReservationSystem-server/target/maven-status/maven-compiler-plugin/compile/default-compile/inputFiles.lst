@@ -1,4 +1,3 @@
-D:\java\HotelReservationSystem-parent\HotelReservationSystem-server\src\main\java\rhs\server\DatabaseUtility\JDBCTemplateHelper.java
-D:\java\HotelReservationSystem-parent\HotelReservationSystem-server\src\main\java\rhs\server\DataServiceImpl\UserDataServiceImpl.java
-D:\java\HotelReservationSystem-parent\HotelReservationSystem-server\src\main\java\rhs\server\DatabaseUtility\JDBCUtils.java
-D:\java\HotelReservationSystem-parent\HotelReservationSystem-server\src\main\java\rhs\server\DatabaseUtility\MyTemplate.java
+E:\GitRepoForMaven\HotelReservationSystem-parent\HotelReservationSystem-server\src\main\java\rhs\server\DatabaseUtility\JDBCTemplate.java
+E:\GitRepoForMaven\HotelReservationSystem-parent\HotelReservationSystem-server\src\main\java\rhs\server\DatabaseUtility\MyTemplate.java
+E:\GitRepoForMaven\HotelReservationSystem-parent\HotelReservationSystem-server\src\main\java\rhs\server\DataServiceImpl\UserDataServiceImpl.java
