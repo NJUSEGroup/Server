@@ -24,6 +24,6 @@ public class TestUserDataServiceImpl {
 	@Test
 	public void test2() {
 		UserPO user = service.findByUserName("admin");
-		assertEquals(user.getPassword(),"error!");
+		assertEquals(user.getPassword(),"err");
 	}
 }
