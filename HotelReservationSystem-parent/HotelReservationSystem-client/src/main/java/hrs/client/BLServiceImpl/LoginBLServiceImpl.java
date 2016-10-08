@@ -1,7 +1,7 @@
 package hrs.client.BLServiceImpl;
 
 import hrs.client.BLService.LoginBLService;
-import rhs.common.DataService.UserDataService;
+import hrs.common.DataService.UserDataService;
 
 public class LoginBLServiceImpl implements LoginBLService{
 	private UserDataService dataservice;

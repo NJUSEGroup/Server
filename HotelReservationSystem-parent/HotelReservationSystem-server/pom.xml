@@ -7,9 +7,8 @@
     <artifactId>HotelReservationSystem-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <groupId>cn.edu.nju.HotelReservationSystem</groupId>
+  
   <artifactId>HotelReservationSystem-server</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
   <name>HotelReservationSystem-server</name>
   <url>http://maven.apache.org</url>
   <properties>

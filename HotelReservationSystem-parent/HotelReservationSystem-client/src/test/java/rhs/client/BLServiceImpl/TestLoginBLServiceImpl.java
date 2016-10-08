@@ -8,8 +8,8 @@ import org.junit.Test;
 
 import hrs.client.BLService.LoginBLService;
 import hrs.client.BLServiceImpl.LoginBLServiceImpl;
-import rhs.common.DataService.UserDataService;
-import rhs.common.PO.UserPO;
+import hrs.common.DataService.UserDataService;
+import hrs.common.PO.UserPO;
 
 public class TestLoginBLServiceImpl {
 	private LoginBLService service;
