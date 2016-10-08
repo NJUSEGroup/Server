@@ -17,9 +17,13 @@ public class TestUserDataServiceImpl {
 	}	
 
 	@Test
-	public void test() {
+	public void test1() {
 		UserPO user = service.findByUserName("admin");
 		assertEquals(user.getPassword(),"admin");
 	}
-
+	@Test
+	public void test2() {
+		UserPO user = service.findByUserName("admin");
+		assertEquals(user.getPassword(),"error!");
+	}
 }
