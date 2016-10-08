@@ -9,9 +9,7 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   
-  <groupId>cn.edu.nju.HotelReservationSystem</groupId>
   <artifactId>HotelReservationSystem-common</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
   <name>HotelReservationSystem-common</name>
   <url>http://maven.apache.org</url>
   

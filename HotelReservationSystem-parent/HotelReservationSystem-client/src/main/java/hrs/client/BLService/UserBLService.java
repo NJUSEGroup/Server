@@ -1,5 +1,5 @@
 package hrs.client.BLService;
 
-public interface LoginBLService {
+public interface UserBLService {
 	boolean login(String username,String password);
 }

@@ -6,19 +6,19 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import hrs.client.BLService.LoginBLService;
-import hrs.client.BLServiceImpl.LoginBLServiceImpl;
+import hrs.client.BLService.UserBLService;
+import hrs.client.BLServiceImpl.UserBLServiceImpl;
 import hrs.common.DataService.UserDataService;
 import hrs.common.PO.UserPO;
 
-public class TestLoginBLServiceImpl {
-	private LoginBLService service;
+public class TestUserBLServiceImpl {
+	private UserBLService service;
 	private UserDataService dataservice;//没有实际的代码，需要模拟
 	private UserPO baseUser ;
 	@Before
 	public void setUp() throws Exception {
 		dataservice = createMock(UserDataService.class);
-		service = new LoginBLServiceImpl(dataservice);
+		service = new UserBLServiceImpl(dataservice);
 		baseUser = new UserPO();
 		baseUser.setUsername("admin");
 		baseUser.setPassword("admin");

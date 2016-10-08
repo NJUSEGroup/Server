@@ -120,6 +120,6 @@
   	<module>HotelReservationSystem-client</module>
   	<module>HotelReservationSystem-server</module>
   	
-  	<module>../HotelReservationSystem-StubAndDriver</module>
+  	<module>HotelReservationSystem-StubAndDriver</module>
   </modules>
 </project>

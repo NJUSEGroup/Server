@@ -1,4 +1,4 @@
-package cn.edu.nju.HotelReservationSystem.HotelReservationSystem_StubAndDriver;
+package org.HotelReservationSystem.StubAndDriver;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
