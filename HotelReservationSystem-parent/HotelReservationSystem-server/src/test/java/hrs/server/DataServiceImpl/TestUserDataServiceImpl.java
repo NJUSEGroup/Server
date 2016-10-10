@@ -5,15 +5,15 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import hrs.common.DataService.UserDataService;
+import hrs.common.DAO.UserDAO;
 import hrs.common.PO.UserPO;
-import hrs.server.DataServiceImpl.UserDataServiceImpl;
+import hrs.server.DAOImpl.UserDAOImpl;
 
 public class TestUserDataServiceImpl {
-	private UserDataService service;
+	private UserDAO service;
 	@Before
 	public void setUp() throws Exception {
-		service = new UserDataServiceImpl();
+		service = new UserDAOImpl();
 	}	
 
 	@Test

@@ -1,8 +1,8 @@
-package hrs.common.DataService;
+package hrs.common.DAO;
 
 import hrs.common.PO.UserPO;
 
-public interface UserDataService {
+public interface UserDAO {
 	UserPO findByUserName(String username);
 	
 }
