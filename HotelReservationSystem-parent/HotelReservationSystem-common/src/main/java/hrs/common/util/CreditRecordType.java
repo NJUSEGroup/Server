@@ -1,11 +1,9 @@
 package hrs.common.util;
 
 public enum CreditRecordType {
-	Register, Execute, Overtime, Recharge;
+	Execute, Overtime, Recharge;
 	public static CreditRecordType getCreditRecordType(String type) {
 		switch (type) {
-		case "Register":
-			return Register;
 		case "Execute":
 			return Execute;
 		case "Overtime":

@@ -1,8 +1,11 @@
 package hrs.common.PO;
 
 import java.io.Serializable;
+import java.util.List;
 
-public class HotelPO implements Serializable{
+import hrs.common.util.OrderStatus;
+
+public class HotelVO implements Serializable{
 	/**
 	 * 
 	 */
@@ -15,8 +18,8 @@ public class HotelPO implements Serializable{
 	private String commCircle;
 	private String profile;
 	private String service;
-//	private List<OrderStatus> status;//只在VO中，没有在PO中
-	public HotelPO() {
+	private List<OrderStatus> status;//只在VO中，没有在PO中
+	public HotelVO() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -82,5 +85,8 @@ public class HotelPO implements Serializable{
 
 	public void setService(String service) {
 		this.service = service;
+	}
+	public static void main(String[] args) {
+		
 	}
 }
