@@ -5,6 +5,14 @@ import java.io.Serializable;
 import hrs.common.util.type.RoomType;
 
 public class RoomVO implements Serializable {
+	public RoomVO(int hotelId, RoomType type, int roomNum, double roomValue) {
+		super();
+		this.hotelId = hotelId;
+		this.type = type;
+		this.roomNum = roomNum;
+		this.roomValue = roomValue;
+	}
+
 	/**
 	 * 
 	 */
