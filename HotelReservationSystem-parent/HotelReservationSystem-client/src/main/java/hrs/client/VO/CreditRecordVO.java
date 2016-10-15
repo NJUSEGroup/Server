@@ -14,10 +14,21 @@ public class CreditRecordVO implements Serializable {
 	private CreditRecordType type;
 	private int variation;
 	private int currCredit;
-
+	
+	
 	public CreditRecordVO() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+	public CreditRecordVO(int id, String username, CreditRecordType type, int variation) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.type = type;
+		this.variation = variation;
+	}
+
 
 	public int getId() {
 		return id;

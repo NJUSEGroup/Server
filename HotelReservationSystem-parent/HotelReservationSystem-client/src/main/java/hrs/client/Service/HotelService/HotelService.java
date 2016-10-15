@@ -17,23 +17,23 @@ public interface HotelService {
 
 	ResultMessage add(HotelVO hotelvo);
 
-	List<Map<HotelVO, List<OrderVO>>> findOrderedHotelAndOrder(String username);
+	Map<HotelVO, List<OrderVO>> findOrderedHotelAndOrder(String username);
 
-	List<Map<HotelVO, List<RoomVO>>> find(int loc, int circle, Date begin, Date end);
+	Map<HotelVO, List<RoomVO>> find(int loc, int circle, Date begin, Date end);
 
-	List<Map<HotelVO, List<RoomVO>>> filterName(List<Map<HotelVO, List<RoomVO>>> list, String hotelname);
+	Map<HotelVO, List<RoomVO>> filterName(Map<HotelVO, List<RoomVO>> map, String hotelname);
 
-	List<Map<HotelVO, List<RoomVO>>> filterStar(List<Map<HotelVO, List<RoomVO>>> list, int star);
+	Map<HotelVO, List<RoomVO>> filterStar(Map<HotelVO, List<RoomVO>> map, int star);
 
-	List<Map<HotelVO, List<RoomVO>>> filterScore(List<Map<HotelVO, List<RoomVO>>> list, double low, double high);
-	List<Map<HotelVO,List<RoomVO>>> orderByStar(List<Map<HotelVO,List<RoomVO>>> list,boolean isDecrease);
-	List<Map<HotelVO,List<RoomVO>>> orderByScore(List<Map<HotelVO,List<RoomVO>>> list,boolean isDecrease);
-	Map<HotelVO,List<RoomVO>> displayRoomDetail(List<Map<HotelVO,List<RoomVO>>> list,int hotelID);
-	Map<HotelVO,List<OrderVO>>	displayOrderDetail(int hotelID,String username);
-	List<Map<HotelVO,List<RoomVO>>> filterIfOrdered(List<Map<HotelVO,List<RoomVO>>> list);
-	List<Map<HotelVO,List<RoomVO>>> filterRoomType(List<Map<HotelVO,List<RoomVO>>> list,RoomType roomtype);
-	List<Map<HotelVO,List<RoomVO>>>	filterValue(List<Map<HotelVO,List<RoomVO>>> list,double low,double high);
-	List<Map<HotelVO,List<RoomVO>>>  orderByValue(List<Map<HotelVO,List<RoomVO>>> list);
+	Map<HotelVO, List<RoomVO>> filterScore(Map<HotelVO, List<RoomVO>> map, double low, double high);
+	Map<HotelVO,List<RoomVO>> orderByStar(Map<HotelVO,List<RoomVO>> map,boolean isDecrease);
+	Map<HotelVO,List<RoomVO>> orderByScore(Map<HotelVO,List<RoomVO>> map,boolean isDecrease);
+	Map.Entry<HotelVO,List<RoomVO>> displayRoomDetail(Map<HotelVO,List<RoomVO>> map,int hotelID);
+	Map.Entry<HotelVO,List<OrderVO>>	displayOrderDetail(HotelVO vo,String username);
+	Map<HotelVO,List<RoomVO>> filterIfOrdered(Map<HotelVO,List<RoomVO>> list);
+	Map<HotelVO,List<RoomVO>> filterRoomType(Map<HotelVO,List<RoomVO>> map,RoomType roomtype);
+	Map<HotelVO,List<RoomVO>>	filterValue(Map<HotelVO,List<RoomVO>> map,double low,double high);
+	Map<HotelVO,List<RoomVO>>  orderByValue(Map<HotelVO,List<RoomVO>> list);
 	
 
 	
