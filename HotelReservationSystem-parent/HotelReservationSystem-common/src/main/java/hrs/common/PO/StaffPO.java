@@ -6,6 +6,14 @@ import hrs.common.util.type.StaffType;
 
 public class StaffPO implements Serializable{
 	
+	public StaffPO(String username, String password, String name, StaffType type, String hotel) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.name = name;
+		this.type = type;
+		this.hotel = hotel;
+	}
 	/**
 	 * 
 	 */
