@@ -2,9 +2,8 @@ package hrs.server.DatabaseUtility;
 
 import java.util.List;
 
-import javax.sql.DataSource;
+import javax.annotation.Resource;
 
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -12,64 +11,68 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Component;
 
-
+import hrs.common.util.IDTemplate;
+@Component
 public class JDBCTemplate {
-	private static NamedParameterJdbcTemplate jdbcHelper = new NamedParameterJdbcTemplate((DataSource) new ClassPathXmlApplicationContext("applicationContext.xml").getBean("dataSource"));
-	
-	
-	public static <T> void update(String sql, T t) {
+	@Resource
+	private NamedParameterJdbcTemplate jdbcHelper;
+
+	public <T> void update(String sql, T t) {
 		jdbcHelper.update(sql, new BeanPropertySqlParameterSource(t));
 	}
-	
-	public static <T> void delete(String sql,T t) {
+
+	public <T> void delete(String sql, T t) {
 		jdbcHelper.getJdbcOperations().update(sql, t);
 	}
-	
-	public static <T> List<T> findAll(String sql,Class<T> clazz){
+
+	public <T> List<T> findAll(String sql, Class<T> clazz) {
 		List<T> list = null;
 		try {
 			list = jdbcHelper.getJdbcOperations().query(sql, BeanPropertyRowMapper.newInstance(clazz));
 		} catch (EmptyResultDataAccessException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 			list = null;
+			System.out.println("Not find List!");
 		}
 		return list;
 	}
-	
-	public static <T> List<T> findAll(String sql,Class<T> clazz , Object ...constraints ){
+
+	public <T> List<T> findAll(String sql, Class<T> clazz, Object... constraints) {
 		List<T> list = null;
 		try {
-			list = jdbcHelper.getJdbcOperations().query(sql, BeanPropertyRowMapper.newInstance(clazz),constraints );
+			list = jdbcHelper.getJdbcOperations().query(sql, BeanPropertyRowMapper.newInstance(clazz), constraints);
 		} catch (EmptyResultDataAccessException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 			list = null;
+			System.out.println("Not find List!");
 		}
 		return list;
 	}
-	
-	public static <T> T find(String sql ,Class<T> clazz, Object... constraints ) {
+
+	public <T> T find(String sql, Class<T> clazz, Object... constraints) {
 		T t = null;
 		try {
-			t = jdbcHelper.getJdbcOperations().queryForObject(sql,BeanPropertyRowMapper.newInstance(clazz),constraints);
+			t = jdbcHelper.getJdbcOperations().queryForObject(sql, BeanPropertyRowMapper.newInstance(clazz),
+					constraints);
 		} catch (EmptyResultDataAccessException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
+			System.out.println("Not find entity!");
 		}
 		return t;
 	}
-	
-	
-	
-	public static <T extends MyTemplate> void addConcludesId(String sql,T t ) {
+
+	public <T extends IDTemplate> void addIncludesId(String sql, T t) {
 		SqlParameterSource ps = new BeanPropertySqlParameterSource(t);
 		KeyHolder keyHolder = new GeneratedKeyHolder();
-		jdbcHelper.update(sql,ps,keyHolder);
+		jdbcHelper.update(sql, ps, keyHolder);
 		int id = keyHolder.getKey().intValue();
 		t.setId(id);
 	}
-	
-	public static <T> void add(String sql,T t) {
-		jdbcHelper.update(sql,new BeanPropertySqlParameterSource(t));
+
+	public <T> void add(String sql, T t) {
+		jdbcHelper.update(sql, new BeanPropertySqlParameterSource(t));
 	}
-	
+
 }
