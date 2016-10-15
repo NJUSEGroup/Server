@@ -5,7 +5,7 @@ import java.util.List;
 import hrs.common.PO.HotelDiscountPO;
 import hrs.common.util.ResultMessage;
 
-interface HotelDiscountDAO {
+public interface HotelDiscountDAO {
 	 ResultMessage add (HotelDiscountPO hoteldiscountpo);
 	 ResultMessage update(HotelDiscountPO hoteldiscountpo);
 	 ResultMessage delete(int id);

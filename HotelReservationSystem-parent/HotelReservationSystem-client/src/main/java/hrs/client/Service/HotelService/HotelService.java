@@ -19,7 +19,7 @@ public interface HotelService {
 
 	List<Map<HotelVO, List<OrderVO>>> findOrderedHotelAndOrder(String username);
 
-	List<Map<HotelVO, List<RoomVO>>> find(String loc, String circle, Date begin, Date end);
+	List<Map<HotelVO, List<RoomVO>>> find(int loc, int circle, Date begin, Date end);
 
 	List<Map<HotelVO, List<RoomVO>>> filterName(List<Map<HotelVO, List<RoomVO>>> list, String hotelname);
 

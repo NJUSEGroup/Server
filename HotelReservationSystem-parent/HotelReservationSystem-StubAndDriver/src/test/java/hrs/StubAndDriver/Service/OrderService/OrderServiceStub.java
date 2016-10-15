@@ -103,7 +103,10 @@ public class OrderServiceStub implements OrderService{
 	@Override
 	public ResultMessage placeOrder(OrderVO ordervo) {
 		OrderPO po = new OrderPO();
-		
+		//读取优惠策略，并对订单进行处理
+//		hotelDiscountService.findAllByHotelID(ordervo.getHotelID());
+//		webDiscountService.findAll();
+		//读取用户的信息：生日、所在企业、原始信用值
 		BeanUtils.copyProperties(ordervo, po);
 		return dao.add(po);
 	}
@@ -112,6 +115,7 @@ public class OrderServiceStub implements OrderService{
 	public ResultMessage update(OrderVO ordervo) {
 		OrderPO po = new OrderPO();
 		BeanUtils.copyProperties(ordervo, po);
+		//如果撤销订单或者执行订单，那么添加一条信用记录
 		return dao.update(po);
 	}
 	

@@ -12,6 +12,11 @@ public class LocationPO implements Serializable{
 	public LocationPO() {
 		// TODO Auto-generated constructor stub
 	}
+	public LocationPO(int id, String name) {
+		this.id = id;
+		this.name = name;
+	}
+	
 	public int getId() {
 		return id;
 	}

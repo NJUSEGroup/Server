@@ -19,7 +19,7 @@ public class OrderVO implements Serializable{
 	private Date checkoutTime;
 	private Date revokeTime;
 	private OrderStatus status;
-	private int  hotelID;//联合查询出name
+	private int  hotelID;
 	public int getHotelID() {
 		return hotelID;
 	}

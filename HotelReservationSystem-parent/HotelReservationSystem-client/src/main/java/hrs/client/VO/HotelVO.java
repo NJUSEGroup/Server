@@ -3,9 +3,11 @@ package hrs.client.VO;
 import java.io.Serializable;
 import java.util.List;
 
+import hrs.common.PO.HotelPO;
+import hrs.common.util.IDTemplate;
 import hrs.common.util.type.OrderStatus;
 
-public class HotelVO implements Serializable {
+public class HotelVO implements Serializable, IDTemplate{
 	/**
 	 * 
 	 */
@@ -14,23 +16,24 @@ public class HotelVO implements Serializable {
 	private String name;
 	private int star;
 	private double score;
-	private String loc;
-	private String commCircle;
+	private int loc;
+	private int commCircle;
 	private String profile;
 	private String service;
-	private List<OrderStatus> status;// 只在VO中，没有在PO中
-
+	private List<OrderStatus> status;//只在VO中，没有在PO中
+	
 	public HotelVO() {
 		// TODO Auto-generated constructor stub
 	}
-
-	public List<OrderStatus> getStatus() {
-		return status;
+	
+	public HotelVO(int id, String name,int loc,int commCircle) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.loc  = loc;
+		this.commCircle = commCircle;
 	}
 
-	public void setStatus(List<OrderStatus> status) {
-		this.status = status;
-	}
 
 	public int getId() {
 		return id;
@@ -63,22 +66,22 @@ public class HotelVO implements Serializable {
 	public void setScore(double score) {
 		this.score = score;
 	}
-
-	public String getLoc() {
+	public int getLoc() {
 		return loc;
 	}
 
-	public void setLoc(String loc) {
+	public void setLoc(int loc) {
 		this.loc = loc;
 	}
 
-	public String getCommCircle() {
+	public int getCommCircle() {
 		return commCircle;
 	}
 
-	public void setCommCircle(String commCircle) {
+	public void setCommCircle(int commCircle) {
 		this.commCircle = commCircle;
 	}
+	
 
 	public String getProfile() {
 		return profile;
@@ -96,13 +99,21 @@ public class HotelVO implements Serializable {
 		this.service = service;
 	}
 
+	public List<OrderStatus> getStatus() {
+		return status;
+	}
+
+	public void setStatus(List<OrderStatus> status) {
+		this.status = status;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((commCircle == null) ? 0 : commCircle.hashCode());
+		result = prime * result + commCircle;
 		result = prime * result + id;
-		result = prime * result + ((loc == null) ? 0 : loc.hashCode());
+		result = prime * result + loc;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((profile == null) ? 0 : profile.hashCode());
 		long temp;
@@ -123,17 +134,11 @@ public class HotelVO implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		HotelVO other = (HotelVO) obj;
-		if (commCircle == null) {
-			if (other.commCircle != null)
-				return false;
-		} else if (!commCircle.equals(other.commCircle))
+		if (commCircle != other.commCircle)
 			return false;
 		if (id != other.id)
 			return false;
-		if (loc == null) {
-			if (other.loc != null)
-				return false;
-		} else if (!loc.equals(other.loc))
+		if (loc != other.loc)
 			return false;
 		if (name == null) {
 			if (other.name != null)
@@ -161,6 +166,5 @@ public class HotelVO implements Serializable {
 			return false;
 		return true;
 	}
-
 	
 }
