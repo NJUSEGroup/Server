@@ -22,6 +22,18 @@ public  class HotelDiscountVO implements Serializable{
 	public HotelDiscountVO() {
 		// TODO Auto-generated constructor stub
 	}
+	public HotelDiscountVO(int id, int hotelId, double discount, HotelDiscountType type, int enterpriseId, int minQty,
+			Date beginTime, Date endTime) {
+		super();
+		this.id = id;
+		this.hotelId = hotelId;
+		this.discount = discount;
+		this.type = type;
+		this.enterpriseId = enterpriseId;
+		this.minQty = minQty;
+		this.beginTime = beginTime;
+		this.endTime = endTime;
+	}
 	public int getEnterpriseId() {
 		return enterpriseId;
 	}

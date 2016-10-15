@@ -21,6 +21,16 @@ public class CreditRecordVO implements Serializable {
 	}
 	
 	
+	public CreditRecordVO(int id, String username, CreditRecordType type, int variation, int currCredit) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.type = type;
+		this.variation = variation;
+		this.currCredit = currCredit;
+	}
+
+
 	public CreditRecordVO(int id, String username, CreditRecordType type, int variation) {
 		super();
 		this.id = id;

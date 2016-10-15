@@ -18,8 +18,22 @@ public  class HotelDiscountPO implements Serializable{
 	private int minQty;//满几间房有优惠
 	private Date beginTime;//特定期间优惠
 	private Date endTime;
+	public HotelDiscountPO() {
+		// TODO Auto-generated constructor stub
+	}
 	
-	
+	public HotelDiscountPO(int id, int hotelId, double discount, HotelDiscountType type, int enterpriseId, int minQty,
+			Date beginTime, Date endTime) {
+		super();
+		this.id = id;
+		this.hotelId = hotelId;
+		this.discount = discount;
+		this.type = type;
+		this.enterpriseId = enterpriseId;
+		this.minQty = minQty;
+		this.beginTime = beginTime;
+		this.endTime = endTime;
+	}
 	public int getEnterpriseId() {
 		return enterpriseId;
 	}

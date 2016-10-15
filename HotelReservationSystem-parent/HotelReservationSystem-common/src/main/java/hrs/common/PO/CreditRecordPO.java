@@ -20,6 +20,15 @@ public class CreditRecordPO implements Serializable ,IDTemplate{
 		// TODO Auto-generated constructor stub
 	}
 
+	public CreditRecordPO(int id, String username, CreditRecordType type, int variation, int currCredit) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.type = type;
+		this.variation = variation;
+		this.currCredit = currCredit;
+	}
+
 	public int getId() {
 		return id;
 	}

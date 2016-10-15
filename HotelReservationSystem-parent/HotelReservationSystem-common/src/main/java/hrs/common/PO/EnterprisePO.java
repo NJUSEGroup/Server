@@ -11,8 +11,13 @@ public class EnterprisePO implements Serializable,IDTemplate{
 	private static final long serialVersionUID = 1L;
 	private int id;
 	private String name;
-	public EnterprisePO() {
-		// TODO Auto-generated constructor stub
+	public EnterprisePO(){
+		
+	}
+	public EnterprisePO(int id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
 	}
 	public int getId() {
 		return id;

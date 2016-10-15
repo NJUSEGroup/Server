@@ -12,6 +12,11 @@ public class EnterpriseVO implements Serializable{
 	public EnterpriseVO() {
 		// TODO Auto-generated constructor stub
 	}
+	public EnterpriseVO(int id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
 	public int getId() {
 		return id;
 	}
