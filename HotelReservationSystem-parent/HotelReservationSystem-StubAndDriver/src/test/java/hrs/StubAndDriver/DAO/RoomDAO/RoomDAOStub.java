@@ -23,7 +23,7 @@ public class RoomDAOStub implements RoomDAO{
 	}
 	@Override
 	public RoomPO findByHotelAndType(int hotelID,RoomType type){
-		return rp;
+		return map.get(hotelID);
 	}
 	@Override
 	public ResultMessage update(RoomPO roompo){

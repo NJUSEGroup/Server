@@ -23,12 +23,16 @@ public class RoomServiceDriver {
 
 	@Test
 	public void testUpdate() {
-		assertTrue(service.update(new RoomVO(1, RoomType.Business, 0, 0)) == ResultMessage.SUCCESS);
+		RoomVO vo = new RoomVO(1, RoomType.Single, 100, 0);
+		service.update(vo);
+		assertEquals(100, service.findByHotelAndType(1, RoomType.Single).getRoomNum());
 	}
 	
 	@Test
 	public void testAdd() {
-		assertTrue(service.add(new RoomVO(1, RoomType.Single, 0, 0)) == ResultMessage.EXISTED);
+		RoomVO vo = new RoomVO(2, RoomType.Single, 0, 0);
+		service.add(vo);
+		assertEquals(vo, service.findByHotelAndType(2, RoomType.Single));
 	}
 	
 	@Test
