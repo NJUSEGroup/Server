@@ -65,6 +65,9 @@ public class HotelServiceStub implements HotelService {
 	public Map<HotelVO, List<OrderVO>> findOrderedHotelAndOrder(String username) {
 		Map<HotelVO,List<OrderVO>> map = new HashMap<>();
 		List<OrderVO> orders = orderService.findByUsername(username);
+		if(orders == null){
+			return null;
+		}
 		List<OrderVO> orderForTheHotel = null;
 		for(OrderVO order:orders){
 			HotelVO hotel = findByID(order.hotelID);
@@ -82,12 +85,15 @@ public class HotelServiceStub implements HotelService {
 	@Override
 	public Map<HotelVO, List<RoomVO>> find(int loc, int circle, Date begin, Date end) {
 		List<HotelPO> pos = dao.find(loc, circle);
+		if(pos == null){
+			return null;
+		}
 		HotelVO vo = null;
 		Map<HotelVO, List<RoomVO>> map = new HashMap<>();
 		for (HotelPO po : pos) {
 			vo = new HotelVO();
 			BeanUtils.copyProperties(po, vo);
-			List<RoomVO> rooms = roomService.findAvailableByHotelID(vo.id);
+			List<RoomVO> rooms = roomService.findAvailableByHotelID(vo.id,begin,end);
 			map.put(vo,rooms);
 		}
 		return map;
@@ -171,15 +177,6 @@ public class HotelServiceStub implements HotelService {
 		return null;
 	}
 
-	@Override
-	public Map.Entry<HotelVO, List<OrderVO>> displayOrderDetail(HotelVO vo, String username) {
-		Map<HotelVO,List<OrderVO>> map = new HashMap<>();
-		map.put(vo, orderService.findByHotelAndUsername(vo.id, username));
-		for(Entry<HotelVO,List<OrderVO>> e:map.entrySet()){
-			return e;
-		}
-		return null;
-	}
 
 	@Override
 	public Map<HotelVO, List<RoomVO>> filterIfOrdered(Map<HotelVO, List<RoomVO>> map) {

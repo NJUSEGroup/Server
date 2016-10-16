@@ -10,7 +10,7 @@ import hrs.common.PO.StaffPO;
 import hrs.common.util.ResultMessage;
 
 public class StaffServiceStub implements StaffService {
-	StaffDAO staffDao;
+	private StaffDAO staffDao;
 	
 	public StaffServiceStub(){
 		staffDao = new StaffDAOStub();
@@ -18,14 +18,13 @@ public class StaffServiceStub implements StaffService {
 	
 	@Override
 	public StaffVO login(String username, String password) {
-		StaffVO vo = new StaffVO();
 		StaffPO po = staffDao.findByUsername(username);
-		BeanUtils.copyProperties(po, vo);
-		if(vo.password.equals(password)){
-			return vo;
-		}
-		else
+		if(po == null || !po.getPassword().equals(password)){
 			return null;
+		}
+		StaffVO vo = new StaffVO();
+		BeanUtils.copyProperties(po, vo);
+		return vo;
 	}
 
 	@Override

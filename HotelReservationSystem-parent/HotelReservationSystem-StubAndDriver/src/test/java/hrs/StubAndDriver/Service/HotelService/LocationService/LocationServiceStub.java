@@ -19,6 +19,9 @@ public class LocationServiceStub implements LocationService{
 	@Override
 	public List<LocationVO> findAll() {
 		List<LocationPO> pos = dao.findAll();
+		if(pos == null){
+			return null;
+		}
 		List<LocationVO> vos = new ArrayList<>();
 		LocationVO vo;
 		for(LocationPO po :pos){

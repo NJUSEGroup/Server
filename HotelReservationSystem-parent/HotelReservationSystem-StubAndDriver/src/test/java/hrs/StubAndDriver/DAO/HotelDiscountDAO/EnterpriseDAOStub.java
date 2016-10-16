@@ -1,10 +1,9 @@
 package hrs.StubAndDriver.DAO.HotelDiscountDAO;
 
-import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import hrs.common.DAO.HotelDiscountDAO.EnterpriseDAO;
 import hrs.common.PO.EnterprisePO;
@@ -21,8 +20,7 @@ public class EnterpriseDAOStub implements EnterpriseDAO {
 	public List<EnterprisePO> findAll() {
 		List<EnterprisePO> list = new ArrayList<>();
 		EnterprisePO po = null;
-		Set<Integer> set = map.keySet();
-		for (Integer i : set) {
+		for (Integer i : map.keySet()) {
 			po = map.get(i);
 			list.add(po);
 		}

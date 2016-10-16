@@ -21,6 +21,9 @@ public class CommCircleServiceStub implements CommCircleService {
 	@Override
 	public List<CommercialCircleVO> findByLoc(int locID) {
 		List<CommercialCirclePO> pos = dao.findByLoc(locID);
+		if(pos == null){
+			return null;
+		}
 		List<CommercialCircleVO> vos = new ArrayList<>();
 		CommercialCircleVO vo = null;
 		for (CommercialCirclePO po : pos) {

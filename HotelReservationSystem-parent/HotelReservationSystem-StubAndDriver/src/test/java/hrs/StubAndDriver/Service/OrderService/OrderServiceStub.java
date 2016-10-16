@@ -42,6 +42,9 @@ public class OrderServiceStub implements OrderService {
 	@Override
 	public OrderVO findByID(int id) {
 		OrderPO po = dao.findByID(id);
+		if (po == null) {
+			return null;
+		}
 		OrderVO vo = new OrderVO();
 		BeanUtils.copyProperties(po, vo);
 		return vo;
@@ -50,6 +53,9 @@ public class OrderServiceStub implements OrderService {
 	@Override
 	public List<OrderVO> findByUsernameAndType(String username, OrderStatus type) {
 		List<OrderPO> pos = dao.findByUsernameAndType(username, type);
+		if (pos == null) {
+			return null;
+		}
 		List<OrderVO> vos = new ArrayList<>(pos.size());
 		OrderVO vo = null;
 		for (OrderPO po : pos) {
@@ -63,6 +69,9 @@ public class OrderServiceStub implements OrderService {
 	@Override
 	public List<OrderVO> findByUsername(String username) {
 		List<OrderPO> pos = dao.findByUsername(username);
+		if (pos == null) {
+			return null;
+		}
 		List<OrderVO> vos = new ArrayList<>(pos.size());
 		OrderVO vo = null;
 		for (OrderPO po : pos) {
@@ -76,6 +85,9 @@ public class OrderServiceStub implements OrderService {
 	@Override
 	public List<OrderVO> findByHotelAndUsername(int hotelID, String username) {
 		List<OrderPO> pos = dao.findByHotelAndUsername(hotelID, username);
+		if (pos == null) {
+			return null;
+		}
 		List<OrderVO> vos = new ArrayList<>(pos.size());
 		OrderVO vo = null;
 		for (OrderPO po : pos) {
@@ -89,6 +101,9 @@ public class OrderServiceStub implements OrderService {
 	@Override
 	public List<OrderVO> findByOrderType(OrderStatus status) {
 		List<OrderPO> pos = dao.findByOrderType(status);
+		if (pos == null) {
+			return null;
+		}
 		List<OrderVO> vos = new ArrayList<>(pos.size());
 		OrderVO vo = null;
 		for (OrderPO po : pos) {
@@ -102,6 +117,9 @@ public class OrderServiceStub implements OrderService {
 	@Override
 	public List<OrderVO> findByHotelAndTime(int hotelID, Date begin, Date end) {
 		List<OrderPO> pos = dao.findByHotelAndTime(hotelID, begin, end);
+		if (pos == null) {
+			return null;
+		}
 		List<OrderVO> vos = new ArrayList<>(pos.size());
 		OrderVO vo = null;
 		for (OrderPO po : pos) {
@@ -119,7 +137,7 @@ public class OrderServiceStub implements OrderService {
 		// webDiscountService.findAll();
 		// 读取用户的信息：生日、所在企业、原始信用值
 		// 合并后进行优惠
-		//每种优惠策略都设置优惠值
+		// 每种优惠策略都设置优惠值
 		return ordervo;
 	}
 
@@ -127,29 +145,30 @@ public class OrderServiceStub implements OrderService {
 	public ResultMessage update(OrderVO ordervo) {
 		OrderPO po = new OrderPO();
 		BeanUtils.copyProperties(ordervo, po);
-		//如果网站营销人员撤销订单或者执行订单或者异常，那么添加一条信用记录
+		// 如果网站营销人员撤销订单或者执行订单或者异常，那么添加一条信用记录
 		CreditRecordVO creditRecord = null;
-		switch(po.getStatus()){
+		switch (po.getStatus()) {
 		case Executed:
-			creditRecord = new CreditRecordVO(0,po.getUsername(),CreditRecordType.Execute,(int)ordervo.value);
+			creditRecord = new CreditRecordVO(0, po.getUsername(), CreditRecordType.Execute, (int) ordervo.value);
 			break;
 		case Abnormal:
-			creditRecord = new CreditRecordVO(0,po.getUsername(),CreditRecordType.Execute,-((int)ordervo.value));
+			creditRecord = new CreditRecordVO(0, po.getUsername(), CreditRecordType.Execute, -((int) ordervo.value));
 			break;
 		case UserRevoked:
-			if(ordervo.expectedCheckoutTime.getTime()- System.currentTimeMillis() < 6*3600)
-				creditRecord = new CreditRecordVO(0,ordervo.username,CreditRecordType.Overtime,-((int)(po.getValue()/2)));
+			if (ordervo.expectedCheckoutTime.getTime() - System.currentTimeMillis() < 6 * 3600)
+				creditRecord = new CreditRecordVO(0, ordervo.username, CreditRecordType.Overtime,
+						-((int) (po.getValue() / 2)));
 			break;
 		case RevokedHalfValue:
-			creditRecord = new CreditRecordVO(0, po.getUsername(), CreditRecordType.Revoke, (int)(po.getValue()/2));
+			creditRecord = new CreditRecordVO(0, po.getUsername(), CreditRecordType.Revoke, (int) (po.getValue() / 2));
 			break;
 		case RevokedFullValue:
-			creditRecord = new CreditRecordVO(0, po.getUsername(), CreditRecordType.Revoke, (int)po.getValue());
+			creditRecord = new CreditRecordVO(0, po.getUsername(), CreditRecordType.Revoke, (int) po.getValue());
 			break;
 		default:
 			break;
 		}
-		if(creditRecord != null){
+		if (creditRecord != null) {
 			creditRecordService.add(creditRecord);
 		}
 		return dao.update(po);

@@ -15,6 +15,9 @@ public class UserServiceStub implements UserService{
 	@Override
 	public UserVO findByUsername(String username) {
 		UserPO po =  userDao.findByUserName(username);
+		if(po == null){
+			return null;
+		}
 		UserVO vo = new UserVO();
 		BeanUtils.copyProperties(po,vo);
 		return vo;
@@ -37,6 +40,9 @@ public class UserServiceStub implements UserService{
 	@Override
 	public UserVO login(String username, String password) {
 		 UserPO po = userDao.findByUserName(username);
+		 if(po == null || !po.getPassword().equals(password)){
+			 return null;
+		 }
 		 UserVO vo = new UserVO();
 		 BeanUtils.copyProperties(po, vo);
 		 return vo;

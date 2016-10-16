@@ -42,8 +42,7 @@ public class HotelDiscountDAOStub implements HotelDiscountDAO {
 	public List<HotelDiscountPO> findAllByHotelID(int hotelID) {
 		List<HotelDiscountPO> list = new ArrayList<>();
 		HotelDiscountPO po = null;
-		Set<Integer> set = map.keySet();
-		for (Integer integer : set) {
+		for (Integer integer : map.keySet()) {
 			po = map.get(integer);
 			if (po.getHotelId() == hotelID)
 				list.add(po);

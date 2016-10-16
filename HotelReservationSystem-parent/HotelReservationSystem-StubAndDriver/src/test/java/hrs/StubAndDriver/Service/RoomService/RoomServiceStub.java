@@ -1,6 +1,7 @@
 package hrs.StubAndDriver.Service.RoomService;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
@@ -27,6 +28,9 @@ public class RoomServiceStub implements RoomService {
 	@Override
 	public RoomVO findByHotelAndType(int hotelID, RoomType type) {
 		RoomPO po =  dao.findByHotelAndType(hotelID, type);
+		if(po == null){
+			return null;
+		}
 		RoomVO vo = new RoomVO();
 		BeanUtils.copyProperties(po,vo);
 		return vo;
@@ -62,9 +66,21 @@ public class RoomServiceStub implements RoomService {
 	}
 
 	@Override
-	public List<RoomVO> findAvailableByHotelID(int hotelID) {
-		
-		return null;
+	public List<RoomVO> findAvailableByHotelID(int hotelID, Date begin, Date end) {
+		List<RoomPO> pos = dao.findByHotelID(hotelID);
+		if(pos == null){
+			return null;
+		}
+		List<RoomVO> vos = new ArrayList<>();
+		RoomVO vo = null;
+		for(RoomPO po:pos){
+			vo = new RoomVO();
+			BeanUtils.copyProperties(po, vo);
+			vo.availRoomNum = availRoomService.findAvailableRoomNum(hotelID, po.getType(), begin, end);
+			vos.add(vo);
+		}
+		return vos;
 	}
+
 	
 }

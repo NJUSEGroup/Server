@@ -37,10 +37,18 @@ public class HotelDiscountServiceStub implements HotelDiscountService {
 
 	@Override
 	public List<HotelDiscountVO> findAllByHotelID(int hotelID) {
-		List<HotelDiscountPO> po = hoteldiscountDAO.findAllByHotelID(hotelID);
-		List<HotelDiscountVO> vo = new ArrayList<>(po.size());
-		BeanUtils.copyProperties(po, vo);
-		return vo;
+		List<HotelDiscountPO> pos = hoteldiscountDAO.findAllByHotelID(hotelID);
+		if(pos == null){
+			return null;
+		}
+		List<HotelDiscountVO> vos = new ArrayList<>(pos.size());
+		HotelDiscountVO vo = null;
+		for(HotelDiscountPO po:pos){
+			vo = new HotelDiscountVO();
+			BeanUtils.copyProperties(po, vo);
+			vos.add(vo);
+		}
+		return vos;
 	}
 
 	@Override
