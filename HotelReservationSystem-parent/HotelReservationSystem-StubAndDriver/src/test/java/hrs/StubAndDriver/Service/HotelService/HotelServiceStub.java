@@ -13,9 +13,8 @@ import org.springframework.beans.BeanUtils;
 
 import hrs.StubAndDriver.DAO.HotelDAO.HotelDAOStub;
 import hrs.client.Service.OrderService;
-import hrs.client.Service.RoomService;
-import hrs.client.Service.HotelService.AvailableRoomService;
 import hrs.client.Service.HotelService.HotelService;
+import hrs.client.Service.RoomService.RoomService;
 import hrs.client.VO.HotelVO;
 import hrs.client.VO.OrderVO;
 import hrs.client.VO.RoomVO;
@@ -28,7 +27,6 @@ public class HotelServiceStub implements HotelService {
 	private HotelDAO dao;
 	private OrderService orderService;
 	private RoomService roomService;
-	private AvailableRoomService availableRoomService;
 
 	public HotelServiceStub() {
 		dao = new HotelDAOStub();
@@ -62,7 +60,7 @@ public class HotelServiceStub implements HotelService {
 		List<OrderVO> orders = orderService.findByUsername(username);
 		List<OrderVO> orderForTheHotel = null;
 		for(OrderVO order:orders){
-			HotelVO hotel = findByID(order.getHotelID());
+			HotelVO hotel = findByID(order.hotelID);
 			if(map.containsKey(hotel)){
 				map.get(hotel).add(order);
 			}else{
@@ -82,12 +80,7 @@ public class HotelServiceStub implements HotelService {
 		for (HotelPO po : pos) {
 			vo = new HotelVO();
 			BeanUtils.copyProperties(po, vo);
-			List<RoomVO> rooms = roomService.findByHotelID(vo.getId());
-			for(RoomVO room:rooms){
-				if(!availableRoomService.hasAvailableRoom(po.getId(), room.getType(), begin, end)){
-					rooms.remove(room);
-				}
-			}
+			List<RoomVO> rooms = roomService.findAvailableByHotelID(vo.id);
 			map.put(vo,rooms);
 		}
 		return map;
@@ -96,7 +89,7 @@ public class HotelServiceStub implements HotelService {
 	@Override
 	public Map<HotelVO, List<RoomVO>> filterName(Map<HotelVO, List<RoomVO>> map, String hotelname) {
 		for (HotelVO vo : map.keySet()) {
-			if (!vo.getName().matches(".*" + hotelname + ".*")) {
+			if (!vo.name.matches(".*" + hotelname + ".*")) {
 				map.remove(vo);
 			}
 		}
@@ -106,7 +99,7 @@ public class HotelServiceStub implements HotelService {
 	@Override
 	public Map<HotelVO, List<RoomVO>> filterStar(Map<HotelVO, List<RoomVO>> map, int star) {
 		for (HotelVO vo : map.keySet()) {
-			if (vo.getStar() != star) {
+			if (vo.star != star) {
 				map.remove(vo);
 			}
 		}
@@ -116,7 +109,7 @@ public class HotelServiceStub implements HotelService {
 	@Override
 	public Map<HotelVO, List<RoomVO>> filterScore(Map<HotelVO, List<RoomVO>> map, double low, double high) {
 		for (HotelVO vo : map.keySet()) {
-			if (vo.getScore() < low || vo.getScore() > high) {
+			if (vo.score < low || vo.score > high) {
 				map.remove(vo);
 			}
 		}
@@ -130,9 +123,9 @@ public class HotelServiceStub implements HotelService {
 			@Override
 			public int compare(HotelVO o1, HotelVO o2) {
 				if(isDecrease){
-					return o1.getStar()-o2.getStar();
+					return o1.star-o2.star;
 				}else{
-					return o2.getStar()-o1.getStar();
+					return o2.star-o1.star;
 				}
 			}
 		});
@@ -149,9 +142,9 @@ public class HotelServiceStub implements HotelService {
 			@Override
 			public int compare(HotelVO o1, HotelVO o2) {
 				if(isDecrease){
-					return o1.getScore() >= o2.getScore() ? 1:-1;
+					return o1.score >= o2.score ? 1:-1;
 				}else{
-					return o2.getScore() >= o1.getScore() ? 1:-1;
+					return o2.score >= o1.score ? 1:-1;
 				}
 			}
 		});
@@ -164,7 +157,7 @@ public class HotelServiceStub implements HotelService {
 	@Override
 	public Map.Entry<HotelVO, List<RoomVO>> displayRoomDetail(Map<HotelVO, List<RoomVO>> map, int hotelID) {
 		for(Entry<HotelVO,List<RoomVO>> e:map.entrySet()){
-			if(e.getKey().getId() == hotelID){
+			if(e.getKey().id == hotelID){
 				return e;
 			}
 		}
@@ -174,7 +167,7 @@ public class HotelServiceStub implements HotelService {
 	@Override
 	public Map.Entry<HotelVO, List<OrderVO>> displayOrderDetail(HotelVO vo, String username) {
 		Map<HotelVO,List<OrderVO>> map = new HashMap<>();
-		map.put(vo, orderService.findByHotelAndUsername(vo.getId(), username));
+		map.put(vo, orderService.findByHotelAndUsername(vo.id, username));
 		for(Entry<HotelVO,List<OrderVO>> e:map.entrySet()){
 			return e;
 		}
@@ -184,7 +177,7 @@ public class HotelServiceStub implements HotelService {
 	@Override
 	public Map<HotelVO, List<RoomVO>> filterIfOrdered(Map<HotelVO, List<RoomVO>> map) {
 		for (HotelVO vo : map.keySet()) {
-			if (vo.getStatus() == null || vo.getStatus().size() == 0) {
+			if (vo.status == null || vo.status.size() == 0) {
 				map.remove(vo);
 			}
 		}
@@ -197,7 +190,7 @@ public class HotelServiceStub implements HotelService {
 		for(HotelVO hotel:map.keySet()){
 			list = map.get(hotel);
 			for(RoomVO room:list){
-				if(room.getType() != roomtype){
+				if(room.type != roomtype){
 					list.remove(room);
 				}
 			}
@@ -211,7 +204,7 @@ public class HotelServiceStub implements HotelService {
 		for(HotelVO hotel:map.keySet()){
 			list = map.get(hotel);
 			for(RoomVO room:list){
-				if(room.getRoomValue() < low || room.getRoomValue() > high){
+				if(room.roomValue < low || room.roomValue > high){
 					list.remove(room);
 				}
 			}
@@ -243,10 +236,10 @@ public class HotelServiceStub implements HotelService {
 	}  
 	
 	private double findMin(List<RoomVO> list){
-		double min = list.get(0).getRoomValue();
+		double min = list.get(0).roomValue;
 		for(RoomVO vo:list){
-			if(vo.getRoomValue() < min){
-				min = vo.getRoomValue();
+			if(vo.roomValue < min){
+				min = vo.roomValue;
 			}
 		}
 		return min;

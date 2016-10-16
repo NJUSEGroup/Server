@@ -14,6 +14,7 @@ public interface OrderService {
 	List<OrderVO> findByHotelAndUsername(int hotelID,String username);
 	List<OrderVO> findByOrderType(OrderStatus status);
 	List<OrderVO> findByHotelAndTime(int hotelID,Date begin,Date end);
-	ResultMessage placeOrder(OrderVO ordervo);
+	OrderVO placeOrder(OrderVO ordervo);
+	ResultMessage add(OrderVO ordervo);
 	ResultMessage update(OrderVO ordervo);
 }

@@ -105,49 +105,50 @@ public class OrderServiceStub implements OrderService {
 	}
 
 	@Override
-	public ResultMessage placeOrder(OrderVO ordervo) {
-		OrderPO po = new OrderPO();
+	public OrderVO placeOrder(OrderVO ordervo) {
 		// 读取优惠策略，并对订单进行处理
 		// hotelDiscountService.findAllByHotelID(ordervo.getHotelID());
 		// webDiscountService.findAll();
 		// 读取用户的信息：生日、所在企业、原始信用值
 		// 合并后进行优惠
-
-		BeanUtils.copyProperties(ordervo, po);
-		return dao.add(po);
+		//每种优惠策略都设置优惠值
+		return ordervo;
 	}
 
 	@Override
 	public ResultMessage update(OrderVO ordervo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/*@Override
-	public ResultMessage update(OrderVO ordervo) {
 		OrderPO po = new OrderPO();
 		BeanUtils.copyProperties(ordervo, po);
 		//如果网站营销人员撤销订单或者执行订单或者异常，那么添加一条信用记录
-		CreditRecordVO creditRecord;
+		CreditRecordVO creditRecord = null;
 		switch(po.getStatus()){
 		case Executed:
-			creditRecord = new CreditRecordVO(0,po.getUsername(),CreditRecordType.Execute,(int)ordervo.getValue());
+			creditRecord = new CreditRecordVO(0,po.getUsername(),CreditRecordType.Execute,(int)ordervo.value);
 			break;
 		case Abnormal:
-			creditRecord = new CreditRecordVO(0,po.getUsername(),CreditRecordType.Execute,-((int)ordervo.getValue()));
+			creditRecord = new CreditRecordVO(0,po.getUsername(),CreditRecordType.Execute,-((int)ordervo.value));
 			break;
 		case UserRevoked:
-			if(ordervo.getExpectedCheckoutTime() - System.currentTimeMillis() < )
-				creditRecord = new CreditRecordVO();
+			if(ordervo.expectedCheckoutTime.getTime()- System.currentTimeMillis() < 6*3600)
+				creditRecord = new CreditRecordVO(0,ordervo.username,CreditRecordType.Overtime,-((int)(po.getValue()/2)));
+			break;
+		case RevokedHalfValue:
+			creditRecord = new CreditRecordVO(0, po.getUsername(), CreditRecordType.Revoke, (int)(po.getValue()/2));
+			break;
+		case RevokedFullValue:
+			creditRecord = new CreditRecordVO(0, po.getUsername(), CreditRecordType.Revoke, (int)po.getValue());
+			break;
+		default:
+			break;
 		}
-		if(po.getStatus() == OrderStatus.Executed){
-			creditRecordService.add(new CreditRecordVO(0,po.getUsername(),CreditRecordType.Execute,(int)ordervo.getValue()));
-		}else if(po.getStatus() == OrderStatus.Abnormal){
-			
-		}else(OrderStatus.Abnormal && po.getStatus() == OrderStatus.Revoked){
-			creditRecordService.add(new CreditRecordVO(1, po.getUsername(), CreditRecordType.Revoke, ))
-		}
+		creditRecordService.add(creditRecord);
 		return dao.update(po);
 	}
-	*/
+
+	@Override
+	public ResultMessage add(OrderVO ordervo) {
+		OrderPO po = new OrderPO();
+		BeanUtils.copyProperties(ordervo, po);
+		return dao.add(po);
+	}
 }

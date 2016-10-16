@@ -24,7 +24,7 @@ public class CreditRecordServiceDriver {
 	public void testfindByUsername(){
 		List<CreditRecordVO> vos=service.findByUsername("admin");
 		for(CreditRecordVO vo:vos){
-			assertEquals(vo.getUsername(),"admin");
+			assertEquals(vo.username,"admin");
 		}
 	}
 	

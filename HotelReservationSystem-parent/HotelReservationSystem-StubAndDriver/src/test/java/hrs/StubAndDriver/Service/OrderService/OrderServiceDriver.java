@@ -37,8 +37,8 @@ public class OrderServiceDriver {
 	public void testFindByUsernameAndType() {
 		List<OrderVO> list = service.findByUsernameAndType("admin", OrderStatus.Unexecuted);
 		for (OrderVO vo : list) {
-			assertEquals(vo.getUsername(), "admin");
-			assertEquals(vo.getStatus(), OrderStatus.Unexecuted);
+			assertEquals(vo.username, "admin");
+			assertEquals(vo.status, OrderStatus.Unexecuted);
 		}
 	}
 
@@ -46,8 +46,8 @@ public class OrderServiceDriver {
 	public void testFindByHotelAndUsername() {
 		List<OrderVO> list = service.findByHotelAndUsername(0, "admin");
 		for (OrderVO vo : list) {
-			assertEquals(vo.getHotelID(), 0);
-			assertEquals(vo.getUsername(), "admin");
+			assertEquals(vo.hotelID, 0);
+			assertEquals(vo.username, "admin");
 		}
 	}
 	
@@ -55,7 +55,7 @@ public class OrderServiceDriver {
 	public void testFindByUsername() {
 		List<OrderVO> list = service.findByUsername("admin");
 		for (OrderVO vo : list) {
-			assertEquals(vo.getUsername(), "admin");
+			assertEquals(vo.username, "admin");
 		}
 	}
 	
@@ -63,7 +63,7 @@ public class OrderServiceDriver {
 	public void testFindByOrderType() {
 		List<OrderVO> list = service.findByOrderType(OrderStatus.Unexecuted);
 		for (OrderVO vo : list) {
-			assertEquals(vo.getStatus(), OrderStatus.Unexecuted);
+			assertEquals(vo.status, OrderStatus.Unexecuted);
 		}
 	}
 	
@@ -79,7 +79,7 @@ public class OrderServiceDriver {
 	@Test
 	public void testUpdate(){
 		OrderVO vo = service.findByID(0);
-		vo.setNum(2);
+		vo.num  = 2;
 		service.update(vo);
 		assertEquals(service.findByID(0), vo);
 	}

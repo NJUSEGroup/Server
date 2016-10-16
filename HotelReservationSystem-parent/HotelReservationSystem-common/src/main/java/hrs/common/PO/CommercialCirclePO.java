@@ -19,6 +19,13 @@ public class CommercialCirclePO implements Serializable,IDTemplate {
 		// TODO Auto-generated constructor stub
 	}
 
+	public CommercialCirclePO(int id, int locId, String name) {
+		super();
+		this.id = id;
+		this.locId = locId;
+		this.name = name;
+	}
+
 	public int getId() {
 		return id;
 	}

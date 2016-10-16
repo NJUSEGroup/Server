@@ -4,7 +4,7 @@ import org.springframework.beans.BeanUtils;
 
 import hrs.StubAndDriver.DAO.OfflineRecordDAO.OfflineRecordDAOStub;
 import hrs.client.Service.OfflineRecordService;
-import hrs.client.Service.RoomService;
+import hrs.client.Service.RoomService.RoomService;
 import hrs.client.VO.OfflineRecordVO;
 import hrs.common.DAO.OfflineRecordDAO;
 import hrs.common.PO.OfflineRecordPO;

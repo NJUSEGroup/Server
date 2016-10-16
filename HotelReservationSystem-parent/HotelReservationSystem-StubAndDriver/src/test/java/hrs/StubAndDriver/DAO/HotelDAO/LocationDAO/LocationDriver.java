@@ -1,4 +1,4 @@
-package hrs.StubAndDriver.DAO.HotelDAO;
+package hrs.StubAndDriver.DAO.HotelDAO.LocationDAO;
 
 import static org.junit.Assert.*;
 

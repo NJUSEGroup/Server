@@ -22,7 +22,7 @@ public class EnterpriseServiceDriver {
 	public void testgetAllEnterprises(){
 		List<EnterpriseVO> list=enterpriseService.getAllEnterprises();
 		for(EnterpriseVO vo:list){
-			assertEquals(vo.getName(),"21");
+			assertEquals(vo.name,"21");
 		}
 		
 	}

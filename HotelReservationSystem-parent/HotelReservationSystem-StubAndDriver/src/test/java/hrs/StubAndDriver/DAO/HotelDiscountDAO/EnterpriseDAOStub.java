@@ -11,8 +11,9 @@ import hrs.common.PO.EnterprisePO;
 
 public class EnterpriseDAOStub implements EnterpriseDAO {
 	private Map<Integer, EnterprisePO> map;
-	public EnterpriseDAOStub(){
-		map=new HashMap<>();
+
+	public EnterpriseDAOStub() {
+		map = new HashMap<>();
 		map.put(0, new EnterprisePO(0, "21"));
 	}
 
@@ -21,10 +22,10 @@ public class EnterpriseDAOStub implements EnterpriseDAO {
 		List<EnterprisePO> list = new ArrayList<>();
 		EnterprisePO po = null;
 		Set<Integer> set = map.keySet();
-		for(Integer i:set){
-			po=map.get(i);
+		for (Integer i : set) {
+			po = map.get(i);
 			list.add(po);
-			}
+		}
 		return list;
 	}
 

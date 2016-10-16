@@ -1,17 +1,12 @@
 package hrs.StubAndDriver.Service.RoomService;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import hrs.client.Service.RoomService;
+import hrs.client.Service.RoomService.RoomService;
 import hrs.client.VO.RoomVO;
-import hrs.common.util.ResultMessage;
 import hrs.common.util.type.RoomType;
 
 public class RoomServiceDriver {
@@ -25,7 +20,7 @@ public class RoomServiceDriver {
 	public void testUpdate() {
 		RoomVO vo = new RoomVO(1, RoomType.Single, 100, 0);
 		service.update(vo);
-		assertEquals(100, service.findByHotelAndType(1, RoomType.Single).getRoomNum());
+		assertEquals(100, service.findByHotelAndType(1, RoomType.Single).roomNum);
 	}
 	
 	@Test
@@ -35,16 +30,10 @@ public class RoomServiceDriver {
 		assertEquals(vo, service.findByHotelAndType(2, RoomType.Single));
 	}
 	
-	@Test
-	public void testFindByHotelID() {
-		List<RoomVO> list = new ArrayList<>();
-		list.add(new RoomVO(1, RoomType.Single, 0, 0));
-		assertEquals(list, service.findByHotelID(1));
-	}
 	
 	@Test
 	public void testFindByHotelAndType() {
 		RoomVO vo = service.findByHotelAndType(1, RoomType.Single);
-		assertEquals(0, vo.getRoomNum());
+		assertEquals(0, vo.roomNum);
 	}
 }

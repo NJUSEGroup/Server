@@ -43,7 +43,7 @@ public class WebDiscountServiceDriver {
 	@Test
 	public void testUpdate(){
 		WebDiscountVO vo = service.findAll().get(0);
-		vo.setDiscount(0.9);
+		vo.discount = 0.9;
 		service.update(vo);
 		assertEquals(service.findAll().get(0), vo);
 	}

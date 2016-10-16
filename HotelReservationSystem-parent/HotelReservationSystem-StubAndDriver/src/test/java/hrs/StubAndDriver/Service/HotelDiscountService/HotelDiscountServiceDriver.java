@@ -42,7 +42,7 @@ public class HotelDiscountServiceDriver {
 	public void testFindAllByHotelID(){
 		List<HotelDiscountVO> list=hotelDiscountService.findAllByHotelID(0);
 		for(HotelDiscountVO vo:list){
-			assertEquals(vo.getHotelId(),0);
+			assertEquals(vo.hotelId,0);
 		}
 		
 		

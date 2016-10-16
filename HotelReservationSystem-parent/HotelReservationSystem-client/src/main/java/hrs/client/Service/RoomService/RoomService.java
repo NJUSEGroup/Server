@@ -1,4 +1,4 @@
-package hrs.client.Service;
+package hrs.client.Service.RoomService;
 
 import java.util.List;
 
@@ -8,8 +8,8 @@ import hrs.common.util.type.RoomType;
 
 public interface RoomService {
 	RoomVO findByHotelAndType(int hotelID,RoomType type);
-	List<RoomVO> findByHotelID(int hotelID);
+	List<RoomVO> findAvailableByHotelID(int hotelID);
 	ResultMessage update(RoomVO roomvo);
 	ResultMessage add(RoomVO roomvo);
-	
+	List<RoomType> findNotAddedRoomType(int hotelID);
 }

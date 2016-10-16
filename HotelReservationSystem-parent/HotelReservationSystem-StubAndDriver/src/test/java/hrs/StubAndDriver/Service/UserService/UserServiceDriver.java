@@ -18,7 +18,7 @@ public class UserServiceDriver {
 	@Test
 	public void testFindByUsername(){
 		UserVO vo = service.findByUsername("admin");
-		assertEquals(vo.getPassword(),"admin");
+		assertEquals(vo.password,"admin");
 	}
 	@Test
 	public void testRegister(){

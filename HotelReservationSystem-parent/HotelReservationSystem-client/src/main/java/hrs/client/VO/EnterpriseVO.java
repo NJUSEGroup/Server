@@ -7,8 +7,8 @@ public class EnterpriseVO implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private int id;
-	private String name;
+	public int id;
+	public String name;
 	public EnterpriseVO() {
 		// TODO Auto-generated constructor stub
 	}
@@ -17,18 +17,7 @@ public class EnterpriseVO implements Serializable{
 		this.id = id;
 		this.name = name;
 	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

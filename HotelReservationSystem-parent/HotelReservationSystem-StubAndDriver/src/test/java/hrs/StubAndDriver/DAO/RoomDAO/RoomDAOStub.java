@@ -30,6 +30,7 @@ public class RoomDAOStub implements RoomDAO{
 		map.put(roompo.getHotelId(), roompo);
 		return ResultMessage.SUCCESS;
 	}
+	
 	@Override
 	public ResultMessage add(RoomPO roompo){
 		if(findByHotelAndType(roompo.getHotelId(),roompo.getType()) == null){

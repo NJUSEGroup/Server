@@ -8,38 +8,15 @@ public class CommercialCircleVO implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private int id;
-	private int locId;
-
-	private String name;
-
+	public int id;
+	public int locId;
+	public String name;
+	
 	public CommercialCircleVO() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public int getLocId() {
-		return locId;
-	}
-
-	public void setLocId(int locId) {
-		this.locId = locId;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
+	
 
 	@Override
 	public int hashCode() {

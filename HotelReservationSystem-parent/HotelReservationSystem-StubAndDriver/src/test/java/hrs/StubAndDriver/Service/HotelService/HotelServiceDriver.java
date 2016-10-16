@@ -32,7 +32,7 @@ public class HotelServiceDriver {
 	@Test
 	public void testUpdate(){
 		HotelVO vo = service.findByID(0);
-		vo.setName("呼呼呼");
+		vo.name = "呼呼呼";
 		assertEquals(vo, service.findByID(0));
 	}
 	@Test
@@ -47,13 +47,8 @@ public class HotelServiceDriver {
 		Map<HotelVO,List<OrderVO>> map = service.findOrderedHotelAndOrder("admin");
 		for(HotelVO hotel:map.keySet()){
 			for(OrderVO order:map.get(hotel)){
-				assertEquals(order.getUsername(),"admin");
+				assertEquals(order.username,"admin");
 			}
 		}
 	}
-	
-	public void testFind(){
-		
-	}
-	
 }

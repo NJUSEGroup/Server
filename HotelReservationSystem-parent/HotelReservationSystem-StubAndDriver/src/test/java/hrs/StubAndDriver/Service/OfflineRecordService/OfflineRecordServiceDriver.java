@@ -41,7 +41,7 @@ public class OfflineRecordServiceDriver {
 	@Test
 	public void testUpdate(){
 		OfflineRecordVO vo = service.findByID(0);
-		vo.setNum(2);
+		vo.num = 2;
 		service.update(vo);
 		assertEquals(service.findByID(0), vo);
 	}

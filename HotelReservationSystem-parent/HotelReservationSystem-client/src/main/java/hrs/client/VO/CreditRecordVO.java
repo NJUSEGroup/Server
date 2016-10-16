@@ -9,11 +9,11 @@ public class CreditRecordVO implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private int id;
-	private String username;
-	private CreditRecordType type;
-	private int variation;
-	private int currCredit;
+	public int id;
+	public String username;
+	public CreditRecordType type;
+	public int variation;
+	public int currCredit;
 	
 	
 	public CreditRecordVO() {
@@ -40,45 +40,6 @@ public class CreditRecordVO implements Serializable {
 	}
 
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public CreditRecordType getType() {
-		return type;
-	}
-
-	public void setType(CreditRecordType type) {
-		this.type = type;
-	}
-
-	public int getVariation() {
-		return variation;
-	}
-
-	public void setVariation(int variation) {
-		this.variation = variation;
-	}
-
-	public int getCurrCredit() {
-		return currCredit;
-	}
-
-	public void setCurrCredit(int currCredit) {
-		this.currCredit = currCredit;
-	}
 
 	@Override
 	public int hashCode() {

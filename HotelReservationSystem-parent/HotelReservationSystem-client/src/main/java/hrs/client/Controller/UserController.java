@@ -3,25 +3,32 @@ package hrs.client.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import hrs.client.Service.StaffService;
 import hrs.client.Service.UserService;
+import hrs.client.VO.StaffVO;
 import hrs.client.VO.UserVO;
 import hrs.common.util.ResultMessage;
 
 @Controller
 public class UserController {
 	@Autowired
-	private UserService service;
+	private UserService userService;
+	@Autowired
+	private StaffService staffService;
 	
 	public UserVO findByUsername(String username){
-		return service.findByUsername(username);
+		return userService.findByUsername(username);
 	}
 	public ResultMessage register(UserVO uservo){
-		return service.register(uservo);
+		return userService.register(uservo);
 	}
 	public ResultMessage update(UserVO uservo){
-		return service.update(uservo);
+		return userService.update(uservo);
 	}
-	public UserVO login(String username,String password){
-		return service.login(username, password);
+	public UserVO userLogin(String username,String password){
+		return userService.login(username, password);		
+	}
+	public StaffVO staffLogin(String username,String password){
+		return staffService.login(username, password);
 	}
 }

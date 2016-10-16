@@ -21,7 +21,7 @@ public class StaffServiceStub implements StaffService {
 		StaffVO vo = new StaffVO();
 		StaffPO po = staffDao.findByUsername(username);
 		BeanUtils.copyProperties(po, vo);
-		if(vo.getPassword().equals(password)){
+		if(vo.password.equals(password)){
 			return vo;
 		}
 		else

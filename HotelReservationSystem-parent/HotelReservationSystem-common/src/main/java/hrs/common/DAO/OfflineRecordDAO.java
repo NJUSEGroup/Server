@@ -7,5 +7,4 @@ public interface OfflineRecordDAO {
 	 OfflineRecordPO findByID(int id);
 	 ResultMessage add(OfflineRecordPO offlinerecordpo);
 	 ResultMessage update(OfflineRecordPO offlinerecordpo);
-
 }
