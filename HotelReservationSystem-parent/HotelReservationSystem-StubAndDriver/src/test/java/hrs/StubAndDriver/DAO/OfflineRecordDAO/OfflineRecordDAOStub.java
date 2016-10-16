@@ -12,7 +12,7 @@ import hrs.common.util.type.RoomType;
 
 public class OfflineRecordDAOStub implements OfflineRecordDAO{
 	private Map<Integer, OfflineRecordPO> map;
-	Date date;
+	private Date date;
 	public OfflineRecordDAOStub(){
 		map = new HashMap<>();
 		Calendar c = Calendar.getInstance();
