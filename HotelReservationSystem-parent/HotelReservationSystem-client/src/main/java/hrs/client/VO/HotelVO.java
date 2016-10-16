@@ -19,17 +19,18 @@ public class HotelVO implements Serializable {
 	public String profile;
 	public String service;
 	public List<OrderStatus> status;// 只在VO中，没有在PO中
-
 	public HotelVO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public HotelVO(int id, String name, int loc, int commCircle) {
+	public HotelVO(int id, String name, int loc, int commCircle,String profile,String service) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.loc = loc;
 		this.commCircle = commCircle;
+		this.profile = profile;
+		this.service = service;
 	}
 
 	public int getId() {

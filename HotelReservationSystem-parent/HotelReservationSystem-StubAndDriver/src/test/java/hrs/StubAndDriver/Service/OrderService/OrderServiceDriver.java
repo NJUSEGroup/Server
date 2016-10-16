@@ -69,10 +69,10 @@ public class OrderServiceDriver {
 	
 	
 	@Test
-	public void testPlaceOrder(){
+	public void testAdd(){
 		OrderVO vo = new OrderVO(1, defaultDate, defaultDate, OrderStatus.Unexecuted, 0, 300, RoomType.Single, 1,
 				false, "admin");
-		assertEquals(service.placeOrder(vo),ResultMessage.SUCCESS);
+		assertEquals(service.add(vo),ResultMessage.SUCCESS);
 		assertEquals(service.findByID(1),vo);
 	}
 	
@@ -80,6 +80,7 @@ public class OrderServiceDriver {
 	public void testUpdate(){
 		OrderVO vo = service.findByID(0);
 		vo.num  = 2;
+		vo.status = OrderStatus.UserRevoked;
 		service.update(vo);
 		assertEquals(service.findByID(0), vo);
 	}

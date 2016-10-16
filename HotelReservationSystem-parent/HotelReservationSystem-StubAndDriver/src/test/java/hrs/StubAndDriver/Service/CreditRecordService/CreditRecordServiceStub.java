@@ -15,19 +15,19 @@ import hrs.common.PO.HotelDiscountPO;
 import hrs.common.util.ResultMessage;
 
 public class CreditRecordServiceStub implements CreditRecordService {
-	private CreditRecordDAO creditRecordDAO=new CreditRecordDAOStub();
+	private CreditRecordDAO creditRecordDAO = new CreditRecordDAOStub();
 
 	@Override
 	public List<CreditRecordVO> findByUsername(String username) {
-		List<CreditRecordPO> po=creditRecordDAO.findByUsername(username);
-		List<CreditRecordVO> vo=new ArrayList<>(po.size());
+		List<CreditRecordPO> po = creditRecordDAO.findByUsername(username);
+		List<CreditRecordVO> vo = new ArrayList<>(po.size());
 		BeanUtils.copyProperties(po, vo);
 		return vo;
 	}
 
 	@Override
 	public ResultMessage add(CreditRecordVO creditrecordvo) {
-		CreditRecordPO po=new CreditRecordPO();
+		CreditRecordPO po = new CreditRecordPO();
 		BeanUtils.copyProperties(creditrecordvo, po);
 		return creditRecordDAO.add(po);
 	}
