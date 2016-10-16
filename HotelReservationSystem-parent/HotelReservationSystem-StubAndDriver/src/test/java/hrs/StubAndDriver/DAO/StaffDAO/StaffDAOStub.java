@@ -23,8 +23,12 @@ public class StaffDAOStub implements StaffDAO {
 
 	@Override
 	public ResultMessage add(StaffPO staffpo) {
-		map.put(staffpo.getUsername(), staffpo);
-		return ResultMessage.SUCCESS;
+		if(findByUsername(staffpo.getUsername()) == null){
+			map.put(staffpo.getUsername(), staffpo);
+				return ResultMessage.SUCCESS;
+		}else{
+			return ResultMessage.EXISTED;
+		}
 	}
 
 	@Override
