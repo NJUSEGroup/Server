@@ -12,6 +12,8 @@ import java.util.TreeMap;
 import org.springframework.beans.BeanUtils;
 
 import hrs.StubAndDriver.DAO.HotelDAO.HotelDAOStub;
+import hrs.StubAndDriver.Service.OrderService.OrderServiceStub;
+import hrs.StubAndDriver.Service.RoomService.RoomServiceStub;
 import hrs.client.Service.OrderService;
 import hrs.client.Service.HotelService.HotelService;
 import hrs.client.Service.RoomService.RoomService;
@@ -30,12 +32,15 @@ public class HotelServiceStub implements HotelService {
 
 	public HotelServiceStub() {
 		dao = new HotelDAOStub();
+		orderService = new OrderServiceStub();
+		roomService = new RoomServiceStub();
 	}
 
 	@Override
 	public HotelVO findByID(int hotelID) {
 		HotelPO po = dao.findByID(hotelID);
 		HotelVO vo = new HotelVO();
+		System.out.println("HotelServiceStub:PO:"+hotelID+""+po);
 		BeanUtils.copyProperties(po, vo);
 		return vo;
 	}
@@ -51,6 +56,7 @@ public class HotelServiceStub implements HotelService {
 	public ResultMessage add(HotelVO hotelvo) {
 		HotelPO po = new HotelPO();
 		BeanUtils.copyProperties(hotelvo, po);
+		System.out.println("HotelServiceStub:PO-id"+po.getId());
 		return dao.add(po);
 	}
 

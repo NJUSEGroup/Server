@@ -19,13 +19,9 @@ public class CreditRecordDAOStub implements CreditRecordDAO {
 
 	@Override
 	public ResultMessage add(CreditRecordPO creditrecordpo) {//新增信用记录
-		if(findByUsername(creditrecordpo.getUsername()).contains(creditrecordpo)==false){
 			map.put(creditrecordpo.getId(), creditrecordpo); 
-				return ResultMessage.SUCCESS;
-		}else{
-			return ResultMessage.EXISTED;
-		}
-	}
+				return ResultMessage.SUCCESS;		
+	}//不用判断是否存在
 
 	@Override
 	public List<CreditRecordPO> findByUsername (String username){//搜索所有该username的信用记录；

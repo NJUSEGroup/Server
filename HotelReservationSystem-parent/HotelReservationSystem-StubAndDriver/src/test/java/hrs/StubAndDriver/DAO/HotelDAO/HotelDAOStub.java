@@ -14,7 +14,7 @@ public class HotelDAOStub implements HotelDAO {
 	private Map<Integer,HotelPO> map;
 	public HotelDAOStub() {
 		map = new HashMap<>();
-		map.put(0, new HotelPO(0,"嘻嘻",0,0));
+		map.put(0, new HotelPO(0,"嘻嘻",0,0,"",""));
 	}
 	@Override
 	public HotelPO findByID(int hotelID) {
@@ -30,6 +30,7 @@ public class HotelDAOStub implements HotelDAO {
 	@Override
 	public ResultMessage add(HotelPO hotelpo) {
 		map.put(hotelpo.getId(), hotelpo);
+		System.out.println("HotelDAOStub:add:"+hotelpo.getId());
 		return ResultMessage.SUCCESS;
 	}
 	

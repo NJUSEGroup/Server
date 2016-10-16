@@ -17,17 +17,18 @@ public class HotelPO implements Serializable, IDTemplate{
 	private int commCircle;
 	private String profile;
 	private String service;
-//	private List<OrderStatus> status;//只在VO中，没有在PO中
 	public HotelPO() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public HotelPO(int id, String name,int loc,int commCircle) {
+	public HotelPO(int id, String name,int loc,int commCircle,String profile,String service) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.loc  = loc;
 		this.commCircle = commCircle;
+		this.profile = profile;
+		this.service = service;
 	}
 
 	@Override

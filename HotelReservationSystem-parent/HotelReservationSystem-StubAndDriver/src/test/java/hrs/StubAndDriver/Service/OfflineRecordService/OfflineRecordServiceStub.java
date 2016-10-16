@@ -29,14 +29,14 @@ public class OfflineRecordServiceStub implements OfflineRecordService {
 	@Override
 	public ResultMessage add(OfflineRecordVO offlinerecordvo) {
 		OfflineRecordPO po = new OfflineRecordPO();
-		BeanUtils.copyProperties(po, offlinerecordvo);
+		BeanUtils.copyProperties(offlinerecordvo, po);
 		return dao.add(po);
 	}
 
 	@Override
 	public ResultMessage update(OfflineRecordVO offlinerecordvo) {
 		OfflineRecordPO po = new OfflineRecordPO();
-		BeanUtils.copyProperties(po, offlinerecordvo);
+		BeanUtils.copyProperties(offlinerecordvo, po);
 		return dao.update(po);
 	}
 

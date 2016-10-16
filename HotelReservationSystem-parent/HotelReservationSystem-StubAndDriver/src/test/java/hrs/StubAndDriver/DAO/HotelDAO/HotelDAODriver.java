@@ -29,7 +29,7 @@ public class HotelDAODriver {
 	@Test
 	public void testFindByID(){
 		HotelPO po = dao.findByID(0);
-		assertEquals(po,new HotelPO(0,"嘻嘻",0,0));
+		assertEquals(po,new HotelPO(0,"嘻嘻",0,0,"",""));
 	}
 	
 	@Test
@@ -41,7 +41,7 @@ public class HotelDAODriver {
 	
 	@Test
 	public void testAdd(){
-		HotelPO po = new HotelPO(1,"wuli韬韬",1,1);
+		HotelPO po = new HotelPO(1,"wuli韬韬",1,1,"","");
 		dao.add(po);
 		assertEquals(po,dao.findByID(1));
 	}	

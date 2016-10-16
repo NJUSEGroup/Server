@@ -7,6 +7,10 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 
 import hrs.StubAndDriver.DAO.OrderDAO.OrderDAOStub;
+import hrs.StubAndDriver.Service.CreditRecordService.CreditRecordServiceStub;
+import hrs.StubAndDriver.Service.HotelDiscountService.HotelDiscountServiceStub;
+import hrs.StubAndDriver.Service.UserService.UserServiceStub;
+import hrs.StubAndDriver.Service.WebDiscountService.WebDiscountServiceStub;
 import hrs.client.Service.CreditRecordService;
 import hrs.client.Service.OrderService;
 import hrs.client.Service.UserService;
@@ -29,6 +33,10 @@ public class OrderServiceStub implements OrderService {
 
 	public OrderServiceStub() {
 		dao = new OrderDAOStub();
+		webDiscountService = new WebDiscountServiceStub();
+		hotelDiscountService = new HotelDiscountServiceStub();
+		creditRecordService = new CreditRecordServiceStub();
+		userService = new UserServiceStub();
 	}
 
 	@Override

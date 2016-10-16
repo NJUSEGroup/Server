@@ -24,7 +24,7 @@ public class AvailableRoomDAODriver {
 	}
 	@Test
 	public void testHasAvailableRoom(){
-		assertEquals(dao.findAvailableRoom(0, RoomType.Double, date),0);
+		assertEquals(dao.findAvailableRoom(0, RoomType.Double, date),1);
 	}
 	
 }
