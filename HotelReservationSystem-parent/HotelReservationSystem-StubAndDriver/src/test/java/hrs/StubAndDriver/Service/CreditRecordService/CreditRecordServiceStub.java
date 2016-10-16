@@ -14,6 +14,7 @@ import hrs.client.VO.UserVO;
 import hrs.common.DAO.CreditRecordDAO;
 import hrs.common.PO.CreditRecordPO;
 import hrs.common.util.ResultMessage;
+import hrs.common.util.VIPLevel;
 
 public class CreditRecordServiceStub implements CreditRecordService {
 
@@ -48,6 +49,7 @@ public class CreditRecordServiceStub implements CreditRecordService {
 		UserVO user = userService.findByUsername(creditrecordvo.username);
 		po.setCurrCredit(po.getVariation()+user.credit);
 		user.credit = po.getCurrCredit();
+		user.VIPLevel = VIPLevel.getLevel(user.credit);
 		userService.update(user);
 		return creditRecordDAO.add(po);
 	}
