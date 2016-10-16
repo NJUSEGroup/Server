@@ -22,6 +22,18 @@ public class WebDiscountVO implements Serializable {
 	public WebDiscountVO() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	public WebDiscountVO(int id, WebsiteDiscountType type, double discount, Date beginDate, Date endDate, String circle, int vip) {
+		super();
+		this.id = id;
+		this.type = type;
+		this.discount = discount;
+		this.beginTime = beginDate;
+		this.endTime = endDate;
+		this.commercialCircle = circle;
+		this.VIPlevel = vip;
+	}
+
 
 	public String getCommercialCircle() {
 		return commercialCircle;
