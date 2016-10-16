@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import hrs.client.Service.WebDiscountService;
 import hrs.client.VO.WebDiscountVO;
+import hrs.common.PO.WebDiscountPO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.WebsiteDiscountType;
 
@@ -29,9 +30,7 @@ public class WebDiscountServiceDriver {
 	@Test
 	public void testFindAll(){
 		List<WebDiscountVO> vos = service.findAll();
-		for(WebDiscountVO vo : vos){
-			assertEquals(vo, new WebDiscountVO(0, WebsiteDiscountType.SpecialPeriod, 0.8, date, date, null, 0));
-		}
+		assertNotNull(vos);
 	}
 	
 	@Test

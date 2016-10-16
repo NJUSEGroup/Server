@@ -29,6 +29,7 @@ public class HotelServiceDriver {
 	public void testUpdate(){
 		HotelVO vo = service.findByID(0);
 		vo.name = "呼呼呼";
+		service.update(vo);
 		assertEquals(vo, service.findByID(0));
 	}
 	@Test

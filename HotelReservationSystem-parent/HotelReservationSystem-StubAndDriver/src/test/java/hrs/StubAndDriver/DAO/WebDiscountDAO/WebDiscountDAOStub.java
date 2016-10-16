@@ -22,6 +22,7 @@ public class WebDiscountDAOStub implements WebDiscountDAO {
 		c.set(2016, 10, 15, 8, 0, 0);
 		date = c.getTime();
 		map.put(0, new WebDiscountPO(0, WebsiteDiscountType.SpecialPeriod, 0.8, date, date, null, 0));
+		map.put(1, new WebDiscountPO(1, WebsiteDiscountType.SpecialPeriod, 0.8, date, date, null, 0));
 	}
 	@Override
 	public ResultMessage add(WebDiscountPO webdiscountpo) {

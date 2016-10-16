@@ -28,9 +28,8 @@ public class OrderServiceDriver {
 	
 	@Test
 	public void testFindByID() {
-		OrderVO vo = service.findByID(0);
-		assertEquals(vo, new OrderVO(0, defaultDate, defaultDate, OrderStatus.Unexecuted, 0, 300, RoomType.Single, 1,
-				false, "admin"));
+		OrderVO vo = service.findByID(1);
+		assertEquals(vo, new OrderVO(1,defaultDate,defaultDate,OrderStatus.Unexecuted,0,300,RoomType.Single,1,false,"admin"));
 	}
 
 	@Test

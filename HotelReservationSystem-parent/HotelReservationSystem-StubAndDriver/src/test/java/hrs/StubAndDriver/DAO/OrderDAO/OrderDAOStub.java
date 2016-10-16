@@ -23,6 +23,7 @@ public class OrderDAOStub implements OrderDAO {
 		c.set(2016, 10, 14, 8, 0, 0);
 		defaultDate = c.getTime();
 		map.put(0, new OrderPO(0,defaultDate,defaultDate,OrderStatus.Unexecuted,0,300,RoomType.Single,1,false,"admin"));
+		map.put(1, new OrderPO(1,defaultDate,defaultDate,OrderStatus.Unexecuted,0,300,RoomType.Single,1,false,"admin"));
 	}
 	
 	@Override
