@@ -3,11 +3,9 @@ package hrs.client.VO;
 import java.io.Serializable;
 import java.util.List;
 
-import hrs.common.PO.HotelPO;
-import hrs.common.util.IDTemplate;
 import hrs.common.util.type.OrderStatus;
 
-public class HotelVO implements Serializable{
+public class HotelVO implements Serializable {
 	/**
 	 * 
 	 */
@@ -20,22 +18,91 @@ public class HotelVO implements Serializable{
 	public int commCircle;
 	public String profile;
 	public String service;
-	public List<OrderStatus> status;//只在VO中，没有在PO中
-	
+	public List<OrderStatus> status;// 只在VO中，没有在PO中
+
 	public HotelVO() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	public HotelVO(int id, String name,int loc,int commCircle) {
+
+	public HotelVO(int id, String name, int loc, int commCircle) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.loc  = loc;
+		this.loc = loc;
 		this.commCircle = commCircle;
 	}
 
+	public int getId() {
+		return id;
+	}
 
-	
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getStar() {
+		return star;
+	}
+
+	public void setStar(int star) {
+		this.star = star;
+	}
+
+	public double getScore() {
+		return score;
+	}
+
+	public void setScore(double score) {
+		this.score = score;
+	}
+
+	public int getLoc() {
+		return loc;
+	}
+
+	public void setLoc(int loc) {
+		this.loc = loc;
+	}
+
+	public int getCommCircle() {
+		return commCircle;
+	}
+
+	public void setCommCircle(int commCircle) {
+		this.commCircle = commCircle;
+	}
+
+	public String getProfile() {
+		return profile;
+	}
+
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
+
+	public String getService() {
+		return service;
+	}
+
+	public void setService(String service) {
+		this.service = service;
+	}
+
+	public List<OrderStatus> getStatus() {
+		return status;
+	}
+
+	public void setStatus(List<OrderStatus> status) {
+		this.status = status;
+	}
 
 	@Override
 	public int hashCode() {

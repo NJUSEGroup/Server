@@ -30,7 +30,6 @@ public class HotelDAOStub implements HotelDAO {
 	@Override
 	public ResultMessage add(HotelPO hotelpo) {
 		map.put(hotelpo.getId(), hotelpo);
-		System.out.println("HotelDAOStub:add:"+hotelpo.getId());
 		return ResultMessage.SUCCESS;
 	}
 	

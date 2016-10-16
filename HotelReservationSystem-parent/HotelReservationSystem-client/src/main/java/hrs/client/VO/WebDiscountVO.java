@@ -22,8 +22,9 @@ public class WebDiscountVO implements Serializable {
 	public WebDiscountVO() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	public WebDiscountVO(int id, WebsiteDiscountType type, double discount, Date beginDate, Date endDate, String circle, int vip) {
+
+	public WebDiscountVO(int id, WebsiteDiscountType type, double discount, Date beginDate, Date endDate, String circle,
+			int vip) {
 		super();
 		this.id = id;
 		this.type = type;
@@ -34,7 +35,69 @@ public class WebDiscountVO implements Serializable {
 		this.VIPlevel = vip;
 	}
 
+	public int getId() {
+		return id;
+	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public double getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(double discount) {
+		this.discount = discount;
+	}
+
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+
+	public WebsiteDiscountType getType() {
+		return type;
+	}
+
+	public void setType(WebsiteDiscountType type) {
+		this.type = type;
+	}
+
+	public String getCommercialCircle() {
+		return commercialCircle;
+	}
+
+	public void setCommercialCircle(String commercialCircle) {
+		this.commercialCircle = commercialCircle;
+	}
+
+	public Date getBeginTime() {
+		return beginTime;
+	}
+
+	public void setBeginTime(Date beginTime) {
+		this.beginTime = beginTime;
+	}
+
+	public Date getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(Date endTime) {
+		this.endTime = endTime;
+	}
+
+	public int getVIPlevel() {
+		return VIPlevel;
+	}
+
+	public void setVIPlevel(int vIPlevel) {
+		VIPlevel = vIPlevel;
+	}
 
 	@Override
 	public int hashCode() {
@@ -89,5 +152,5 @@ public class WebDiscountVO implements Serializable {
 			return false;
 		return true;
 	}
-	
+
 }

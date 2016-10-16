@@ -11,6 +11,6 @@ public interface HotelDiscountService {
 	ResultMessage update(HotelDiscountVO hoteldiscountvo);
 	ResultMessage delete(int id);
 	List<HotelDiscountVO> findAllByHotelID(int hotelID);
-	public List<HotelDiscountType> findNotAddedType(int hotelID);
+	List<HotelDiscountType> findNotAddedType(int hotelID);
 	
 }

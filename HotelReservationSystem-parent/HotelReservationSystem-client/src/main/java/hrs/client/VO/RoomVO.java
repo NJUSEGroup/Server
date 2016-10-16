@@ -19,15 +19,53 @@ public class RoomVO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	public int hotelId;
 	public RoomType type;
-
 	public int roomNum;
 	public double roomValue;
 	public int availRoomNum;
-	
+
 	public RoomVO() {
 		// TODO Auto-generated constructor stub
 	}
 
+	public int getHotelId() {
+		return hotelId;
+	}
+
+	public void setHotelId(int hotelId) {
+		this.hotelId = hotelId;
+	}
+
+	public RoomType getType() {
+		return type;
+	}
+
+	public void setType(RoomType type) {
+		this.type = type;
+	}
+
+	public int getRoomNum() {
+		return roomNum;
+	}
+
+	public void setRoomNum(int roomNum) {
+		this.roomNum = roomNum;
+	}
+
+	public double getRoomValue() {
+		return roomValue;
+	}
+
+	public void setRoomValue(double roomValue) {
+		this.roomValue = roomValue;
+	}
+
+	public int getAvailRoomNum() {
+		return availRoomNum;
+	}
+
+	public void setAvailRoomNum(int availRoomNum) {
+		this.availRoomNum = availRoomNum;
+	}
 
 	@Override
 	public int hashCode() {
@@ -61,5 +99,5 @@ public class RoomVO implements Serializable {
 			return false;
 		return true;
 	}
-	
+
 }

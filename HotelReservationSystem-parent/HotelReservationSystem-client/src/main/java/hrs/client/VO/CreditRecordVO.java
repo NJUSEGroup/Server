@@ -14,13 +14,51 @@ public class CreditRecordVO implements Serializable {
 	public CreditRecordType type;
 	public int variation;
 	public int currCredit;
-	
-	
+
 	public CreditRecordVO() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public CreditRecordType getType() {
+		return type;
+	}
+
+	public void setType(CreditRecordType type) {
+		this.type = type;
+	}
+
+	public int getVariation() {
+		return variation;
+	}
+
+	public void setVariation(int variation) {
+		this.variation = variation;
+	}
+
+	public int getCurrCredit() {
+		return currCredit;
+	}
+
+	public void setCurrCredit(int currCredit) {
+		this.currCredit = currCredit;
+	}
+
 	public CreditRecordVO(int id, String username, CreditRecordType type, int variation, int currCredit) {
 		super();
 		this.id = id;
@@ -30,7 +68,6 @@ public class CreditRecordVO implements Serializable {
 		this.currCredit = currCredit;
 	}
 
-
 	public CreditRecordVO(int id, String username, CreditRecordType type, int variation) {
 		super();
 		this.id = id;
@@ -38,8 +75,6 @@ public class CreditRecordVO implements Serializable {
 		this.type = type;
 		this.variation = variation;
 	}
-
-
 
 	@Override
 	public int hashCode() {
@@ -77,5 +112,5 @@ public class CreditRecordVO implements Serializable {
 			return false;
 		return true;
 	}
-	
+
 }
