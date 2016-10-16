@@ -20,6 +20,16 @@ public class OfflineRecordPO implements Serializable{
 	public OfflineRecordPO() {
 		// TODO Auto-generated constructor stub
 	}
+	public OfflineRecordPO(int id, int hotelId, Date inDate, Date expectedOutDate, Date outDate, RoomType type, int num){
+		this.id = id;
+		this.hotelId = hotelId;
+		this.checkinTime = inDate;
+		this.expectedCheckoutTime = expectedOutDate;
+		this.checkoutTime = outDate;
+		this.type = type;
+		this.num = num;
+	}
+
 	public int getId() {
 		return id;
 	}
