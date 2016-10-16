@@ -28,7 +28,7 @@ public class AvailableRoomServiceDriver {
 	
 	@Test
 	public void testHasAvailableRoom(){
-		assertEquals(0,service.findAvailableRoomNum(0, RoomType.Double, begin, end));
+		assertEquals(1,service.findAvailableRoomNum(0, RoomType.Double, begin, end));
 	}
 	
 }

@@ -22,7 +22,7 @@ public class HotelServiceDriver {
 	@Test
 	public void testFindByID(){
 		HotelVO vo = service.findByID(0);
-		assertEquals(vo,new HotelVO(0,"嘻嘻",0,0));
+		assertEquals(vo,new HotelVO(0,"嘻嘻",0,0,"",""));
 	}
 	
 	@Test
@@ -33,7 +33,7 @@ public class HotelServiceDriver {
 	}
 	@Test
 	public void testAdd(){
-		HotelVO vo = new HotelVO(3,"啦啦啦",1,1);
+		HotelVO vo = new HotelVO(3,"啦啦啦",1,1,"","");
 		service.add(vo);
 		assertEquals(vo, service.findByID(3));
 	}

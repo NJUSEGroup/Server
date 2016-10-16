@@ -149,7 +149,9 @@ public class OrderServiceStub implements OrderService {
 		default:
 			break;
 		}
-		creditRecordService.add(creditRecord);
+		if(creditRecord != null){
+			creditRecordService.add(creditRecord);
+		}
 		return dao.update(po);
 	}
 

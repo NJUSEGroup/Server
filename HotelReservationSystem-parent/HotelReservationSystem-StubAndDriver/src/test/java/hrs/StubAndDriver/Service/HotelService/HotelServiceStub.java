@@ -39,8 +39,10 @@ public class HotelServiceStub implements HotelService {
 	@Override
 	public HotelVO findByID(int hotelID) {
 		HotelPO po = dao.findByID(hotelID);
+		if(po == null){
+			return null;
+		}
 		HotelVO vo = new HotelVO();
-		System.out.println("HotelServiceStub:PO:"+hotelID+""+po);
 		BeanUtils.copyProperties(po, vo);
 		return vo;
 	}
@@ -54,10 +56,8 @@ public class HotelServiceStub implements HotelService {
 
 	@Override
 	public ResultMessage add(HotelVO hotelvo) {
-		System.out.println(hotelvo.name);
 		HotelPO po = new HotelPO();
 		BeanUtils.copyProperties(hotelvo, po);
-		System.out.println("HotelServiceStub:add:PO-id"+po.getId()+" "+po.getName());
 		return dao.add(po);
 	}
 
