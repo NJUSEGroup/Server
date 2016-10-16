@@ -33,19 +33,19 @@ public class WebDiscountDAODriver {
 	}
 	
 	@Test
-	public void testFindAll(){
-		List<WebDiscountPO> pos = dao.findAll();
-		for(WebDiscountPO po : pos){
-			assertEquals(po, new WebDiscountPO(0, WebsiteDiscountType.SpecialPeriod, 0.8, date, date, null, 0));
-		}
-	}
-	
-	@Test
 	public void testUpdate(){
 		WebDiscountPO po = dao.findAll().get(0);
 		po.setDiscount(0.9);
 		dao.update(po);
 		assertEquals(dao.findAll().get(0), po);
+	}
+	
+	@Test
+	public void testFindAll(){
+		List<WebDiscountPO> pos = dao.findAll();
+		for(WebDiscountPO po : pos){
+			assertEquals(po, new WebDiscountPO(0, WebsiteDiscountType.SpecialPeriod, 0.8, date, date, null, 0));
+		}
 	}
 	
 	@Test
