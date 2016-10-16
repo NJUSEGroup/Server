@@ -1,6 +1,5 @@
 package hrs.StubAndDriver.DAO.CreditRecordDAO;
 
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -17,26 +16,25 @@ import hrs.common.util.ResultMessage;
 import hrs.common.util.type.CreditRecordType;
 import hrs.common.util.type.UserType;
 
-
 public class CreditRecordDAODriver {
 	private CreditRecordDAO dao;
-	
+
 	@Before
-	public void launch(){
-		dao = new CreditRecordDAOStub() ;	
+	public void launch() {
+		dao = new CreditRecordDAOStub();
 	}
-	
+
 	@Test
 	public void testFindByUsername() {
-		List<CreditRecordPO> list=dao.findByUsername("admin");
-		List<CreditRecordPO> list1=new ArrayList<>();
-		list1.add(new CreditRecordPO(0,"admin",CreditRecordType.Execute,10,10));
-		assertEquals(list,list1);
+		List<CreditRecordPO> list = dao.findByUsername("admin");
+		List<CreditRecordPO> list1 = new ArrayList<>();
+		list1.add(new CreditRecordPO(0, "admin", CreditRecordType.Execute, 10, 10));
+		assertEquals(list, list1);
 	}
-	
+
 	@Test
-	public void testAdd(){
-		assertTrue(dao.add(new CreditRecordPO(1,"admin1",CreditRecordType.Execute,0,0)) == ResultMessage.SUCCESS);
+	public void testAdd() {
+		assertTrue(dao.add(new CreditRecordPO(1, "admin1", CreditRecordType.Execute, 0, 0)) == ResultMessage.SUCCESS);
 	}
 
 }
