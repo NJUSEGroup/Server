@@ -12,13 +12,13 @@ import hrs.common.util.type.RoomType;
 
 public class RoomDAOStub implements RoomDAO{
 	private Map<Integer,RoomPO> map;
-	private RoomPO rp;
-	private List<RoomPO> l;
+	private RoomPO room;
+	private List<RoomPO> list;
 	public RoomDAOStub(){
-		rp = new RoomPO(1,RoomType.Single, 0, 0);
-		l = new ArrayList<RoomPO>();
+		room = new RoomPO(1,RoomType.Single, 0, 0);
+		list = new ArrayList<RoomPO>();
 		map = new HashMap<>();
-		map.put(1, rp);
+		map.put(1, room);
 		
 	}
 	@Override
@@ -42,7 +42,7 @@ public class RoomDAOStub implements RoomDAO{
 	}
 	@Override
 	public List<RoomPO> findByHotelID(int hotelID){
-		l.add(rp);
-		return l;
+		list.add(room);
+		return list;
 	}
 }

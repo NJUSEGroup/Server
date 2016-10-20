@@ -20,6 +20,7 @@ public class OfflineRecordDAOStub implements OfflineRecordDAO{
 		date = c.getTime();
 		map.put(0, new OfflineRecordPO(0, 1, date, date, null, RoomType.Single, 1));
 	}
+	
 	@Override
 	public OfflineRecordPO findByID(int id) {
 		return map.get(id);

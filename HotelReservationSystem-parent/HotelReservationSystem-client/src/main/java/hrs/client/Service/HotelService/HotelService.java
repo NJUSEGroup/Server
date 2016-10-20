@@ -26,18 +26,19 @@ public interface HotelService {
 	Map<HotelVO, List<RoomVO>> filterStar(Map<HotelVO, List<RoomVO>> map, int star);
 
 	Map<HotelVO, List<RoomVO>> filterScore(Map<HotelVO, List<RoomVO>> map, double low, double high);
-	Map<HotelVO,List<RoomVO>> orderByStar(Map<HotelVO,List<RoomVO>> map,boolean isDecrease);
-	Map<HotelVO,List<RoomVO>> orderByScore(Map<HotelVO,List<RoomVO>> map,boolean isDecrease);
-	Map.Entry<HotelVO,List<RoomVO>> displayRoomDetail(Map<HotelVO,List<RoomVO>> map,int hotelID);
-	Map.Entry<HotelVO,List<OrderVO>>	displayOrderDetail(HotelVO vo,String username);
-	Map<HotelVO,List<RoomVO>> filterIfOrdered(Map<HotelVO,List<RoomVO>> list);
-	Map<HotelVO,List<RoomVO>> filterRoomType(Map<HotelVO,List<RoomVO>> map,RoomType roomtype);
-	Map<HotelVO,List<RoomVO>>	filterValue(Map<HotelVO,List<RoomVO>> map,double low,double high);
-	Map<HotelVO,List<RoomVO>>  orderByValue(Map<HotelVO,List<RoomVO>> list);
-	
 
-	
+	Map<HotelVO, List<RoomVO>> orderByStar(Map<HotelVO, List<RoomVO>> map, boolean isDecrease);
 
-	
+	Map<HotelVO, List<RoomVO>> orderByScore(Map<HotelVO, List<RoomVO>> map, boolean isDecrease);
+
+	Map.Entry<HotelVO, List<RoomVO>> displayRoomDetail(Map<HotelVO, List<RoomVO>> map, int hotelID);
+
+	Map<HotelVO, List<RoomVO>> filterIfOrdered(Map<HotelVO, List<RoomVO>> list);
+
+	Map<HotelVO, List<RoomVO>> filterRoomType(Map<HotelVO, List<RoomVO>> map, RoomType roomtype);
+
+	Map<HotelVO, List<RoomVO>> filterValue(Map<HotelVO, List<RoomVO>> map, double low, double high);
+
+	Map<HotelVO, List<RoomVO>> orderByValue(Map<HotelVO, List<RoomVO>> list);
 
 }

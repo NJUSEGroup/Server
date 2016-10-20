@@ -22,6 +22,9 @@ public class WebDiscountServiceStub implements WebDiscountService {
 	@Override
 	public List<WebDiscountVO> findAll() {
 		List<WebDiscountPO> pos = dao.findAll();
+		if(pos == null){
+			return null;
+		}
 		List<WebDiscountVO> vos = new ArrayList<>(pos.size());
 		WebDiscountVO vo = null;
 		for(WebDiscountPO po:pos){

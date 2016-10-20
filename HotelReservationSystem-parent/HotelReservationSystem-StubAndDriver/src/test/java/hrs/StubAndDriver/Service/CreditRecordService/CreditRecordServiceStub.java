@@ -10,6 +10,7 @@ import hrs.StubAndDriver.Service.UserService.UserServiceStub;
 import hrs.client.Service.CreditRecordService;
 import hrs.client.Service.UserService;
 import hrs.client.VO.CreditRecordVO;
+import hrs.client.VO.UserVO;
 import hrs.common.DAO.CreditRecordDAO;
 import hrs.common.PO.CreditRecordPO;
 import hrs.common.util.ResultMessage;
@@ -17,26 +18,37 @@ import hrs.common.util.ResultMessage;
 public class CreditRecordServiceStub implements CreditRecordService {
 
 	private CreditRecordDAO creditRecordDAO;
-	private UserService  userService;
+	private UserService userService;
+
 	public CreditRecordServiceStub() {
-		creditRecordDAO=new CreditRecordDAOStub();
-		userService=new UserServiceStub();
+		creditRecordDAO = new CreditRecordDAOStub();
+		userService = new UserServiceStub();
 	}
 
 	@Override
 	public List<CreditRecordVO> findByUsername(String username) {
-		List<CreditRecordPO> po = creditRecordDAO.findByUsername(username);
-		List<CreditRecordVO> vo = new ArrayList<>(po.size());
-		BeanUtils.copyProperties(po, vo);
-		return vo;
+		List<CreditRecordPO> pos = creditRecordDAO.findByUsername(username);
+		if(pos == null){
+			return null;
+		}
+		List<CreditRecordVO> vos = new ArrayList<>(pos.size());
+		CreditRecordVO vo = null;
+		for(CreditRecordPO po:pos){
+			vo = new CreditRecordVO();
+			BeanUtils.copyProperties(po, vo);
+			vos.add(vo);
+		}
+		return vos;
 	}
 
 	@Override
 	public ResultMessage add(CreditRecordVO creditrecordvo) {
 		CreditRecordPO po = new CreditRecordPO();
 		BeanUtils.copyProperties(creditrecordvo, po);
-		BeanUtils.copyProperties(userService.findByUsername(creditrecordvo.getUsername()).getCredit()+creditrecordvo.getVariation(),userService.findByUsername(creditrecordvo.getUsername()).getCredit());//userService中更新信用值
-		userService.update(userService.findByUsername(creditrecordvo.getUsername()));
+		UserVO user = userService.findByUsername(creditrecordvo.username);
+		po.setCurrCredit(po.getVariation()+user.credit);
+		user.credit = po.getCurrCredit();
+		userService.update(user);
 		return creditRecordDAO.add(po);
 	}
 

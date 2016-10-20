@@ -11,15 +11,16 @@ import hrs.client.VO.EnterpriseVO;
 import hrs.common.DAO.HotelDiscountDAO.EnterpriseDAO;
 import hrs.common.PO.EnterprisePO;
 
-public class EnterpriseServiceStub implements EnterpriseService{
-	private EnterpriseDAO enterpriseDAO=new EnterpriseDAOStub();
-	
+public class EnterpriseServiceStub implements EnterpriseService {
+	private EnterpriseDAO enterpriseDAO = new EnterpriseDAOStub();
+
 	@Override
 	public List<EnterpriseVO> getAllEnterprises() {
-		List<EnterprisePO> pos=enterpriseDAO.findAll();
-		List<EnterpriseVO> vos=new ArrayList<>(pos.size());
-		EnterpriseVO vo=new EnterpriseVO();
-		for(EnterprisePO po:pos){
+		List<EnterprisePO> pos = enterpriseDAO.findAll();
+		List<EnterpriseVO> vos = new ArrayList<>(pos.size());
+		EnterpriseVO vo = null;
+		for (EnterprisePO po : pos) {
+			vo = new EnterpriseVO();
 			BeanUtils.copyProperties(po, vo);
 			vos.add(vo);
 		}

@@ -12,7 +12,6 @@ import hrs.common.util.ResultMessage;
 
 public class OfflineRecordServiceStub implements OfflineRecordService {
 	private OfflineRecordDAO dao;
-	private RoomService roomService;
 	
 	public OfflineRecordServiceStub(){
 		dao = new OfflineRecordDAOStub();
@@ -21,6 +20,9 @@ public class OfflineRecordServiceStub implements OfflineRecordService {
 	@Override
 	public OfflineRecordVO findByID(int id) {
 		OfflineRecordPO po = dao.findByID(id);
+		if(po == null){
+			return null;
+		}
 		OfflineRecordVO vo = new OfflineRecordVO();
 		BeanUtils.copyProperties(po, vo);
 		return vo;
