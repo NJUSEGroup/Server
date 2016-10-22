@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import hrs.common.util.IDTemplate;
 
-public class EnterprisePO implements Serializable,IDTemplate{
+public class EnterprisePO implements Serializable{
 	/**
 	 * 
 	 */

@@ -1,14 +1,10 @@
-hrs\client\Controller\OrderController.class
-hrs\client\Service\HotelDiscountService\HotelDiscountService.class
 hrs\client\Service\HotelService\CommCircleService.class
-hrs\client\Service\WebDiscountService.class
 hrs\client\VO\LocationVO.class
 hrs\client\Service\StaffService.class
 hrs\client\VO\UserVO.class
 hrs\client\ServiceImpl\UserServiceImpl.class
 hrs\client\VO\OfflineRecordVO.class
 hrs\client\Service\CreditRecordService.class
-hrs\client\Service\HotelDiscountService\EnterpriseService.class
 hrs\client\Service\HotelService\LocationService.class
 hrs\client\VO\CommercialCircleVO.class
 hrs\client\VO\EnterpriseVO.class
@@ -16,7 +12,6 @@ hrs\client\VO\OrderVO.class
 hrs\client\Service\HotelService\HotelService.class
 hrs\client\Controller\UserController.class
 hrs\client\VO\RoomVO.class
-hrs\client\UI\UserFrame.class
 hrs\client\VO\HotelDiscountVO.class
 hrs\client\Service\OrderService.class
 hrs\client\Service\RoomService\RoomService.class

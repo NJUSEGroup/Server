@@ -19,7 +19,7 @@ public class UserPO implements Serializable {
 	private String enterprise;
 	private int VIPLevel;
 	private UserType type;
-
+	
 	public UserPO() {
 		// TODO Auto-generated constructor stub
 	}

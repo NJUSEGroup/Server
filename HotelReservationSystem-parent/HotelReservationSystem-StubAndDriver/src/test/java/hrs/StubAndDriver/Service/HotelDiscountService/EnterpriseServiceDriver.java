@@ -7,7 +7,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import hrs.client.Service.HotelDiscountService.EnterpriseService;
+import hrs.client.Service.PromotionService.EnterpriseService;
 import hrs.client.VO.EnterpriseVO;
 
 public class EnterpriseServiceDriver {

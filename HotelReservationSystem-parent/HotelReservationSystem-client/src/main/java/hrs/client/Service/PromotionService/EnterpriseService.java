@@ -1,4 +1,4 @@
-package hrs.client.Service.HotelDiscountService;
+package hrs.client.Service.PromotionService;
 
 import java.util.List;
 

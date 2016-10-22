@@ -2,9 +2,7 @@ package hrs.common.PO;
 
 import java.io.Serializable;
 
-import hrs.common.util.IDTemplate;
-
-public class HotelPO implements Serializable, IDTemplate{
+public class HotelPO implements Serializable {
 	/**
 	 * 
 	 */
@@ -13,73 +11,27 @@ public class HotelPO implements Serializable, IDTemplate{
 	private String name;
 	private int star;
 	private double score;
-	private int loc;
-	private int commCircle;
+	private LocationPO location;
+	private CommercialCirclePO commercialCircle;
 	private String profile;
 	private String service;
+	private StaffPO staff;
+	private String street;
+
 	public HotelPO() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	public HotelPO(int id, String name,int loc,int commCircle,String profile,String service) {
+
+	public HotelPO(String name, int star, double score, LocationPO location, CommercialCirclePO commercialCircle,
+			String profile, String service) {
 		super();
-		this.id = id;
 		this.name = name;
-		this.loc  = loc;
-		this.commCircle = commCircle;
+		this.star = star;
+		this.score = score;
+		this.location = location;
+		this.commercialCircle = commercialCircle;
 		this.profile = profile;
 		this.service = service;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + id;
-		result = prime * result + loc;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((profile == null) ? 0 : profile.hashCode());
-		long temp;
-		temp = Double.doubleToLongBits(score);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((service == null) ? 0 : service.hashCode());
-		result = prime * result + star;
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		HotelPO other = (HotelPO) obj;
-		if (id != other.id)
-			return false;
-		if (loc != other.loc)
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (profile == null) {
-			if (other.profile != null)
-				return false;
-		} else if (!profile.equals(other.profile))
-			return false;
-		if (Double.doubleToLongBits(score) != Double.doubleToLongBits(other.score))
-			return false;
-		if (service == null) {
-			if (other.service != null)
-				return false;
-		} else if (!service.equals(other.service))
-			return false;
-		if (star != other.star)
-			return false;
-		return true;
 	}
 
 	public int getId() {
@@ -113,22 +65,22 @@ public class HotelPO implements Serializable, IDTemplate{
 	public void setScore(double score) {
 		this.score = score;
 	}
-	public int getLoc() {
-		return loc;
+
+	public LocationPO getLocation() {
+		return location;
 	}
 
-	public void setLoc(int loc) {
-		this.loc = loc;
+	public void setLocation(LocationPO location) {
+		this.location = location;
 	}
 
-	public int getCommCircle() {
-		return commCircle;
+	public CommercialCirclePO getCommercialCircle() {
+		return commercialCircle;
 	}
 
-	public void setCommCircle(int commCircle) {
-		this.commCircle = commCircle;
+	public void setCommercialCircle(CommercialCirclePO commercialCircle) {
+		this.commercialCircle = commercialCircle;
 	}
-	
 
 	public String getProfile() {
 		return profile;
@@ -146,5 +98,20 @@ public class HotelPO implements Serializable, IDTemplate{
 		this.service = service;
 	}
 
-	
+	public StaffPO getStaff() {
+		return staff;
+	}
+
+	public void setStaff(StaffPO staff) {
+		this.staff = staff;
+	}
+
+	public String getStreet() {
+		return street;
+	}
+
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
 }

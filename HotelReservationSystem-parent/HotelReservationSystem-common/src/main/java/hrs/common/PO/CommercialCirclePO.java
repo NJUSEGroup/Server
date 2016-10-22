@@ -4,26 +4,25 @@ import java.io.Serializable;
 
 import hrs.common.util.IDTemplate;
 
-public class CommercialCirclePO implements Serializable,IDTemplate {
+public class CommercialCirclePO implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private int id;
-	private int locId;
-
+	private LocationPO location;
 	private String name;
+
+	public CommercialCirclePO(int id, LocationPO loc, String name) {
+		super();
+		this.id = id;
+		this.location = loc;
+		this.name = name;
+	}
 
 	public CommercialCirclePO() {
 		// TODO Auto-generated constructor stub
-	}
-
-	public CommercialCirclePO(int id, int locId, String name) {
-		super();
-		this.id = id;
-		this.locId = locId;
-		this.name = name;
 	}
 
 	public int getId() {
@@ -34,12 +33,12 @@ public class CommercialCirclePO implements Serializable,IDTemplate {
 		this.id = id;
 	}
 
-	public int getLocId() {
-		return locId;
+	public LocationPO getLocation() {
+		return location;
 	}
 
-	public void setLocId(int locId) {
-		this.locId = locId;
+	public void setLocation(LocationPO location) {
+		this.location = location;
 	}
 
 	public String getName() {
@@ -48,37 +47,6 @@ public class CommercialCirclePO implements Serializable,IDTemplate {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + id;
-		result = prime * result + locId;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		CommercialCirclePO other = (CommercialCirclePO) obj;
-		if (id != other.id)
-			return false;
-		if (locId != other.locId)
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		return true;
 	}
 
 }

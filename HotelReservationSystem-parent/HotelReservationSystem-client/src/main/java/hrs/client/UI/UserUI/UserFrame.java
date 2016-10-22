@@ -1,4 +1,4 @@
-package hrs.client.UI;
+package hrs.client.UI.UserUI;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 
 import hrs.StubAndDriver.DAO.WebDiscountDAO.WebDiscountDAOStub;
-import hrs.client.Service.WebDiscountService;
+import hrs.client.Service.PromotionService.WebDiscountService;
 import hrs.client.VO.WebDiscountVO;
 import hrs.common.DAO.WebDiscountDAO;
 import hrs.common.PO.WebDiscountPO;

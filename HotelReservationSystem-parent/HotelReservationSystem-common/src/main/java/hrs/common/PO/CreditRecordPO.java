@@ -2,16 +2,17 @@ package hrs.common.PO;
 
 import java.io.Serializable;
 
-import hrs.common.util.IDTemplate;
 import hrs.common.util.type.CreditRecordType;
 
-public class CreditRecordPO implements Serializable ,IDTemplate{
+public class CreditRecordPO implements Serializable{
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private int id;
-	private String username;
+	private OrderPO order;
+	private UserPO user;
 	private CreditRecordType type;
 	private int variation;
 	private int currCredit;
@@ -19,11 +20,12 @@ public class CreditRecordPO implements Serializable ,IDTemplate{
 	public CreditRecordPO() {
 		// TODO Auto-generated constructor stub
 	}
-
-	public CreditRecordPO(int id, String username, CreditRecordType type, int variation, int currCredit) {
+	
+	public CreditRecordPO(int id, OrderPO order, UserPO user, CreditRecordType type, int variation, int currCredit) {
 		super();
 		this.id = id;
-		this.username = username;
+		this.order = order;
+		this.user = user;
 		this.type = type;
 		this.variation = variation;
 		this.currCredit = currCredit;
@@ -37,12 +39,20 @@ public class CreditRecordPO implements Serializable ,IDTemplate{
 		this.id = id;
 	}
 
-	public String getUsername() {
-		return username;
+	public OrderPO getOrder() {
+		return order;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setOrder(OrderPO order) {
+		this.order = order;
+	}
+
+	public UserPO getUser() {
+		return user;
+	}
+
+	public void setUser(UserPO user) {
+		this.user = user;
 	}
 
 	public CreditRecordType getType() {
@@ -68,43 +78,6 @@ public class CreditRecordPO implements Serializable ,IDTemplate{
 	public void setCurrCredit(int currCredit) {
 		this.currCredit = currCredit;
 	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + currCredit;
-		result = prime * result + id;
-		result = prime * result + ((type == null) ? 0 : type.hashCode());
-		result = prime * result + ((username == null) ? 0 : username.hashCode());
-		result = prime * result + variation;
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		CreditRecordPO other = (CreditRecordPO) obj;
-		if (currCredit != other.currCredit)
-			return false;
-		if (id != other.id)
-			return false;
-		if (type != other.type)
-			return false;
-		if (username == null) {
-			if (other.username != null)
-				return false;
-		} else if (!username.equals(other.username))
-			return false;
-		if (variation != other.variation)
-			return false;
-		return true;
-	}
-
-		
+	
+	
 }

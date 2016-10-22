@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 
 import hrs.StubAndDriver.DAO.HotelDiscountDAO.EnterpriseDAOStub;
-import hrs.client.Service.HotelDiscountService.EnterpriseService;
+import hrs.client.Service.PromotionService.EnterpriseService;
 import hrs.client.VO.EnterpriseVO;
 import hrs.common.DAO.HotelDiscountDAO.EnterpriseDAO;
 import hrs.common.PO.EnterprisePO;

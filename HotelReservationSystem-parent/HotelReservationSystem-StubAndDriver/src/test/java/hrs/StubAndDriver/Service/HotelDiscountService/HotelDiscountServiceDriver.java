@@ -8,7 +8,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import hrs.client.Service.HotelDiscountService.HotelDiscountService;
+import hrs.client.Service.PromotionService.HotelDiscountService;
 import hrs.client.VO.HotelDiscountVO;
 import hrs.common.PO.HotelDiscountPO;
 import hrs.common.util.ResultMessage;
