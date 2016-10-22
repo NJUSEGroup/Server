@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import hrs.client.Service.UserService;
+import hrs.client.Service.UserService.UserService;
 import hrs.client.VO.UserVO;
 import hrs.common.util.ResultMessage;
 

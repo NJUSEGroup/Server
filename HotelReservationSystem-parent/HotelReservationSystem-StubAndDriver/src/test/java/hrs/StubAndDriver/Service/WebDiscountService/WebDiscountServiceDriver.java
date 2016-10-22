@@ -11,9 +11,9 @@ import org.junit.Test;
 
 import hrs.client.Service.PromotionService.WebDiscountService;
 import hrs.client.VO.WebDiscountVO;
-import hrs.common.PO.WebDiscountPO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.WebsiteDiscountType;
+import hrs.server.POJO.WebDiscountPO;
 
 public class WebDiscountServiceDriver {
 	private WebDiscountService service;

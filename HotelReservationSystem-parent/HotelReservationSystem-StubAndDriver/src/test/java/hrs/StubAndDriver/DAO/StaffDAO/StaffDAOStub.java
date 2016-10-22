@@ -4,9 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import hrs.common.DAO.StaffDAO;
-import hrs.common.PO.StaffPO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.StaffType;
+import hrs.server.POJO.StaffPO;
 
 public class StaffDAOStub implements StaffDAO {
 	private Map<String,StaffPO> map;

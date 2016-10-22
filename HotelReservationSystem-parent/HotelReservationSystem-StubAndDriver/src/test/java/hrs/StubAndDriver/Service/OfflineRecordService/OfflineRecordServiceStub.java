@@ -3,12 +3,12 @@ package hrs.StubAndDriver.Service.OfflineRecordService;
 import org.springframework.beans.BeanUtils;
 
 import hrs.StubAndDriver.DAO.OfflineRecordDAO.OfflineRecordDAOStub;
-import hrs.client.Service.OfflineRecordService;
+import hrs.client.Service.OfflineRecordService.OfflineRecordService;
 import hrs.client.Service.RoomService.RoomService;
 import hrs.client.VO.OfflineRecordVO;
 import hrs.common.DAO.OfflineRecordDAO;
-import hrs.common.PO.OfflineRecordPO;
 import hrs.common.util.ResultMessage;
+import hrs.server.POJO.OfflineRecordPO;
 
 public class OfflineRecordServiceStub implements OfflineRecordService {
 	private OfflineRecordDAO dao;

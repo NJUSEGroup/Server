@@ -9,7 +9,7 @@ import hrs.StubAndDriver.DAO.HotelDAO.LocationDAO.LocationDAOStub;
 import hrs.client.Service.HotelService.LocationService;
 import hrs.client.VO.LocationVO;
 import hrs.common.DAO.HotelDAO.LocationDAO;
-import hrs.common.PO.LocationPO;
+import hrs.server.POJO.LocationPO;
 
 public class LocationServiceStub implements LocationService{
 	private LocationDAO dao;

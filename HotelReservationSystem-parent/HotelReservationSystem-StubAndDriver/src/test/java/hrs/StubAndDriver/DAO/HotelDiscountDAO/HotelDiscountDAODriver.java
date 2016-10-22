@@ -8,9 +8,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import hrs.common.DAO.HotelDiscountDAO.HotelDiscountDAO;
-import hrs.common.PO.HotelDiscountPO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.HotelDiscountType;
+import hrs.server.POJO.HotelDiscountPO;
 
 public class HotelDiscountDAODriver {
 	private HotelDiscountDAO dao;

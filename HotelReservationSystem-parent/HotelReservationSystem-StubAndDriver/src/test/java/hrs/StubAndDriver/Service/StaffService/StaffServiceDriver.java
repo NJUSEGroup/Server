@@ -6,7 +6,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import hrs.client.Service.StaffService;
+import hrs.client.Service.StaffService.StaffService;
 import hrs.client.VO.StaffVO;
 import hrs.client.VO.UserVO;
 import hrs.common.util.ResultMessage;

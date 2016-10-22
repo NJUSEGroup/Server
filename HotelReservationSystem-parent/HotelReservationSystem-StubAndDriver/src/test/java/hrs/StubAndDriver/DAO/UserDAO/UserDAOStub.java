@@ -4,9 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import hrs.common.DAO.UserDAO;
-import hrs.common.PO.UserPO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.UserType;
+import hrs.server.POJO.UserPO;
 
 public class UserDAOStub implements UserDAO {
 	private Map<String,UserPO> map;

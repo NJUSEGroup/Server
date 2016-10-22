@@ -9,9 +9,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import hrs.common.DAO.OfflineRecordDAO;
-import hrs.common.PO.OfflineRecordPO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.RoomType;
+import hrs.server.POJO.OfflineRecordPO;
 
 public class OfflineRecordDAODriver {
 	private OfflineRecordDAO dao;

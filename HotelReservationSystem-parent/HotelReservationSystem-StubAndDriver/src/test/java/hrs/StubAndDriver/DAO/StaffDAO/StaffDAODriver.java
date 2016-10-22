@@ -7,9 +7,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import hrs.common.DAO.StaffDAO;
-import hrs.common.PO.StaffPO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.StaffType;
+import hrs.server.POJO.StaffPO;
 
 public class StaffDAODriver {
 	private StaffDAO dao;

@@ -11,18 +11,18 @@ import hrs.StubAndDriver.Service.CreditRecordService.CreditRecordServiceStub;
 import hrs.StubAndDriver.Service.HotelDiscountService.HotelDiscountServiceStub;
 import hrs.StubAndDriver.Service.UserService.UserServiceStub;
 import hrs.StubAndDriver.Service.WebDiscountService.WebDiscountServiceStub;
-import hrs.client.Service.CreditRecordService;
-import hrs.client.Service.OrderService;
-import hrs.client.Service.UserService;
+import hrs.client.Service.CreditRecordService.CreditRecordService;
+import hrs.client.Service.OrderService.OrderService;
 import hrs.client.Service.PromotionService.HotelDiscountService;
 import hrs.client.Service.PromotionService.WebDiscountService;
+import hrs.client.Service.UserService.UserService;
 import hrs.client.VO.CreditRecordVO;
 import hrs.client.VO.OrderVO;
 import hrs.common.DAO.OrderDAO;
-import hrs.common.PO.OrderPO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.CreditRecordType;
 import hrs.common.util.type.OrderStatus;
+import hrs.server.POJO.OrderPO;
 
 public class OrderServiceStub implements OrderService {
 	private OrderDAO dao;

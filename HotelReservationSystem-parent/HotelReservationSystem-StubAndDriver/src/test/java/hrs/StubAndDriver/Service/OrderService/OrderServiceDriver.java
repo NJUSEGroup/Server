@@ -9,7 +9,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import hrs.client.Service.OrderService;
+import hrs.client.Service.OrderService.OrderService;
 import hrs.client.VO.OrderVO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.OrderStatus;

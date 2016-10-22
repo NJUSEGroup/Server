@@ -9,10 +9,10 @@ import java.util.Map;
 import java.util.Set;
 
 import hrs.common.DAO.OrderDAO;
-import hrs.common.PO.OrderPO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.OrderStatus;
 import hrs.common.util.type.RoomType;
+import hrs.server.POJO.OrderPO;
 
 public class OrderDAOStub implements OrderDAO {
 	private Map<Integer,OrderPO> map;

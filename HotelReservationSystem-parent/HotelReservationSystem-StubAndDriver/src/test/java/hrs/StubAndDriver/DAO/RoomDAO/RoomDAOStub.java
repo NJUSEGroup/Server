@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import hrs.common.DAO.RoomDAO;
-import hrs.common.PO.RoomPO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.RoomType;
+import hrs.server.POJO.RoomPO;
 
 public class RoomDAOStub implements RoomDAO{
 	private Map<Integer,RoomPO> map;

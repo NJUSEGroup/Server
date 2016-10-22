@@ -9,8 +9,8 @@ import hrs.StubAndDriver.DAO.WebDiscountDAO.WebDiscountDAOStub;
 import hrs.client.Service.PromotionService.WebDiscountService;
 import hrs.client.VO.WebDiscountVO;
 import hrs.common.DAO.WebDiscountDAO;
-import hrs.common.PO.WebDiscountPO;
 import hrs.common.util.ResultMessage;
+import hrs.server.POJO.WebDiscountPO;
 
 public class WebDiscountServiceStub implements WebDiscountService {
 	private WebDiscountDAO dao;

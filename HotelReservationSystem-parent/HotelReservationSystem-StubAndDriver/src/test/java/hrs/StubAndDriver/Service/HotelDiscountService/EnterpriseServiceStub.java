@@ -9,7 +9,7 @@ import hrs.StubAndDriver.DAO.HotelDiscountDAO.EnterpriseDAOStub;
 import hrs.client.Service.PromotionService.EnterpriseService;
 import hrs.client.VO.EnterpriseVO;
 import hrs.common.DAO.HotelDiscountDAO.EnterpriseDAO;
-import hrs.common.PO.EnterprisePO;
+import hrs.server.POJO.EnterprisePO;
 
 public class EnterpriseServiceStub implements EnterpriseService {
 	private EnterpriseDAO enterpriseDAO = new EnterpriseDAOStub();

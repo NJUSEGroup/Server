@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import hrs.common.DAO.HotelDiscountDAO.EnterpriseDAO;
-import hrs.common.PO.EnterprisePO;
+import hrs.server.POJO.EnterprisePO;
 
 public class EnterpriseDAOStub implements EnterpriseDAO {
 	private Map<Integer, EnterprisePO> map;

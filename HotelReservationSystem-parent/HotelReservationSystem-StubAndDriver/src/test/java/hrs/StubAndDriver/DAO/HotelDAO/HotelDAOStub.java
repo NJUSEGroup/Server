@@ -7,8 +7,8 @@ import java.util.Map;
 import java.util.Set;
 
 import hrs.common.DAO.HotelDAO.HotelDAO;
-import hrs.common.PO.HotelPO;
 import hrs.common.util.ResultMessage;
+import hrs.server.POJO.HotelPO;
 
 public class HotelDAOStub implements HotelDAO {
 	private Map<Integer,HotelPO> map;

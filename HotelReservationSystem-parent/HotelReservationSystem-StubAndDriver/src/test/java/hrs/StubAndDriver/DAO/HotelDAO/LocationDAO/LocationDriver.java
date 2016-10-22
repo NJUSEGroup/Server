@@ -7,7 +7,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import hrs.common.PO.LocationPO;
+import hrs.server.POJO.LocationPO;
 
 public class LocationDriver {
 	private LocationDAOStub dao;

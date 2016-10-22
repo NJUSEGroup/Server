@@ -10,11 +10,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 import hrs.common.DAO.CreditRecordDAO;
-import hrs.common.PO.CreditRecordPO;
-import hrs.common.PO.UserPO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.CreditRecordType;
 import hrs.common.util.type.UserType;
+import hrs.server.POJO.CreditRecordPO;
+import hrs.server.POJO.UserPO;
 
 public class CreditRecordDAODriver {
 	private CreditRecordDAO dao;

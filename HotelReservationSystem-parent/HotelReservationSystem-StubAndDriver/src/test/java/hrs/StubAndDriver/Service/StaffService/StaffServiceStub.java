@@ -3,11 +3,11 @@ package hrs.StubAndDriver.Service.StaffService;
 import org.springframework.beans.BeanUtils;
 
 import hrs.StubAndDriver.DAO.StaffDAO.StaffDAOStub;
-import hrs.client.Service.StaffService;
+import hrs.client.Service.StaffService.StaffService;
 import hrs.client.VO.StaffVO;
 import hrs.common.DAO.StaffDAO;
-import hrs.common.PO.StaffPO;
 import hrs.common.util.ResultMessage;
+import hrs.server.POJO.StaffPO;
 
 public class StaffServiceStub implements StaffService {
 	private StaffDAO staffDao;

@@ -3,11 +3,11 @@ package hrs.StubAndDriver.Service.UserService;
 import org.springframework.beans.BeanUtils;
 
 import hrs.StubAndDriver.DAO.UserDAO.UserDAOStub;
-import hrs.client.Service.UserService;
+import hrs.client.Service.UserService.UserService;
 import hrs.client.VO.UserVO;
 import hrs.common.DAO.UserDAO;
-import hrs.common.PO.UserPO;
 import hrs.common.util.ResultMessage;
+import hrs.server.POJO.UserPO;
 
 public class UserServiceStub implements UserService{
 	private UserDAO userDao = new UserDAOStub();

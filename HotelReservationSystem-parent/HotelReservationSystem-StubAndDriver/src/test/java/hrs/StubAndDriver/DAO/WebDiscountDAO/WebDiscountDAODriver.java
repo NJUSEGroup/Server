@@ -10,9 +10,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import hrs.common.DAO.WebDiscountDAO;
-import hrs.common.PO.WebDiscountPO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.WebsiteDiscountType;
+import hrs.server.POJO.WebDiscountPO;
 
 public class WebDiscountDAODriver {
 	private WebDiscountDAO dao;

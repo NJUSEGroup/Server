@@ -7,7 +7,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import hrs.client.Service.CreditRecordService;
+import hrs.client.Service.CreditRecordService.CreditRecordService;
 import hrs.client.VO.CreditRecordVO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.CreditRecordType;

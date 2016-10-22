@@ -9,9 +9,9 @@ import java.util.Date;
 import java.util.List;
 
 import hrs.common.DAO.WebDiscountDAO;
-import hrs.common.PO.WebDiscountPO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.WebsiteDiscountType;
+import hrs.server.POJO.WebDiscountPO;
 
 public class WebDiscountDAOStub implements WebDiscountDAO {
 	private Map<Integer,WebDiscountPO> map;

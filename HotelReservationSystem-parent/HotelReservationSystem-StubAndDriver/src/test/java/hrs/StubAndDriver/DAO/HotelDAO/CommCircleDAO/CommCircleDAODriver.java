@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import hrs.common.DAO.HotelDAO.CommCircleDAO;
-import hrs.common.PO.CommercialCirclePO;
+import hrs.server.POJO.CommercialCirclePO;
 
 public class CommCircleDAODriver {
 	private CommCircleDAO dao;

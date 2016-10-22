@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import hrs.common.DAO.HotelDAO.HotelDAO;
-import hrs.common.PO.HotelPO;
+import hrs.server.POJO.HotelPO;
 
 public class HotelDAODriver {
 	private HotelDAO dao;

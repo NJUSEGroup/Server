@@ -14,16 +14,16 @@ import org.springframework.beans.BeanUtils;
 import hrs.StubAndDriver.DAO.HotelDAO.HotelDAOStub;
 import hrs.StubAndDriver.Service.OrderService.OrderServiceStub;
 import hrs.StubAndDriver.Service.RoomService.RoomServiceStub;
-import hrs.client.Service.OrderService;
 import hrs.client.Service.HotelService.HotelService;
+import hrs.client.Service.OrderService.OrderService;
 import hrs.client.Service.RoomService.RoomService;
 import hrs.client.VO.HotelVO;
 import hrs.client.VO.OrderVO;
 import hrs.client.VO.RoomVO;
 import hrs.common.DAO.HotelDAO.HotelDAO;
-import hrs.common.PO.HotelPO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.RoomType;
+import hrs.server.POJO.HotelPO;
 
 public class HotelServiceStub implements HotelService {
 	private HotelDAO dao;

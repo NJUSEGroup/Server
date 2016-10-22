@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean id="userService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<!-- 这里的value就是地址+serviceName的值 -->
+		<property name="serviceUrl" value="rmi://127.0.0.1:1199/UserService" />
+		<property name="serviceInterface" value="hrs.server.Service.Interface.UserService.UserService" />
+	</bean>
+	
+</beans>

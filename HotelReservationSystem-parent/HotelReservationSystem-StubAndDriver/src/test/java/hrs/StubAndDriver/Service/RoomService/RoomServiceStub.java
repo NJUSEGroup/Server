@@ -12,9 +12,9 @@ import hrs.client.Service.RoomService.AvailableRoomService;
 import hrs.client.Service.RoomService.RoomService;
 import hrs.client.VO.RoomVO;
 import hrs.common.DAO.RoomDAO;
-import hrs.common.PO.RoomPO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.RoomType;
+import hrs.server.POJO.RoomPO;
 
 public class RoomServiceStub implements RoomService {
 	private RoomDAO dao;

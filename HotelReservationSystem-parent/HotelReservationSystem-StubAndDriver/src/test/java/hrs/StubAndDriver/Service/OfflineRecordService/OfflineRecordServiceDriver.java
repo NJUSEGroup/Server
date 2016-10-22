@@ -8,7 +8,7 @@ import java.util.Date;
 import org.junit.Before;
 import org.junit.Test;
 
-import hrs.client.Service.OfflineRecordService;
+import hrs.client.Service.OfflineRecordService.OfflineRecordService;
 import hrs.client.VO.OfflineRecordVO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.RoomType;

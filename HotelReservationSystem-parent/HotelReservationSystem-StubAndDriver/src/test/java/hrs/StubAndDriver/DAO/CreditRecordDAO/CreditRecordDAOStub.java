@@ -6,9 +6,9 @@ import java.util.Map;
 import java.util.Set;
 
 import hrs.common.DAO.CreditRecordDAO;
-import hrs.common.PO.CreditRecordPO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.CreditRecordType;
+import hrs.server.POJO.CreditRecordPO;
 
 public class CreditRecordDAOStub implements CreditRecordDAO {
 	private Map<Integer,CreditRecordPO> map;

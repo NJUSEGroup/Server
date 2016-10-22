@@ -9,9 +9,9 @@ import hrs.StubAndDriver.DAO.HotelDiscountDAO.HotelDiscountDAOStub;
 import hrs.client.Service.PromotionService.HotelDiscountService;
 import hrs.client.VO.HotelDiscountVO;
 import hrs.common.DAO.HotelDiscountDAO.HotelDiscountDAO;
-import hrs.common.PO.HotelDiscountPO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.HotelDiscountType;
+import hrs.server.POJO.HotelDiscountPO;
 
 public class HotelDiscountServiceStub implements HotelDiscountService {
 	private HotelDiscountDAO hoteldiscountDAO = new HotelDiscountDAOStub();

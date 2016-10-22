@@ -9,7 +9,7 @@ import hrs.StubAndDriver.DAO.HotelDAO.CommCircleDAO.CommCircleDAOStub;
 import hrs.client.Service.HotelService.CommCircleService;
 import hrs.client.VO.CommercialCircleVO;
 import hrs.common.DAO.HotelDAO.CommCircleDAO;
-import hrs.common.PO.CommercialCirclePO;
+import hrs.server.POJO.CommercialCirclePO;
 
 public class CommCircleServiceStub implements CommCircleService {
 	private CommCircleDAO dao;

@@ -7,14 +7,14 @@ import org.springframework.beans.BeanUtils;
 
 import hrs.StubAndDriver.DAO.CreditRecordDAO.CreditRecordDAOStub;
 import hrs.StubAndDriver.Service.UserService.UserServiceStub;
-import hrs.client.Service.CreditRecordService;
-import hrs.client.Service.UserService;
+import hrs.client.Service.CreditRecordService.CreditRecordService;
+import hrs.client.Service.UserService.UserService;
 import hrs.client.VO.CreditRecordVO;
 import hrs.client.VO.UserVO;
 import hrs.common.DAO.CreditRecordDAO;
-import hrs.common.PO.CreditRecordPO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.VIPLevel;
+import hrs.server.POJO.CreditRecordPO;
 
 public class CreditRecordServiceStub implements CreditRecordService {
 

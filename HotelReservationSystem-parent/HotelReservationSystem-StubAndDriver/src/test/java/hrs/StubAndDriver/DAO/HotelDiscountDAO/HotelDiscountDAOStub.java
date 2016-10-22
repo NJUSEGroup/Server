@@ -8,9 +8,9 @@ import java.util.Map;
 import java.util.Set;
 
 import hrs.common.DAO.HotelDiscountDAO.HotelDiscountDAO;
-import hrs.common.PO.HotelDiscountPO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.HotelDiscountType;
+import hrs.server.POJO.HotelDiscountPO;
 
 public class HotelDiscountDAOStub implements HotelDiscountDAO {
 	private Map<Integer, HotelDiscountPO> map;
