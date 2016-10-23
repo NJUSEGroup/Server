@@ -1,15 +1,13 @@
 package hrs.StubAndDriver.DAO.HotelDiscountDAO;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
-import hrs.common.DAO.HotelDiscountDAO.HotelDiscountDAO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.HotelDiscountType;
+import hrs.server.DAO.Interface.PromotionDAO.HotelDiscountDAO;
 import hrs.server.POJO.HotelDiscountPO;
 
 public class HotelDiscountDAOStub implements HotelDiscountDAO {

@@ -14,13 +14,15 @@ public class RoomVO implements Serializable {
 	public RoomType type;
 	public int roomNum;
 	public double roomValue;
-
-	public RoomVO(int hotelId, RoomType type, int roomNum, double roomValue) {
+	public int availableRoomNum;
+	
+	public RoomVO(int hotelId, RoomType type, int roomNum, double roomValue,int availableRoomNum) {
 		super();
 		this.hotelId = hotelId;
 		this.type = type;
 		this.roomNum = roomNum;
 		this.roomValue = roomValue;
+		this.availableRoomNum = availableRoomNum;
 	}
 
 	public RoomVO() {
@@ -66,38 +68,23 @@ public class RoomVO implements Serializable {
 	public void setRoomValue(double roomValue) {
 		this.roomValue = roomValue;
 	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + hotelId;
-		result = prime * result + roomNum;
-		long temp;
-		temp = Double.doubleToLongBits(roomValue);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((type == null) ? 0 : type.hashCode());
-		return result;
+	public int getAvailableRoomNum() {
+		return availableRoomNum;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		RoomVO other = (RoomVO) obj;
-		if (hotelId != other.hotelId)
-			return false;
-		if (roomNum != other.roomNum)
-			return false;
-		if (Double.doubleToLongBits(roomValue) != Double.doubleToLongBits(other.roomValue))
-			return false;
-		if (type != other.type)
-			return false;
-		return true;
+	public void setAvailableRoomNum(int availableRoomNum) {
+		this.availableRoomNum = availableRoomNum;
 	}
+
+	public RoomVO(int id, int hotelId, RoomType type, int roomNum, double roomValue, int availableRoomNum) {
+		super();
+		this.id = id;
+		this.hotelId = hotelId;
+		this.type = type;
+		this.roomNum = roomNum;
+		this.roomValue = roomValue;
+		this.availableRoomNum = availableRoomNum;
+	}
+	
 
 }

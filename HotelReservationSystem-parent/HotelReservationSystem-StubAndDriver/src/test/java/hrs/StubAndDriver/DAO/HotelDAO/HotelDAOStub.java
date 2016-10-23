@@ -6,15 +6,21 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import hrs.common.DAO.HotelDAO.HotelDAO;
 import hrs.common.util.ResultMessage;
+import hrs.server.DAO.Interface.HotelDAO.HotelDAO;
+import hrs.server.POJO.CommercialCirclePO;
 import hrs.server.POJO.HotelPO;
+import hrs.server.POJO.LocationPO;
 
 public class HotelDAOStub implements HotelDAO {
 	private Map<Integer,HotelPO> map;
 	public HotelDAOStub() {
 		map = new HashMap<>();
-		map.put(0, new HotelPO(0,"嘻嘻",0,0,"",""));
+		LocationPO loc = new LocationPO();
+		loc.setId(0);
+		CommercialCirclePO circle = new CommercialCirclePO();
+		circle.setId(0);
+		map.put(0, new HotelPO(0,"嘻嘻",loc,circle,"",""));
 	}
 	@Override
 	public HotelPO findByID(int hotelID) {
@@ -39,7 +45,7 @@ public class HotelDAOStub implements HotelDAO {
 		Set<Integer> iSet = map.keySet();
 		for(Integer i: iSet){
 			HotelPO po = map.get(i);
-			if(po.getLoc() == loc && po.getCommCircle() == circle ){
+			if(po.getLocation().getId() == loc && po.getCommercialCircle().getId() == circle ){
 				list.add(po);
 			}
 		}

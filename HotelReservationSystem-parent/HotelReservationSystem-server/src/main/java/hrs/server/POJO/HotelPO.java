@@ -18,9 +18,20 @@ public class HotelPO implements Serializable {
 	private StaffPO staff;
 	private String street;
 
-	public HotelPO() {
-		// TODO Auto-generated constructor stub
+	
+
+	public HotelPO(int id, String name, LocationPO location, CommercialCirclePO commercialCircle, String profile,
+			String service) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.location = location;
+		this.commercialCircle = commercialCircle;
+		this.profile = profile;
+		this.service = service;
 	}
+
+
 
 	public HotelPO(String name, int star, double score, LocationPO location, CommercialCirclePO commercialCircle,
 			String profile, String service) {
@@ -33,6 +44,8 @@ public class HotelPO implements Serializable {
 		this.profile = profile;
 		this.service = service;
 	}
+
+	
 
 	public int getId() {
 		return id;

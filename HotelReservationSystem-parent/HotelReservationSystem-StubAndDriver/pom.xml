@@ -29,7 +29,7 @@
 		</dependency>
 		<dependency>
 			<groupId>cn.edu.nju.HotelReservationSystem</groupId>
-			<artifactId>HotelReservationSystem-client</artifactId>
+			<artifactId>HotelReservationSystem-server</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 			<type>jar</type>
 			<scope>compile</scope>

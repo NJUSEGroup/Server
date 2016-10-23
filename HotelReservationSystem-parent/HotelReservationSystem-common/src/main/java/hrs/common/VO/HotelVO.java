@@ -1,6 +1,9 @@
 package hrs.common.VO;
 
 import java.io.Serializable;
+import java.util.List;
+
+import hrs.common.util.type.OrderStatus;
 
 public class HotelVO implements Serializable {
 	/**
@@ -17,7 +20,7 @@ public class HotelVO implements Serializable {
 	public String service;
 	public StaffVO staff;
 	public String street;
-
+	public List<OrderStatus> status;
 	public HotelVO() {
 		// TODO Auto-generated constructor stub
 	}
@@ -116,6 +119,13 @@ public class HotelVO implements Serializable {
 	public void setStreet(String street) {
 		this.street = street;
 	}
+	public List<OrderStatus> getStatus() {
+		return status;
+	}
+
+	public void setStatus(List<OrderStatus> status) {
+		this.status = status;
+	}
 
 	@Override
 	public int hashCode() {
@@ -132,6 +142,7 @@ public class HotelVO implements Serializable {
 		result = prime * result + ((service == null) ? 0 : service.hashCode());
 		result = prime * result + ((staff == null) ? 0 : staff.hashCode());
 		result = prime * result + star;
+		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		result = prime * result + ((street == null) ? 0 : street.hashCode());
 		return result;
 	}
@@ -181,6 +192,11 @@ public class HotelVO implements Serializable {
 			return false;
 		if (star != other.star)
 			return false;
+		if (status == null) {
+			if (other.status != null)
+				return false;
+		} else if (!status.equals(other.status))
+			return false;
 		if (street == null) {
 			if (other.street != null)
 				return false;
@@ -188,6 +204,5 @@ public class HotelVO implements Serializable {
 			return false;
 		return true;
 	}
-
 	
 }

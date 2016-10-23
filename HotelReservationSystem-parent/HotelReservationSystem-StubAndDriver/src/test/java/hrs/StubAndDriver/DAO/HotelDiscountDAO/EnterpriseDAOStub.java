@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import hrs.common.DAO.HotelDiscountDAO.EnterpriseDAO;
+import hrs.server.DAO.Interface.PromotionDAO.EnterpriseDAO;
 import hrs.server.POJO.EnterprisePO;
 
 public class EnterpriseDAOStub implements EnterpriseDAO {

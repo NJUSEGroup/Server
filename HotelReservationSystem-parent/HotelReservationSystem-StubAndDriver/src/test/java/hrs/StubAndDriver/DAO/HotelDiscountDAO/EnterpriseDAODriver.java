@@ -7,7 +7,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import hrs.common.DAO.HotelDiscountDAO.EnterpriseDAO;
+import hrs.server.DAO.Interface.PromotionDAO.EnterpriseDAO;
 import hrs.server.POJO.EnterprisePO;
 
 public class EnterpriseDAODriver {

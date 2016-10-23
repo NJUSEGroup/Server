@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import hrs.common.DAO.HotelDAO.LocationDAO;
+import hrs.server.DAO.Interface.HotelDAO.LocationDAO;
 import hrs.server.POJO.LocationPO;
 
 public class LocationDAOStub implements LocationDAO{

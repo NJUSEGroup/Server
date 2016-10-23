@@ -60,12 +60,12 @@
 
 	<bean id="userDAO" class="hrs.server.DAO.Impl.UserDAOImpl"
 		p:sessionFactory-ref="sessionFactory" autowire="byName"></bean>
-	<bean id="userService" class="hrs.server.Service.Impl.UserService.UserServiceImpl"
+	<bean id="userService" class="hrs.server.Service.UserService.UserServiceImpl"
 		p:dao-ref="userDAO" autowire="byName"></bean>
 
 	<bean id="staffDAO" class="hrs.server.DAO.Impl.StaffDAOImpl"
 		p:sessionFactory-ref="sessionFactory" autowire="byName"></bean>
-	<bean id="staffService" class="hrs.server.Service.Impl.StaffService.StaffServiceImpl"
+	<bean id="staffService" class="hrs.server.Service.StaffService.StaffServiceImpl"
 		p:dao-ref="staffDAO" autowire="byName"></bean>
 
 
@@ -77,7 +77,7 @@
 		<property name="service" ref="userService" />
 		<!-- 导出接口 -->
 		<property name="serviceInterface"
-			value="hrs.server.Service.Interface.UserService.UserService" />
+			value="hrs.common.Service.UserService.UserService" />
 		<!-- spring默认使用1099端口 -->
 		<property name="registryPort" value="1199" />
 	</bean>

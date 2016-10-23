@@ -31,6 +31,15 @@ public class CreditRecordPO implements Serializable{
 		this.currCredit = currCredit;
 	}
 
+	public CreditRecordPO(int id, UserPO user, CreditRecordType type, int variation, int currCredit) {
+		super();
+		this.id = id;
+		this.user = user;
+		this.type = type;
+		this.variation = variation;
+		this.currCredit = currCredit;
+	}
+
 	public int getId() {
 		return id;
 	}

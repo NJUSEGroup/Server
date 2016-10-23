@@ -5,7 +5,6 @@
 	<bean id="userService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
 		<!-- 这里的value就是地址+serviceName的值 -->
 		<property name="serviceUrl" value="rmi://127.0.0.1:1199/UserService" />
-		<property name="serviceInterface" value="hrs.server.Service.Interface.UserService.UserService" />
+		<property name="serviceInterface" value="hrs.common.Service.UserService.UserService" />
 	</bean>
-	
 </beans>

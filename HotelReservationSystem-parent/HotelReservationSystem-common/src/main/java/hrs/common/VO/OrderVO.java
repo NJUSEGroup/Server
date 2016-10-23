@@ -2,6 +2,8 @@ package hrs.common.VO;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import hrs.common.util.type.OrderStatus;
 import hrs.common.util.type.RoomType;
@@ -22,13 +24,15 @@ public class OrderVO implements Serializable {
 	public HotelVO hotel;
 	public double value;
 	public RoomType type;
-	public int roomNum;
+	public int roomNum = 1;
 	public boolean hasChild;
 	public UserVO user;
 	public int score;
 	public String evaluation;
 	public int peopleNum;
-
+	public Map<HotelDiscountVO,Double> hotelDiscounts = new HashMap<>();
+	public Map<WebDiscountVO,Double> webDiscounts = new HashMap<>();
+	
 	public OrderVO() {
 		// TODO Auto-generated constructor stub
 	}
@@ -192,6 +196,23 @@ public class OrderVO implements Serializable {
 		this.peopleNum = peopleNum;
 	}
 
+
+	public Map<HotelDiscountVO, Double> getHotelDiscounts() {
+		return hotelDiscounts;
+	}
+
+	public void setHotelDiscounts(Map<HotelDiscountVO, Double> hotelDiscounts) {
+		this.hotelDiscounts = hotelDiscounts;
+	}
+
+	public Map<WebDiscountVO, Double> getWebDiscounts() {
+		return webDiscounts;
+	}
+
+	public void setWebDiscounts(Map<WebDiscountVO, Double> webDiscounts) {
+		this.webDiscounts = webDiscounts;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -203,6 +224,7 @@ public class OrderVO implements Serializable {
 		result = prime * result + ((expectedCheckoutTime == null) ? 0 : expectedCheckoutTime.hashCode());
 		result = prime * result + (hasChild ? 1231 : 1237);
 		result = prime * result + ((hotel == null) ? 0 : hotel.hashCode());
+		result = prime * result + ((hotelDiscounts == null) ? 0 : hotelDiscounts.hashCode());
 		result = prime * result + id;
 		result = prime * result + peopleNum;
 		result = prime * result + ((placeTime == null) ? 0 : placeTime.hashCode());
@@ -215,6 +237,7 @@ public class OrderVO implements Serializable {
 		long temp;
 		temp = Double.doubleToLongBits(value);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((webDiscounts == null) ? 0 : webDiscounts.hashCode());
 		return result;
 	}
 
@@ -259,6 +282,11 @@ public class OrderVO implements Serializable {
 				return false;
 		} else if (!hotel.equals(other.hotel))
 			return false;
+		if (hotelDiscounts == null) {
+			if (other.hotelDiscounts != null)
+				return false;
+		} else if (!hotelDiscounts.equals(other.hotelDiscounts))
+			return false;
 		if (id != other.id)
 			return false;
 		if (peopleNum != other.peopleNum)
@@ -288,8 +316,12 @@ public class OrderVO implements Serializable {
 			return false;
 		if (Double.doubleToLongBits(value) != Double.doubleToLongBits(other.value))
 			return false;
+		if (webDiscounts == null) {
+			if (other.webDiscounts != null)
+				return false;
+		} else if (!webDiscounts.equals(other.webDiscounts))
+			return false;
 		return true;
 	}
-
 	
 }

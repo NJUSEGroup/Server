@@ -22,7 +22,7 @@ public class OrderPO implements Serializable {
 	private HotelPO hotel;
 	private double value;
 	private RoomType type;
-	private int roomNum;
+	private int roomNum = 1;
 	private boolean hasChild;
 	private UserPO user;
 	private int score;

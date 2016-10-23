@@ -15,14 +15,14 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public UserPO findByUserName(String username) {
-		String hql = "from user where user.user_username = ?";
+		String hql = "from UserPO as user  where user.username = ?";
 		return (UserPO) getSession().createQuery(hql).setParameter(0, username).getSingleResult();
 	}
 
 	@Override
 	public ResultMessage add(UserPO userpo) {
-		// TODO Auto-generated method stub
-		return null;
+		getSession().save(userpo);
+		return ResultMessage.SUCCESS;
 	}
 
 	@Override
