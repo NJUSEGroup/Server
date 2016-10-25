@@ -12,9 +12,8 @@ public class EnterpriseVO implements Serializable{
 	public EnterpriseVO(){
 		
 	}
-	public EnterpriseVO(int id, String name) {
+	public EnterpriseVO(String name) {
 		super();
-		this.id = id;
 		this.name = name;
 	}
 	public int getId() {

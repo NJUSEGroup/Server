@@ -60,24 +60,26 @@
 
 	<bean id="userDAO" class="hrs.server.DAO.Impl.UserDAOImpl"
 		p:sessionFactory-ref="sessionFactory" autowire="byName"></bean>
-	<bean id="userService" class="hrs.server.Service.UserService.UserServiceImpl"
+	<bean id="userService" class="hrs.server.Service.Impl.UserService.UserServiceImpl"
 		p:dao-ref="userDAO" autowire="byName"></bean>
-
+	
 	<bean id="staffDAO" class="hrs.server.DAO.Impl.StaffDAOImpl"
 		p:sessionFactory-ref="sessionFactory" autowire="byName"></bean>
-	<bean id="staffService" class="hrs.server.Service.StaffService.StaffServiceImpl"
+	<bean id="staffService" class="hrs.server.Service.Impl.StaffService.StaffServiceImpl"
 		p:dao-ref="staffDAO" autowire="byName"></bean>
-
-
+	<bean id="loginController" class="hrs.server.Controller.LoginController.LoginController"
+		p:userService-ref="userService" p:staffService-ref="staffService" autowire="byName">
+		
+	</bean>
 	<!-- 配置RMI -->
 	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
 		<!-- RMI服务名称,可自定义服务名称 ，给客户端调用的 -->
-		<property name="serviceName" value="UserService" />
+		<property name="serviceName" value="LoginController" />
 		<!-- 导出实体 -->
-		<property name="service" ref="userService" />
+		<property name="service" ref="loginController" />
 		<!-- 导出接口 -->
 		<property name="serviceInterface"
-			value="hrs.common.Service.UserService.UserService" />
+			value="hrs.common.Controller.LoginController.ILoginController" />
 		<!-- spring默认使用1099端口 -->
 		<property name="registryPort" value="1199" />
 	</bean>

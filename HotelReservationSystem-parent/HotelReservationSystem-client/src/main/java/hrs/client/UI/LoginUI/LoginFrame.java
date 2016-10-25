@@ -17,7 +17,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
 import hrs.client.util.SpringUtils;
-import hrs.common.Service.UserService.UserService;
+import hrs.common.Controller.LoginController.ILoginController;
 import hrs.common.VO.UserVO;
 
 public class LoginFrame extends JFrame {
@@ -28,7 +28,7 @@ public class LoginFrame extends JFrame {
 	private JLabel jlUsername;
 	private JLabel jlPassword;
 	private JButton jbConfirm;
-	private UserService userService;
+	private ILoginController controller;
 	private JTextField jtfUsername;
 	private JPasswordField jtfPassword;
 	/**
@@ -51,7 +51,7 @@ public class LoginFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public LoginFrame() {
-		userService = SpringUtils.getBean("userService");
+		controller = SpringUtils.getBean("loginController");
 		setTitle("登录界面");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(602, 434);
@@ -72,7 +72,7 @@ public class LoginFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String username = jtfUsername.getText().trim();
 				String password = String.valueOf(jtfPassword.getPassword());
-				UserVO user = userService.login(username, password);
+				UserVO user = controller.loginUser(username, password);
 				if(user != null){
 					JOptionPane.showMessageDialog(null, "登录成功!");
 				}else{

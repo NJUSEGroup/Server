@@ -7,4 +7,6 @@ public interface StaffDAO {
 	 ResultMessage update(StaffPO staffpo);
 	 ResultMessage add(StaffPO staffpo);
 	 StaffPO findByUsername(String username);
+	 StaffPO findByHotelName(String hotelName);
+	 StaffPO login(String username, String password);
 }

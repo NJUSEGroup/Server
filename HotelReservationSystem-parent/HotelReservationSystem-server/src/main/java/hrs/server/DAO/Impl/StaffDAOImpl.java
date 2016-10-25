@@ -36,4 +36,14 @@ public class StaffDAOImpl implements StaffDAO {
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
+	@Override
+	public StaffPO findByHotelName(String hotelName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public StaffPO login(String username, String password) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

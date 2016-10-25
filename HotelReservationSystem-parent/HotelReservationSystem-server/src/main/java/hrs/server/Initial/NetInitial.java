@@ -1,7 +1,7 @@
 package hrs.server.Initial;
 
-import hrs.common.Service.StaffService.StaffService;
-import hrs.common.Service.UserService.UserService;
+import hrs.server.Service.Interface.StaffService.StaffService;
+import hrs.server.Service.Interface.UserService.UserService;
 import hrs.server.util.SpringUtils;
 
 @SuppressWarnings("all")
