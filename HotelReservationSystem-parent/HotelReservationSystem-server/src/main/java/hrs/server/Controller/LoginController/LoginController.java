@@ -18,6 +18,7 @@ public class LoginController implements ILoginController {
 
 	@Override
 	public UserVO loginUser(String username, String password) {
+		System.out.println("LoginController.loginUser("+username+","+password+")");
 		return userService.login(username, password);
 	}
 

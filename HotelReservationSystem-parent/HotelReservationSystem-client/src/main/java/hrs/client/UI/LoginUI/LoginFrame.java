@@ -16,7 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
-import hrs.client.util.SpringUtils;
+import hrs.client.util.ControllerFactory;
 import hrs.common.Controller.LoginController.ILoginController;
 import hrs.common.VO.UserVO;
 
@@ -51,7 +51,7 @@ public class LoginFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public LoginFrame() {
-		controller = SpringUtils.getBean("loginController");
+		controller = ControllerFactory.getLoginController();
 		setTitle("登录界面");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(602, 434);

@@ -53,6 +53,7 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	@Override
 	public UserVO login(String username, String password) {
+		System.out.println("UserServiceImpl.login("+username+","+password+")");
 		UserPO po = dao.findByUserName(username);
 		if (po == null || !po.getPassword().equals(password)) {
 			return null;

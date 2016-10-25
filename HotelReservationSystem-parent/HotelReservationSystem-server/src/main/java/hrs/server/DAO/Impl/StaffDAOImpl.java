@@ -7,6 +7,7 @@ import hrs.common.util.ResultMessage;
 import hrs.server.DAO.Interface.StaffDAO;
 import hrs.server.POJO.StaffPO;
 public class StaffDAOImpl implements StaffDAO {
+	
 	private SessionFactory sessionFactory;
 	private Session getSession(){
 		return sessionFactory.getCurrentSession();

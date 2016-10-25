@@ -15,6 +15,7 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public UserPO findByUserName(String username) {
+		System.out.println("UserDAOImpl.findByUserName("+username+")");
 		String hql = "from UserPO as user  where user.username = ?";
 		return (UserPO) getSession().createQuery(hql).setParameter(0, username).getSingleResult();
 	}

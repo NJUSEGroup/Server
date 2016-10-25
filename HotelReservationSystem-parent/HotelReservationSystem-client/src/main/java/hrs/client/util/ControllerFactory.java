@@ -11,7 +11,7 @@ public class ControllerFactory {
 	private static ILoginController loginController;
 	private static IUserController userController;
 	
-	public ILoginController getLoginController(){
+	public static ILoginController getLoginController(){
 		if(loginController == null){
 			loginController = SpringUtils.getBean("loginController");
 		}
