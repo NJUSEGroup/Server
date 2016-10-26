@@ -12,11 +12,6 @@ import hrs.server.Service.Interface.RoomService.RoomService;
 public class RoomServiceImpl implements RoomService{
 	private RoomDAO dao;
 	
-	@Override
-	public RoomVO findByHotelAndType(int hotelID, RoomType type) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public List<RoomVO> findAvailableByHotelID(int hotelID, Date begin, Date end) {
@@ -46,6 +41,12 @@ public class RoomServiceImpl implements RoomService{
 	public int findAvailableRoomNum(int hotelID, RoomType type, Date begin, Date end) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public List<RoomVO> findByHotelID(int hotelID) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

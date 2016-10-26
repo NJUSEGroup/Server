@@ -7,7 +7,7 @@ import hrs.common.VO.UserVO;
 import hrs.common.util.ResultMessage;
 
 public interface IUserController {
-	ResultMessage update(UserVO uservo);
+	ResultMessage updateUser(UserVO uservo);
 	UserVO findUserByUsername(String username);
-	List<CreditRecordVO> findByUsername(String username);
+	List<CreditRecordVO> findCreditRecordByUsername(String username);
 }
