@@ -7,14 +7,14 @@ import org.springframework.beans.BeanUtils;
 
 import hrs.StubAndDriver.DAO.CreditRecordDAO.CreditRecordDAOStub;
 import hrs.StubAndDriver.Service.UserService.UserServiceStub;
-import hrs.client.Service.CreditRecordService.CreditRecordService;
-import hrs.client.Service.UserService.UserService;
-import hrs.client.VO.CreditRecordVO;
-import hrs.client.VO.UserVO;
-import hrs.common.DAO.CreditRecordDAO;
+import hrs.common.VO.CreditRecordVO;
+import hrs.common.VO.UserVO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.VIPLevel;
+import hrs.server.DAO.Interface.CreditRecordDAO;
 import hrs.server.POJO.CreditRecordPO;
+import hrs.server.Service.Interface.CreditRecordService.CreditRecordService;
+import hrs.server.Service.Interface.UserService.UserService;
 
 public class CreditRecordServiceStub implements CreditRecordService {
 
@@ -46,7 +46,7 @@ public class CreditRecordServiceStub implements CreditRecordService {
 	public ResultMessage add(CreditRecordVO creditrecordvo) {
 		CreditRecordPO po = new CreditRecordPO();
 		BeanUtils.copyProperties(creditrecordvo, po);
-		UserVO user = userService.findByUsername(creditrecordvo.username);
+		UserVO user = userService.findByUsername(creditrecordvo.user.username);
 		po.setCurrCredit(po.getVariation()+user.credit);
 		user.credit = po.getCurrCredit();
 		user.VIPLevel = VIPLevel.getLevel(user.credit);

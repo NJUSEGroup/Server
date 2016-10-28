@@ -18,7 +18,9 @@ public class HotelPO implements Serializable {
 	private StaffPO staff;
 	private String street;
 
-	
+	public HotelPO() {
+		// TODO Auto-generated constructor stub
+	}
 
 	public HotelPO(int id, String name, LocationPO location, CommercialCirclePO commercialCircle, String profile,
 			String service) {

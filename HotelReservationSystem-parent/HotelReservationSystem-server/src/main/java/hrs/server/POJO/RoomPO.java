@@ -9,7 +9,6 @@ public class RoomPO implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private int id;
 	private int hotelId;
 	private RoomType type;
 	private int roomNum;
@@ -30,16 +29,6 @@ public class RoomPO implements Serializable {
 	}
 
 
-
-	public int getId() {
-		return id;
-	}
-
-
-
-	public void setId(int id) {
-		this.id = id;
-	}
 
 
 
@@ -96,7 +85,6 @@ public class RoomPO implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + hotelId;
-		result = prime * result + id;
 		result = prime * result + roomNum;
 		long temp;
 		temp = Double.doubleToLongBits(roomValue);
@@ -117,8 +105,6 @@ public class RoomPO implements Serializable {
 			return false;
 		RoomPO other = (RoomPO) obj;
 		if (hotelId != other.hotelId)
-			return false;
-		if (id != other.id)
 			return false;
 		if (roomNum != other.roomNum)
 			return false;

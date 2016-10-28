@@ -7,7 +7,7 @@
 		<property name="connection.username">root</property>
 		<property name="connection.password">130119</property>
 		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="connection.url">jdbc:mysql://localhost:3306/hotelreservationsystem</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/hotelreservationsystem?serverTimezone=UTC</property>
 		<property name="dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
 		<property name="show_sql">true</property>
 		<property name="format_sql">true</property>
@@ -17,5 +17,19 @@
 		<property name="c3p0.idle_test_period">2000</property>
 		<property name="c3p0.timeout">2000</property>
 		<property name="c3p0.max_statements">10</property>
+
+		<mapping resource="hrs/server/POJO/OrderPO.hbm.xml" />
+		<mapping resource="hrs/server/POJO/CommercialCirclePO.hbm.xml" />
+		<mapping resource="hrs/server/POJO/CreditRecordPO.hbm.xml" />
+		<mapping resource="hrs/server/POJO/EnterprisePO.hbm.xml" />
+		<mapping resource="hrs/server/POJO/HotelDiscountPO.hbm.xml" />
+		<mapping resource="hrs/server/POJO/HotelPO.hbm.xml" />
+		<mapping resource="hrs/server/POJO/LocationPO.hbm.xml" />
+		<mapping resource="hrs/server/POJO/OfflineRecordPO.hbm.xml" />
+		<mapping resource="hrs/server/POJO/RoomPO.hbm.xml" />
+		<mapping resource="hrs/server/POJO/StaffPO.hbm.xml" />
+		<mapping resource="hrs/server/POJO/UserPO.hbm.xml" />
+		<mapping resource="hrs/server/POJO/WebDiscountPO.hbm.xml" />
+
 	</session-factory>
 </hibernate-configuration>

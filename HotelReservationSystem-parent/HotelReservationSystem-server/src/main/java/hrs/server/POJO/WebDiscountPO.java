@@ -13,6 +13,7 @@ public  class WebDiscountPO implements Serializable {
 	private int id;
 	private double discount;
 	private WebsiteDiscountType type;
+	private LocationPO location;
 	private CommercialCirclePO commercialCircle;
 	private Date beginTime;
 	private Date endTime;
@@ -20,18 +21,6 @@ public  class WebDiscountPO implements Serializable {
 	
 	public WebDiscountPO() {
 		// TODO Auto-generated constructor stub
-	}
-
-	public WebDiscountPO(int id, double discount, WebsiteDiscountType type, CommercialCirclePO commercialCircle,
-			Date beginTime, Date endTime, int vIPlevel) {
-		super();
-		this.id = id;
-		this.discount = discount;
-		this.type = type;
-		this.commercialCircle = commercialCircle;
-		this.beginTime = beginTime;
-		this.endTime = endTime;
-		VIPlevel = vIPlevel;
 	}
 
 	public int getId() {
@@ -56,6 +45,14 @@ public  class WebDiscountPO implements Serializable {
 
 	public void setType(WebsiteDiscountType type) {
 		this.type = type;
+	}
+
+	public LocationPO getLocation() {
+		return location;
+	}
+
+	public void setLocation(LocationPO location) {
+		this.location = location;
 	}
 
 	public CommercialCirclePO getCommercialCircle() {
@@ -102,6 +99,7 @@ public  class WebDiscountPO implements Serializable {
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((endTime == null) ? 0 : endTime.hashCode());
 		result = prime * result + id;
+		result = prime * result + ((location == null) ? 0 : location.hashCode());
 		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		return result;
 	}
@@ -136,10 +134,17 @@ public  class WebDiscountPO implements Serializable {
 			return false;
 		if (id != other.id)
 			return false;
+		if (location == null) {
+			if (other.location != null)
+				return false;
+		} else if (!location.equals(other.location))
+			return false;
 		if (type != other.type)
 			return false;
 		return true;
 	}
+
+	
 
 	
 	
