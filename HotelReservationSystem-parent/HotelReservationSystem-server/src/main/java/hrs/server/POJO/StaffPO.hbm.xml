@@ -25,7 +25,7 @@
             </type>
         </property>
         
-        <many-to-one name="hotel" class="HotelPO" column="staff_hotel" unique="true">
+        <many-to-one name="hotel" class="HotelPO" column="STAFF_HOTEL" unique="true">
         </many-to-one>
     </class>
 </hibernate-mapping>

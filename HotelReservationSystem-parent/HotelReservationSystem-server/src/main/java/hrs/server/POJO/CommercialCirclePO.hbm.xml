@@ -6,10 +6,11 @@
 	<class name="CommercialCirclePO" table="COMMERCIAL_CIRCLE">
 		<composite-id>
 			<key-many-to-one name="location" class="LocationPO"
-				column="LOC_ID"></key-many-to-one>
-			<key-property name="id" column="CIRCLE_ID" type="int"></key-property>
+				column="LOC_ID">
+			</key-many-to-one>
+			<key-property name="id" column="CIRCLE_ID" type="int">
+			</key-property>
 		</composite-id>
-		
 		<property name="name" type="java.lang.String">
 			<column name="CIRCLE_NAME" />
 		</property>

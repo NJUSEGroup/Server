@@ -17,13 +17,13 @@
 		<property name="score" type="double">
 			<column name="HOTEL_SCORE" />
 		</property>
-		
+
 		<many-to-one name="commercialCircle" class="CommercialCirclePO"
 			fetch="join">
 			<column name="HOTEL_LOC"></column>
 			<column name="HOTEL_CIRCLE"></column>
 		</many-to-one>
-		
+
 		<property name="profile" type="java.lang.String">
 			<column name="HOTEL_PROFILE" />
 		</property>

@@ -26,7 +26,21 @@
 		autowire="byType">
 		<property name="dataSource" ref="dataSource"></property>
 		<property name="configLocation" value="classpath:hibernate.cfg.xml"></property>
-		<property name="mappingLocations" value="classpath:hrs/server/POJO/*.hbm.xml"></property>
+		<property name="mappingResources">
+			<list>
+				<value>hrs/server/POJO/UserPO.hbm.xml</value>
+				<value>hrs/server/POJO/EnterprisePO.hbm.xml</value>
+				<value>hrs/server/POJO/StaffPO.hbm.xml</value>
+				<value>hrs/server/POJO/LocationPO.hbm.xml</value>
+				<value>hrs/server/POJO/CommercialCirclePO.hbm.xml</value>
+				<value>hrs/server/POJO/CreditRecordPO.hbm.xml</value>
+				<value>hrs/server/POJO/OrderPO.hbm.xml</value>
+				<value>hrs/server/POJO/HotelPO.hbm.xml</value>
+				<value>hrs/server/POJO/HotelDiscountPO.hbm.xml</value>
+				<value>hrs/server/POJO/WebDiscountPO.hbm.xml</value>
+				<value>hrs/server/POJO/OfflineRecordPO.hbm.xml</value>
+			</list>			
+		</property>
 	</bean>
 
 	<!-- 配置声明式事务 -->
@@ -46,7 +60,7 @@
 			<tx:method name="apply*" propagation="REQUIRED" />
 		</tx:attributes>
 	</tx:advice>
-	
+
 	<!-- 基于注解 声明式事务管理配置 -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	<aop:config>
@@ -62,14 +76,15 @@
 		p:sessionFactory-ref="sessionFactory" autowire="byName"></bean>
 	<bean id="userService" class="hrs.server.Service.Impl.UserService.UserServiceImpl"
 		p:dao-ref="userDAO" autowire="byName"></bean>
-	
+
 	<bean id="staffDAO" class="hrs.server.DAO.Impl.StaffDAOImpl"
 		p:sessionFactory-ref="sessionFactory" autowire="byName"></bean>
 	<bean id="staffService" class="hrs.server.Service.Impl.StaffService.StaffServiceImpl"
 		p:dao-ref="staffDAO" autowire="byName"></bean>
 	<bean id="loginController" class="hrs.server.Controller.LoginController.LoginController"
-		p:userService-ref="userService" p:staffService-ref="staffService" autowire="byName">
-		
+		p:userService-ref="userService" p:staffService-ref="staffService"
+		autowire="byName">
+
 	</bean>
 	<!-- 配置RMI -->
 	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
