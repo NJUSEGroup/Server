@@ -12,7 +12,7 @@ public class UserDAOImpl implements UserDAO {
 	private Session getSession() {
 		return sessionFactory.getCurrentSession();
 	}
-
+	
 	@Override
 	public UserPO findByUserName(String username) {
 		System.out.println("UserDAOImpl.findByUserName("+username+")");

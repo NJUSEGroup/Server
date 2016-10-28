@@ -17,19 +17,5 @@
 		<property name="c3p0.idle_test_period">2000</property>
 		<property name="c3p0.timeout">2000</property>
 		<property name="c3p0.max_statements">10</property>
-
-		<mapping resource="hrs/server/POJO/OrderPO.hbm.xml" />
-		<mapping resource="hrs/server/POJO/CommercialCirclePO.hbm.xml" />
-		<mapping resource="hrs/server/POJO/CreditRecordPO.hbm.xml" />
-		<mapping resource="hrs/server/POJO/EnterprisePO.hbm.xml" />
-		<mapping resource="hrs/server/POJO/HotelDiscountPO.hbm.xml" />
-		<mapping resource="hrs/server/POJO/HotelPO.hbm.xml" />
-		<mapping resource="hrs/server/POJO/LocationPO.hbm.xml" />
-		<mapping resource="hrs/server/POJO/OfflineRecordPO.hbm.xml" />
-		<mapping resource="hrs/server/POJO/RoomPO.hbm.xml" />
-		<mapping resource="hrs/server/POJO/StaffPO.hbm.xml" />
-		<mapping resource="hrs/server/POJO/UserPO.hbm.xml" />
-		<mapping resource="hrs/server/POJO/WebDiscountPO.hbm.xml" />
-
 	</session-factory>
 </hibernate-configuration>

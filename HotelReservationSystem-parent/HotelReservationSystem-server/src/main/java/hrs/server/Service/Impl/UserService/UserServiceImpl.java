@@ -10,6 +10,7 @@ import hrs.server.DAO.Interface.UserDAO;
 import hrs.server.POJO.UserPO;
 import hrs.server.Service.Interface.PromotionService.EnterpriseService;
 import hrs.server.Service.Interface.UserService.UserService;
+import hrs.server.util.SpringUtils;
 
 public class UserServiceImpl implements UserService {
 	private UserDAO dao;
@@ -63,6 +64,9 @@ public class UserServiceImpl implements UserService {
 			return vo;
 		}
 	}
-
+	public static void main(String[] args) {
+		UserService userService = SpringUtils.getBean("userService");
+		System.out.println(userService.login("admin", "admin"));
+	}
 	
 }
