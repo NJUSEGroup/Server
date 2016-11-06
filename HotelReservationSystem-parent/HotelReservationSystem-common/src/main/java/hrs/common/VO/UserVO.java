@@ -24,6 +24,12 @@ public class UserVO implements Serializable {
 	public UserVO() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	public UserVO(String username, String password) {
+		super();
+		this.username = username;
+		this.password = password;
+	}
 
 	public UserVO(String username, String password, String phone, String name, int credit, int vIPLevel,
 			UserType type) {

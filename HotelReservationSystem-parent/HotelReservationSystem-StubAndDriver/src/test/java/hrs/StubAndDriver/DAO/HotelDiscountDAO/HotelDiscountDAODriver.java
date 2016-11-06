@@ -1,19 +1,21 @@
 package hrs.StubAndDriver.DAO.HotelDiscountDAO;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import hrs.common.DAO.HotelDiscountDAO.HotelDiscountDAO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.HotelDiscountType;
+import hrs.server.POJO.EnterprisePO;
 import hrs.server.POJO.HotelDiscountPO;
+import hrs.server.POJO.HotelPO;
 
 public class HotelDiscountDAODriver {
-	private HotelDiscountDAO dao;
+	private hrs.server.DAO.Interface.PromotionDAO.HotelDiscountDAO dao;
 	
 	@Before
 	public void launch(){
@@ -22,12 +24,20 @@ public class HotelDiscountDAODriver {
 	
 	@Test
 	public void testAdd(){
-		assertTrue(dao.add(new HotelDiscountPO(1, 1, 0.9, HotelDiscountType.Birthday, 0, 0 ,null, null))==ResultMessage.SUCCESS);
+		HotelPO hotel = new HotelPO();
+		hotel.setId(0);
+		EnterprisePO enterprise = new EnterprisePO();
+		enterprise.setId(0);
+		assertTrue(dao.add(new HotelDiscountPO(1,hotel , 0.9, HotelDiscountType.Birthday, enterprise, 0 ,null, null))==ResultMessage.SUCCESS);
 	}
 	
 	@Test
 	public void testUpdate(){
-		assertTrue(dao.update(new HotelDiscountPO(1, 1, 0.8, HotelDiscountType.Birthday, 0,0,null, null))==ResultMessage.SUCCESS);
+		HotelPO hotel = new HotelPO();
+		hotel.setId(0);
+		EnterprisePO enterprise = new EnterprisePO();
+		enterprise.setId(2);
+		assertTrue(dao.add(new HotelDiscountPO(1,hotel , 0.9, HotelDiscountType.Birthday, enterprise, 0 ,null, null))==ResultMessage.SUCCESS);
 	}
 	
 	@Test
@@ -39,7 +49,7 @@ public class HotelDiscountDAODriver {
 	public void testFindAllByHotelID(){
 		List<HotelDiscountPO> list=dao.findAllByHotelID(0);
 		for(HotelDiscountPO po:list){
-			assertEquals(po.getHotelId(),0);
+			assertEquals(po.getId(),0);
 		}
 	}
 }

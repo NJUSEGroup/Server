@@ -12,11 +12,7 @@ public class CommercialCircleVO implements Serializable {
 	public LocationVO location;
 	public String name;
 
-	public CommercialCircleVO(int id, LocationVO loc, String name) {
-		super();
-		this.id = id;
-		this.location = loc;
-		this.name = name;
+	public CommercialCircleVO() {
 	}
 
 	public int getId() {

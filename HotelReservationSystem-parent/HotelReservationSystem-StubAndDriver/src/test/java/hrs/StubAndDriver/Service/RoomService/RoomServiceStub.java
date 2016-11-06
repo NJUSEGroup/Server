@@ -1,41 +1,30 @@
 package hrs.StubAndDriver.Service.RoomService;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 
 import hrs.StubAndDriver.DAO.RoomDAO.RoomDAOStub;
-import hrs.StubAndDriver.Service.RoomService.AvailableRoomService.AvailableRoomServiceStub;
-import hrs.client.Service.RoomService.AvailableRoomService;
-import hrs.client.Service.RoomService.RoomService;
-import hrs.client.VO.RoomVO;
-import hrs.common.DAO.RoomDAO;
+import hrs.common.VO.RoomVO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.RoomType;
+import hrs.server.DAO.Interface.RoomDAO;
 import hrs.server.POJO.RoomPO;
+import hrs.server.Service.Interface.RoomService.RoomService;
 
 public class RoomServiceStub implements RoomService {
 	private RoomDAO dao;
-	private AvailableRoomService availRoomService;
-	
+	private SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
 	public RoomServiceStub() {
 		dao = new RoomDAOStub();
-		availRoomService = new AvailableRoomServiceStub();
 	}
-	
-	@Override
-	public RoomVO findByHotelAndType(int hotelID, RoomType type) {
-		RoomPO po =  dao.findByHotelAndType(hotelID, type);
-		if(po == null){
-			return null;
-		}
-		RoomVO vo = new RoomVO();
-		BeanUtils.copyProperties(po,vo);
-		return vo;
-	}
-
 
 	@Override
 	public ResultMessage update(RoomVO roomvo) {
@@ -54,12 +43,12 @@ public class RoomServiceStub implements RoomService {
 	@Override
 	public List<RoomType> findNotAddedRoomType(int hotelID) {
 		List<RoomType> list = new ArrayList<>();
-		RoomType [] types = RoomType.values();
-		for(int i = 0; i != types.length;i++){
+		RoomType[] types = RoomType.values();
+		for (int i = 0; i != types.length; i++) {
 			list.add(types[i]);
 		}
 		List<RoomPO> pos = dao.findByHotelID(hotelID);
-		for(RoomPO po:pos){
+		for (RoomPO po : pos) {
 			list.remove(po.getType());
 		}
 		return list;
@@ -68,19 +57,52 @@ public class RoomServiceStub implements RoomService {
 	@Override
 	public List<RoomVO> findAvailableByHotelID(int hotelID, Date begin, Date end) {
 		List<RoomPO> pos = dao.findByHotelID(hotelID);
-		if(pos == null){
+		if (pos == null) {
 			return null;
 		}
 		List<RoomVO> vos = new ArrayList<>();
 		RoomVO vo = null;
-		for(RoomPO po:pos){
+		for (RoomPO po : pos) {
 			vo = new RoomVO();
 			BeanUtils.copyProperties(po, vo);
-			vo.availRoomNum = availRoomService.findAvailableRoomNum(hotelID, po.getType(), begin, end);
+			vo.availableRoomNum = findAvailableRoomNum(hotelID, po.getType(), begin, end);
 			vos.add(vo);
 		}
 		return vos;
 	}
 
-	
+	@Override
+	public List<RoomVO> findByHotelID(int hotelID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int findAvailableRoomNum(int hotelID, RoomType type, Date begin, Date end) {
+		int minRoomNum = Integer.MAX_VALUE, roomNum = 0;
+		try {
+			begin = formatter.parse(formatter.format(begin));
+			end = formatter.parse(formatter.format(end));
+			while (!begin.equals(end)) {
+				roomNum = dao.findAvailableRoom(hotelID, type, begin);
+				if (roomNum == 0) {
+					return 0;
+				}
+				if (roomNum < minRoomNum) {
+					minRoomNum = roomNum;
+				}
+				begin = incOneDay(begin);
+			}
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return minRoomNum;
+	}
+
+	private Date incOneDay(Date date) {
+		Calendar c = new GregorianCalendar();
+		c.setTime(date);
+		c.add(Calendar.DATE, 1);
+		return c.getTime();
+	}
 }

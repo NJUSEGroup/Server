@@ -5,9 +5,9 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import hrs.client.Service.RoomService.RoomService;
-import hrs.client.VO.RoomVO;
+import hrs.common.VO.RoomVO;
 import hrs.common.util.type.RoomType;
+import hrs.server.Service.Interface.RoomService.RoomService;
 
 public class RoomServiceDriver {
 	private RoomService service;

@@ -42,9 +42,5 @@ public class StaffDAOImpl implements StaffDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	@Override
-	public StaffPO login(String username, String password) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 }

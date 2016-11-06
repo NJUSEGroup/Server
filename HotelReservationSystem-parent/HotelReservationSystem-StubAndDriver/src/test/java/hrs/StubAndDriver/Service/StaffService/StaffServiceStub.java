@@ -3,23 +3,23 @@ package hrs.StubAndDriver.Service.StaffService;
 import org.springframework.beans.BeanUtils;
 
 import hrs.StubAndDriver.DAO.StaffDAO.StaffDAOStub;
-import hrs.client.Service.StaffService.StaffService;
-import hrs.client.VO.StaffVO;
-import hrs.common.DAO.StaffDAO;
+import hrs.common.VO.StaffVO;
 import hrs.common.util.ResultMessage;
+import hrs.server.DAO.Interface.StaffDAO;
 import hrs.server.POJO.StaffPO;
+import hrs.server.Service.Interface.StaffService.StaffService;
 
 public class StaffServiceStub implements StaffService {
-	private StaffDAO staffDao;
-	
-	public StaffServiceStub(){
-		staffDao = new StaffDAOStub();
+	private StaffDAO dao;
+
+	public StaffServiceStub() {
+		dao = new StaffDAOStub();
 	}
-	
+
 	@Override
 	public StaffVO login(String username, String password) {
-		StaffPO po = staffDao.findByUsername(username);
-		if(po == null || !po.getPassword().equals(password)){
+		StaffPO po = dao.findByUsername(username);
+		if (po == null || !po.getPassword().equals(password)) {
 			return null;
 		}
 		StaffVO vo = new StaffVO();
@@ -31,14 +31,29 @@ public class StaffServiceStub implements StaffService {
 	public ResultMessage update(StaffVO staffvo) {
 		StaffPO po = new StaffPO();
 		BeanUtils.copyProperties(staffvo, po);
-		return staffDao.update(po);
+		return dao.update(po);
 	}
 
 	@Override
 	public ResultMessage add(StaffVO staffvo) {
 		StaffPO po = new StaffPO();
 		BeanUtils.copyProperties(staffvo, po);
-		return staffDao.add(po);
+		return dao.add(po);
 	}
 
+	@Override
+	public StaffVO findByUsername(String username) {
+		StaffPO po = dao.findByUsername(username);
+		StaffVO vo = new StaffVO();
+		BeanUtils.copyProperties(po, vo);
+		return vo;
+	}
+
+	@Override
+	public StaffVO findByHotelName(String hotelName) {
+		StaffPO po = dao.findByHotelName(hotelName);
+		StaffVO vo = new StaffVO();
+		BeanUtils.copyProperties(po, vo);
+		return vo;
+	}
 }

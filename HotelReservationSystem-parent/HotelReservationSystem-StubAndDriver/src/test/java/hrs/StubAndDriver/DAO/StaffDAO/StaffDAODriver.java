@@ -6,31 +6,40 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import hrs.common.DAO.StaffDAO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.StaffType;
+import hrs.server.DAO.Interface.StaffDAO;
+import hrs.server.POJO.HotelPO;
 import hrs.server.POJO.StaffPO;
 
 public class StaffDAODriver {
 	private StaffDAO dao;
+
 	@Before
 	public void setUp() throws Exception {
 		dao = new StaffDAOStub();
 	}
+
 	@Test
 	public void testAdd() {
-		assertTrue(dao.add(new StaffPO("staff*", "110", "wang", StaffType.HotelStaff, "su8"))==ResultMessage.SUCCESS);
+		HotelPO po = new HotelPO();
+		po.setId(0);
+		assertTrue(dao.add(new StaffPO(2, "staff*", "110", "wang", StaffType.HotelStaff, po)) == ResultMessage.SUCCESS);
 	}
-	
+
 	@Test
 	public void testUpdate() {
-		assertTrue(dao.update(new StaffPO("staff*", "120", "wang", StaffType.HotelStaff, "su8"))==ResultMessage.SUCCESS);
+		HotelPO po = new HotelPO();
+		po.setId(0);
+		assertTrue(
+				dao.update(new StaffPO(1, "staff*", "120", "wang", StaffType.HotelStaff, po)) == ResultMessage.SUCCESS);
 	}
-	
-	
+
 	@Test
 	public void testFindByUsername() {
-		StaffPO po=new StaffPO("staff", "110", "staff", StaffType.WebsiteMarketer, null);
+		HotelPO hotel = new HotelPO();
+		hotel.setId(0);
+		StaffPO po = new StaffPO(0, "staff", "110", "staff", StaffType.WebsiteMarketer, hotel);
 		assertEquals(po, dao.findByUsername("staff"));
 	}
 }
