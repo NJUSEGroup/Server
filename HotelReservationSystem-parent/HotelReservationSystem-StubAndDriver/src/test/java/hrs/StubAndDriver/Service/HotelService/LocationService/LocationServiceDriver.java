@@ -1,14 +1,14 @@
 package hrs.StubAndDriver.Service.HotelService.LocationService;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import hrs.client.Service.HotelService.LocationService;
-import hrs.client.VO.LocationVO;
+import hrs.common.VO.LocationVO;
+import hrs.server.Service.Interface.HotelService.LocationService;
 
 public class LocationServiceDriver {
 	private LocationService service;

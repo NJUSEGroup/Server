@@ -1,54 +1,61 @@
-package hrs.StubAndDriver.Service.OrderService;
+package hrs.Mock.OrderService;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 
+import hrs.Mock.CreditRecordService.CreditRecordServiceMock;
+import hrs.Mock.HotelDiscountService.HotelDiscountServiceMock;
+import hrs.Mock.UserService.UserServiceMock;
+import hrs.Mock.WebDiscountService.WebDiscountServiceMock;
 import hrs.StubAndDriver.DAO.OrderDAO.OrderDAOStub;
-import hrs.StubAndDriver.Service.CreditRecordService.CreditRecordServiceStub;
-import hrs.StubAndDriver.Service.HotelDiscountService.HotelDiscountServiceStub;
-import hrs.StubAndDriver.Service.UserService.UserServiceStub;
-import hrs.StubAndDriver.Service.WebDiscountService.WebDiscountServiceStub;
-import hrs.common.VO.CreditRecordVO;
+import hrs.common.VO.HotelDiscountVO;
 import hrs.common.VO.OrderVO;
 import hrs.common.util.ResultMessage;
-import hrs.common.util.type.CreditRecordType;
-import hrs.common.util.type.OrderStatus;
 import hrs.server.DAO.Interface.OrderDAO;
 import hrs.server.POJO.OrderPO;
+import hrs.server.Service.Impl.PromotionService.HotelDiscountService.HotelDiscount;
 import hrs.server.Service.Interface.CreditRecordService.CreditRecordService;
 import hrs.server.Service.Interface.OrderService.OrderService;
 import hrs.server.Service.Interface.PromotionService.HotelDiscountService;
 import hrs.server.Service.Interface.PromotionService.WebDiscountService;
 import hrs.server.Service.Interface.UserService.UserService;
 
-public class OrderServiceStub implements OrderService {
+public class OrderServiceMock implements OrderService {
 	private OrderDAO dao;
 	private HotelDiscountService hotelDiscountService;
 	private WebDiscountService webDiscountService;
 	private UserService userService;
 	private CreditRecordService creditRecordService;
 
-	public OrderServiceStub() {
+	public OrderServiceMock() {
 		dao = new OrderDAOStub();
-		webDiscountService = new WebDiscountServiceStub();
-		hotelDiscountService = new HotelDiscountServiceStub();
-		creditRecordService = new CreditRecordServiceStub();
-		userService = new UserServiceStub();
+		webDiscountService = new WebDiscountServiceMock();
+		hotelDiscountService = new HotelDiscountServiceMock();
+		creditRecordService = new CreditRecordServiceMock();
+		userService = new UserServiceMock();
 	}
 
 
 	@Override
-	public OrderVO placeOrder(OrderVO ordervo) {
-		// 读取优惠策略，并对订单进行处理
-		// hotelDiscountService.findAllByHotelID(ordervo.getHotelID());
-		// webDiscountService.findAll();
-		// 读取用户的信息：生日、所在企业、原始信用值
-		// 合并后进行优惠
-		// 每种优惠策略都设置优惠值
-		return ordervo;
+	public OrderVO placeOrder(OrderVO order) {
+		if (order.user.credit < 0) {
+			return null;
+		}
+		List<HotelDiscount> strategies = hotelDiscountService.createAllStrategies(order.hotel.id);
+		for (HotelDiscount strategy : strategies) {
+			strategy.discount(order);
+		}
+		double min = Double.MAX_VALUE;
+		double value = 0;
+		for (HotelDiscountVO vo : order.hotelDiscounts.keySet()) {
+			value = order.hotelDiscounts.get(vo);
+			if (value < min) {
+				min = value;
+			}
+		}
+		order.value = min;
+		return order;
 	}
 
 	/*@Override

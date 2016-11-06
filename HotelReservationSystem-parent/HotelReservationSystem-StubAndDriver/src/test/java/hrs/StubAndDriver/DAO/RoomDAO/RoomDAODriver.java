@@ -25,14 +25,7 @@ public class RoomDAODriver {
 		list = new ArrayList<RoomPO>();
 	}
 
-	@Test
-	public void testFindByHotelAndType() {
-		HotelPO hotel = new HotelPO();
-		hotel.setId(0);
-		RoomPO po = dao.findByHotelAndType(1, RoomType.Single);
-		assertEquals(po, new RoomPO(hotel, RoomType.Single, 0, 0));
-	}
-
+	
 	@Test
 	public void testAdd() {
 		HotelPO hotel = new HotelPO();

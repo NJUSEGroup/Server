@@ -1,4 +1,4 @@
-package hrs.StubAndDriver.Service.HotelDiscountService;
+package hrs.Mock.HotelDiscountService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,7 @@ import hrs.server.POJO.HotelDiscountPO;
 import hrs.server.Service.Impl.PromotionService.HotelDiscountService.HotelDiscount;
 import hrs.server.Service.Interface.PromotionService.HotelDiscountService;
 
-public class HotelDiscountServiceStub implements HotelDiscountService {
+public class HotelDiscountServiceMock implements HotelDiscountService {
 	private HotelDiscountDAO hoteldiscountDAO = new HotelDiscountDAOStub();
 
 	@Override

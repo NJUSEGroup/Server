@@ -1,4 +1,4 @@
-package hrs.StubAndDriver.Service.RoomService;
+package hrs.Mock.RoomService;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -18,11 +18,11 @@ import hrs.server.DAO.Interface.RoomDAO;
 import hrs.server.POJO.RoomPO;
 import hrs.server.Service.Interface.RoomService.RoomService;
 
-public class RoomServiceStub implements RoomService {
+public class RoomServiceMock implements RoomService {
 	private RoomDAO dao;
 	private SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
-	public RoomServiceStub() {
+	public RoomServiceMock() {
 		dao = new RoomDAOStub();
 	}
 

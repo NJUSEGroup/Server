@@ -1,4 +1,4 @@
-package hrs.StubAndDriver.Service.RoomService;
+package hrs.Mock.RoomService;
 
 import static org.junit.Assert.assertEquals;
 
@@ -10,11 +10,11 @@ import hrs.common.VO.RoomVO;
 import hrs.common.util.type.RoomType;
 import hrs.server.Service.Interface.RoomService.RoomService;
 
-public class RoomServiceDriver {
+public class RoomServiceTester {
 	private RoomService service;
 	@Before
 	public void setUp() throws Exception {
-		service = new RoomServiceStub();
+		service = new RoomServiceMock();
 	}
 
 	@Test

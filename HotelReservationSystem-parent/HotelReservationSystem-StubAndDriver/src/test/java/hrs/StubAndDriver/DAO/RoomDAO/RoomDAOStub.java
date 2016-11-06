@@ -21,11 +21,7 @@ public class RoomDAOStub implements RoomDAO {
 
 	}
 
-	@Override
-	public RoomPO findByHotelAndType(int hotelID, RoomType type) {
-		return room;
-	}
-
+	
 	@Override
 	public ResultMessage update(RoomPO roompo) {
 		return ResultMessage.SUCCESS;
@@ -39,13 +35,6 @@ public class RoomDAOStub implements RoomDAO {
 
 	@Override
 	public List<RoomPO> findByHotelID(int hotelID) {
-		List<RoomPO> list = new ArrayList<>();
-		list.add(room);
-		return list;
-	}
-
-	@Override
-	public List<RoomPO> findByHotel(int hotelID) {
 		List<RoomPO> list = new ArrayList<>();
 		list.add(room);
 		return list;

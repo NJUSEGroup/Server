@@ -1,4 +1,4 @@
-package hrs.StubAndDriver.Service.HotelDiscountService;
+package hrs.Mock.HotelDiscountService;
 
 import static org.junit.Assert.assertEquals;
 
@@ -10,12 +10,12 @@ import org.junit.Test;
 import hrs.common.VO.EnterpriseVO;
 import hrs.server.Service.Interface.PromotionService.EnterpriseService;
 
-public class EnterpriseServiceDriver {
+public class EnterpriseServiceTester {
 	private EnterpriseService enterpriseService;
 	
 	@Before
 	public void launch(){
-		enterpriseService=new EnterpriseServiceStub();
+		enterpriseService=new EnterpriseServiceMock();
 	}
 	
 	@Test

@@ -1,4 +1,4 @@
-package hrs.StubAndDriver.Service.HotelDiscountService;
+package hrs.Mock.HotelDiscountService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,7 @@ import hrs.server.DAO.Interface.PromotionDAO.EnterpriseDAO;
 import hrs.server.POJO.EnterprisePO;
 import hrs.server.Service.Interface.PromotionService.EnterpriseService;
 
-public class EnterpriseServiceStub implements EnterpriseService {
+public class EnterpriseServiceMock implements EnterpriseService {
 	private EnterpriseDAO enterpriseDAO = new EnterpriseDAOStub();
 
 	@Override

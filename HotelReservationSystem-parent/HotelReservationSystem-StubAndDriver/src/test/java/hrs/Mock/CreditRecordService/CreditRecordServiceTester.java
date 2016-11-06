@@ -1,4 +1,4 @@
-package hrs.StubAndDriver.Service.CreditRecordService;
+package hrs.Mock.CreditRecordService;
 
 import static org.junit.Assert.*;
 
@@ -14,12 +14,12 @@ import hrs.common.util.ResultMessage;
 import hrs.common.util.type.CreditRecordType;
 import hrs.server.Service.Interface.CreditRecordService.CreditRecordService;
 
-public class CreditRecordServiceDriver {
+public class CreditRecordServiceTester {
 	private CreditRecordService service;
 
 	@Before
 	public void launch() {
-		service = new CreditRecordServiceStub();
+		service = new CreditRecordServiceMock();
 	}
 
 	@Test

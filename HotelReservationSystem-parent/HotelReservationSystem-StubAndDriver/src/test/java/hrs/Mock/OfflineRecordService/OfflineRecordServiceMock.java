@@ -1,4 +1,4 @@
-package hrs.StubAndDriver.Service.OfflineRecordService;
+package hrs.Mock.OfflineRecordService;
 
 import org.springframework.beans.BeanUtils;
 
@@ -9,10 +9,10 @@ import hrs.server.DAO.Interface.OfflineRecordDAO;
 import hrs.server.POJO.OfflineRecordPO;
 import hrs.server.Service.Interface.OfflineRecordService.OfflineRecordService;
 
-public class OfflineRecordServiceStub implements OfflineRecordService {
+public class OfflineRecordServiceMock implements OfflineRecordService {
 	private OfflineRecordDAO dao;
 	
-	public OfflineRecordServiceStub(){
+	public OfflineRecordServiceMock(){
 		dao = new OfflineRecordDAOStub();
 	}
 	

@@ -1,4 +1,4 @@
-package hrs.StubAndDriver.Service.HotelDiscountService;
+package hrs.Mock.HotelDiscountService;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -14,12 +14,12 @@ import hrs.common.util.ResultMessage;
 import hrs.common.util.type.HotelDiscountType;
 import hrs.server.Service.Interface.PromotionService.HotelDiscountService;
 
-public class HotelDiscountServiceDriver {
+public class HotelDiscountServiceTester {
 	private HotelDiscountService hotelDiscountService;
 
 	@Before
 	public void launch() {
-		hotelDiscountService = new HotelDiscountServiceStub();
+		hotelDiscountService = new HotelDiscountServiceMock();
 	}
 
 	@Test

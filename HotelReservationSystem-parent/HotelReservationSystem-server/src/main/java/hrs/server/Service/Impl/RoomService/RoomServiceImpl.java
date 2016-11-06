@@ -49,4 +49,10 @@ public class RoomServiceImpl implements RoomService{
 		return null;
 	}
 
+	@Override
+	public RoomVO findByHotelAndType(int hotelID, RoomType type) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

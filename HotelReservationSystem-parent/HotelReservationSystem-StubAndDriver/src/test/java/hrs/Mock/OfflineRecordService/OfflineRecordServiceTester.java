@@ -1,4 +1,4 @@
-package hrs.StubAndDriver.Service.OfflineRecordService;
+package hrs.Mock.OfflineRecordService;
 
 import static org.junit.Assert.assertEquals;
 
@@ -14,13 +14,13 @@ import hrs.common.util.ResultMessage;
 import hrs.common.util.type.RoomType;
 import hrs.server.Service.Interface.OfflineRecordService.OfflineRecordService;
 
-public class OfflineRecordServiceDriver {
+public class OfflineRecordServiceTester {
 	private OfflineRecordService service;
 	Date date;
 	
 	@Before
 	public void launch(){
-		service = new OfflineRecordServiceStub();
+		service = new OfflineRecordServiceMock();
 		Calendar c = Calendar.getInstance();
 		c.set(2016, 10, 15, 8, 0, 0);
 		date = c.getTime();

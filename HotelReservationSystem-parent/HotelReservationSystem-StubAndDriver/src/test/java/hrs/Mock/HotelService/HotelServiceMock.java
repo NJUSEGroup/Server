@@ -1,4 +1,4 @@
-package hrs.StubAndDriver.Service.HotelService;
+package hrs.Mock.HotelService;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -8,9 +8,9 @@ import java.util.Map;
 
 import org.springframework.beans.BeanUtils;
 
+import hrs.Mock.OrderService.OrderSearchServiceMock;
+import hrs.Mock.RoomService.RoomServiceMock;
 import hrs.StubAndDriver.DAO.HotelDAO.HotelDAOStub;
-import hrs.StubAndDriver.Service.OrderService.OrderSearchServiceStub;
-import hrs.StubAndDriver.Service.RoomService.RoomServiceStub;
 import hrs.common.Controller.UserController.FilterCondition;
 import hrs.common.VO.HotelVO;
 import hrs.common.VO.OrderVO;
@@ -23,16 +23,16 @@ import hrs.server.Service.Interface.HotelService.HotelService;
 import hrs.server.Service.Interface.OrderService.OrderSearchService;
 import hrs.server.Service.Interface.RoomService.RoomService;
 
-public class HotelServiceStub implements HotelService {
+public class HotelServiceMock implements HotelService {
 	private HotelDAO dao;
 	private OrderSearchService orderSearchService;
 	private RoomService roomService;
 	private Map<HotelVO, List<RoomVO>> map;
 
-	public HotelServiceStub() {
+	public HotelServiceMock() {
 		dao = new HotelDAOStub();
-		orderSearchService = new OrderSearchServiceStub();
-		roomService = new RoomServiceStub();
+		orderSearchService = new OrderSearchServiceMock();
+		roomService = new RoomServiceMock();
 	}
 
 	@Override

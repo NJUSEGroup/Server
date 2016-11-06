@@ -1,14 +1,14 @@
 package hrs.StubAndDriver.Service.HotelService.CommCircleService;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import hrs.client.Service.HotelService.CommCircleService;
-import hrs.client.VO.CommercialCircleVO;
+import hrs.common.VO.CommercialCircleVO;
+import hrs.server.Service.Interface.HotelService.CommCircleService;
 
 public class CommCircleServiceDriver {
 	private CommCircleService service;

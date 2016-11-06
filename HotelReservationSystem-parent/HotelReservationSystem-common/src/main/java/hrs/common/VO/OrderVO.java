@@ -60,6 +60,22 @@ public class OrderVO implements Serializable {
 		this.peopleNum = peopleNum;
 	}
 
+	public OrderVO(int id, Date placeTime, Date expectedCheckoutTime, OrderStatus status, HotelVO hotel, double value,
+			RoomType type, int roomNum, boolean hasChild, UserVO user, int peopleNum) {
+		super();
+		this.id = id;
+		this.placeTime = placeTime;
+		this.expectedCheckoutTime = expectedCheckoutTime;
+		this.status = status;
+		this.hotel = hotel;
+		this.value = value;
+		this.type = type;
+		this.roomNum = roomNum;
+		this.hasChild = hasChild;
+		this.user = user;
+		this.peopleNum = peopleNum;
+	}
+
 	public int getId() {
 		return id;
 	}

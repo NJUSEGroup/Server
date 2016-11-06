@@ -1,4 +1,4 @@
-package hrs.StubAndDriver.Service.OrderService;
+package hrs.Mock.OrderService;
 
 import static org.junit.Assert.assertEquals;
 
@@ -17,14 +17,14 @@ import hrs.common.util.type.RoomType;
 import hrs.server.Service.Interface.OrderService.OrderSearchService;
 import hrs.server.Service.Interface.OrderService.OrderService;
 
-public class OrderServiceDriver {
+public class OrderServiceTester {
 	private OrderService service;
 	private OrderSearchService searchService;
 	private Date defaultDate;
 	@Before
 	public void launch(){
-		service = new OrderServiceStub();
-		searchService = new OrderSearchServiceStub();
+		service = new OrderServiceMock();
+		searchService = new OrderSearchServiceMock();
 		Calendar c = Calendar.getInstance();
 		c.set(2016, 10, 14, 8, 0, 0);
 		defaultDate = c.getTime();
