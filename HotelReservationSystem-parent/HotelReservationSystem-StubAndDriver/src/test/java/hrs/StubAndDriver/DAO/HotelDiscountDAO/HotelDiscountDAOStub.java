@@ -8,14 +8,20 @@ import java.util.Map;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.HotelDiscountType;
 import hrs.server.DAO.Interface.PromotionDAO.HotelDiscountDAO;
+import hrs.server.POJO.EnterprisePO;
 import hrs.server.POJO.HotelDiscountPO;
+import hrs.server.POJO.HotelPO;
 
 public class HotelDiscountDAOStub implements HotelDiscountDAO {
 	private Map<Integer, HotelDiscountPO> map;
 
 	public HotelDiscountDAOStub() {
 		map = new HashMap<>();
-		map.put(0, new HotelDiscountPO(0, 0, 0.85, HotelDiscountType.Birthday, 0, 0, null, null));
+		HotelPO hotel = new HotelPO();
+		hotel.setId(0);
+		EnterprisePO enterprise = new EnterprisePO();
+		enterprise.setId(0);
+		map.put(0, new HotelDiscountPO(1,hotel , 0.9, HotelDiscountType.Birthday, enterprise, 0 ,null, null));
 	}
 
 	@Override
@@ -42,7 +48,7 @@ public class HotelDiscountDAOStub implements HotelDiscountDAO {
 		HotelDiscountPO po = null;
 		for (Integer integer : map.keySet()) {
 			po = map.get(integer);
-			if (po.getHotelId() == hotelID)
+			if (po.getHotel().getId() == hotelID)
 				list.add(po);
 		}
 		return list;

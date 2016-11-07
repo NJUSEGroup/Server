@@ -11,18 +11,18 @@ import hrs.StubAndDriver.Service.CreditRecordService.CreditRecordServiceStub;
 import hrs.StubAndDriver.Service.HotelDiscountService.HotelDiscountServiceStub;
 import hrs.StubAndDriver.Service.UserService.UserServiceStub;
 import hrs.StubAndDriver.Service.WebDiscountService.WebDiscountServiceStub;
-import hrs.client.Service.CreditRecordService.CreditRecordService;
-import hrs.client.Service.OrderService.OrderService;
-import hrs.client.Service.PromotionService.HotelDiscountService;
-import hrs.client.Service.PromotionService.WebDiscountService;
-import hrs.client.Service.UserService.UserService;
-import hrs.client.VO.CreditRecordVO;
-import hrs.client.VO.OrderVO;
-import hrs.common.DAO.OrderDAO;
+import hrs.common.VO.CreditRecordVO;
+import hrs.common.VO.OrderVO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.CreditRecordType;
 import hrs.common.util.type.OrderStatus;
+import hrs.server.DAO.Interface.OrderDAO;
 import hrs.server.POJO.OrderPO;
+import hrs.server.Service.Interface.CreditRecordService.CreditRecordService;
+import hrs.server.Service.Interface.OrderService.OrderService;
+import hrs.server.Service.Interface.PromotionService.HotelDiscountService;
+import hrs.server.Service.Interface.PromotionService.WebDiscountService;
+import hrs.server.Service.Interface.UserService.UserService;
 
 public class OrderServiceStub implements OrderService {
 	private OrderDAO dao;
@@ -39,96 +39,6 @@ public class OrderServiceStub implements OrderService {
 		userService = new UserServiceStub();
 	}
 
-	@Override
-	public OrderVO findByID(int id) {
-		OrderPO po = dao.findByID(id);
-		if (po == null) {
-			return null;
-		}
-		OrderVO vo = new OrderVO();
-		BeanUtils.copyProperties(po, vo);
-		return vo;
-	}
-
-	@Override
-	public List<OrderVO> findByUsernameAndType(String username, OrderStatus type) {
-		List<OrderPO> pos = dao.findByUsernameAndType(username, type);
-		if (pos == null) {
-			return null;
-		}
-		List<OrderVO> vos = new ArrayList<>(pos.size());
-		OrderVO vo = null;
-		for (OrderPO po : pos) {
-			vo = new OrderVO();
-			BeanUtils.copyProperties(po, vo);
-			vos.add(vo);
-		}
-		return vos;
-	}
-
-	@Override
-	public List<OrderVO> findByUsername(String username) {
-		List<OrderPO> pos = dao.findByUsername(username);
-		if (pos == null) {
-			return null;
-		}
-		List<OrderVO> vos = new ArrayList<>(pos.size());
-		OrderVO vo = null;
-		for (OrderPO po : pos) {
-			vo = new OrderVO();
-			BeanUtils.copyProperties(po, vo);
-			vos.add(vo);
-		}
-		return vos;
-	}
-
-	@Override
-	public List<OrderVO> findByHotelAndUsername(int hotelID, String username) {
-		List<OrderPO> pos = dao.findByHotelAndUsername(hotelID, username);
-		if (pos == null) {
-			return null;
-		}
-		List<OrderVO> vos = new ArrayList<>(pos.size());
-		OrderVO vo = null;
-		for (OrderPO po : pos) {
-			vo = new OrderVO();
-			BeanUtils.copyProperties(po, vo);
-			vos.add(vo);
-		}
-		return vos;
-	}
-
-	@Override
-	public List<OrderVO> findByOrderType(OrderStatus status) {
-		List<OrderPO> pos = dao.findByOrderType(status);
-		if (pos == null) {
-			return null;
-		}
-		List<OrderVO> vos = new ArrayList<>(pos.size());
-		OrderVO vo = null;
-		for (OrderPO po : pos) {
-			vo = new OrderVO();
-			BeanUtils.copyProperties(po, vo);
-			vos.add(vo);
-		}
-		return vos;
-	}
-
-	@Override
-	public List<OrderVO> findByHotelAndTime(int hotelID, Date begin, Date end) {
-		List<OrderPO> pos = dao.findByHotelAndTime(hotelID, begin, end);
-		if (pos == null) {
-			return null;
-		}
-		List<OrderVO> vos = new ArrayList<>(pos.size());
-		OrderVO vo = null;
-		for (OrderPO po : pos) {
-			vo = new OrderVO();
-			BeanUtils.copyProperties(po, vo);
-			vos.add(vo);
-		}
-		return vos;
-	}
 
 	@Override
 	public OrderVO placeOrder(OrderVO ordervo) {
@@ -141,7 +51,7 @@ public class OrderServiceStub implements OrderService {
 		return ordervo;
 	}
 
-	@Override
+	/*@Override
 	public ResultMessage update(OrderVO ordervo) {
 		OrderPO po = new OrderPO();
 		BeanUtils.copyProperties(ordervo, po);
@@ -172,12 +82,47 @@ public class OrderServiceStub implements OrderService {
 			creditRecordService.add(creditRecord);
 		}
 		return dao.update(po);
-	}
+	}*/
 
 	@Override
 	public ResultMessage add(OrderVO ordervo) {
 		OrderPO po = new OrderPO();
 		BeanUtils.copyProperties(ordervo, po);
 		return dao.add(po);
+	}
+
+
+	@Override
+	public ResultMessage checkin(OrderVO ordervo) {
+		// TODO Auto-generated method stub
+		return ResultMessage.SUCCESS;
+	}
+
+
+	@Override
+	public ResultMessage checkout(OrderVO ordervo) {
+		// TODO Auto-generated method stub
+		return ResultMessage.SUCCESS;
+	}
+
+
+	@Override
+	public ResultMessage revoke(OrderVO ordervo) {
+		// TODO Auto-generated method stub
+		return ResultMessage.SUCCESS;
+	}
+
+
+	@Override
+	public ResultMessage remark(OrderVO ordervo) {
+		// TODO Auto-generated method stub
+		return ResultMessage.SUCCESS;
+	}
+
+
+	@Override
+	public ResultMessage delayCheckin(OrderVO ordervo) {
+		// TODO Auto-generated method stub
+		return ResultMessage.SUCCESS;
 	}
 }

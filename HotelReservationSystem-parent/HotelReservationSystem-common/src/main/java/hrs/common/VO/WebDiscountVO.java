@@ -5,7 +5,7 @@ import java.util.Date;
 
 import hrs.common.util.type.WebsiteDiscountType;
 
-public  class WebDiscountVO implements Serializable {
+public class WebDiscountVO implements Serializable {
 	/**
 	 * 
 	 */
@@ -13,13 +13,37 @@ public  class WebDiscountVO implements Serializable {
 	public int id;
 	public double discount;
 	public WebsiteDiscountType type;
+	private LocationVO location;
 	public CommercialCircleVO commercialCircle;
 	public Date beginTime;
 	public Date endTime;
 	public int VIPlevel;
-	
+
 	public WebDiscountVO() {
 		// TODO Auto-generated constructor stub
+	}
+
+	
+	public WebDiscountVO(int id, double discount, WebsiteDiscountType type, LocationVO location,
+			CommercialCircleVO commercialCircle, Date beginTime, Date endTime, int vIPlevel) {
+		super();
+		this.id = id;
+		this.discount = discount;
+		this.type = type;
+		this.location = location;
+		this.commercialCircle = commercialCircle;
+		this.beginTime = beginTime;
+		this.endTime = endTime;
+		VIPlevel = vIPlevel;
+	}
+
+
+	public LocationVO getLocation() {
+		return location;
+	}
+
+	public void setLocation(LocationVO location) {
+		this.location = location;
 	}
 
 	public int getId() {
@@ -128,6 +152,5 @@ public  class WebDiscountVO implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
+
 }

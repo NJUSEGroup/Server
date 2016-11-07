@@ -6,11 +6,11 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 
 import hrs.StubAndDriver.DAO.WebDiscountDAO.WebDiscountDAOStub;
-import hrs.client.Service.PromotionService.WebDiscountService;
-import hrs.client.VO.WebDiscountVO;
-import hrs.common.DAO.WebDiscountDAO;
+import hrs.common.VO.WebDiscountVO;
 import hrs.common.util.ResultMessage;
+import hrs.server.DAO.Interface.PromotionDAO.WebDiscountDAO;
 import hrs.server.POJO.WebDiscountPO;
+import hrs.server.Service.Interface.PromotionService.WebDiscountService;
 
 public class WebDiscountServiceStub implements WebDiscountService {
 	private WebDiscountDAO dao;

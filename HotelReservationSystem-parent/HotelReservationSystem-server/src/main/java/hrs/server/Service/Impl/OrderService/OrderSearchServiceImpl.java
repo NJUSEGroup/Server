@@ -8,9 +8,9 @@ import org.springframework.transaction.annotation.Transactional;
 import hrs.common.VO.OrderVO;
 import hrs.common.util.type.OrderStatus;
 import hrs.server.DAO.Interface.OrderDAO;
-import hrs.server.Service.Interface.OrderService.OrderSeachService;
+import hrs.server.Service.Interface.OrderService.OrderSearchService;
 
-public class OrderSearchServiceImpl implements OrderSeachService{
+public class OrderSearchServiceImpl implements OrderSearchService{
 	private OrderDAO dao;
 	
 	public void setDao(OrderDAO dao) {

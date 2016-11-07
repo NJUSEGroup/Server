@@ -6,10 +6,11 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 
 import hrs.StubAndDriver.DAO.HotelDiscountDAO.EnterpriseDAOStub;
-import hrs.client.Service.PromotionService.EnterpriseService;
-import hrs.client.VO.EnterpriseVO;
-import hrs.common.DAO.HotelDiscountDAO.EnterpriseDAO;
+import hrs.common.VO.EnterpriseVO;
+import hrs.common.util.ResultMessage;
+import hrs.server.DAO.Interface.PromotionDAO.EnterpriseDAO;
 import hrs.server.POJO.EnterprisePO;
+import hrs.server.Service.Interface.PromotionService.EnterpriseService;
 
 public class EnterpriseServiceStub implements EnterpriseService {
 	private EnterpriseDAO enterpriseDAO = new EnterpriseDAOStub();
@@ -25,6 +26,13 @@ public class EnterpriseServiceStub implements EnterpriseService {
 			vos.add(vo);
 		}
 		return vos;
+	}
+
+	@Override
+	public ResultMessage add(EnterpriseVO vo) {
+		EnterprisePO po = new EnterprisePO();
+		BeanUtils.copyProperties(vo, po);
+		return enterpriseDAO.add(po);
 	}
 
 }

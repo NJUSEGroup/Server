@@ -5,9 +5,10 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import hrs.client.Service.RoomService.RoomService;
-import hrs.client.VO.RoomVO;
+import hrs.common.VO.HotelVO;
+import hrs.common.VO.RoomVO;
 import hrs.common.util.type.RoomType;
+import hrs.server.Service.Interface.RoomService.RoomService;
 
 public class RoomServiceDriver {
 	private RoomService service;
@@ -18,14 +19,18 @@ public class RoomServiceDriver {
 
 	@Test
 	public void testUpdate() {
-		RoomVO vo = new RoomVO(1, RoomType.Single, 100, 0);
+		HotelVO hotel = new HotelVO();
+		hotel.id = 1;
+		RoomVO vo = new RoomVO(hotel, RoomType.Single, 100, 0);
 		service.update(vo);
 		assertEquals(100, service.findByHotelAndType(1, RoomType.Single).roomNum);
 	}
 	
 	@Test
 	public void testAdd() {
-		RoomVO vo = new RoomVO(2, RoomType.Single, 0, 0);
+		HotelVO hotel = new HotelVO();
+		hotel.id = 2;
+		RoomVO vo = new RoomVO(hotel, RoomType.Single, 0, 0);
 		service.add(vo);
 		assertEquals(vo, service.findByHotelAndType(2, RoomType.Single));
 	}

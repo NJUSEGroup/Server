@@ -1,14 +1,14 @@
 package hrs.StubAndDriver.Service.HotelDiscountService;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import hrs.client.Service.PromotionService.EnterpriseService;
-import hrs.client.VO.EnterpriseVO;
+import hrs.common.VO.EnterpriseVO;
+import hrs.server.Service.Interface.PromotionService.EnterpriseService;
 
 public class EnterpriseServiceDriver {
 	private EnterpriseService enterpriseService;
@@ -24,7 +24,6 @@ public class EnterpriseServiceDriver {
 		for(EnterpriseVO vo:list){
 			assertEquals(vo.name,"21");
 		}
-		
 	}
 
 }

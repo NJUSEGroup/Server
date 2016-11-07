@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import hrs.common.util.ResultMessage;
 import hrs.server.DAO.Interface.PromotionDAO.EnterpriseDAO;
 import hrs.server.POJO.EnterprisePO;
 
@@ -25,6 +26,12 @@ public class EnterpriseDAOStub implements EnterpriseDAO {
 			list.add(po);
 		}
 		return list;
+	}
+
+	@Override
+	public ResultMessage add(EnterprisePO po) {
+		map.put(po.getId(), po);
+		return ResultMessage.SUCCESS;
 	}
 
 }

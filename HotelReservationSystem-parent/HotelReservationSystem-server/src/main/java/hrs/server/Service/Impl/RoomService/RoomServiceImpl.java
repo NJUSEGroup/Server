@@ -59,4 +59,10 @@ public class RoomServiceImpl implements RoomService {
 	public void setDao(RoomDAO dao) {
 		this.dao = dao;
 	}
+
+	@Override
+	public RoomVO findByHotelAndType(int hotelID, RoomType type) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

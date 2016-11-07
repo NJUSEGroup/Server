@@ -6,7 +6,7 @@ import java.util.List;
 import hrs.common.VO.OrderVO;
 import hrs.common.util.type.OrderStatus;
 
-public interface OrderSeachService {
+public interface OrderSearchService {
 	OrderVO findByID(int id);
 
 	List<OrderVO> findByHotelAndType(int hotelID, OrderStatus type);

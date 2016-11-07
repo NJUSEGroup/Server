@@ -33,6 +33,22 @@ public class OrderPO implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
+	public OrderPO(int id, Date placeTime, Date expectedCheckoutTime, OrderStatus status, HotelPO hotel, double value,
+			RoomType type, int roomNum, boolean hasChild, UserPO user, int peopleNum) {
+		super();
+		this.id = id;
+		this.placeTime = placeTime;
+		this.expectedCheckoutTime = expectedCheckoutTime;
+		this.status = status;
+		this.hotel = hotel;
+		this.value = value;
+		this.type = type;
+		this.roomNum = roomNum;
+		this.hasChild = hasChild;
+		this.user = user;
+		this.peopleNum = peopleNum;
+	}
+
 	public OrderPO(int id, Date placeTime, Date execTime, Date checkinTime, Date expectedCheckoutTime,
 			Date checkoutTime, Date revokeTime, OrderStatus status, HotelPO hotel, double value, RoomType type, int num,
 			boolean hasChild, UserPO user, int score, String evaluation) {

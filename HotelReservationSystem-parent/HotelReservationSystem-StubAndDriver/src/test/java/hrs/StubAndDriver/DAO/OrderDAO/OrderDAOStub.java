@@ -8,11 +8,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import hrs.common.DAO.OrderDAO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.OrderStatus;
 import hrs.common.util.type.RoomType;
+import hrs.server.DAO.Interface.OrderDAO;
+import hrs.server.POJO.HotelPO;
 import hrs.server.POJO.OrderPO;
+import hrs.server.POJO.UserPO;
 
 public class OrderDAOStub implements OrderDAO {
 	private Map<Integer,OrderPO> map;
@@ -22,8 +24,12 @@ public class OrderDAOStub implements OrderDAO {
 		Calendar c = Calendar.getInstance();
 		c.set(2016, 10, 14, 8, 0, 0);
 		defaultDate = c.getTime();
-		map.put(0, new OrderPO(0,defaultDate,defaultDate,OrderStatus.Unexecuted,0,300,RoomType.Single,1,false,"admin"));
-		map.put(1, new OrderPO(1,defaultDate,defaultDate,OrderStatus.Unexecuted,0,300,RoomType.Single,1,false,"admin"));
+		HotelPO hotel = new HotelPO();
+		hotel.setId(0);
+		UserPO user = new UserPO();
+		user.setId(0);
+		map.put(0, new OrderPO(0,defaultDate,defaultDate,OrderStatus.Unexecuted,hotel,300,RoomType.Single,1,false,user,1));
+		map.put(1, new OrderPO(1,defaultDate,defaultDate,OrderStatus.Unexecuted,hotel,300,RoomType.Single,1,false,user,1));
 	}
 	
 	@Override
@@ -38,7 +44,7 @@ public class OrderDAOStub implements OrderDAO {
 		Set<Integer> set = map.keySet();
 		for(Integer i:set){
 			po = map.get(i);
-			if(po.getUsername().equals(username) && po.getStatus().equals(status)){
+			if(po.getUser().getUsername().equals(username) && po.getStatus().equals(status)){
 				list.add(po);
 			}
 		}
@@ -52,7 +58,7 @@ public class OrderDAOStub implements OrderDAO {
 		Set<Integer> set = map.keySet();
 		for(Integer i:set){
 			po = map.get(i);
-			if(po.getHotelID() == hotelID && po.getUsername().equals(username)){
+			if(po.getHotel().getId() == hotelID && po.getUser().getUsername().equals(username)){
 				list.add(po);
 			}
 		}
@@ -66,7 +72,7 @@ public class OrderDAOStub implements OrderDAO {
 		Set<Integer> set = map.keySet();
 		for(Integer i:set){
 			po = map.get(i);
-			if(po.getUsername().equals(username)){
+			if(po.getUser().getUsername().equals(username)){
 				list.add(po);
 			}
 		}
@@ -94,7 +100,7 @@ public class OrderDAOStub implements OrderDAO {
 		Set<Integer> set = map.keySet();
 		for(Integer i:set){
 			po = map.get(i);
-			if(po.getHotelID() == hotelID && (po.getExecTime().compareTo(begin) >=0 && po.getExpectedCheckoutTime().compareTo(end) <= 0 )){
+			if(po.getHotel().getId() == hotelID && (po.getExecTime().compareTo(begin) >=0 && po.getExpectedCheckoutTime().compareTo(end) <= 0 )){
 				list.add(po);
 			}
 		}

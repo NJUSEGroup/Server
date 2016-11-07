@@ -1,13 +1,15 @@
 package hrs.StubAndDriver.Service.UserService;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import hrs.client.Service.UserService.UserService;
-import hrs.client.VO.UserVO;
+import hrs.common.VO.UserVO;
 import hrs.common.util.ResultMessage;
+import hrs.server.Service.Interface.UserService.UserService;
 
 public class UserServiceDriver {
 	private UserService service;

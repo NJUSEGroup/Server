@@ -5,12 +5,12 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import hrs.common.DAO.OfflineRecordDAO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.RoomType;
+import hrs.server.POJO.HotelPO;
 import hrs.server.POJO.OfflineRecordPO;
 
-public class OfflineRecordDAOStub implements OfflineRecordDAO{
+public class OfflineRecordDAOStub implements hrs.server.DAO.Interface.OfflineRecordDAO{
 	private Map<Integer, OfflineRecordPO> map;
 	private Date date;
 	public OfflineRecordDAOStub(){
@@ -18,7 +18,9 @@ public class OfflineRecordDAOStub implements OfflineRecordDAO{
 		Calendar c = Calendar.getInstance();
 		c.set(2016, 10, 15, 8, 0, 0);
 		date = c.getTime();
-		map.put(0, new OfflineRecordPO(0, 1, date, date, null, RoomType.Single, 1));
+		HotelPO hotel = new HotelPO();
+		hotel.setId(1);
+		map.put(0, new OfflineRecordPO(0, hotel, date, date, null, RoomType.Single, 1));
 	}
 	
 	@Override
@@ -32,10 +34,11 @@ public class OfflineRecordDAOStub implements OfflineRecordDAO{
 		return ResultMessage.SUCCESS;
 	}
 
+
 	@Override
 	public ResultMessage update(OfflineRecordPO offlinerecordpo) {
-		map.put(offlinerecordpo.getId(), offlinerecordpo);
-		return ResultMessage.SUCCESS;
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

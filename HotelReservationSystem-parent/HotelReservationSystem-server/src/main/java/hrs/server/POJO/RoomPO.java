@@ -9,14 +9,14 @@ public class RoomPO implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private int hotelId;
+	private HotelPO hotel;
 	private RoomType type;
 	private int roomNum;
 	private double roomValue;
 	
-	public RoomPO(int hotelId, RoomType type, int roomNum, double roomValue) {
+	public RoomPO(HotelPO hotel, RoomType type, int roomNum, double roomValue) {
 		super();
-		this.hotelId = hotelId;
+		this.hotel = hotel;
 		this.type = type;
 		this.roomNum = roomNum;
 		this.roomValue = roomValue;
@@ -29,17 +29,18 @@ public class RoomPO implements Serializable {
 	}
 
 
+	
 
 
 
-	public int getHotelId() {
-		return hotelId;
+	public HotelPO getHotel() {
+		return hotel;
 	}
 
 
 
-	public void setHotelId(int hotelId) {
-		this.hotelId = hotelId;
+	public void setHotel(HotelPO hotel) {
+		this.hotel = hotel;
 	}
 
 
@@ -84,7 +85,7 @@ public class RoomPO implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + hotelId;
+		result = prime * result + ((hotel == null) ? 0 : hotel.hashCode());
 		result = prime * result + roomNum;
 		long temp;
 		temp = Double.doubleToLongBits(roomValue);
@@ -104,7 +105,10 @@ public class RoomPO implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		RoomPO other = (RoomPO) obj;
-		if (hotelId != other.hotelId)
+		if (hotel == null) {
+			if (other.hotel != null)
+				return false;
+		} else if (!hotel.equals(other.hotel))
 			return false;
 		if (roomNum != other.roomNum)
 			return false;
@@ -115,6 +119,8 @@ public class RoomPO implements Serializable {
 		return true;
 	}
 
+	
+	
 
 
 }

@@ -3,9 +3,9 @@ package hrs.StubAndDriver.DAO.UserDAO;
 import java.util.HashMap;
 import java.util.Map;
 
-import hrs.common.DAO.UserDAO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.UserType;
+import hrs.server.DAO.Interface.UserDAO;
 import hrs.server.POJO.UserPO;
 
 public class UserDAOStub implements UserDAO {

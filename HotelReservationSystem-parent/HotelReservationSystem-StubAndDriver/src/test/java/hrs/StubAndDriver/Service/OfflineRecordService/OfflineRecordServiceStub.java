@@ -3,12 +3,11 @@ package hrs.StubAndDriver.Service.OfflineRecordService;
 import org.springframework.beans.BeanUtils;
 
 import hrs.StubAndDriver.DAO.OfflineRecordDAO.OfflineRecordDAOStub;
-import hrs.client.Service.OfflineRecordService.OfflineRecordService;
-import hrs.client.Service.RoomService.RoomService;
-import hrs.client.VO.OfflineRecordVO;
-import hrs.common.DAO.OfflineRecordDAO;
+import hrs.common.VO.OfflineRecordVO;
 import hrs.common.util.ResultMessage;
+import hrs.server.DAO.Interface.OfflineRecordDAO;
 import hrs.server.POJO.OfflineRecordPO;
+import hrs.server.Service.Interface.OfflineRecordService.OfflineRecordService;
 
 public class OfflineRecordServiceStub implements OfflineRecordService {
 	private OfflineRecordDAO dao;
@@ -35,8 +34,16 @@ public class OfflineRecordServiceStub implements OfflineRecordService {
 		return dao.add(po);
 	}
 
+
 	@Override
-	public ResultMessage update(OfflineRecordVO offlinerecordvo) {
+	public ResultMessage checkin(OfflineRecordVO offlinerecordvo) {
+		OfflineRecordPO po = new OfflineRecordPO();
+		BeanUtils.copyProperties(offlinerecordvo, po);
+		return dao.update(po);
+	}
+
+	@Override
+	public ResultMessage checkout(OfflineRecordVO offlinerecordvo) {
 		OfflineRecordPO po = new OfflineRecordPO();
 		BeanUtils.copyProperties(offlinerecordvo, po);
 		return dao.update(po);

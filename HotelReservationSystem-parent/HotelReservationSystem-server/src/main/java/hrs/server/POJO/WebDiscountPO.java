@@ -23,6 +23,17 @@ public  class WebDiscountPO implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
+	public WebDiscountPO(int id, double discount, WebsiteDiscountType type, Date beginTime, Date endTime, int vIPlevel) {
+		super();
+		this.id = id;
+		this.discount = discount;
+		this.type = type;
+		this.beginTime = beginTime;
+		this.endTime = endTime;
+		VIPlevel = vIPlevel;
+	}
+
+
 	public int getId() {
 		return id;
 	}

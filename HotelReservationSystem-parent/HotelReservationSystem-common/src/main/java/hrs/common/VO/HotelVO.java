@@ -40,6 +40,18 @@ public class HotelVO implements Serializable {
 		this.street = street;
 	}
 
+	
+
+	public HotelVO(int id, String name, int star, double score, String profile, String service) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.star = star;
+		this.score = score;
+		this.profile = profile;
+		this.service = service;
+	}
+
 	public int getId() {
 		return id;
 	}

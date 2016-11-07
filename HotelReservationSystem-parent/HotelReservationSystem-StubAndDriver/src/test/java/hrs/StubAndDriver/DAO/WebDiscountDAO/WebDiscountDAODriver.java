@@ -1,17 +1,19 @@
 package hrs.StubAndDriver.DAO.WebDiscountDAO;
 
-import java.util.Date;
-import java.util.Calendar;
-import java.util.List;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
-import static org.junit.Assert.*;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import hrs.common.DAO.WebDiscountDAO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.WebsiteDiscountType;
+import hrs.server.DAO.Interface.PromotionDAO.WebDiscountDAO;
 import hrs.server.POJO.WebDiscountPO;
 
 public class WebDiscountDAODriver {
@@ -28,7 +30,7 @@ public class WebDiscountDAODriver {
 	
 	@Test
 	public void testAdd(){
-		WebDiscountPO po = new WebDiscountPO(0, WebsiteDiscountType.SpecialPeriod, 0.8, date, date, null, 0);
+		WebDiscountPO po = new WebDiscountPO(0, 0.8, WebsiteDiscountType.SpecialPeriod, date, date,  0);
 		assertEquals(dao.add(po),ResultMessage.SUCCESS);
 	}
 	

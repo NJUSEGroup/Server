@@ -21,8 +21,9 @@ public class StaffPO implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public StaffPO(String username, String password, String name, StaffType type, HotelPO hotel) {
+	public StaffPO(int id,String username, String password, String name, StaffType type, HotelPO hotel) {
 		super();
+		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.name = name;

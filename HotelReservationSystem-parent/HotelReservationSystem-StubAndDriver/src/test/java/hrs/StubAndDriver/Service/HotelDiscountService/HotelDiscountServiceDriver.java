@@ -1,50 +1,55 @@
 package hrs.StubAndDriver.Service.HotelDiscountService;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
-import java.security.Provider.Service;
 import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import hrs.client.Service.PromotionService.HotelDiscountService;
-import hrs.client.VO.HotelDiscountVO;
+import hrs.common.VO.HotelDiscountVO;
+import hrs.common.VO.HotelVO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.HotelDiscountType;
-import hrs.server.POJO.HotelDiscountPO;
+import hrs.server.Service.Interface.PromotionService.HotelDiscountService;
 
 public class HotelDiscountServiceDriver {
 	private HotelDiscountService hotelDiscountService;
-	
+
 	@Before
-	public void launch(){
-		hotelDiscountService=new HotelDiscountServiceStub();
-	}
-	
-	@Test
-	public void testAdd(){
-		assertTrue(hotelDiscountService.add(new HotelDiscountVO(0, 0, 0.95, HotelDiscountType.Birthday,0, 0, null, null))==ResultMessage.SUCCESS);
-	}
-	
-	@Test
-	public void testUpdate(){
-		assertTrue(hotelDiscountService.update(new HotelDiscountVO(0, 0, 0.9, HotelDiscountType.Birthday,0, 0, null, null))==ResultMessage.SUCCESS);
-		
+	public void launch() {
+		hotelDiscountService = new HotelDiscountServiceStub();
 	}
 
 	@Test
-	public void testDelete(){
-		assertTrue(hotelDiscountService.delete(0)==ResultMessage.SUCCESS);
+	public void testAdd() {
+		HotelVO vo = new HotelVO();
+		vo.id = 0;
+		assertTrue(hotelDiscountService.add(new HotelDiscountVO(0, vo, 0.95, HotelDiscountType.Birthday, null, 0, null,
+				null)) == ResultMessage.SUCCESS);
 	}
-	
+
 	@Test
-	public void testFindAllByHotelID(){
-		List<HotelDiscountVO> list=hotelDiscountService.findAllByHotelID(0);
-		for(HotelDiscountVO vo:list){
-			assertEquals(vo.hotelId,0);
+	public void testUpdate() {
+		HotelVO vo = new HotelVO();
+		vo.id = 0;
+		assertTrue(hotelDiscountService.add(new HotelDiscountVO(0, vo, 0.9, HotelDiscountType.Birthday, null, 0, null,
+				null)) == ResultMessage.SUCCESS);
+
+	}
+
+	@Test
+	public void testDelete() {
+		assertTrue(hotelDiscountService.delete(0) == ResultMessage.SUCCESS);
+	}
+
+	@Test
+	public void testFindAllByHotelID() {
+		List<HotelDiscountVO> list = hotelDiscountService.findAllByHotelID(0);
+		for (HotelDiscountVO vo : list) {
+			assertEquals(vo.hotel.id, 0);
 		}
-		
-		
+
 	}
 }

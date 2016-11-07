@@ -5,7 +5,7 @@
 <hibernate-mapping package="hrs.server.POJO">
 	<class name="RoomPO" table="ROOM">
 		<composite-id>
-			<key-many-to-one name="hotelId" class="HotelPO"
+			<key-many-to-one name="hotel" class="HotelPO"
 				column="hotel_id"></key-many-to-one>
 			<key-property name="type">
 				<column name="room_type" />

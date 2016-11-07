@@ -1,6 +1,6 @@
 package hrs.StubAndDriver.Service.OfflineRecordService;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -8,10 +8,11 @@ import java.util.Date;
 import org.junit.Before;
 import org.junit.Test;
 
-import hrs.client.Service.OfflineRecordService.OfflineRecordService;
-import hrs.client.VO.OfflineRecordVO;
+import hrs.common.VO.HotelVO;
+import hrs.common.VO.OfflineRecordVO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.RoomType;
+import hrs.server.Service.Interface.OfflineRecordService.OfflineRecordService;
 
 public class OfflineRecordServiceDriver {
 	private OfflineRecordService service;
@@ -28,22 +29,18 @@ public class OfflineRecordServiceDriver {
 	@Test
 	public void testFindByID(){
 		OfflineRecordVO vo = service.findByID(0);
-		assertEquals(vo, new OfflineRecordVO(0, 1, date, date, null, RoomType.Single, 1));
+		HotelVO hotel = new HotelVO();
+		hotel.id = 1;
+		assertEquals(vo, new OfflineRecordVO(0, hotel, date, date, null, RoomType.Single, 1));
 	}
 	
 	@Test
 	public void testAdd(){
-		OfflineRecordVO vo = new OfflineRecordVO(1, 1, date, date, null, RoomType.Single, 1);
+		HotelVO hotel = new HotelVO();
+		hotel.id = 1;
+		OfflineRecordVO vo = new OfflineRecordVO(1, hotel, date, date, null, RoomType.Single, 1);
 		assertEquals(service.add(vo),ResultMessage.SUCCESS);
 		assertEquals(service.findByID(1), vo);
-	}
-	
-	@Test
-	public void testUpdate(){
-		OfflineRecordVO vo = service.findByID(0);
-		vo.num = 2;
-		service.update(vo);
-		assertEquals(service.findByID(0), vo);
 	}
 }
 

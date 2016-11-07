@@ -9,11 +9,13 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import hrs.common.DAO.OrderDAO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.OrderStatus;
 import hrs.common.util.type.RoomType;
+import hrs.server.DAO.Interface.OrderDAO;
+import hrs.server.POJO.HotelPO;
 import hrs.server.POJO.OrderPO;
+import hrs.server.POJO.UserPO;
 
 public class OrderDAODriver {
 	private OrderDAO dao;
@@ -30,15 +32,19 @@ public class OrderDAODriver {
 	@Test
 	public void testFindByID() {
 		OrderPO po = dao.findByID(0);
-		assertEquals(po, new OrderPO(0, defaultDate, defaultDate, OrderStatus.Unexecuted, 0, 300, RoomType.Single, 1,
-				false, "admin"));
+		HotelPO hotel = new HotelPO();
+		hotel.setId(0);
+		UserPO user = new UserPO();
+		user.setId(0);
+		assertEquals(po, new OrderPO(0, defaultDate, defaultDate, OrderStatus.Unexecuted, hotel, 300, RoomType.Single, 1,
+				false, user,1));
 	}
 
 	@Test
 	public void testFindByUsernameAndType() {
 		List<OrderPO> list = dao.findByUsernameAndType("admin", OrderStatus.Unexecuted);
 		for (OrderPO po : list) {
-			assertEquals(po.getUsername(), "admin");
+			assertEquals(po.getUser().getUsername(), "admin");
 			assertEquals(po.getStatus(), OrderStatus.Unexecuted);
 		}
 	}
@@ -47,8 +53,8 @@ public class OrderDAODriver {
 	public void testFindByHotelAndUsername() {
 		List<OrderPO> list = dao.findByHotelAndUsername(0, "admin");
 		for (OrderPO po : list) {
-			assertEquals(po.getHotelID(), 0);
-			assertEquals(po.getUsername(), "admin");
+			assertEquals(po.getHotel().getId(), 0);
+			assertEquals(po.getUser().getUsername(), "admin");
 		}
 	}
 	
@@ -56,7 +62,7 @@ public class OrderDAODriver {
 	public void testFindByUsername() {
 		List<OrderPO> list = dao.findByUsername("admin");
 		for (OrderPO po : list) {
-			assertEquals(po.getUsername(), "admin");
+			assertEquals(po.getUser().getUsername(), "admin");
 		}
 	}
 	
@@ -71,8 +77,12 @@ public class OrderDAODriver {
 	
 	@Test
 	public void testAdd(){
-		OrderPO po = new OrderPO(0, defaultDate, defaultDate, OrderStatus.Unexecuted, 0, 300, RoomType.Single, 1,
-				false, "admin");
+		HotelPO hotel = new HotelPO();
+		hotel.setId(0);
+		UserPO user = new UserPO();
+		user.setId(0);
+		OrderPO po = new OrderPO(0, defaultDate, defaultDate, OrderStatus.Unexecuted, hotel, 300, RoomType.Single, 1,
+				false, user,1);
 		assertEquals(dao.add(po),ResultMessage.SUCCESS);
 		assertEquals(dao.findByID(0),po);
 	}

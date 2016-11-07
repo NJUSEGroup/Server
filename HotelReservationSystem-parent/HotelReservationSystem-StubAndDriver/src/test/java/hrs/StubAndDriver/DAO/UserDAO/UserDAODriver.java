@@ -1,13 +1,14 @@
 package hrs.StubAndDriver.DAO.UserDAO;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import hrs.common.DAO.UserDAO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.UserType;
+import hrs.server.DAO.Interface.UserDAO;
 import hrs.server.POJO.UserPO;
 
 public class UserDAODriver {

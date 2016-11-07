@@ -8,9 +8,9 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
-import hrs.client.Service.HotelService.HotelService;
-import hrs.client.VO.HotelVO;
-import hrs.client.VO.OrderVO;
+import hrs.common.VO.HotelVO;
+import hrs.common.VO.OrderVO;
+import hrs.server.Service.Interface.HotelService.HotelService;
 
 public class HotelServiceDriver {
 	private HotelService service;
@@ -44,7 +44,7 @@ public class HotelServiceDriver {
 		Map<HotelVO,List<OrderVO>> map = service.findOrderedHotelAndOrder("admin");
 		for(HotelVO hotel:map.keySet()){
 			for(OrderVO order:map.get(hotel)){
-				assertEquals(order.username,"admin");
+				assertEquals(order.user.username,"admin");
 			}
 		}
 	}

@@ -1,48 +1,54 @@
 package hrs.StubAndDriver.DAO.RoomDAO;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
-import hrs.common.DAO.RoomDAO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.RoomType;
+import hrs.server.DAO.Interface.RoomDAO;
+import hrs.server.POJO.HotelPO;
 import hrs.server.POJO.RoomPO;
 
-public class RoomDAOStub implements RoomDAO{
-	private Map<Integer,RoomPO> map;
+public class RoomDAOStub implements RoomDAO {
+
 	private RoomPO room;
-	private List<RoomPO> list;
-	public RoomDAOStub(){
-		room = new RoomPO(1,RoomType.Single, 0, 0);
-		list = new ArrayList<RoomPO>();
-		map = new HashMap<>();
-		map.put(1, room);
-		
+
+	public RoomDAOStub() {
+		HotelPO po = new HotelPO();
+		po.setId(0);
+		room = new RoomPO(po, RoomType.Single, 0, 0);
+
 	}
-	@Override
-	public RoomPO findByHotelAndType(int hotelID,RoomType type){
-		return map.get(hotelID);
-	}
-	@Override
-	public ResultMessage update(RoomPO roompo){
-		map.put(roompo.getHotelId(), roompo);
-		return ResultMessage.SUCCESS;
-	}
+
 	
 	@Override
-	public ResultMessage add(RoomPO roompo){
-		if(findByHotelAndType(roompo.getHotelId(),roompo.getType()) == null){
-			map.put(roompo.getHotelId(), roompo);
-				return ResultMessage.SUCCESS;
-		}else{
-			return ResultMessage.EXISTED;
-		}
+	public ResultMessage update(RoomPO roompo) {
+		return ResultMessage.SUCCESS;
 	}
+
 	@Override
-	public List<RoomPO> findByHotelID(int hotelID){
+	public ResultMessage add(RoomPO roompo) {
+		// 注意检查是否已存在同类型的房间
+		return ResultMessage.SUCCESS;
+	}
+
+	@Override
+	public List<RoomPO> findByHotelID(int hotelID) {
+		List<RoomPO> list = new ArrayList<>();
 		list.add(room);
 		return list;
+	}
+
+	@Override
+	public int findAvailableRoom(int hotelID, RoomType type, Date date) {
+		return 1;
+	}
+
+
+	@Override
+	public List<RoomPO> findByHotel(int hotelID) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
