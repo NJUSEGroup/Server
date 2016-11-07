@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import hrs.common.VO.OrderVO;
 import hrs.common.util.type.OrderStatus;
 import hrs.server.DAO.Interface.OrderDAO;
+//github.com/NJUSEGroup/HotelManagementSystem.git
 import hrs.server.Service.Interface.OrderService.OrderSearchService;
 
 public class OrderSearchServiceImpl implements OrderSearchService{
@@ -16,6 +17,7 @@ public class OrderSearchServiceImpl implements OrderSearchService{
 	public void setDao(OrderDAO dao) {
 		this.dao = dao;
 	}
+	
 	@Transactional
 	@Override
 	public OrderVO findByID(int id) {

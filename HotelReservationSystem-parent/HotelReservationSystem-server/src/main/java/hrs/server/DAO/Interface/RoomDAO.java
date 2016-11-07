@@ -8,7 +8,6 @@ import hrs.common.util.type.RoomType;
 import hrs.server.POJO.RoomPO;
 
 public interface RoomDAO {
-	 List<RoomPO> findByHotel(int hotelID);
 	 ResultMessage update(RoomPO roompo);
 	 ResultMessage add(RoomPO roompo);
 	 List<RoomPO> findByHotelID(int hotelID);

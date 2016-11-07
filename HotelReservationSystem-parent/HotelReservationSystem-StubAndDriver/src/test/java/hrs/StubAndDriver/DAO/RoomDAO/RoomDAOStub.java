@@ -44,11 +44,4 @@ public class RoomDAOStub implements RoomDAO {
 	public int findAvailableRoom(int hotelID, RoomType type, Date date) {
 		return 1;
 	}
-
-
-	@Override
-	public List<RoomPO> findByHotel(int hotelID) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

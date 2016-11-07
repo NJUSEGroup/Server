@@ -20,11 +20,7 @@ public class RoomDAOImpl implements RoomDAO{
 	private Session getSession(){
 		return sessionFactory.getCurrentSession();
 	}
-	@Override
-	public List<RoomPO> findByHotel(int hotelID) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	@Override
 	public ResultMessage update(RoomPO roompo) {

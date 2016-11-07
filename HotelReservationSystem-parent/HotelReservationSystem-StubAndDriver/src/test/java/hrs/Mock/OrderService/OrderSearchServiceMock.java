@@ -12,7 +12,6 @@ import hrs.common.util.type.OrderStatus;
 import hrs.server.DAO.Interface.OrderDAO;
 import hrs.server.POJO.OrderPO;
 import hrs.server.Service.Interface.OrderService.OrderSearchService;
-import hrs.server.Service.Interface.OrderService.OrderSearchService;
 
 public class OrderSearchServiceMock implements OrderSearchService {
 	private OrderDAO dao;
