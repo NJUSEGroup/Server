@@ -3,6 +3,8 @@ package hrs.server.Service.Impl.PromotionService.HotelDiscountService;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import hrs.common.VO.HotelDiscountVO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.HotelDiscountType;
@@ -12,29 +14,34 @@ import hrs.server.Service.Interface.PromotionService.HotelDiscountService;
 public class HotelDiscountServiceImpl implements HotelDiscountService {
 	private HotelDiscountDAO dao;
 
+	@Transactional
 	@Override
 	public ResultMessage add(HotelDiscountVO hoteldiscountvo) {
 		return null;
 	}
 
+	@Transactional
 	@Override
 	public ResultMessage update(HotelDiscountVO hoteldiscountvo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Transactional
 	@Override
 	public ResultMessage delete(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Transactional
 	@Override
 	public List<HotelDiscountVO> findAllByHotelID(int hotelID) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Transactional
 	@Override
 	public List<HotelDiscountType> findNotAddedType(int hotelID) {
 		// TODO Auto-generated method stub
@@ -44,6 +51,7 @@ public class HotelDiscountServiceImpl implements HotelDiscountService {
 	/**
 	 * 使用反射实现动态性
 	 */
+	@Transactional
 	@Override
 	public List<HotelDiscount> createAllStrategies(int hotelID) {
 		List<HotelDiscountVO> vos = findAllByHotelID(hotelID);
@@ -65,10 +73,6 @@ public class HotelDiscountServiceImpl implements HotelDiscountService {
 			e.printStackTrace();
 		}
 		return strategies;
-	}
-
-	public HotelDiscountDAO getDao() {
-		return dao;
 	}
 
 	public void setDao(HotelDiscountDAO dao) {

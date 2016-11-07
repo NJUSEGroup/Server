@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import hrs.common.Controller.UserController.FilterCondition;
 import hrs.common.VO.HotelVO;
 import hrs.common.VO.OrderVO;
@@ -21,26 +23,21 @@ public class HotelServiceImpl implements HotelService {
 	private RoomService roomService;
 	private OrderService orderService;
 
-	public HotelDAO getDao() {
-		return dao;
-	}
-
-	public void setDao(HotelDAO dao) {
-		this.dao = dao;
-	}
-
+	@Transactional
 	@Override
 	public HotelVO findByID(int hotelID) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Transactional
 	@Override
 	public ResultMessage update(HotelVO hotelvo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Transactional
 	@Override
 	public ResultMessage add(HotelVO hotelvo) {
 		// TODO Auto-generated method stub
@@ -50,47 +47,48 @@ public class HotelServiceImpl implements HotelService {
 	/**
 	 * 查询出来的OrderVO就需要按价格升序排列
 	 */
+	@Transactional
 	@Override
 	public Map<HotelVO, List<OrderVO>> findOrderedHotelAndOrder(String username) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Transactional
 	@Override
 	public Map<HotelVO, List<RoomVO>> find(int loc, int circle, Date begin, Date end) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Transactional
 	@Override
 	public Map<HotelVO, List<RoomVO>> filter(List<FilterCondition> conditions) {
 		return hotel.filter(conditions);
 	}
 
+	@Transactional
 	@Override
 	public List<RoomVO> getRoomDetail(int hotelID) {
 		return null;
 	}
 
+	@Transactional
 	@Override
 	public Map<HotelVO, List<RoomVO>> order(OrderRule rule, boolean isDecrease) {
 		return hotel.order(rule, isDecrease);
-	}
-
-	public RoomService getRoomService() {
-		return roomService;
 	}
 
 	public void setRoomService(RoomService roomService) {
 		this.roomService = roomService;
 	}
 
-	public OrderService getOrderService() {
-		return orderService;
-	}
-
 	public void setOrderService(OrderService orderService) {
 		this.orderService = orderService;
+	}
+
+	public void setDao(HotelDAO dao) {
+		this.dao = dao;
 	}
 
 }

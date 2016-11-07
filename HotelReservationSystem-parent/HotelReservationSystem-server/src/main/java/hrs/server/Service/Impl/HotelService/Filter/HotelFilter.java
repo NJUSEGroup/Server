@@ -7,7 +7,13 @@ import hrs.common.Controller.UserController.FilterCondition;
 import hrs.common.VO.HotelVO;
 import hrs.common.VO.RoomVO;
 
-public interface HotelFilter {
-	void doFilter(Map<HotelVO, List<RoomVO>> hotels);
-	void setFilterCondition(FilterCondition condition);
+public abstract class HotelFilter {
+	protected FilterCondition condition;
+
+	public abstract void doFilter(Map<HotelVO, List<RoomVO>> hotels);
+
+	public void setFilterCondition(FilterCondition condition) {
+		this.condition = condition;
+	}
+
 }

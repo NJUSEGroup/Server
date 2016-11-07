@@ -15,15 +15,17 @@ import hrs.server.util.SpringUtils;
 public class UserServiceImpl implements UserService {
 	private UserDAO dao;
 	private EnterpriseService enterpriseService;
+
 	public UserServiceImpl() {
 		// TODO Auto-generated constructor stub
-	}
-	public UserDAO getDao() {
-		return dao;
 	}
 
 	public void setDao(UserDAO dao) {
 		this.dao = dao;
+	}
+
+	public void setEnterpriseService(EnterpriseService enterpriseService) {
+		this.enterpriseService = enterpriseService;
 	}
 
 	@Transactional
@@ -54,7 +56,7 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	@Override
 	public UserVO login(String username, String password) {
-		System.out.println("UserServiceImpl.login("+username+","+password+")");
+		System.out.println("UserServiceImpl.login(" + username + "," + password + ")");
 		UserPO po = dao.findByUserName(username);
 		if (po == null || !po.getPassword().equals(password)) {
 			return null;
@@ -64,9 +66,10 @@ public class UserServiceImpl implements UserService {
 			return vo;
 		}
 	}
+
 	public static void main(String[] args) {
 		UserService userService = SpringUtils.getBean("userService");
 		System.out.println(userService.login("admin", "admin"));
 	}
-	
+
 }

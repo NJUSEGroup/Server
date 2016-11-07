@@ -32,9 +32,6 @@ public class UserDAOImpl implements UserDAO {
 		return null;
 	}
 
-	public SessionFactory getSessionFactory() {
-		return sessionFactory;
-	}
 
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
