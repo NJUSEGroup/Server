@@ -14,6 +14,8 @@ import hrs.server.POJO.UserPO;
 public class UserDAODriver {
 	private UserDAO dao;
 	
+	
+
 	@Before
 	public void launch(){
 		dao = new UserDAOStub();

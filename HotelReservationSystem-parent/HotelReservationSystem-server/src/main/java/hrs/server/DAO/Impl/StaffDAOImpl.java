@@ -1,48 +1,57 @@
 package hrs.server.DAO.Impl;
 
+import javax.persistence.NoResultException;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import hrs.common.util.ResultMessage;
 import hrs.server.DAO.Interface.StaffDAO;
 import hrs.server.POJO.StaffPO;
-
+@Repository
 public class StaffDAOImpl implements StaffDAO {
-
+	@Autowired
 	private SessionFactory sessionFactory;
-
+	
 	private Session getSession() {
 		return sessionFactory.getCurrentSession();
 	}
-
-	@Override
+	@Override	
 	public ResultMessage update(StaffPO staffpo) {
-		// TODO Auto-generated method stub
-		return null;
+		getSession().update(staffpo);
+		return ResultMessage.SUCCESS;
 	}
 
 	@Override
 	public ResultMessage add(StaffPO staffpo) {
-		// TODO Auto-generated method stub
-		return null;
+		if(findByUsername(staffpo.getUsername()) != null){
+			return ResultMessage.EXISTED;
+		}else{
+			getSession().save(staffpo);
+			return ResultMessage.SUCCESS;
+		}
 	}
 
 	@Override
 	public StaffPO findByUsername(String username) {
-		// TODO Auto-generated method stub
-		return null;
+		String hql = "from StaffPO staff where staff.username = ?";
+		StaffPO po = null;
+		try{
+			po = (StaffPO) getSession().createQuery(hql).setParameter(0, username).getSingleResult();
+		}catch(NoResultException e){}
+		return po;
 	}
 
 	@Override
 	public StaffPO findByHotelName(String hotelName) {
-		// TODO Auto-generated method stub
-		return null;
+		String hql = "from StaffPO staff inner join fetch staff.hotel hotel where hotel.name = ?";
+		StaffPO po = null;
+		try{
+			po = (StaffPO) getSession().createQuery(hql).setParameter(0, hotelName).getSingleResult();
+		}catch(NoResultException e){}
+		return po;
 	}
 
-
-	
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
-	
 }

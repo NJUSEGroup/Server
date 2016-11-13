@@ -1,12 +1,18 @@
 package hrs.server.DAO.Impl;
 
+import javax.persistence.NoResultException;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import hrs.common.util.ResultMessage;
 import hrs.server.DAO.Interface.UserDAO;
 import hrs.server.POJO.UserPO;
+@Repository
 public class UserDAOImpl implements UserDAO {
+	@Autowired
 	private SessionFactory sessionFactory;
 	
 	private Session getSession() {
@@ -15,25 +21,28 @@ public class UserDAOImpl implements UserDAO {
 	
 	@Override
 	public UserPO findByUserName(String username) {
-		System.out.println("UserDAOImpl.findByUserName("+username+")");
 		String hql = "from UserPO as user  where user.username = ?";
-		return (UserPO) getSession().createQuery(hql).setParameter(0, username).getSingleResult();
+		UserPO po = null;
+		try{
+			po = (UserPO) getSession().createQuery(hql).setParameter(0, username).getSingleResult();
+		}catch(NoResultException e){}
+		return po;
 	}
 
 	@Override
 	public ResultMessage add(UserPO userpo) {
-		getSession().save(userpo);
-		return ResultMessage.SUCCESS;
+		if(findByUserName(userpo.getUsername()) != null){
+			return ResultMessage.EXISTED;
+		}else{
+			getSession().save(userpo);
+			return ResultMessage.SUCCESS;
+		}
 	}
 
 	@Override
 	public ResultMessage update(UserPO userpo) {
-		// TODO Auto-generated method stub
-		return null;
+		getSession().update(userpo);
+		return ResultMessage.SUCCESS;
 	}
 
-
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
 }

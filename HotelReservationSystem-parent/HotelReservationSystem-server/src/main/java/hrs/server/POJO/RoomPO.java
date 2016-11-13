@@ -13,7 +13,7 @@ public class RoomPO implements Serializable {
 	private RoomType type;
 	private int roomNum;
 	private double roomValue;
-	
+
 	public RoomPO(HotelPO hotel, RoomType type, int roomNum, double roomValue) {
 		super();
 		this.hotel = hotel;
@@ -22,64 +22,41 @@ public class RoomPO implements Serializable {
 		this.roomValue = roomValue;
 	}
 
-	
-
 	public RoomPO() {
 		// TODO Auto-generated constructor stub
 	}
-
-
-	
-
-
 
 	public HotelPO getHotel() {
 		return hotel;
 	}
 
-
-
 	public void setHotel(HotelPO hotel) {
 		this.hotel = hotel;
 	}
-
-
 
 	public RoomType getType() {
 		return type;
 	}
 
-
-
 	public void setType(RoomType type) {
 		this.type = type;
 	}
-
-
 
 	public int getRoomNum() {
 		return roomNum;
 	}
 
-
-
 	public void setRoomNum(int roomNum) {
 		this.roomNum = roomNum;
 	}
-
-
 
 	public double getRoomValue() {
 		return roomValue;
 	}
 
-
-
 	public void setRoomValue(double roomValue) {
 		this.roomValue = roomValue;
 	}
-
-
 
 	@Override
 	public int hashCode() {
@@ -93,8 +70,6 @@ public class RoomPO implements Serializable {
 		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		return result;
 	}
-
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -119,8 +94,9 @@ public class RoomPO implements Serializable {
 		return true;
 	}
 
-	
-	
-
+	@Override
+	public String toString() {
+		return "RoomPO [hotel=" + hotel + ", type=" + type + ", roomNum=" + roomNum + ", roomValue=" + roomValue + "]";
+	}
 
 }

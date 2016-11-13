@@ -8,6 +8,7 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
 	<context:component-scan base-package="hrs.server"></context:component-scan>
+	<context:component-scan base-package="test.server"></context:component-scan>
 
 	<!-- 配置数据源 -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
@@ -36,9 +37,11 @@
 				<value>hrs/server/POJO/CreditRecordPO.hbm.xml</value>
 				<value>hrs/server/POJO/OrderPO.hbm.xml</value>
 				<value>hrs/server/POJO/HotelPO.hbm.xml</value>
+				<value>hrs/server/POJO/RoomPO.hbm.xml</value>
 				<value>hrs/server/POJO/HotelDiscountPO.hbm.xml</value>
 				<value>hrs/server/POJO/WebDiscountPO.hbm.xml</value>
 				<value>hrs/server/POJO/OfflineRecordPO.hbm.xml</value>
+				<value>hrs/server/POJO/AvailableRoomPO.hbm.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -72,77 +75,34 @@
 
 	<!-- 配置bean 注意使用xml的自动装配 -->
 
-	<bean id="userDAO" class="hrs.server.DAO.Impl.UserDAOImpl"
-		p:sessionFactory-ref="sessionFactory" autowire="byName"></bean>
-	<bean id="staffDAO" class="hrs.server.DAO.Impl.StaffDAOImpl"
-		p:sessionFactory-ref="sessionFactory" autowire="byName"></bean>
-	<bean id="roomDAO" class="hrs.server.DAO.Impl.RoomDAOImpl"
-		p:sessionFactory-ref="sessionFactory" autowire="byName"></bean>
-	<bean id="orderDAO" class="hrs.server.DAO.Impl.OrderDAOImpl"
-		p:sessionFactory-ref="sessionFactory" autowire="byName"></bean>
-	<bean id="offlineRecordDAO" class="hrs.server.DAO.Impl.OfflineRecordDAOImpl"
-		p:sessionFactory-ref="sessionFactory" autowire="byName"></bean>
-	<bean id="creditRecordDAO" class="hrs.server.DAO.Impl.CreditRecordDAOImpl"
-		p:sessionFactory-ref="sessionFactory" autowire="byName"></bean>
-	<bean id="enterpriseDAO" class="hrs.server.DAO.Impl.PromotionDAO.EnterpriseDAOImpl"
-		p:sessionFactory-ref="sessionFactory" autowire="byName"></bean>
-	<bean id="hotelDiscountDAO" class="hrs.server.DAO.Impl.PromotionDAO.HotelDiscountDAOImpl"
-		p:sessionFactory-ref="sessionFactory" autowire="byName"></bean>
-	<bean id="webDiscountDAO" class="hrs.server.DAO.Impl.PromotionDAO.WebDiscountDAOImpl"
-		p:sessionFactory-ref="sessionFactory" autowire="byName"></bean>
-	<bean id="locationDAO" class="hrs.server.DAO.Impl.HotelDAO.LocationDAOImpl"
-		p:sessionFactory-ref="sessionFactory" autowire="byName"></bean>
-	<bean id="commCircleDAO" class="hrs.server.DAO.Impl.HotelDAO.CommCircleDAOImpl"
-		p:sessionFactory-ref="sessionFactory" autowire="byName"></bean>
-	<bean id="hotelDAO" class="hrs.server.DAO.Impl.HotelDAO.HotelDAOImpl"
-		p:sessionFactory-ref="sessionFactory" autowire="byName"></bean>
-	
-	<!-- ************************以上为DAO的配置***************** -->
-
-	<bean id="userService" class="hrs.server.Service.Impl.UserService.UserServiceImpl"
-		p:dao-ref="userDAO" p:enterpriseService-ref="enterpriseService"	autowire="byName"></bean>
-	<bean id="staffService" class="hrs.server.Service.Impl.StaffService.StaffServiceImpl"
-		p:dao-ref="staffDAO" autowire="byName"></bean>
-	<bean id="roomService" class="hrs.server.Service.Impl.RoomService.RoomServiceImpl"
-		p:dao-ref="roomDAO" autowire="byName"></bean>
-	<bean id="enterpriseService" class="hrs.server.Service.Impl.PromotionService.EnterpriseServiceImpl"
-		p:dao-ref="enterpriseDAO" autowire="byName"></bean>
-	<bean id="hotelDiscountService" class="hrs.server.Service.Impl.PromotionService.HotelDiscountService.HotelDiscountServiceImpl"
-		p:dao-ref="hotelDiscountDAO" autowire="byName"></bean>
-	<bean id="webDiscountService" class="hrs.server.Service.Impl.PromotionService.WebDiscountService.WebDiscountServiceImpl"
-		p:dao-ref="webDiscountDAO" autowire="byName"></bean>
-	<bean id="orderService" class="hrs.server.Service.Impl.OrderService.OrderServiceImpl"
-		p:dao-ref="orderDAO" p:hotelDiscountService-ref="hotelDiscountService" 
-		p:webDiscountService-ref="webDiscountService"	
-		p:creditRecordService-ref="creditRecordService" 
-		autowire="byName"></bean>
-	
-	<bean id="orderSearchService" class="hrs.server.Service.Impl.OrderService.OrderSearchServiceImpl"
-		p:dao-ref="orderDAO" autowire="byName"></bean>
-	<bean id="offlineRecordService" class="hrs.server.Service.Impl.OfflineRecordService.OfflineRecordServiceImpl"
-		p:dao-ref="offlineRecordDAO" autowire="byName"></bean>
-	<bean id="locationService" class="hrs.server.Service.Impl.HotelService.LocationServiceImpl"
-		p:dao-ref="locationDAO" autowire="byName"></bean>
-	<bean id="commCircleService" class="hrs.server.Service.Impl.HotelService.CommCircleServiceImpl"
-		p:dao-ref="commCircleDAO" autowire="byName"></bean>
-	<bean id="hotelService" class="hrs.server.Service.Impl.HotelService.HotelServiceImpl"
-		p:dao-ref="hotelDAO" p:orderService-ref="orderService"	
-		p:roomService-ref="roomService" autowire="byName"></bean>
-		
-	<bean id="creditRecordService" class="hrs.server.Service.Impl.CreditRecordService.CreditRecordServiceImpl"
-		p:dao-ref="creditRecordDAO" p:userService-ref="userService"  
-		autowire="byName"></bean>
+	<bean id="userService" class="hrs.server.Service.Impl.UserService.UserServiceImpl"></bean>
+	<bean id="enterpriseService"
+		class="hrs.server.Service.Impl.PromotionService.EnterpriseServiceImpl"></bean>
+	<bean id="staffService" class="hrs.server.Service.Impl.StaffService.StaffServiceImpl"></bean>
+	<bean id="roomService" class="hrs.server.Service.Impl.RoomService.RoomServiceImpl"></bean>
+	<bean id="hotelDiscountService"
+		class="hrs.server.Service.Impl.PromotionService.HotelDiscountService.HotelDiscountServiceImpl"></bean>
+	<bean id="webDiscountService"
+		class="hrs.server.Service.Impl.PromotionService.WebDiscountService.WebDiscountServiceImpl"></bean>
+	<bean id="orderService" class="hrs.server.Service.Impl.OrderService.OrderServiceImpl"></bean>
+	<bean id="orderSearchService"
+		class="hrs.server.Service.Impl.OrderService.OrderSearchServiceImpl"></bean>
+	<bean id="offlineRecordService"
+		class="hrs.server.Service.Impl.OfflineRecordService.OfflineRecordServiceImpl"></bean>
+	<bean id="locationService"
+		class="hrs.server.Service.Impl.HotelService.LocationServiceImpl"></bean>
+	<bean id="commCircleService"
+		class="hrs.server.Service.Impl.HotelService.CommCircleServiceImpl"></bean>
+	<bean id="hotelService" class="hrs.server.Service.Impl.HotelService.HotelServiceImpl"></bean>
+	<bean id="creditRecordService"
+		class="hrs.server.Service.Impl.CreditRecordService.CreditRecordServiceImpl"></bean>
 
 	<!-- ************************以上为Service的配置***************** -->
-	<bean id="loginController" class="hrs.server.Controller.LoginController.LoginController"
-		p:userService-ref="userService" p:staffService-ref="staffService"
-		autowire="byName">
-		
+	<bean id="loginController" class="hrs.server.Controller.LoginController.LoginController"></bean>
+
 	<!-- ************************以上为Controller的配置***************** -->
 
-	
 
-	</bean>
 	<!-- 配置RMI -->
 	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
 		<!-- RMI服务名称,可自定义服务名称 ，给客户端调用的 -->

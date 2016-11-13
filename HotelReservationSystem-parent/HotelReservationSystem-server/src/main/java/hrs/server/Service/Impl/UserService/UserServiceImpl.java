@@ -1,6 +1,8 @@
 package hrs.server.Service.Impl.UserService;
 
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import hrs.common.VO.EnterpriseVO;
@@ -10,23 +12,18 @@ import hrs.server.DAO.Interface.UserDAO;
 import hrs.server.POJO.UserPO;
 import hrs.server.Service.Interface.PromotionService.EnterpriseService;
 import hrs.server.Service.Interface.UserService.UserService;
-import hrs.server.util.SpringUtils;
-
+@Service
 public class UserServiceImpl implements UserService {
+	
+	@Autowired
 	private UserDAO dao;
+	@Autowired
 	private EnterpriseService enterpriseService;
 
 	public UserServiceImpl() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
-	public void setDao(UserDAO dao) {
-		this.dao = dao;
-	}
-
-	public void setEnterpriseService(EnterpriseService enterpriseService) {
-		this.enterpriseService = enterpriseService;
-	}
 
 	@Transactional
 	@Override
@@ -65,11 +62,6 @@ public class UserServiceImpl implements UserService {
 			BeanUtils.copyProperties(po, vo);
 			return vo;
 		}
-	}
-
-	public static void main(String[] args) {
-		UserService userService = SpringUtils.getBean("userService");
-		System.out.println(userService.login("admin", "admin"));
 	}
 
 }

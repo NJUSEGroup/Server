@@ -24,7 +24,7 @@ public class UserPO implements Serializable {
 	public UserPO() {
 		// TODO Auto-generated constructor stub
 	}
-
+	
 	public UserPO(String username, String password, String phone, String name, int credit, int vIPLevel,
 			UserType type) {
 		super();
@@ -36,6 +36,8 @@ public class UserPO implements Serializable {
 		VIPLevel = vIPLevel;
 		this.type = type;
 	}
+
+
 
 	public int getId() {
 		return id;

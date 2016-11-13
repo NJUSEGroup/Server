@@ -1,14 +1,19 @@
 package hrs.server.Controller.LoginController;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
 import hrs.common.Controller.LoginController.ILoginController;
 import hrs.common.VO.StaffVO;
 import hrs.common.VO.UserVO;
 import hrs.common.util.ResultMessage;
 import hrs.server.Service.Interface.StaffService.StaffService;
 import hrs.server.Service.Interface.UserService.UserService;
-
+@Controller
 public class LoginController implements ILoginController {
+	@Autowired
 	private UserService userService;
+	@Autowired
 	private StaffService staffService;
 
 	@Override
@@ -27,21 +32,4 @@ public class LoginController implements ILoginController {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	public UserService getUserService() {
-		return userService;
-	}
-
-	public void setUserService(UserService userService) {
-		this.userService = userService;
-	}
-
-	public StaffService getStaffService() {
-		return staffService;
-	}
-
-	public void setStaffService(StaffService staffService) {
-		this.staffService = staffService;
-	}
-
 }

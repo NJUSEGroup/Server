@@ -174,7 +174,7 @@
 				</dependencies>
 				<configuration>
 					<includes>
-						<include>**/*Driver.java</include>
+						<include>**/Test*.java</include>
 					</includes>
 				</configuration>
 			</plugin>
@@ -185,6 +185,5 @@
 		<module>HotelReservationSystem-common</module>
 		<module>HotelReservationSystem-client</module>
 		<module>HotelReservationSystem-server</module>
-		<module>HotelReservationSystem-StubAndDriver</module>
 	</modules>
 </project>
