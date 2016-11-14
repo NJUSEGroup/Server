@@ -5,68 +5,85 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.OrderStatus;
 import hrs.server.DAO.Interface.OrderDAO;
 import hrs.server.POJO.OrderPO;
 
+@SuppressWarnings("all")
+@Repository
 public class OrderDAOImpl implements OrderDAO {
+	@Autowired
 	private SessionFactory sessionFactory;
 
 	private Session getSession() {
 		return sessionFactory.getCurrentSession();
 	}
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
 
 	@Override
-	public OrderPO findByID(int ID) {
-		// TODO Auto-generated method stub
-		return null;
+	public OrderPO findByID(int id) {
+		return getSession().get(OrderPO.class, id);
 	}
 
 	@Override
 	public List<OrderPO> findByUsernameAndType(String username, OrderStatus status) {
-		// TODO Auto-generated method stub
-		return null;
+		String hql = "from OrderPO o inner join fetch o.user u "
+				+ "where u.username = :username and o.status = :status";
+		List<OrderPO> list = getSession().createQuery(hql).setParameter("username", username)
+				.setParameter("status", status).getResultList();
+		return list;
 	}
 
 	@Override
 	public List<OrderPO> findByHotelAndUsername(int hotelID, String username) {
-		// TODO Auto-generated method stub
-		return null;
+		String hql = "from OrderPO o " + "inner join fetch o.hotel hotel " + "inner join fetch o.user u "
+				+ "where hotel.id = :hotelID and u.username = :username";
+		List<OrderPO> list = getSession().createQuery(hql).setParameter("hotelID", hotelID)
+				.setParameter("username", username).getResultList();
+		return list;
 	}
 
 	@Override
 	public List<OrderPO> findByUsername(String username) {
-		// TODO Auto-generated method stub
-		return null;
+		String hql = "from OrderPO o inner join fetch o.user u " + "where u.username = :username";
+		List<OrderPO> list = getSession().createQuery(hql).setParameter("username", username).getResultList();
+		return list;
 	}
 
 	@Override
 	public List<OrderPO> findByOrderType(OrderStatus status) {
-		// TODO Auto-generated method stub
-		return null;
+		String hql = "from OrderPO o where o.status = :status";
+		List<OrderPO> list = getSession().createQuery(hql).setParameter("status", status).getResultList();
+
+		return list;
 	}
 
 	@Override
 	public List<OrderPO> findByHotelAndTime(int hotelID, Date begin, Date end) {
-		// TODO Auto-generated method stub
-		return null;
+		String hql = "from OrderPO o inner join fetch o.hotel hotel "
+										 + "where hotel.id = :hotelID "
+										 + "and o.execTime >= :begin "
+										 + "and o.expectedCheckoutTime <= :end";
+		List<OrderPO> list = getSession().createQuery(hql)
+										 .setParameter("begin", begin)
+										 .setParameter("end", end)
+										 .setParameter("hotelID", hotelID).getResultList();
+		return list;
 	}
 
 	@Override
 	public ResultMessage add(OrderPO orderpo) {
-		// TODO Auto-generated method stub
-		return null;
+		getSession().save(orderpo);
+		return ResultMessage.SUCCESS;
 	}
 
 	@Override
 	public ResultMessage update(OrderPO orderpo) {
-		// TODO Auto-generated method stub
-		return null;
+		getSession().update(orderpo);
+		return ResultMessage.SUCCESS;
 	}
 
 }

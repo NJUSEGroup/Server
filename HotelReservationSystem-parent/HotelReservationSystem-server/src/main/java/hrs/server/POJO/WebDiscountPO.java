@@ -23,14 +23,13 @@ public  class WebDiscountPO implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public WebDiscountPO(int id, double discount, WebsiteDiscountType type, Date beginTime, Date endTime, int vIPlevel) {
+	public WebDiscountPO(double discount, WebsiteDiscountType type, Date beginTime, Date endTime, int VIPlevel) {
 		super();
-		this.id = id;
 		this.discount = discount;
 		this.type = type;
 		this.beginTime = beginTime;
 		this.endTime = endTime;
-		VIPlevel = vIPlevel;
+		this.VIPlevel = VIPlevel;
 	}
 
 
@@ -153,6 +152,13 @@ public  class WebDiscountPO implements Serializable {
 		if (type != other.type)
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "WebDiscountPO [id=" + id + ", discount=" + discount + ", type=" + type + ", location=" + location
+				+ ", commercialCircle=" + commercialCircle + ", beginTime=" + beginTime + ", endTime=" + endTime
+				+ ", VIPlevel=" + VIPlevel + "]";
 	}
 
 	

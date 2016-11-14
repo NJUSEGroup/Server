@@ -33,33 +33,15 @@ public class OrderPO implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public OrderPO(int id, Date placeTime, Date expectedCheckoutTime, OrderStatus status, HotelPO hotel, double value,
-			RoomType type, int roomNum, boolean hasChild, UserPO user, int peopleNum) {
-		super();
-		this.id = id;
-		this.placeTime = placeTime;
-		this.expectedCheckoutTime = expectedCheckoutTime;
-		this.status = status;
-		this.hotel = hotel;
-		this.value = value;
-		this.type = type;
-		this.roomNum = roomNum;
-		this.hasChild = hasChild;
-		this.user = user;
-		this.peopleNum = peopleNum;
-	}
+	
 
-	public OrderPO(int id, Date placeTime, Date execTime, Date checkinTime, Date expectedCheckoutTime,
-			Date checkoutTime, Date revokeTime, OrderStatus status, HotelPO hotel, double value, RoomType type, int num,
-			boolean hasChild, UserPO user, int score, String evaluation) {
+	public OrderPO(Date placeTime, Date execTime, Date expectedCheckoutTime,
+			OrderStatus status, HotelPO hotel, double value, RoomType type, int num,
+			boolean hasChild, UserPO user) {
 		super();
-		this.id = id;
 		this.placeTime = placeTime;
 		this.execTime = execTime;
-		this.checkinTime = checkinTime;
 		this.expectedCheckoutTime = expectedCheckoutTime;
-		this.checkoutTime = checkoutTime;
-		this.revokeTime = revokeTime;
 		this.status = status;
 		this.hotel = hotel;
 		this.value = value;
@@ -67,8 +49,6 @@ public class OrderPO implements Serializable {
 		this.roomNum = num;
 		this.hasChild = hasChild;
 		this.user = user;
-		this.score = score;
-		this.evaluation = evaluation;
 	}
 
 	public int getId() {
@@ -304,6 +284,15 @@ public class OrderPO implements Serializable {
 		if (Double.doubleToLongBits(value) != Double.doubleToLongBits(other.value))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "OrderPO [id=" + id + ", placeTime=" + placeTime + ", execTime=" + execTime + ", checkinTime="
+				+ checkinTime + ", expectedCheckoutTime=" + expectedCheckoutTime + ", checkoutTime=" + checkoutTime
+				+ ", revokeTime=" + revokeTime + ", status=" + status + ", hotel=" + hotel + ", value=" + value
+				+ ", type=" + type + ", roomNum=" + roomNum + ", hasChild=" + hasChild + ", user=" + user + ", score="
+				+ score + ", evaluation=" + evaluation + ", peopleNum=" + peopleNum + "]";
 	}
 	
 }

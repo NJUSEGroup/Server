@@ -20,10 +20,11 @@
 
 		<many-to-one name="commercialCircle" class="CommercialCirclePO"
 			fetch="join">
-			<column name="HOTEL_LOC"></column>
 			<column name="HOTEL_CIRCLE"></column>
 		</many-to-one>
-
+		<many-to-one name="location" class="LocationPO" fetch="join">
+			<column name="HOTEL_LOC"></column>
+		</many-to-one>
 		<property name="profile" type="java.lang.String">
 			<column name="HOTEL_PROFILE" />
 		</property>

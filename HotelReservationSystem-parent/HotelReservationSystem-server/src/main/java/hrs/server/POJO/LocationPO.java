@@ -55,5 +55,10 @@ public class LocationPO implements Serializable{
 			return false;
 		return true;
 	}
+	@Override
+	public String toString() {
+		return "LocationPO [id=" + id + ", name=" + name + "]";
+	}
+	
 	
 }

@@ -12,9 +12,8 @@ public class EnterprisePO implements Serializable{
 	public EnterprisePO(){
 		
 	}
-	public EnterprisePO(int id, String name) {
+	public EnterprisePO(String name) {
 		super();
-		this.id = id;
 		this.name = name;
 	}
 	public int getId() {

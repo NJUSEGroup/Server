@@ -23,10 +23,9 @@ public  class HotelDiscountPO implements Serializable{
 	}
 	
 
-	public HotelDiscountPO(int id, HotelPO hotel, double discount, HotelDiscountType type, EnterprisePO enterprise,
+	public HotelDiscountPO( HotelPO hotel, double discount, HotelDiscountType type, EnterprisePO enterprise,
 			int minQty, Date beginTime, Date endTime) {
 		super();
-		this.id = id;
 		this.hotel = hotel;
 		this.discount = discount;
 		this.type = type;
@@ -145,6 +144,14 @@ public  class HotelDiscountPO implements Serializable{
 		if (type != other.type)
 			return false;
 		return true;
+	}
+
+
+	@Override
+	public String toString() {
+		return "HotelDiscountPO [id=" + id + "," + "discount=" + discount + ", type=" + type
+				+ ", enterprise=" + enterprise + ", minQty=" + minQty + ", beginTime=" + beginTime + ", endTime="
+				+ endTime + "]";
 	}
 
 	

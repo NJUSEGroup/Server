@@ -4,42 +4,46 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import hrs.common.util.ResultMessage;
 import hrs.server.DAO.Interface.PromotionDAO.WebDiscountDAO;
 import hrs.server.POJO.WebDiscountPO;
 
+@Repository
 public class WebDiscountDAOImpl implements WebDiscountDAO {
+	@Autowired
 	private SessionFactory sessionFactory;
 
 	private Session getSession() {
 		return sessionFactory.getCurrentSession();
 	}
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
+
 	@Override
 	public ResultMessage add(WebDiscountPO webdiscountpo) {
-		// TODO Auto-generated method stub
-		return null;
+		getSession().save(webdiscountpo);
+		return ResultMessage.SUCCESS;
 	}
 
 	@Override
 	public ResultMessage update(WebDiscountPO webdiscountpo) {
-		// TODO Auto-generated method stub
-		return null;
+		getSession().update(webdiscountpo);
+		return ResultMessage.SUCCESS;
 	}
 
 	@Override
 	public ResultMessage delete(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		WebDiscountPO po = new WebDiscountPO();
+		po.setId(id);
+		getSession().delete(po);
+		return ResultMessage.SUCCESS;
 	}
 
 	@Override
 	public List<WebDiscountPO> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		String hql = "from WebDiscountPO";
+		return getSession().createQuery(hql).getResultList();
 	}
 
 }

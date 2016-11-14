@@ -21,8 +21,11 @@
 		
 		<many-to-one name="commercialCircle" class="CommercialCirclePO"
 			fetch="join">
-			<column name="discount_location"></column>
 			<column name="discount_commercial_circle" />
+		</many-to-one>
+		<many-to-one name="location" class="LocationPO"
+			fetch="join">
+			<column name="discount_location"></column>
 		</many-to-one>
 		<property name="beginTime" type="java.util.Date">
 			<column name="discount_begin_time" />

@@ -4,13 +4,13 @@
 <!-- Generated 2016-10-28 18:09:30 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping package="hrs.server.POJO">
 	<class name="CommercialCirclePO" table="COMMERCIAL_CIRCLE">
-		<composite-id>
-			<key-many-to-one name="location" class="LocationPO"
-				column="LOC_ID">
-			</key-many-to-one>
-			<key-property name="id" column="CIRCLE_ID" type="int">
-			</key-property>
-		</composite-id>
+		<id name="id" type="int">
+			<column name="CIRCLE_ID" />
+			<generator class="native" />
+		</id>
+		<many-to-one name="location" class="LocationPO" fetch="join">
+			<column name="LOC_ID"></column>
+		</many-to-one>
 		<property name="name" type="java.lang.String">
 			<column name="CIRCLE_NAME" />
 		</property>

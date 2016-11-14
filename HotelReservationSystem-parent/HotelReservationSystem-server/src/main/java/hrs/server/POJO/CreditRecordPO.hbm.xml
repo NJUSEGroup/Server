@@ -17,7 +17,7 @@
         </many-to-one>
         
         <property name="type">
-            <column name="TYPE" />
+            <column name="record_type" />
             <type name="org.hibernate.type.EnumType">
                 <param name="type">12</param>
                 <param name="enumClass">hrs.common.util.type.CreditRecordType</param>

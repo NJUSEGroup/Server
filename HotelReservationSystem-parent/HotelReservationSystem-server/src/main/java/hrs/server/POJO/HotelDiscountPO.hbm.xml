@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2016-10-28 18:09:30 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping package="hrs.server.POJO">
-    <class name="HotelDiscountPO" table="HOTEL_DISCOUNTPO">
+    <class name="HotelDiscountPO" table="HOTEL_DISCOUNT">
         <id name="id" type="int">
             <column name="DISCOUNT_ID" />
             <generator class="native" />
@@ -17,7 +17,7 @@
         </property>
         
         <property name="type">
-            <column name="TYPE" />
+            <column name="discount_type" />
             <type name="org.hibernate.type.EnumType">
                 <param name="type">12</param>
                 <param name="enumClass">hrs.common.util.type.HotelDiscountType</param>

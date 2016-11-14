@@ -4,42 +4,46 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import hrs.common.util.ResultMessage;
 import hrs.server.DAO.Interface.HotelDAO.HotelDAO;
 import hrs.server.POJO.HotelPO;
 
+@Repository
 public class HotelDAOImpl implements HotelDAO {
+	@Autowired
 	private SessionFactory sessionFactory;
 
 	private Session getSession() {
 		return sessionFactory.getCurrentSession();
 	}
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
+
 	@Override
 	public HotelPO findByID(int hotelID) {
-		// TODO Auto-generated method stub
-		return null;
+		return getSession().get(HotelPO.class, hotelID);
 	}
 
 	@Override
 	public ResultMessage update(HotelPO hotelpo) {
-		// TODO Auto-generated method stub
-		return null;
+		getSession().update(hotelpo);
+		return ResultMessage.SUCCESS;
 	}
 
 	@Override
 	public ResultMessage add(HotelPO hotelpo) {
-		// TODO Auto-generated method stub
-		return null;
+		getSession().save(hotelpo);
+		return ResultMessage.SUCCESS;
 	}
 
 	@Override
 	public List<HotelPO> find(int loc, int circle) {
-		// TODO Auto-generated method stub
-		return null;
+		String hql = "from HotelPO hotel inner join fetch hotel.location loc "
+									  + "inner join fetch hotel.commercialCircle circle "
+									  + "where loc.id = :loc and circle.id = :circle";
+
+		return getSession().createQuery(hql).setParameter("loc", loc).setParameter("circle", circle).getResultList();
 	}
 
 }

@@ -2,37 +2,36 @@ package hrs.server.DAO.Impl;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import hrs.common.util.ResultMessage;
 import hrs.server.DAO.Interface.OfflineRecordDAO;
 import hrs.server.POJO.OfflineRecordPO;
-
+@Repository
 public class OfflineRecordDAOImpl implements OfflineRecordDAO {
+	@Autowired
 	private SessionFactory sessionFactory;
 
 	private Session getSession() {
 		return sessionFactory.getCurrentSession();
 	}
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
 	
 	@Override
 	public OfflineRecordPO findByID(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return getSession().get(OfflineRecordPO.class,id);
 	}
 
 	@Override
 	public ResultMessage add(OfflineRecordPO offlinerecordpo) {
-		// TODO Auto-generated method stub
-		return null;
+		getSession().save(offlinerecordpo);
+		return ResultMessage.SUCCESS;
 	}
 
 	@Override
 	public ResultMessage update(OfflineRecordPO offlinerecordpo) {
-		// TODO Auto-generated method stub
-		return null;
+		getSession().update(offlinerecordpo);
+		return ResultMessage.SUCCESS;
 	}
 
 }

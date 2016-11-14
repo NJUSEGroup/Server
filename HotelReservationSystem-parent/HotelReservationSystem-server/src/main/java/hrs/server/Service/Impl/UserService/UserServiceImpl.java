@@ -7,6 +7,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import hrs.common.VO.EnterpriseVO;
 import hrs.common.VO.UserVO;
+import hrs.common.exception.UserNotFoundException;
+import hrs.common.exception.UserPasswordErrorException;
+import hrs.common.exception.UsernameExistedException;
 import hrs.common.util.ResultMessage;
 import hrs.server.DAO.Interface.UserDAO;
 import hrs.server.POJO.UserPO;
@@ -20,17 +23,18 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private EnterpriseService enterpriseService;
 
-	public UserServiceImpl() {
-		
-	}
-
 
 	@Transactional
 	@Override
 	public UserVO findByUsername(String username) {
 		UserVO vo = new UserVO();
-		BeanUtils.copyProperties(dao.findByUserName(username), vo);
-		return vo;
+		UserPO po = dao.findByUserName(username);
+		if(po == null){
+			throw new UserNotFoundException();
+		}else{
+			BeanUtils.copyProperties(po, vo);
+			return vo;
+		}
 	}
 
 	@Transactional
@@ -39,9 +43,14 @@ public class UserServiceImpl implements UserService {
 		UserPO po = new UserPO();
 		BeanUtils.copyProperties(uservo, po);
 		enterpriseService.add(new EnterpriseVO(po.getEnterprise()));
-		return dao.add(po);
+		if(dao.add(po) == ResultMessage.EXISTED){
+			throw new UsernameExistedException();
+		}else{
+			return ResultMessage.SUCCESS;
+		}
 	}
 
+	
 	@Transactional
 	@Override
 	public ResultMessage update(UserVO uservo) {
@@ -53,15 +62,15 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	@Override
 	public UserVO login(String username, String password) {
-		System.out.println("UserServiceImpl.login(" + username + "," + password + ")");
 		UserPO po = dao.findByUserName(username);
-		if (po == null || !po.getPassword().equals(password)) {
-			return null;
+		if(po == null ){
+			throw new UserNotFoundException();
+		}else if ( !po.getPassword().equals(password)) {
+			throw new UserPasswordErrorException();
 		} else {
 			UserVO vo = new UserVO();
 			BeanUtils.copyProperties(po, vo);
 			return vo;
 		}
 	}
-
 }

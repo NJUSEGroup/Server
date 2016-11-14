@@ -22,21 +22,10 @@ public class HotelPO implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public HotelPO(int id, String name, LocationPO location, CommercialCirclePO commercialCircle, String profile,
-			String service) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.location = location;
-		this.commercialCircle = commercialCircle;
-		this.profile = profile;
-		this.service = service;
-	}
-
-
+	
 
 	public HotelPO(String name, int star, double score, LocationPO location, CommercialCirclePO commercialCircle,
-			String profile, String service) {
+			String profile, String service, StaffPO staff, String street) {
 		super();
 		this.name = name;
 		this.star = star;
@@ -45,7 +34,13 @@ public class HotelPO implements Serializable {
 		this.commercialCircle = commercialCircle;
 		this.profile = profile;
 		this.service = service;
+		this.staff = staff;
+		this.street = street;
 	}
+
+
+
+	
 
 	
 
@@ -201,4 +196,11 @@ public class HotelPO implements Serializable {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "HotelPO [id=" + id + ", name=" + name + ", star=" + star + ", score=" + score + ", location=" + location
+				+ ", commercialCircle=" + commercialCircle + ", profile=" + profile + ", service=" + service
+				+ ", street=" + street + "]";
+	}
+	
 }

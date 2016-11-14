@@ -21,14 +21,12 @@ public class OfflineRecordPO implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 	
-	public OfflineRecordPO(int id, HotelPO hotel, Date checkinTime, Date expectedCheckoutTime, Date checkoutTime,
+	public OfflineRecordPO(HotelPO hotel, Date checkinTime, Date expectedCheckoutTime, 
 			RoomType type, int num) {
 		super();
-		this.id = id;
 		this.hotel = hotel;
 		this.checkinTime = checkinTime;
 		this.expectedCheckoutTime = expectedCheckoutTime;
-		this.checkoutTime = checkoutTime;
 		this.type = type;
 		this.num = num;
 	}
@@ -126,6 +124,13 @@ public class OfflineRecordPO implements Serializable{
 		if (type != other.type)
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "OfflineRecordPO [id=" + id + ", hotel=" + hotel + ", checkinTime=" + checkinTime
+				+ ", expectedCheckoutTime=" + expectedCheckoutTime + ", checkoutTime=" + checkoutTime + ", type=" + type
+				+ ", num=" + num + "]";
 	}
 	
 }

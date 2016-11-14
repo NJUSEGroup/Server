@@ -21,19 +21,11 @@ public class CreditRecordPO implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 	
-	public CreditRecordPO(int id, OrderPO order, UserPO user, CreditRecordType type, int variation, int currCredit) {
-		super();
-		this.id = id;
-		this.order = order;
-		this.user = user;
-		this.type = type;
-		this.variation = variation;
-		this.currCredit = currCredit;
-	}
+	
 
-	public CreditRecordPO(int id, UserPO user, CreditRecordType type, int variation, int currCredit) {
+	public CreditRecordPO( OrderPO order,UserPO user, CreditRecordType type, int variation, int currCredit) {
 		super();
-		this.id = id;
+		this.order = order;
 		this.user = user;
 		this.type = type;
 		this.variation = variation;
@@ -129,6 +121,12 @@ public class CreditRecordPO implements Serializable{
 		if (variation != other.variation)
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "CreditRecordPO [id=" + id + ", order=" + order + ", user=" + user + ", type=" + type + ", variation="
+				+ variation + ", currCredit=" + currCredit + "]";
 	}
 	
 	
