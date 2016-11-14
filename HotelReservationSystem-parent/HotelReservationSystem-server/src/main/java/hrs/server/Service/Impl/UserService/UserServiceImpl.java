@@ -1,18 +1,17 @@
 package hrs.server.Service.Impl.UserService;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import hrs.common.Exception.UserService.UserExistedException;
+import hrs.common.Exception.UserService.UserNotFoundException;
+import hrs.common.Exception.UserService.UserPasswordErrorException;
+import hrs.common.POJO.UserPO;
 import hrs.common.VO.EnterpriseVO;
 import hrs.common.VO.UserVO;
-import hrs.common.exception.UserNotFoundException;
-import hrs.common.exception.UserPasswordErrorException;
-import hrs.common.exception.UsernameExistedException;
 import hrs.common.util.ResultMessage;
 import hrs.server.DAO.Interface.UserDAO;
-import hrs.server.POJO.UserPO;
 import hrs.server.Service.Interface.PromotionService.EnterpriseService;
 import hrs.server.Service.Interface.UserService.UserService;
 @Service
@@ -27,25 +26,23 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	@Override
 	public UserVO findByUsername(String username) {
-		UserVO vo = new UserVO();
 		UserPO po = dao.findByUserName(username);
 		if(po == null){
 			throw new UserNotFoundException();
 		}else{
-			BeanUtils.copyProperties(po, vo);
-			return vo;
+			return new UserVO(po);
 		}
 	}
 
 	@Transactional
 	@Override
 	public ResultMessage register(UserVO uservo) {
-		UserPO po = new UserPO();
-		BeanUtils.copyProperties(uservo, po);
-		enterpriseService.add(new EnterpriseVO(po.getEnterprise()));
+		UserPO po = new UserPO(uservo);
 		if(dao.add(po) == ResultMessage.EXISTED){
-			throw new UsernameExistedException();
+			throw new UserExistedException();
 		}else{
+			//这里还需要测试一下
+			enterpriseService.add(new EnterpriseVO(po.getEnterprise()));
 			return ResultMessage.SUCCESS;
 		}
 	}
@@ -54,9 +51,7 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	@Override
 	public ResultMessage update(UserVO uservo) {
-		UserPO po = new UserPO();
-		BeanUtils.copyProperties(uservo, po);
-		return dao.update(po);
+		return dao.update(new UserPO(uservo));
 	}
 
 	@Transactional
@@ -68,9 +63,7 @@ public class UserServiceImpl implements UserService {
 		}else if ( !po.getPassword().equals(password)) {
 			throw new UserPasswordErrorException();
 		} else {
-			UserVO vo = new UserVO();
-			BeanUtils.copyProperties(po, vo);
-			return vo;
+			return new UserVO(po);
 		}
 	}
 }

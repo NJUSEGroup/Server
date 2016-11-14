@@ -4,10 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import hrs.common.Exception.StaffService.StaffExistedException;
+import hrs.common.Exception.StaffService.StaffNotFoundExceptioon;
+import hrs.common.Exception.StaffService.StaffPasswordErrorException;
+import hrs.common.POJO.StaffPO;
 import hrs.common.VO.StaffVO;
 import hrs.common.util.ResultMessage;
 import hrs.server.DAO.Interface.StaffDAO;
 import hrs.server.Service.Interface.StaffService.StaffService;
+
 @Service
 public class StaffServiceImpl implements StaffService {
 	@Autowired
@@ -16,35 +21,52 @@ public class StaffServiceImpl implements StaffService {
 	@Transactional
 	@Override
 	public StaffVO login(String username, String password) {
-		// TODO Auto-generated method stub
-		return null;
+		StaffPO po = dao.findByUsername(username);
+		if (po == null) {
+			throw new StaffNotFoundExceptioon();
+		} else if (!po.getPassword().equals(password)) {
+			throw new StaffPasswordErrorException();
+		} else {
+			return new StaffVO(po);
+		}
 	}
 
 	@Transactional
 	@Override
 	public ResultMessage update(StaffVO staffvo) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.update(new StaffPO(staffvo));
 	}
 
 	@Transactional
 	@Override
 	public ResultMessage add(StaffVO staffvo) {
-		// TODO Auto-generated method stub
-		return null;
+		if (dao.add(new StaffPO(staffvo)) == ResultMessage.EXISTED) {
+			throw new StaffExistedException();
+		} else {
+			return ResultMessage.SUCCESS;
+		}
 	}
 
 	@Transactional
 	@Override
 	public StaffVO findByUsername(String username) {
-		// TODO Auto-generated method stub
-		return null;
+		StaffPO po = dao.findByUsername(username);
+		if (po == null) {
+			throw new StaffNotFoundExceptioon();
+		} else {
+			return new StaffVO(po);
+		}
 	}
 
 	@Transactional
 	@Override
 	public StaffVO findByHotelName(String hotelName) {
-		// TODO Auto-generated method stub
-		return null;
+		StaffPO po = dao.findByHotelName(hotelName);
+		if (po == null) {
+			throw new StaffNotFoundExceptioon();
+		} else {
+			return new StaffVO(po);
+		}
 	}
+
 }

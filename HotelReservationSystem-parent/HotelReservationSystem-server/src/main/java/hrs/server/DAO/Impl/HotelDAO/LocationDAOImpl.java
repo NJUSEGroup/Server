@@ -7,8 +7,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import hrs.common.POJO.LocationPO;
 import hrs.server.DAO.Interface.HotelDAO.LocationDAO;
-import hrs.server.POJO.LocationPO;
 @Repository
 public class LocationDAOImpl implements LocationDAO {
 	@Autowired

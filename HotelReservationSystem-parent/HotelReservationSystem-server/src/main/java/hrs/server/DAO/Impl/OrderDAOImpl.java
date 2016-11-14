@@ -8,10 +8,10 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import hrs.common.POJO.OrderPO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.OrderStatus;
 import hrs.server.DAO.Interface.OrderDAO;
-import hrs.server.POJO.OrderPO;
 
 @SuppressWarnings("all")
 @Repository

@@ -1,7 +1,7 @@
 package hrs.server.DAO.Interface;
 
+import hrs.common.POJO.OfflineRecordPO;
 import hrs.common.util.ResultMessage;
-import hrs.server.POJO.OfflineRecordPO;
 
 public interface OfflineRecordDAO {
 	 OfflineRecordPO findByID(int id);

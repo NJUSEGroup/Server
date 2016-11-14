@@ -5,9 +5,9 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import hrs.common.POJO.OfflineRecordPO;
 import hrs.common.util.ResultMessage;
 import hrs.server.DAO.Interface.OfflineRecordDAO;
-import hrs.server.POJO.OfflineRecordPO;
 @Repository
 public class OfflineRecordDAOImpl implements OfflineRecordDAO {
 	@Autowired

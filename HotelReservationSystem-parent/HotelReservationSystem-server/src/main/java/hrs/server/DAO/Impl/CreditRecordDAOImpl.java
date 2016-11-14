@@ -7,9 +7,9 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import hrs.common.POJO.CreditRecordPO;
 import hrs.common.util.ResultMessage;
 import hrs.server.DAO.Interface.CreditRecordDAO;
-import hrs.server.POJO.CreditRecordPO;
 
 
 @SuppressWarnings("all")

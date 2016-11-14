@@ -7,9 +7,9 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import hrs.common.POJO.EnterprisePO;
 import hrs.common.util.ResultMessage;
 import hrs.server.DAO.Interface.PromotionDAO.EnterpriseDAO;
-import hrs.server.POJO.EnterprisePO;
 
 @Repository
 public class EnterpriseDAOImpl implements EnterpriseDAO {

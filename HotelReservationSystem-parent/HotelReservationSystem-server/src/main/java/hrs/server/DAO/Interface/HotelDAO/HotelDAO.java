@@ -2,8 +2,8 @@ package hrs.server.DAO.Interface.HotelDAO;
 
 import java.util.List;
 
+import hrs.common.POJO.HotelPO;
 import hrs.common.util.ResultMessage;
-import hrs.server.POJO.HotelPO;
 
 public interface HotelDAO {
 	 HotelPO findByID(int hotelID);

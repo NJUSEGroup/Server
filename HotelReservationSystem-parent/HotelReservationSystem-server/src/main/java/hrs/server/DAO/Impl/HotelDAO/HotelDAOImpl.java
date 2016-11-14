@@ -7,9 +7,9 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import hrs.common.POJO.HotelPO;
 import hrs.common.util.ResultMessage;
 import hrs.server.DAO.Interface.HotelDAO.HotelDAO;
-import hrs.server.POJO.HotelPO;
 
 @Repository
 public class HotelDAOImpl implements HotelDAO {

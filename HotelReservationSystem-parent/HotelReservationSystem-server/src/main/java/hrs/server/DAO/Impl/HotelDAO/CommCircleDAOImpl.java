@@ -7,8 +7,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import hrs.common.POJO.CommercialCirclePO;
 import hrs.server.DAO.Interface.HotelDAO.CommCircleDAO;
-import hrs.server.POJO.CommercialCirclePO;
 
 @Repository
 public class CommCircleDAOImpl implements CommCircleDAO {

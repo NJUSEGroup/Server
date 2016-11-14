@@ -1,7 +1,7 @@
 package hrs.server.DAO.Interface;
 
+import hrs.common.POJO.StaffPO;
 import hrs.common.util.ResultMessage;
-import hrs.server.POJO.StaffPO;
 
 public interface StaffDAO {
 	 ResultMessage update(StaffPO staffpo);

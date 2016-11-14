@@ -9,9 +9,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import hrs.common.POJO.UserPO;
 import hrs.common.util.type.UserType;
 import hrs.server.DAO.Interface.UserDAO;
-import hrs.server.POJO.UserPO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:applicationContext.xml" })

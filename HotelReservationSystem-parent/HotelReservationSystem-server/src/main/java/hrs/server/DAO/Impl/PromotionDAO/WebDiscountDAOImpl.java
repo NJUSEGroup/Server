@@ -7,9 +7,9 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import hrs.common.POJO.WebDiscountPO;
 import hrs.common.util.ResultMessage;
 import hrs.server.DAO.Interface.PromotionDAO.WebDiscountDAO;
-import hrs.server.POJO.WebDiscountPO;
 
 @Repository
 public class WebDiscountDAOImpl implements WebDiscountDAO {

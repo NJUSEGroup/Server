@@ -29,19 +29,19 @@
 		<property name="configLocation" value="classpath:hibernate.cfg.xml"></property>
 		<property name="mappingResources">
 			<list>
-				<value>hrs/server/POJO/UserPO.hbm.xml</value>
-				<value>hrs/server/POJO/EnterprisePO.hbm.xml</value>
-				<value>hrs/server/POJO/StaffPO.hbm.xml</value>
-				<value>hrs/server/POJO/LocationPO.hbm.xml</value>
-				<value>hrs/server/POJO/CommercialCirclePO.hbm.xml</value>
-				<value>hrs/server/POJO/CreditRecordPO.hbm.xml</value>
-				<value>hrs/server/POJO/OrderPO.hbm.xml</value>
-				<value>hrs/server/POJO/HotelPO.hbm.xml</value>
-				<value>hrs/server/POJO/RoomPO.hbm.xml</value>
-				<value>hrs/server/POJO/HotelDiscountPO.hbm.xml</value>
-				<value>hrs/server/POJO/WebDiscountPO.hbm.xml</value>
-				<value>hrs/server/POJO/OfflineRecordPO.hbm.xml</value>
-				<value>hrs/server/POJO/AvailableRoomPO.hbm.xml</value>
+				<value>hrs/common/POJO/UserPO.hbm.xml</value>
+				<value>hrs/common/POJO/EnterprisePO.hbm.xml</value>
+				<value>hrs/common/POJO/StaffPO.hbm.xml</value>
+				<value>hrs/common/POJO/LocationPO.hbm.xml</value>
+				<value>hrs/common/POJO/CommercialCirclePO.hbm.xml</value>
+				<value>hrs/common/POJO/CreditRecordPO.hbm.xml</value>
+				<value>hrs/common/POJO/OrderPO.hbm.xml</value>
+				<value>hrs/common/POJO/HotelPO.hbm.xml</value>
+				<value>hrs/common/POJO/RoomPO.hbm.xml</value>
+				<value>hrs/common/POJO/HotelDiscountPO.hbm.xml</value>
+				<value>hrs/common/POJO/WebDiscountPO.hbm.xml</value>
+				<value>hrs/common/POJO/OfflineRecordPO.hbm.xml</value>
+				<value>hrs/common/POJO/AvailableRoomPO.hbm.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -74,7 +74,7 @@
 
 
 	<!-- 配置bean 注意使用xml的自动装配 -->
-
+	<!-- 
 	<bean id="userService" class="hrs.server.Service.Impl.UserService.UserServiceImpl"></bean>
 	<bean id="enterpriseService"
 		class="hrs.server.Service.Impl.PromotionService.EnterpriseServiceImpl"></bean>
@@ -96,7 +96,7 @@
 	<bean id="hotelService" class="hrs.server.Service.Impl.HotelService.HotelServiceImpl"></bean>
 	<bean id="creditRecordService"
 		class="hrs.server.Service.Impl.CreditRecordService.CreditRecordServiceImpl"></bean>
-
+ 	-->
 	<!-- ************************以上为Service的配置***************** -->
 	<bean id="loginController" class="hrs.server.Controller.LoginController.LoginController"></bean>
 

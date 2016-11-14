@@ -9,10 +9,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import hrs.common.POJO.HotelPO;
+import hrs.common.POJO.StaffPO;
 import hrs.common.util.type.StaffType;
 import hrs.server.DAO.Interface.StaffDAO;
-import hrs.server.POJO.HotelPO;
-import hrs.server.POJO.StaffPO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:applicationContext.xml" })
@@ -48,6 +48,6 @@ public class TestStaffDAO {
 	@Transactional
 	@Test
 	public void testFindByHotelName() {
-		assertEquals(dao.findByHotelName("仙林大酒店").getUsername(),"admin3");
+		assertEquals(dao.findByHotelName("仙林大酒店").getHotel().getName(),"仙林大酒店");
 	}
 }

@@ -3,9 +3,9 @@ package hrs.server.DAO.Interface;
 import java.util.Date;
 import java.util.List;
 
+import hrs.common.POJO.OrderPO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.OrderStatus;
-import hrs.server.POJO.OrderPO;
 
 public interface OrderDAO {
 	 OrderPO findByID(int ID);

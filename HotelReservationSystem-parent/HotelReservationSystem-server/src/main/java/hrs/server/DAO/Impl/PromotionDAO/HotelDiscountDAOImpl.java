@@ -7,9 +7,9 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import hrs.common.POJO.HotelDiscountPO;
 import hrs.common.util.ResultMessage;
 import hrs.server.DAO.Interface.PromotionDAO.HotelDiscountDAO;
-import hrs.server.POJO.HotelDiscountPO;
 @SuppressWarnings("all")
 @Repository
 public class HotelDiscountDAOImpl implements HotelDiscountDAO {
