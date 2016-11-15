@@ -3,6 +3,7 @@ package hrs.common.VO;
 import java.io.Serializable;
 import java.util.Date;
 
+import hrs.common.POJO.UserPO;
 import hrs.common.util.type.UserType;
 
 public class UserVO implements Serializable {
@@ -24,6 +25,18 @@ public class UserVO implements Serializable {
 	public UserVO() {
 		// TODO Auto-generated constructor stub
 	}
+	public UserVO(UserPO po){
+		this.id = po.getId();
+		this.username = po.getUsername();
+		this.password = po.getPassword();
+		this.phone = po.getPhone();
+		this.name = po.getName();
+		this.credit = po.getCredit();
+		this.birthDate = po.getBirthDate();
+		this.enterprise = po.getEnterprise();
+		this.VIPLevel = po.getVIPLevel();
+		this.type = po.getType();
+	}
 	
 	public UserVO(String username, String password) {
 		super();
@@ -43,79 +56,6 @@ public class UserVO implements Serializable {
 		this.type = type;
 	}
 	
-
-	public UserType getType() {
-		return type;
-	}
-
-	public void setType(UserType type) {
-		this.type = type;
-	}
-	
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public int getCredit() {
-		return credit;
-	}
-
-	public void setCredit(int credit) {
-		this.credit = credit;
-	}
-
-	public Date getBirthDate() {
-		return birthDate;
-	}
-
-	public void setBirthDate(Date birthDate) {
-		this.birthDate = birthDate;
-	}
-
-	public String getEnterprise() {
-		return enterprise;
-	}
-
-	public void setEnterprise(String enterprise) {
-		this.enterprise = enterprise;
-	}
-
-	public int getVIPLevel() {
-		return VIPLevel;
-	}
-
-	public void setVIPLevel(int vIPLevel) {
-		VIPLevel = vIPLevel;
-	}
 
 	@Override
 	public int hashCode() {
@@ -184,5 +124,12 @@ public class UserVO implements Serializable {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "UserVO [id=" + id + ", username=" + username + ", password=" + password + ", phone=" + phone + ", name="
+				+ name + ", credit=" + credit + ", birthDate=" + birthDate + ", enterprise=" + enterprise
+				+ ", VIPLevel=" + VIPLevel + ", type=" + type + "]";
+	}
+	
 
 }

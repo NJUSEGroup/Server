@@ -11,10 +11,10 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import hrs.common.POJO.WebDiscountPO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.WebsiteDiscountType;
 import hrs.server.DAO.Interface.PromotionDAO.WebDiscountDAO;
-import hrs.server.POJO.WebDiscountPO;
 
 public class WebDiscountDAODriver {
 	private WebDiscountDAO dao;

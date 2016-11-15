@@ -11,11 +11,11 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 
 import hrs.StubAndDriver.DAO.RoomDAO.RoomDAOStub;
+import hrs.common.POJO.RoomPO;
 import hrs.common.VO.RoomVO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.RoomType;
 import hrs.server.DAO.Interface.RoomDAO;
-import hrs.server.POJO.RoomPO;
 import hrs.server.Service.Interface.RoomService.RoomService;
 
 public class RoomServiceMock implements RoomService {

@@ -4,11 +4,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import hrs.common.POJO.CreditRecordPO;
+import hrs.common.POJO.UserPO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.CreditRecordType;
 import hrs.server.DAO.Interface.CreditRecordDAO;
-import hrs.server.POJO.CreditRecordPO;
-import hrs.server.POJO.UserPO;
 
 public class CreditRecordDAOStub implements CreditRecordDAO {
 	private Map<Integer,CreditRecordPO> map;

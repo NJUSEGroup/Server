@@ -1,5 +1,6 @@
 package hrs.server.DAO.Impl;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -15,6 +16,8 @@ import hrs.common.POJO.RoomPO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.RoomType;
 import hrs.server.DAO.Interface.RoomDAO;
+import hrs.server.util.DateFormatter;
+import hrs.server.util.SpringUtils;
 
 @Repository
 public class RoomDAOImpl implements RoomDAO {
@@ -47,28 +50,38 @@ public class RoomDAOImpl implements RoomDAO {
 		}
 		return list;
 	}
-
 	/**
-	 * 注意date默认是零时零分零秒
-	 * 如果没有可用房间记录，那么就返回房间总数
+	 * 
+	 * @Title: findAvailableRoomNum 
+	 * @Description:包含begin那天，不包含end那天
+	 * @param hotelID
+	 * @param type
+	 * @param begin
+	 * @param end
+	 * @return 
+	 * @see hrs.server.DAO.Interface.RoomDAO#findAvailableRoomNum(int, hrs.common.util.type.RoomType, java.util.Date, java.util.Date)
 	 */
 	@Override
-	public int findAvailableRoom(int hotelID, RoomType type, Date date) {
-		String hql = "from AvailableRoomPO ar inner join fetch ar.hotel hotel where hotel.id = ? and ar.type = ? and ar.roomDate = ?";
-		AvailableRoomPO po  = null;
+	public int findAvailableRoomNum(int hotelID, RoomType type, Date begin,Date end) {
+		String hql = "from AvailableRoomPO ar inner join fetch ar.hotel hotel where hotel.id = :hotelID and ar.type = :type and ar.roomDate >= :begin and ar.roomDate < :end";
+		List<AvailableRoomPO> list  = null;
 		try{
-			po = ((AvailableRoomPO) getSession().createQuery(hql)
-					.setParameter(0, hotelID)
-					.setParameter(1, type)
-					.setParameter(2, date)
-					.getSingleResult());
+			list =  getSession().createQuery(hql)
+					.setParameter("hotelID", hotelID)
+					.setParameter("type", type)
+					.setParameter("begin", begin)
+					.setParameter("end", end)
+					.getResultList();
 		}catch(NoResultException e){
-			System.out.println("NoResultException");
+			System.out.println("NoResultException  ");
 			return findByHotelAndType(hotelID, type).getRoomNum();
 		}
-		return po.getAvailableRoomNum();
+		/*for(AvailableRoomPO po:list){
+			System.out.println(po);
+		}*/
+		return Collections.min(list).getAvailableRoomNum();
 	}
-
+	
 	@Override
 	public RoomPO findByHotelAndType(int hotelID, RoomType type) {
 		String hql = "from RoomPO room inner join fetch room.hotel hotel where hotel.id = :hotelID and room.type = :type";

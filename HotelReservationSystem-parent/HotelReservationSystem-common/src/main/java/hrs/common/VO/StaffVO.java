@@ -2,6 +2,7 @@ package hrs.common.VO;
 
 import java.io.Serializable;
 
+import hrs.common.POJO.StaffPO;
 import hrs.common.util.type.StaffType;
 
 public class StaffVO implements Serializable {
@@ -21,6 +22,15 @@ public class StaffVO implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public StaffVO(StaffPO po){
+		this.id = po.getId();
+		this.username = po.getUsername();
+		this.password = po.getPassword();
+		this.name = po.getName();
+		this.type = po.getType();
+		this.hotel = new HotelVO(po.getHotel(),this);
+	}
+	
 	public StaffVO(String username, String password, String name, StaffType type, HotelVO hotel) {
 		super();
 		this.username = username;
@@ -30,52 +40,11 @@ public class StaffVO implements Serializable {
 		this.hotel = hotel;
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public StaffType getType() {
-		return type;
-	}
-
-	public void setType(StaffType type) {
-		this.type = type;
-	}
-
-	public HotelVO getHotel() {
-		return hotel;
-	}
-
-	public void setHotel(HotelVO hotel) {
-		this.hotel = hotel;
+	
+	@Override
+	public String toString() {
+		return "StaffVO [id=" + id + ", username=" + username + ", password=" + password + ", name=" + name + ", type="
+				+ type + ", hotel=" + hotel + "]";
 	}
 	
 	

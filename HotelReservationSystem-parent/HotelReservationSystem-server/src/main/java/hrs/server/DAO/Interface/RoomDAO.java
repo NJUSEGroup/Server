@@ -11,6 +11,6 @@ public interface RoomDAO {
 	 ResultMessage update(RoomPO roompo);
 	 ResultMessage add(RoomPO roompo);
 	 List<RoomPO> findByHotelID(int hotelID);
-	 int findAvailableRoom(int hotelID,RoomType type,Date date);
 	 RoomPO findByHotelAndType(int hotelID, RoomType type);
+	 int findAvailableRoomNum(int hotelID, RoomType type, Date begin,Date end) ;
 }

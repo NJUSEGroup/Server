@@ -6,8 +6,6 @@ import static org.junit.Assert.assertTrue;
 import java.text.ParseException;
 import java.util.List;
 
-import javax.persistence.Transient;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,13 +74,14 @@ public class TestRoomDAO {
 			assertEquals(po.getHotel().getId(), 7);
 		}
 	}
-
+	
+	
 	@Transactional
 	@Test
-	public void testFindAvailableRoom() throws ParseException {
-		assertEquals(dao.findAvailableRoom(1, RoomType.Single, DateFormatter.parse("2016-10-27 00:00:00", true)), 8);
+	public void testFindAvailableRoomNum() throws ParseException {
+		assertEquals(dao.findAvailableRoomNum(1, RoomType.Single, DateFormatter.parseWithHMS("2016-10-5 00:00:00"),DateFormatter.parseWithHMS("2016-10-28 00:00:00")), 5);
 	}
-
+	
 	@Transactional
 	@Test
 	public void testFindByHotelAndType() {

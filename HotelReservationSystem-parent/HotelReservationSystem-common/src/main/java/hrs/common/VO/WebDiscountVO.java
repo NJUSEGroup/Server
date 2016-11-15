@@ -3,6 +3,7 @@ package hrs.common.VO;
 import java.io.Serializable;
 import java.util.Date;
 
+import hrs.common.POJO.WebDiscountPO;
 import hrs.common.util.type.WebsiteDiscountType;
 
 public class WebDiscountVO implements Serializable {
@@ -22,7 +23,18 @@ public class WebDiscountVO implements Serializable {
 	public WebDiscountVO() {
 		// TODO Auto-generated constructor stub
 	}
-
+	
+	public WebDiscountVO(WebDiscountPO po){
+		this.id = po.getId();
+		this.discount = po.getDiscount();
+		this.type = po.getType();
+		this.location = new LocationVO(po.getLocation());
+		this.commercialCircle = new CommercialCircleVO(po.getCommercialCircle());
+		this.beginTime = po.getBeginTime();
+		this.endTime = po.getEndTime();
+		this.VIPlevel = po.getVIPlevel();
+	}
+	
 	
 	public WebDiscountVO(int id, double discount, WebsiteDiscountType type, LocationVO location,
 			CommercialCircleVO commercialCircle, Date beginTime, Date endTime, int vIPlevel) {
@@ -38,70 +50,7 @@ public class WebDiscountVO implements Serializable {
 	}
 
 
-	public LocationVO getLocation() {
-		return location;
-	}
-
-	public void setLocation(LocationVO location) {
-		this.location = location;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public double getDiscount() {
-		return discount;
-	}
-
-	public void setDiscount(double discount) {
-		this.discount = discount;
-	}
-
-	public WebsiteDiscountType getType() {
-		return type;
-	}
-
-	public void setType(WebsiteDiscountType type) {
-		this.type = type;
-	}
-
-	public CommercialCircleVO getCommercialCircle() {
-		return commercialCircle;
-	}
-
-	public void setCommercialCircle(CommercialCircleVO commercialCircle) {
-		this.commercialCircle = commercialCircle;
-	}
-
-	public Date getBeginTime() {
-		return beginTime;
-	}
-
-	public void setBeginTime(Date beginTime) {
-		this.beginTime = beginTime;
-	}
-
-	public Date getEndTime() {
-		return endTime;
-	}
-
-	public void setEndTime(Date endTime) {
-		this.endTime = endTime;
-	}
-
-	public int getVIPlevel() {
-		return VIPlevel;
-	}
-
-	public void setVIPlevel(int vIPlevel) {
-		VIPlevel = vIPlevel;
-	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

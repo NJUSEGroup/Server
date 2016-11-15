@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import hrs.common.POJO.OrderPO;
 import hrs.common.util.type.OrderStatus;
 import hrs.common.util.type.RoomType;
 
@@ -36,6 +37,24 @@ public class OrderVO implements Serializable {
 	public OrderVO() {
 		// TODO Auto-generated constructor stub
 	}
+	public OrderVO(OrderPO po){
+		this.id = po.getId();
+		this.placeTime = po.getPlaceTime();
+		this.execTime = po.getExecTime();
+		this.checkinTime = po.getCheckinTime();
+		this.checkoutTime = po.getCheckoutTime();
+		this.revokeTime = po.getRevokeTime();
+		this.status = po.getStatus();
+		this.hotel = new HotelVO(po.getHotel());
+		this.value = po.getValue();
+		this.type = po.getType();
+		this.roomNum = po.getNum();
+		this.hasChild = po.isHasChild();
+		this.user = new UserVO(po.getUser());
+		this.score = po.getScore();
+		this.evaluation = po.getEvaluation();
+		this.peopleNum = po.getPeopleNum();
+	}
 	
 	public OrderVO(int id, Date placeTime, Date execTime, Date checkinTime, Date expectedCheckoutTime,
 			Date checkoutTime, Date revokeTime, OrderStatus status, HotelVO hotel, double value, RoomType type,
@@ -59,176 +78,6 @@ public class OrderVO implements Serializable {
 		this.evaluation = evaluation;
 		this.peopleNum = peopleNum;
 	}
-
-	public OrderVO(int id, Date placeTime, Date expectedCheckoutTime, OrderStatus status, HotelVO hotel, double value,
-			RoomType type, int roomNum, boolean hasChild, UserVO user, int peopleNum) {
-		super();
-		this.id = id;
-		this.placeTime = placeTime;
-		this.expectedCheckoutTime = expectedCheckoutTime;
-		this.status = status;
-		this.hotel = hotel;
-		this.value = value;
-		this.type = type;
-		this.roomNum = roomNum;
-		this.hasChild = hasChild;
-		this.user = user;
-		this.peopleNum = peopleNum;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public Date getPlaceTime() {
-		return placeTime;
-	}
-
-	public void setPlaceTime(Date placeTime) {
-		this.placeTime = placeTime;
-	}
-
-	public Date getExecTime() {
-		return execTime;
-	}
-
-	public void setExecTime(Date execTime) {
-		this.execTime = execTime;
-	}
-
-	public Date getCheckinTime() {
-		return checkinTime;
-	}
-
-	public void setCheckinTime(Date checkinTime) {
-		this.checkinTime = checkinTime;
-	}
-
-	public Date getExpectedCheckoutTime() {
-		return expectedCheckoutTime;
-	}
-
-	public void setExpectedCheckoutTime(Date expectedCheckoutTime) {
-		this.expectedCheckoutTime = expectedCheckoutTime;
-	}
-
-	public Date getCheckoutTime() {
-		return checkoutTime;
-	}
-
-	public void setCheckoutTime(Date checkoutTime) {
-		this.checkoutTime = checkoutTime;
-	}
-
-	public Date getRevokeTime() {
-		return revokeTime;
-	}
-
-	public void setRevokeTime(Date revokeTime) {
-		this.revokeTime = revokeTime;
-	}
-
-	public OrderStatus getStatus() {
-		return status;
-	}
-
-	public void setStatus(OrderStatus status) {
-		this.status = status;
-	}
-
-	public HotelVO getHotel() {
-		return hotel;
-	}
-
-	public void setHotel(HotelVO hotel) {
-		this.hotel = hotel;
-	}
-
-	public double getValue() {
-		return value;
-	}
-
-	public void setValue(double value) {
-		this.value = value;
-	}
-
-	public RoomType getType() {
-		return type;
-	}
-
-	public void setType(RoomType type) {
-		this.type = type;
-	}
-
-	public int getRoomNum() {
-		return roomNum;
-	}
-
-	public void setRoomNum(int roomNum) {
-		this.roomNum = roomNum;
-	}
-
-	public boolean isHasChild() {
-		return hasChild;
-	}
-
-	public void setHasChild(boolean hasChild) {
-		this.hasChild = hasChild;
-	}
-
-	public UserVO getUser() {
-		return user;
-	}
-
-	public void setUser(UserVO user) {
-		this.user = user;
-	}
-
-	public int getScore() {
-		return score;
-	}
-
-	public void setScore(int score) {
-		this.score = score;
-	}
-
-	public String getEvaluation() {
-		return evaluation;
-	}
-
-	public void setEvaluation(String evaluation) {
-		this.evaluation = evaluation;
-	}
-
-	public int getPeopleNum() {
-		return peopleNum;
-	}
-
-	public void setPeopleNum(int peopleNum) {
-		this.peopleNum = peopleNum;
-	}
-
-
-	public Map<HotelDiscountVO, Double> getHotelDiscounts() {
-		return hotelDiscounts;
-	}
-
-	public void setHotelDiscounts(Map<HotelDiscountVO, Double> hotelDiscounts) {
-		this.hotelDiscounts = hotelDiscounts;
-	}
-
-	public Map<WebDiscountVO, Double> getWebDiscounts() {
-		return webDiscounts;
-	}
-
-	public void setWebDiscounts(Map<WebDiscountVO, Double> webDiscounts) {
-		this.webDiscounts = webDiscounts;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -338,6 +187,15 @@ public class OrderVO implements Serializable {
 		} else if (!webDiscounts.equals(other.webDiscounts))
 			return false;
 		return true;
+	}
+	@Override
+	public String toString() {
+		return "OrderVO [id=" + id + ", placeTime=" + placeTime + ", execTime=" + execTime + ", checkinTime="
+				+ checkinTime + ", expectedCheckoutTime=" + expectedCheckoutTime + ", checkoutTime=" + checkoutTime
+				+ ", revokeTime=" + revokeTime + ", status=" + status + ", hotel=" + hotel + ", value=" + value
+				+ ", type=" + type + ", roomNum=" + roomNum + ", hasChild=" + hasChild + ", user=" + user + ", score="
+				+ score + ", evaluation=" + evaluation + ", peopleNum=" + peopleNum + ", hotelDiscounts="
+				+ hotelDiscounts + ", webDiscounts=" + webDiscounts + "]";
 	}
 	
 }

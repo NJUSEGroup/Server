@@ -6,9 +6,9 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 
 import hrs.StubAndDriver.DAO.HotelDAO.LocationDAO.LocationDAOStub;
+import hrs.common.POJO.LocationPO;
 import hrs.common.VO.LocationVO;
 import hrs.server.DAO.Interface.HotelDAO.LocationDAO;
-import hrs.server.POJO.LocationPO;
 import hrs.server.Service.Interface.HotelService.LocationService;
 
 public class LocationServiceStub implements LocationService{

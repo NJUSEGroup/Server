@@ -1,11 +1,14 @@
 package hrs.server.Service.Impl.PromotionService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import hrs.common.Exception.PromotionService.EnterpriseNotFoundException;
+import hrs.common.POJO.EnterprisePO;
 import hrs.common.VO.EnterpriseVO;
 import hrs.common.util.ResultMessage;
 import hrs.server.DAO.Interface.PromotionDAO.EnterpriseDAO;
@@ -15,18 +18,42 @@ import hrs.server.Service.Interface.PromotionService.EnterpriseService;
 public class EnterpriseServiceImpl implements EnterpriseService {
 	@Autowired
 	private EnterpriseDAO dao;
-
+	/**
+	 * 
+	 * @Title: getAllEnterprises 
+	 * @Description:返回所有企业
+	 * @return 
+	 * @see hrs.server.Service.Interface.PromotionService.EnterpriseService#getAllEnterprises()
+	 */
 	@Transactional
 	@Override
 	public List<EnterpriseVO> getAllEnterprises() {
-		return null;
+		List<EnterprisePO> pos = dao.findAll();
+		List<EnterpriseVO> vos = null;
+		if(pos.size() == 0){
+			throw new EnterpriseNotFoundException();
+		}else{
+			EnterpriseVO vo = null;
+			vos = new ArrayList<>();
+			for(EnterprisePO po:pos){
+				vo = new EnterpriseVO(po);
+				vos.add(vo);
+			}
+		}
+		return vos;
 	}
-
+	/**
+	 * 
+	 * @Title: add 
+	 * @Description:添加一个企业
+	 * @param vo
+	 * @return 
+	 * @see hrs.server.Service.Interface.PromotionService.EnterpriseService#add(hrs.common.VO.EnterpriseVO)
+	 */
 	@Transactional
 	@Override
 	public ResultMessage add(EnterpriseVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.add(new EnterprisePO(vo));
 	}
 
 }

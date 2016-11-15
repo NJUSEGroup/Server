@@ -3,6 +3,7 @@ package hrs.common.VO;
 import java.io.Serializable;
 import java.util.Date;
 
+import hrs.common.POJO.HotelDiscountPO;
 import hrs.common.util.type.HotelDiscountType;
 
 public  class HotelDiscountVO implements Serializable{
@@ -21,6 +22,16 @@ public  class HotelDiscountVO implements Serializable{
 	public HotelDiscountVO() {
 		// TODO Auto-generated constructor stub
 	}
+	public HotelDiscountVO(HotelDiscountPO po){
+		this.id = po.getId();
+		this.hotel = new HotelVO(po.getHotel());
+		this.discount = po.getDiscount();
+		this.type = po.getType();
+		this.enterprise = new EnterpriseVO(po.getEnterprise());
+		this.minQty = po.getMinQty();
+		this.beginTime = po.getBeginTime();
+		this.endTime = po.getEndTime();
+	}
 	
 	public HotelDiscountVO(int id, HotelVO hotel, double discount, HotelDiscountType type, EnterpriseVO enterprise,
 			int minQty, Date beginTime, Date endTime) {
@@ -35,54 +46,6 @@ public  class HotelDiscountVO implements Serializable{
 		this.endTime = endTime;
 	}
 
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public HotelVO getHotel() {
-		return hotel;
-	}
-	public void setHotel(HotelVO hotel) {
-		this.hotel = hotel;
-	}
-	public double getDiscount() {
-		return discount;
-	}
-	public void setDiscount(double discount) {
-		this.discount = discount;
-	}
-	public HotelDiscountType getType() {
-		return type;
-	}
-	public void setType(HotelDiscountType type) {
-		this.type = type;
-	}
-	public EnterpriseVO getEnterprise() {
-		return enterprise;
-	}
-	public void setEnterprise(EnterpriseVO enterprise) {
-		this.enterprise = enterprise;
-	}
-	public int getMinQty() {
-		return minQty;
-	}
-	public void setMinQty(int minQty) {
-		this.minQty = minQty;
-	}
-	public Date getBeginTime() {
-		return beginTime;
-	}
-	public void setBeginTime(Date beginTime) {
-		this.beginTime = beginTime;
-	}
-	public Date getEndTime() {
-		return endTime;
-	}
-	public void setEndTime(Date endTime) {
-		this.endTime = endTime;
-	}
 
 	@Override
 	public int hashCode() {

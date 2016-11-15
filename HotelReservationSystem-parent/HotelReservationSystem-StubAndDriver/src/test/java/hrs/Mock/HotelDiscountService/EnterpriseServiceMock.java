@@ -6,10 +6,10 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 
 import hrs.StubAndDriver.DAO.HotelDiscountDAO.EnterpriseDAOStub;
+import hrs.common.POJO.EnterprisePO;
 import hrs.common.VO.EnterpriseVO;
 import hrs.common.util.ResultMessage;
 import hrs.server.DAO.Interface.PromotionDAO.EnterpriseDAO;
-import hrs.server.POJO.EnterprisePO;
 import hrs.server.Service.Interface.PromotionService.EnterpriseService;
 
 public class EnterpriseServiceMock implements EnterpriseService {

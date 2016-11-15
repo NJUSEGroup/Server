@@ -6,10 +6,10 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
+import hrs.common.POJO.UserPO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.UserType;
 import hrs.server.DAO.Interface.UserDAO;
-import hrs.server.POJO.UserPO;
 
 public class UserDAODriver {
 	private UserDAO dao;

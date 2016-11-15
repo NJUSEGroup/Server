@@ -5,9 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import hrs.common.POJO.CommercialCirclePO;
+import hrs.common.POJO.LocationPO;
 import hrs.server.DAO.Interface.HotelDAO.CommCircleDAO;
-import hrs.server.POJO.CommercialCirclePO;
-import hrs.server.POJO.LocationPO;
 
 public class CommCircleDAOStub implements CommCircleDAO{
 	private Map<Integer,CommercialCirclePO> map;

@@ -3,6 +3,10 @@ package hrs.common.VO;
 import java.io.Serializable;
 import java.util.List;
 
+import hrs.common.POJO.CommercialCirclePO;
+import hrs.common.POJO.HotelPO;
+import hrs.common.POJO.LocationPO;
+import hrs.common.POJO.StaffPO;
 import hrs.common.util.type.OrderStatus;
 
 public class HotelVO implements Serializable {
@@ -18,15 +22,40 @@ public class HotelVO implements Serializable {
 	public CommercialCircleVO commercialCircle;
 	public String profile;
 	public String service;
-	public StaffVO staff;
+	public  StaffVO staff;
 	public String street;
 	public List<OrderStatus> status;
 	public HotelVO() {
 		// TODO Auto-generated constructor stub
 	}
+	public HotelVO(HotelPO po,StaffVO staff){
+		this.id = po.getId();
+		this.name = po.getName();
+		this.star = po.getStar();
+		this.score = po.getScore();
+		this.location =  (po.getLocation() != null) ? new LocationVO(po.getLocation()):null;
+		this.commercialCircle = (po.getCommercialCircle() != null) ? new CommercialCircleVO(po.getCommercialCircle()):null;
+		this.profile = po.getProfile();
+		this.staff = staff;
+		this.service = po.getService();
+		this.street = po.getStreet();
+	}
+	
+	public HotelVO(HotelPO po){
+		this.id = po.getId();
+		this.name = po.getName();
+		this.star = po.getStar();
+		this.score = po.getScore();
+		this.location = po.getLocation() != null? new LocationVO(po.getLocation()):null;
+		this.commercialCircle = po.getCommercialCircle() != null? new CommercialCircleVO(po.getCommercialCircle()):null;
+		this.staff = po.getStaff() != null ? new StaffVO(po.getStaff()):null;
+		this.profile = po.getProfile();
+		this.service = po.getService();
+		this.street = po.getStreet();
+	}
 	
 	public HotelVO(int id, String name, int star, double score, LocationVO location,
-			CommercialCircleVO commercialCircle, String profile, String service, StaffVO staff, String street) {
+			CommercialCircleVO commercialCircle, String profile, String service, String street) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -36,7 +65,6 @@ public class HotelVO implements Serializable {
 		this.commercialCircle = commercialCircle;
 		this.profile = profile;
 		this.service = service;
-		this.staff = staff;
 		this.street = street;
 	}
 
@@ -52,93 +80,6 @@ public class HotelVO implements Serializable {
 		this.service = service;
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public int getStar() {
-		return star;
-	}
-
-	public void setStar(int star) {
-		this.star = star;
-	}
-
-	public double getScore() {
-		return score;
-	}
-
-	public void setScore(double score) {
-		this.score = score;
-	}
-
-	public LocationVO getLocation() {
-		return location;
-	}
-
-	public void setLocation(LocationVO location) {
-		this.location = location;
-	}
-
-	public CommercialCircleVO getCommercialCircle() {
-		return commercialCircle;
-	}
-
-	public void setCommercialCircle(CommercialCircleVO commercialCircle) {
-		this.commercialCircle = commercialCircle;
-	}
-
-	public String getProfile() {
-		return profile;
-	}
-
-	public void setProfile(String profile) {
-		this.profile = profile;
-	}
-
-	public String getService() {
-		return service;
-	}
-
-	public void setService(String service) {
-		this.service = service;
-	}
-
-	public StaffVO getStaff() {
-		return staff;
-	}
-
-	public void setStaff(StaffVO staff) {
-		this.staff = staff;
-	}
-
-	public String getStreet() {
-		return street;
-	}
-
-	public void setStreet(String street) {
-		this.street = street;
-	}
-	public List<OrderStatus> getStatus() {
-		return status;
-	}
-
-	public void setStatus(List<OrderStatus> status) {
-		this.status = status;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -152,7 +93,6 @@ public class HotelVO implements Serializable {
 		temp = Double.doubleToLongBits(score);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((service == null) ? 0 : service.hashCode());
-		result = prime * result + ((staff == null) ? 0 : staff.hashCode());
 		result = prime * result + star;
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		result = prime * result + ((street == null) ? 0 : street.hashCode());
@@ -196,11 +136,6 @@ public class HotelVO implements Serializable {
 			if (other.service != null)
 				return false;
 		} else if (!service.equals(other.service))
-			return false;
-		if (staff == null) {
-			if (other.staff != null)
-				return false;
-		} else if (!staff.equals(other.staff))
 			return false;
 		if (star != other.star)
 			return false;

@@ -8,13 +8,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import hrs.common.POJO.HotelPO;
+import hrs.common.POJO.OrderPO;
+import hrs.common.POJO.UserPO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.OrderStatus;
 import hrs.common.util.type.RoomType;
 import hrs.server.DAO.Interface.OrderDAO;
-import hrs.server.POJO.HotelPO;
-import hrs.server.POJO.OrderPO;
-import hrs.server.POJO.UserPO;
 
 public class OrderDAOStub implements OrderDAO {
 	private Map<Integer,OrderPO> map;

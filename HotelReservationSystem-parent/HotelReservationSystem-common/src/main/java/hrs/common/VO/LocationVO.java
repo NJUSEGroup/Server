@@ -2,6 +2,8 @@ package hrs.common.VO;
 
 import java.io.Serializable;
 
+import hrs.common.POJO.LocationPO;
+
 public class LocationVO implements Serializable{
 	/**
 	 * 
@@ -12,21 +14,14 @@ public class LocationVO implements Serializable{
 	public LocationVO() {
 		// TODO Auto-generated constructor stub
 	}
-	public LocationVO(int id, String name) {
-		this.id = id;
-		this.name = name;
+	
+	public LocationVO(LocationPO po){
+		this.id = po.getId();
+		this.name = po.getName();
 	}
 	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
+	public LocationVO(int id, String name) {
 		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
 		this.name = name;
 	}
 	@Override

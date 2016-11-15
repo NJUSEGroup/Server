@@ -2,32 +2,30 @@ package hrs.common.VO;
 
 import java.io.Serializable;
 
-public class EnterpriseVO implements Serializable{
+import hrs.common.POJO.EnterprisePO;
+
+public class EnterpriseVO implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	public int id;
 	public String name;
-	public EnterpriseVO(){
-		
+
+	public EnterpriseVO() {
+
 	}
+
+	public EnterpriseVO(EnterprisePO po) {
+		this.id = po.getId();
+		this.name = po.getName();
+	}
+
 	public EnterpriseVO(String name) {
 		super();
 		this.name = name;
 	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -36,6 +34,7 @@ public class EnterpriseVO implements Serializable{
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -54,5 +53,10 @@ public class EnterpriseVO implements Serializable{
 			return false;
 		return true;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "EnterpriseVO [id=" + id + ", name=" + name + "]";
+	}
+
 }

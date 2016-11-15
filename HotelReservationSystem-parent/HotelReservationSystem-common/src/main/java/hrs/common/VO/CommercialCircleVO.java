@@ -2,6 +2,8 @@ package hrs.common.VO;
 
 import java.io.Serializable;
 
+import hrs.common.POJO.CommercialCirclePO;
+
 public class CommercialCircleVO implements Serializable {
 
 	/**
@@ -14,31 +16,14 @@ public class CommercialCircleVO implements Serializable {
 
 	public CommercialCircleVO() {
 	}
-
-	public int getId() {
-		return id;
+	
+	public CommercialCircleVO(CommercialCirclePO po){
+		this.id = po.getId();
+		this.location = po.getLocation() != null? new LocationVO(po.getLocation()):null;
+		this.name = po.getName();
 	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public LocationVO getLocation() {
-		return location;
-	}
-
-	public void setLocation(LocationVO location) {
-		this.location = location;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -72,7 +57,5 @@ public class CommercialCircleVO implements Serializable {
 			return false;
 		return true;
 	}
-
-	
 
 }

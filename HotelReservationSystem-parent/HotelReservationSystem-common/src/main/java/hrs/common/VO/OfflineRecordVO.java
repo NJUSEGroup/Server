@@ -3,6 +3,7 @@ package hrs.common.VO;
 import java.io.Serializable;
 import java.util.Date;
 
+import hrs.common.POJO.OfflineRecordPO;
 import hrs.common.util.type.RoomType;
 
 public class OfflineRecordVO implements Serializable{
@@ -21,60 +22,18 @@ public class OfflineRecordVO implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 	
-	public OfflineRecordVO(int id, HotelVO hotel, Date checkinTime, Date expectedCheckoutTime, Date checkoutTime,
-			RoomType type, int num) {
-		super();
-		this.id = id;
-		this.hotel = hotel;
-		this.checkinTime = checkinTime;
-		this.expectedCheckoutTime = expectedCheckoutTime;
-		this.checkoutTime = checkoutTime;
-		this.type = type;
-		this.num = num;
+	public OfflineRecordVO(OfflineRecordPO po){
+		this.id = po.getId();
+		this.hotel = new HotelVO(po.getHotel());
+		this.checkinTime = po.getCheckinTime();
+		this.expectedCheckoutTime = po.getExpectedCheckoutTime();
+		this.checkoutTime = po.getCheckoutTime();
+		this.type = po.getType();
+		this.num = po.getNum();
 	}
+	
 
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public HotelVO getHotel() {
-		return hotel;
-	}
-	public void setHotel(HotelVO hotel) {
-		this.hotel = hotel;
-	}
-	public Date getCheckinTime() {
-		return checkinTime;
-	}
-	public void setCheckinTime(Date checkinTime) {
-		this.checkinTime = checkinTime;
-	}
-	public Date getExpectedCheckoutTime() {
-		return expectedCheckoutTime;
-	}
-	public void setExpectedCheckoutTime(Date expectedCheckoutTime) {
-		this.expectedCheckoutTime = expectedCheckoutTime;
-	}
-	public Date getCheckoutTime() {
-		return checkoutTime;
-	}
-	public void setCheckoutTime(Date checkoutTime) {
-		this.checkoutTime = checkoutTime;
-	}
-	public RoomType getType() {
-		return type;
-	}
-	public void setType(RoomType type) {
-		this.type = type;
-	}
-	public int getNum() {
-		return num;
-	}
-	public void setNum(int num) {
-		this.num = num;
-	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -7,12 +7,12 @@ import org.springframework.beans.BeanUtils;
 
 import hrs.StubAndDriver.DAO.CreditRecordDAO.CreditRecordDAOStub;
 import hrs.StubAndDriver.Service.UserService.UserServiceStub;
+import hrs.common.POJO.CreditRecordPO;
 import hrs.common.VO.CreditRecordVO;
 import hrs.common.VO.UserVO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.VIPLevel;
 import hrs.server.DAO.Interface.CreditRecordDAO;
-import hrs.server.POJO.CreditRecordPO;
 import hrs.server.Service.Interface.CreditRecordService.CreditRecordService;
 import hrs.server.Service.Interface.UserService.UserService;
 

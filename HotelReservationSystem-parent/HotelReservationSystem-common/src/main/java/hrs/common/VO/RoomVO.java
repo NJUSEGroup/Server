@@ -2,6 +2,7 @@ package hrs.common.VO;
 
 import java.io.Serializable;
 
+import hrs.common.POJO.RoomPO;
 import hrs.common.util.type.RoomType;
 
 public class RoomVO implements Serializable {
@@ -15,6 +16,13 @@ public class RoomVO implements Serializable {
 	public double roomValue;
 	public int availableRoomNum;
 	
+	public RoomVO(RoomPO po){
+		this.hotel = new HotelVO(po.getHotel());
+		this.type = po.getType();
+		this.roomNum = po.getRoomNum();
+		this.roomValue = po.getRoomValue();
+	}
+	
 	public RoomVO(HotelVO hotel, RoomType type, int roomNum, double roomValue) {
 		super();
 		this.hotel = hotel;
@@ -26,36 +34,7 @@ public class RoomVO implements Serializable {
 	public RoomVO() {
 	}
 
-	public HotelVO getHotel() {
-		return hotel;
-	}
-	public void setHotel(HotelVO hotel) {
-		this.hotel = hotel;
-	}
-	public RoomType getType() {
-		return type;
-	}
-	public void setType(RoomType type) {
-		this.type = type;
-	}
-	public int getRoomNum() {
-		return roomNum;
-	}
-	public void setRoomNum(int roomNum) {
-		this.roomNum = roomNum;
-	}
-	public double getRoomValue() {
-		return roomValue;
-	}
-	public void setRoomValue(double roomValue) {
-		this.roomValue = roomValue;
-	}
-	public int getAvailableRoomNum() {
-		return availableRoomNum;
-	}
-	public void setAvailableRoomNum(int availableRoomNum) {
-		this.availableRoomNum = availableRoomNum;
-	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -92,6 +71,12 @@ public class RoomVO implements Serializable {
 		if (type != other.type)
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "RoomVO [hotel=" + hotel + ", type=" + type + ", roomNum=" + roomNum + ", roomValue=" + roomValue
+				+ ", availableRoomNum=" + availableRoomNum + "]";
 	}
 	
 	

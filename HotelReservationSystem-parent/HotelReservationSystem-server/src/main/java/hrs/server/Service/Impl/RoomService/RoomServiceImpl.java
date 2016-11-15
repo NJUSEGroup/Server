@@ -2,9 +2,7 @@ package hrs.server.Service.Impl.RoomService;
 
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +24,14 @@ public class RoomServiceImpl implements RoomService {
 	private RoomDAO dao;
 	
 	/**
-	 * 查找当前酒店的各个房间类型，以及每种房间的可用数量
+	 * 
+	 * @Title: findAvailableByHotelID 
+	 * @Description:查找当前酒店的各个房间类型，以及每种房间的可用数量
+	 * @param hotelID
+	 * @param begin
+	 * @param end
+	 * @return 
+	 * @see hrs.server.Service.Interface.RoomService.RoomService#findAvailableByHotelID(int, java.util.Date, java.util.Date)
 	 */
 	@Transactional
 	@Override
@@ -44,19 +49,40 @@ public class RoomServiceImpl implements RoomService {
 		}
 		return vos;
 	}
-
+	/**
+	 * 
+	 * @Title: update 
+	 * @Description:更新酒店信息
+	 * @param roomvo
+	 * @return 
+	 * @see hrs.server.Service.Interface.RoomService.RoomService#update(hrs.common.VO.RoomVO)
+	 */
 	@Transactional
 	@Override
 	public ResultMessage update(RoomVO roomvo) {
 		return dao.update(new RoomPO(roomvo));
 	}
-
+	/**
+	 * 
+	 * @Title: add 
+	 * @Description:添加酒店
+	 * @param roomvo
+	 * @return 
+	 * @see hrs.server.Service.Interface.RoomService.RoomService#add(hrs.common.VO.RoomVO)
+	 */
 	@Transactional
 	@Override
 	public ResultMessage add(RoomVO roomvo) {
 		return dao.add(new RoomPO(roomvo));
 	}
-
+	/**
+	 * 
+	 * @Title: findNotAddedRoomType 
+	 * @Description:
+	 * @param hotelID
+	 * @return 
+	 * @see hrs.server.Service.Interface.RoomService.RoomService#findNotAddedRoomType(int)
+	 */
 	@Transactional
 	@Override
 	public List<RoomType> findNotAddedRoomType(int hotelID) {
@@ -73,44 +99,36 @@ public class RoomServiceImpl implements RoomService {
 	}
 	
 	/**
-	 * 找到在begin和end时间段中该类型该酒店的可用房间的最小数量
+	 * 
+	 * @Title: findAvailableRoomNum 
+	 * @Description:找到在begin和end时间段中该类型该酒店的可用房间的最小数量
+	 *			         注意begin开始那天计入，end那天不计入
 	 * @param hotelID
 	 * @param type
 	 * @param begin
 	 * @param end
-	 * @return
+	 * @return 
+	 * @see hrs.server.Service.Interface.RoomService.RoomService#findAvailableRoomNum(int, hrs.common.util.type.RoomType, java.util.Date, java.util.Date)
 	 */
 	@Transactional
 	@Override
 	public int findAvailableRoomNum(int hotelID, RoomType type, Date begin, Date end) {
-		int minRoomNum = Integer.MAX_VALUE, roomNum = 0;
 		try {
-			begin = DateFormatter.parse(DateFormatter.format(begin),false);
-			end = DateFormatter.parse(DateFormatter.format(end),false);
-			while (!begin.equals(end)) {
-				roomNum = dao.findAvailableRoom(hotelID, type, begin);
-				System.out.println(roomNum);
-				if (roomNum == 0) {
-					return 0;
-				}
-				if (roomNum < minRoomNum) {
-					minRoomNum = roomNum;
-				}
-				begin = incOneDay(begin);
-			}
+			begin = DateFormatter.parseWithHMS(DateFormatter.format(begin));
+			end = DateFormatter.parseWithHMS(DateFormatter.format(end));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		return minRoomNum;
+		return dao.findAvailableRoomNum(hotelID, type, begin, end);
 	}
-	
-	private Date incOneDay(Date date) {
-		Calendar c = new GregorianCalendar();
-		c.setTime(date);
-		c.add(Calendar.DATE, 1);
-		return c.getTime();
-	}
-	
+	/**
+	 * 
+	 * @Title: findByHotelID 
+	 * @Description:根据酒店id查询所有房间信息
+	 * @param hotelID
+	 * @return 
+	 * @see hrs.server.Service.Interface.RoomService.RoomService#findByHotelID(int)
+	 */
 	@Transactional
 	@Override
 	public List<RoomVO> findByHotelID(int hotelID) {
@@ -126,7 +144,15 @@ public class RoomServiceImpl implements RoomService {
 		}
 		return vos;
 	}
-	
+	/**
+	 * 
+	 * @Title: findByHotelAndType 
+	 * @Description:根据酒店id和房间类型来查询房间信息
+	 * @param hotelID
+	 * @param type
+	 * @return 
+	 * @see hrs.server.Service.Interface.RoomService.RoomService#findByHotelAndType(int, hrs.common.util.type.RoomType)
+	 */
 	@Override
 	public RoomVO findByHotelAndType(int hotelID, RoomType type) {
 		RoomPO po = dao.findByHotelAndType(hotelID, type);

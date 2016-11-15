@@ -1,7 +1,7 @@
-package hrs.common.util;
+package hrs.server.util;
 /**
  * 
- * @author songx
+ * @author NewSong
 	<0 ~ 500  1
 	500       2
 	1500      3
