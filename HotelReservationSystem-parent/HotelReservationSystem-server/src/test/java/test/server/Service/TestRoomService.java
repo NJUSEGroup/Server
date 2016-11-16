@@ -25,7 +25,6 @@ public class TestRoomService {
 	@Autowired
 	private RoomService service;
 
-	@Transactional
 	@Test
 	public void testUpdate() {
 		RoomVO vo = service.findByHotelAndType(1, RoomType.Single);
@@ -34,7 +33,6 @@ public class TestRoomService {
 //		assertEquals(9, service.findByHotelAndType(1, RoomType.Single).roomNum);
 	}
 
-	@Transactional
 	@Test
 	public void testAdd() {
 		HotelVO hotel = new HotelVO();
@@ -44,14 +42,12 @@ public class TestRoomService {
 		assertEquals(vo, service.findByHotelAndType(6, RoomType.Business));
 	}
 
-	@Transactional
 	@Test
 	public void testFindByHotelAndType() {
 		RoomVO vo = service.findByHotelAndType(1, RoomType.Single);
 		assertEquals(8, vo.roomNum);
 	}
 
-	@Transactional
 	@Test
 	public void testFindNotAddedRoomType() {
 		List<RoomType> types = service.findNotAddedRoomType(1);
@@ -61,7 +57,6 @@ public class TestRoomService {
 		assertFalse(types.contains(RoomType.Single));
 	}
 
-	@Transactional
 	@Test
 	public void testFindAvailableByHotelID() throws ParseException {
 		Date begin = DateFormatter.parseWithHMS("2016-10-05 12:00:00");
@@ -73,7 +68,6 @@ public class TestRoomService {
 		assertNotNull(list);
 	}
 	
-	@Transactional
 	@Test
 	public void testFindAvailableRoomNum() throws ParseException {
 		Date begin = DateFormatter.parseWithHMS("2016-10-05 12:00:00");
@@ -81,7 +75,6 @@ public class TestRoomService {
 		assertEquals(service.findAvailableRoomNum(1, RoomType.Single, begin, end),5);
 	}
 
-	@Transactional
 	@Test
 	public void testFindByHotelID() {
 		List<RoomVO> list = service.findByHotelID(4);

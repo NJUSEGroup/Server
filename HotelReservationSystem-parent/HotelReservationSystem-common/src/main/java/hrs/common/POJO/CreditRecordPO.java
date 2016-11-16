@@ -24,8 +24,8 @@ public class CreditRecordPO implements Serializable{
 	
 	public CreditRecordPO(CreditRecordVO vo){
 		this.id = vo.id;
-		this.order = new OrderPO(vo.order);
-		this.user = new UserPO(vo.user);
+		this.order = vo.order  != null ? new OrderPO(vo.order):null;
+		this.user = vo.user != null ? new UserPO(vo.user):null;
 		this.type = vo.type;
 		this.variation = vo.variation;
 		this.currCredit = vo.currCredit;

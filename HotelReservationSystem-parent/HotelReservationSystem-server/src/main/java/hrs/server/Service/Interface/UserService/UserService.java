@@ -8,4 +8,5 @@ public interface UserService {
 	ResultMessage register(UserVO uservo);
 	ResultMessage update(UserVO uservo);
 	UserVO login(String username,String password);
+	boolean validateCredit(String username);
 }

@@ -36,13 +36,14 @@ public class HotelPO implements Serializable {
 		this.service = vo.service;
 		this.street = vo.street;
 	}
+	
 	public HotelPO(HotelVO vo,StaffPO staff) {
 		this.id = vo.id;
 		this.name = vo.name;
 		this.star = vo.star;
 		this.score = vo.score;
-		this.location = new LocationPO(vo.location);
-		this.commercialCircle = new CommercialCirclePO(vo.commercialCircle);
+		this.location = vo.location != null ? new LocationPO(vo.location):null;
+		this.commercialCircle = vo.commercialCircle != null ? new CommercialCirclePO(vo.commercialCircle):null;
 		this.staff = staff;
 		this.profile = vo.profile;
 		this.service = vo.service;

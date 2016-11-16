@@ -2,7 +2,11 @@ package hrs.server.Service.Impl.PromotionService.HotelDiscountService;
 
 import hrs.common.VO.OrderVO;
 import hrs.server.util.DateFormatter;
-
+/**
+ * 生日折扣
+ * @author NewSong
+ *
+ */
 public class BirthdayHotelDiscount extends HotelDiscount {
 	
 

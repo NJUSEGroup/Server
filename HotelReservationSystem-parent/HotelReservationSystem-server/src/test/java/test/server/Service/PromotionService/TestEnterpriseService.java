@@ -20,7 +20,6 @@ public class TestEnterpriseService {
 	@Autowired
 	private EnterpriseService service;
 
-	@Transactional
 	@Test
 	public void testgetAllEnterprises() {
 		List<EnterpriseVO> list = service.getAllEnterprises();
@@ -30,7 +29,6 @@ public class TestEnterpriseService {
 		assertNotNull(list);
 	}
 
-	@Transactional
 	@Test
 	public void testAdd() {
 		EnterpriseVO enterprise = new EnterpriseVO("华为");

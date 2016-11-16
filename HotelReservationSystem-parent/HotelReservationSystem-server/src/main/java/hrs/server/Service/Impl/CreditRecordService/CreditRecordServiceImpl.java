@@ -28,7 +28,7 @@ public class CreditRecordServiceImpl implements CreditRecordService {
 	 * @Title: findByUsername 
 	 * @Description:按用户名查找信用记录
 	 * @param username
-	 * @return 
+	 * @return List<CreditRecordVO>
 	 * @see hrs.server.Service.Interface.CreditRecordService.CreditRecordService#findByUsername(java.lang.String)
 	 */
 	@Transactional
@@ -53,7 +53,7 @@ public class CreditRecordServiceImpl implements CreditRecordService {
 	 * @Title: add 
 	 * @Description:添加一条信用记录，与此同时更新相关用户的信用值和会员等级
 	 * @param vo
-	 * @return 
+	 * @return ResultMessage
 	 * @see hrs.server.Service.Interface.CreditRecordService.CreditRecordService#add(hrs.common.VO.CreditRecordVO)
 	 */
 	@Transactional

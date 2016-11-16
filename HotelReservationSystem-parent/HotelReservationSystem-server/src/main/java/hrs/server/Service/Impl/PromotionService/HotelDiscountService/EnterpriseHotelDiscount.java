@@ -5,7 +5,6 @@ import hrs.common.VO.OrderVO;
 public class EnterpriseHotelDiscount extends HotelDiscount{
 	
 	
-
 	@Override
 	public OrderVO discount(OrderVO order) {
 		if(order.user.enterprise.equals(hotelDiscount.enterprise)){

@@ -22,11 +22,8 @@ public class CommercialCirclePO implements Serializable {
 	}
 	
 	public CommercialCirclePO(CommercialCircleVO vo){
-		if(vo == null){
-			return;
-		}
 		this.id = vo.id;
-		this.location = new LocationPO(vo.location);
+		this.location = vo.location != null ? new LocationPO(vo.location):null;
 		this.name = vo.name;
 	}
 	

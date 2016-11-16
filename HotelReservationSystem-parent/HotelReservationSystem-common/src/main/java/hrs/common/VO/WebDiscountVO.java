@@ -14,7 +14,7 @@ public class WebDiscountVO implements Serializable {
 	public int id;
 	public double discount;
 	public WebsiteDiscountType type;
-	private LocationVO location;
+	public LocationVO location;
 	public CommercialCircleVO commercialCircle;
 	public Date beginTime;
 	public Date endTime;
@@ -28,29 +28,26 @@ public class WebDiscountVO implements Serializable {
 		this.id = po.getId();
 		this.discount = po.getDiscount();
 		this.type = po.getType();
-		this.location = new LocationVO(po.getLocation());
-		this.commercialCircle = new CommercialCircleVO(po.getCommercialCircle());
+		this.location = po.getLocation() != null ? new LocationVO(po.getLocation()):null;
+		this.commercialCircle = po.getCommercialCircle() != null ? new CommercialCircleVO(po.getCommercialCircle()):null;
 		this.beginTime = po.getBeginTime();
 		this.endTime = po.getEndTime();
 		this.VIPlevel = po.getVIPlevel();
 	}
 	
 	
-	public WebDiscountVO(int id, double discount, WebsiteDiscountType type, LocationVO location,
+	public WebDiscountVO(double discount, WebsiteDiscountType type, LocationVO location,
 			CommercialCircleVO commercialCircle, Date beginTime, Date endTime, int vIPlevel) {
 		super();
-		this.id = id;
 		this.discount = discount;
 		this.type = type;
 		this.location = location;
 		this.commercialCircle = commercialCircle;
 		this.beginTime = beginTime;
 		this.endTime = endTime;
-		VIPlevel = vIPlevel;
+		this.VIPlevel = vIPlevel;
 	}
 
-
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -63,6 +60,7 @@ public class WebDiscountVO implements Serializable {
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((endTime == null) ? 0 : endTime.hashCode());
 		result = prime * result + id;
+		result = prime * result + ((location == null) ? 0 : location.hashCode());
 		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		return result;
 	}
@@ -97,9 +95,22 @@ public class WebDiscountVO implements Serializable {
 			return false;
 		if (id != other.id)
 			return false;
+		if (location == null) {
+			if (other.location != null)
+				return false;
+		} else if (!location.equals(other.location))
+			return false;
 		if (type != other.type)
 			return false;
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "WebDiscountVO [id=" + id + ", discount=" + discount + ", type=" + type + ", location=" + location
+				+ ", commercialCircle=" + commercialCircle + ", beginTime=" + beginTime + ", endTime=" + endTime
+				+ ", VIPlevel=" + VIPlevel + "]";
+	}
+	
+	
 }

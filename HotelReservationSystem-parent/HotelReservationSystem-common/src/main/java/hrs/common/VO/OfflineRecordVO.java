@@ -6,7 +6,7 @@ import java.util.Date;
 import hrs.common.POJO.OfflineRecordPO;
 import hrs.common.util.type.RoomType;
 
-public class OfflineRecordVO implements Serializable{
+public class OfflineRecordVO implements Serializable {
 	/**
 	 * 
 	 */
@@ -18,21 +18,29 @@ public class OfflineRecordVO implements Serializable{
 	public Date checkoutTime;
 	public RoomType type;
 	public int num;
+
 	public OfflineRecordVO() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	public OfflineRecordVO(OfflineRecordPO po){
+
+	public OfflineRecordVO(HotelVO hotel, Date checkinTime, Date expectedCheckoutTime, RoomType type, int num) {
+		super();
+		this.hotel = hotel;
+		this.checkinTime = checkinTime;
+		this.expectedCheckoutTime = expectedCheckoutTime;
+		this.type = type;
+		this.num = num;
+	}
+
+	public OfflineRecordVO(OfflineRecordPO po) {
 		this.id = po.getId();
-		this.hotel = new HotelVO(po.getHotel());
+		this.hotel = po.getHotel() != null ? new HotelVO(po.getHotel()):null;
 		this.checkinTime = po.getCheckinTime();
 		this.expectedCheckoutTime = po.getExpectedCheckoutTime();
 		this.checkoutTime = po.getCheckoutTime();
 		this.type = po.getType();
 		this.num = po.getNum();
 	}
-	
-
 
 	@Override
 	public int hashCode() {
@@ -47,6 +55,7 @@ public class OfflineRecordVO implements Serializable{
 		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -84,7 +93,12 @@ public class OfflineRecordVO implements Serializable{
 			return false;
 		return true;
 	}
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "OfflineRecordVO [id=" + id + ", hotel=" + hotel + ", checkinTime=" + checkinTime
+				+ ", expectedCheckoutTime=" + expectedCheckoutTime + ", checkoutTime=" + checkoutTime + ", type=" + type
+				+ ", num=" + num + "]";
+	}
+
 }

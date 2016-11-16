@@ -22,25 +22,21 @@ public class TestStaffService {
 	@Autowired
 	private StaffService service;
 
-	@Transactional
 	@Test(expected = StaffPasswordErrorException.class)
 	public void testLogin1() {
 		service.login("admin", "111");
 	}
 
-	@Transactional
 	@Test(expected = StaffNotFoundExceptioon.class)
 	public void testLogin2() {
 		service.login("staff", "aaa");
 	}
 
-	@Transactional
 	@Test
 	public void testLogin3() {
 		assertEquals(service.login("admin", "admin").username, "admin");
 	}
 
-	@Transactional
 	@Test
 	public void testAdd() {
 		HotelVO hotel = new HotelVO();
@@ -51,7 +47,6 @@ public class TestStaffService {
 	}
 
 	
-	@Transactional
 	@Test
 	public void testUpdate() {
 		StaffVO staff = service.findByUsername("admin3");
@@ -60,14 +55,12 @@ public class TestStaffService {
 		// assertEquals(service.findByUsername("admin3").password,"111");
 	}
 
-	@Transactional
 	@Test
 	public void testFindByUsername() {
 		StaffVO staff = service.findByUsername("admin3");
 		assertEquals(staff.password, "admin3");
 	}
 
-	@Transactional
 	@Test
 	public void testFindByHotelName() {
 		assertEquals(service.findByHotelName("仙林大酒店").hotel.name, "仙林大酒店");

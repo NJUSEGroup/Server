@@ -50,5 +50,10 @@ public class LocationVO implements Serializable{
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "LocationVO [id=" + id + ", name=" + name + "]";
+	}
 	
 }

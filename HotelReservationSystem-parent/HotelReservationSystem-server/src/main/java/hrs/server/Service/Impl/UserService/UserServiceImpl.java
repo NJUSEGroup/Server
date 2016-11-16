@@ -66,4 +66,9 @@ public class UserServiceImpl implements UserService {
 			return new UserVO(po);
 		}
 	}
+	@Transactional
+	@Override
+	public boolean validateCredit(String username) {
+		return findByUsername(username).credit >= 0;
+	}
 }

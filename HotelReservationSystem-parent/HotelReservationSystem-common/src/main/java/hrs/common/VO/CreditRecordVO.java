@@ -31,6 +31,7 @@ public class CreditRecordVO implements Serializable{
 		this.currCredit = po.getCurrCredit();
 	}
 	
+	
 	public CreditRecordVO(OrderVO order, UserVO user, CreditRecordType type, int variation) {
 		super();
 		this.order = order;
@@ -38,6 +39,7 @@ public class CreditRecordVO implements Serializable{
 		this.type = type;
 		this.variation = variation;
 	}
+
 
 	@Override
 	public String toString() {

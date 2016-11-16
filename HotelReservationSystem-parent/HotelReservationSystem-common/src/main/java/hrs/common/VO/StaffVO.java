@@ -28,7 +28,7 @@ public class StaffVO implements Serializable {
 		this.password = po.getPassword();
 		this.name = po.getName();
 		this.type = po.getType();
-		this.hotel = new HotelVO(po.getHotel(),this);
+		this.hotel = po.getHotel() != null ? new HotelVO(po.getHotel(),this):null;
 	}
 	
 	public StaffVO(String username, String password, String name, StaffType type, HotelVO hotel) {

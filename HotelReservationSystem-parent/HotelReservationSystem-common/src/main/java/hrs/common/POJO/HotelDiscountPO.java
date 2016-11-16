@@ -25,10 +25,10 @@ public  class HotelDiscountPO implements Serializable{
 	
 	public HotelDiscountPO(HotelDiscountVO vo){
 		this.id = vo.id;
-		this.hotel = new HotelPO(vo.hotel);
+		this.hotel = vo.hotel != null ? new HotelPO(vo.hotel):null;
 		this.discount = vo.discount;
 		this.type = vo.type;
-		this.enterprise = new EnterprisePO(vo.enterprise);
+		this.enterprise = vo.enterprise != null ? new EnterprisePO(vo.enterprise):null;
 		this.minQty = vo.minQty;
 		this.beginTime = vo.beginTime;
 		this.endTime = vo.endTime;

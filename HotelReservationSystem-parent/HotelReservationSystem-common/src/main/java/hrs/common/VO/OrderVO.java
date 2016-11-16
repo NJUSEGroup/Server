@@ -45,12 +45,12 @@ public class OrderVO implements Serializable {
 		this.checkoutTime = po.getCheckoutTime();
 		this.revokeTime = po.getRevokeTime();
 		this.status = po.getStatus();
-		this.hotel = new HotelVO(po.getHotel());
+		this.hotel = po.getHotel() != null ? new HotelVO(po.getHotel()):null;
 		this.value = po.getValue();
 		this.type = po.getType();
 		this.roomNum = po.getNum();
 		this.hasChild = po.isHasChild();
-		this.user = new UserVO(po.getUser());
+		this.user = po.getUser() != null ? new UserVO(po.getUser()):null;
 		this.score = po.getScore();
 		this.evaluation = po.getEvaluation();
 		this.peopleNum = po.getPeopleNum();

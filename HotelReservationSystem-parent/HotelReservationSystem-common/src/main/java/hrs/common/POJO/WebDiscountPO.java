@@ -3,6 +3,7 @@ package hrs.common.POJO;
 import java.io.Serializable;
 import java.util.Date;
 
+import hrs.common.VO.WebDiscountVO;
 import hrs.common.util.type.WebsiteDiscountType;
 
 public  class WebDiscountPO implements Serializable {
@@ -22,7 +23,18 @@ public  class WebDiscountPO implements Serializable {
 	public WebDiscountPO() {
 		// TODO Auto-generated constructor stub
 	}
-
+	
+	public WebDiscountPO(WebDiscountVO vo){
+		this.id = vo.id;
+		this.discount = vo.discount;
+		this.type = vo.type;
+		this.location = vo.location != null ? new LocationPO(vo.location) : null;
+		this.commercialCircle = vo.commercialCircle != null ? new CommercialCirclePO(vo.commercialCircle) :null;
+		this.beginTime = vo.beginTime;
+		this.endTime = vo.endTime;
+		this.VIPlevel = vo.VIPlevel;
+	}
+	
 	public WebDiscountPO(double discount, WebsiteDiscountType type, Date beginTime, Date endTime, int VIPlevel) {
 		super();
 		this.discount = discount;

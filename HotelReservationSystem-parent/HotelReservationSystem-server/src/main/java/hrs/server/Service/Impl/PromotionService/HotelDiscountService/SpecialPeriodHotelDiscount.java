@@ -4,8 +4,6 @@ import hrs.common.VO.OrderVO;
 
 public class SpecialPeriodHotelDiscount extends HotelDiscount {
 
-	
-
 	@Override
 	public OrderVO discount(OrderVO order) {
 		if(hotelDiscount.beginTime.after(order.placeTime) && hotelDiscount.endTime.before(order.placeTime)){

@@ -17,7 +17,7 @@ public class RoomVO implements Serializable {
 	public int availableRoomNum;
 	
 	public RoomVO(RoomPO po){
-		this.hotel = new HotelVO(po.getHotel());
+		this.hotel = po.getHotel() != null ? new HotelVO(po.getHotel()):null;
 		this.type = po.getType();
 		this.roomNum = po.getRoomNum();
 		this.roomValue = po.getRoomValue();

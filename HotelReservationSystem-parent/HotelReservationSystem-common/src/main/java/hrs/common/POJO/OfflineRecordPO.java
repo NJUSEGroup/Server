@@ -24,7 +24,7 @@ public class OfflineRecordPO implements Serializable{
 	
 	public OfflineRecordPO(OfflineRecordVO vo){
 		this.id = vo.id;
-		this.hotel = new HotelPO(vo.hotel);
+		this.hotel = vo.hotel != null ? new HotelPO(vo.hotel):null;
 		this.checkinTime = vo.checkinTime;
 		this.expectedCheckoutTime = vo.expectedCheckoutTime;
 		this.checkoutTime = vo.checkoutTime;

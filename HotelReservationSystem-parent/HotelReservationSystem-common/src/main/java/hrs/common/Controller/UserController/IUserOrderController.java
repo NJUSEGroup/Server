@@ -9,6 +9,7 @@ import hrs.common.util.type.OrderStatus;
 
 public interface IUserOrderController {
 	List<OrderVO> findOrdersByUsernameAndType(String username, OrderStatus type);
+	boolean validateCredit(String username);
 	OrderVO placeOrder(OrderVO ordervo);
 	ResultMessage addOrder(OrderVO ordervo);
 	ResultMessage remark(OrderVO ordervo);

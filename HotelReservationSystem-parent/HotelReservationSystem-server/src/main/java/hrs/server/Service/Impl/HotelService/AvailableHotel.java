@@ -7,7 +7,7 @@ import hrs.common.Controller.UserController.FilterCondition;
 import hrs.common.VO.HotelVO;
 import hrs.common.VO.RoomVO;
 import hrs.common.util.type.OrderRule;
-import hrs.server.Service.Impl.HotelService.Filter.HotelFilter;
+import hrs.server.Service.Impl.HotelService.HotelFilter.HotelFilter;
 
 public class AvailableHotel {
 	private Map<HotelVO, List<RoomVO>> data;

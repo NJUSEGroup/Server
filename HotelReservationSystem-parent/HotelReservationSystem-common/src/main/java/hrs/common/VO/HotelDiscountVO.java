@@ -24,19 +24,18 @@ public  class HotelDiscountVO implements Serializable{
 	}
 	public HotelDiscountVO(HotelDiscountPO po){
 		this.id = po.getId();
-		this.hotel = new HotelVO(po.getHotel());
+		this.hotel = po.getHotel() != null ? new HotelVO(po.getHotel()):null;
 		this.discount = po.getDiscount();
 		this.type = po.getType();
-		this.enterprise = new EnterpriseVO(po.getEnterprise());
+		this.enterprise = po.getEnterprise() != null ?new EnterpriseVO(po.getEnterprise()):null;
 		this.minQty = po.getMinQty();
 		this.beginTime = po.getBeginTime();
 		this.endTime = po.getEndTime();
 	}
 	
-	public HotelDiscountVO(int id, HotelVO hotel, double discount, HotelDiscountType type, EnterpriseVO enterprise,
+	public HotelDiscountVO(HotelVO hotel, double discount, HotelDiscountType type, EnterpriseVO enterprise,
 			int minQty, Date beginTime, Date endTime) {
 		super();
-		this.id = id;
 		this.hotel = hotel;
 		this.discount = discount;
 		this.type = type;
@@ -102,6 +101,24 @@ public  class HotelDiscountVO implements Serializable{
 		if (type != other.type)
 			return false;
 		return true;
+	}
+	public HotelDiscountVO(int id, HotelVO hotel, double discount, HotelDiscountType type, EnterpriseVO enterprise,
+			int minQty, Date beginTime, Date endTime) {
+		super();
+		this.id = id;
+		this.hotel = hotel;
+		this.discount = discount;
+		this.type = type;
+		this.enterprise = enterprise;
+		this.minQty = minQty;
+		this.beginTime = beginTime;
+		this.endTime = endTime;
+	}
+	@Override
+	public String toString() {
+		return "HotelDiscountVO [id=" + id + ", hotel=" + hotel + ", discount=" + discount + ", type=" + type
+				+ ", enterprise=" + enterprise + ", minQty=" + minQty + ", beginTime=" + beginTime + ", endTime="
+				+ endTime + "]";
 	}
 	
 	

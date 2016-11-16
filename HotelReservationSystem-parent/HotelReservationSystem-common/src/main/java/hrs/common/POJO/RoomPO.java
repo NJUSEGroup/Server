@@ -19,7 +19,7 @@ public class RoomPO implements Serializable {
 		this.type  = vo.type;
 		this.roomNum = vo.roomNum;
 		this.roomValue  = vo.roomValue;
-		this.hotel = new HotelPO(vo.hotel);
+		this.hotel = vo.hotel != null ? new HotelPO(vo.hotel):null;
 	}
 	
 	public RoomPO(HotelPO hotel, RoomType type, int roomNum, double roomValue) {

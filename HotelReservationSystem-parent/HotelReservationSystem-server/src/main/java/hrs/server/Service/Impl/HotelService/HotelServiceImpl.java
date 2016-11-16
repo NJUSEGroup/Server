@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import hrs.common.Controller.UserController.FilterCondition;
@@ -16,13 +18,18 @@ import hrs.server.DAO.Interface.HotelDAO.HotelDAO;
 import hrs.server.Service.Interface.HotelService.HotelService;
 import hrs.server.Service.Interface.OrderService.OrderService;
 import hrs.server.Service.Interface.RoomService.RoomService;
-
+@Service
 public class HotelServiceImpl implements HotelService {
+	@Autowired
 	private HotelDAO dao;
-	private AvailableHotel hotel;
+	@Autowired
 	private RoomService roomService;
+	@Autowired
 	private OrderService orderService;
 
+	private AvailableHotel hotel;
+	
+	
 	@Transactional
 	@Override
 	public HotelVO findByID(int hotelID) {
@@ -78,17 +85,4 @@ public class HotelServiceImpl implements HotelService {
 	public Map<HotelVO, List<RoomVO>> order(OrderRule rule, boolean isDecrease) {
 		return hotel.order(rule, isDecrease);
 	}
-
-	public void setRoomService(RoomService roomService) {
-		this.roomService = roomService;
-	}
-
-	public void setOrderService(OrderService orderService) {
-		this.orderService = orderService;
-	}
-
-	public void setDao(HotelDAO dao) {
-		this.dao = dao;
-	}
-
 }

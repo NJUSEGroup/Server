@@ -16,9 +16,6 @@ public class LocationPO implements Serializable{
 	}
 	
 	public LocationPO(LocationVO vo){
-		if(vo == null){
-			return;
-		}
 		this.id = vo.id;
 		this.name = vo.name;
 	}

@@ -58,4 +58,9 @@ public class CommercialCircleVO implements Serializable {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "CommercialCircleVO [id=" + id + ", location=" + location + ", name=" + name + "]";
+	}
+	
 }
