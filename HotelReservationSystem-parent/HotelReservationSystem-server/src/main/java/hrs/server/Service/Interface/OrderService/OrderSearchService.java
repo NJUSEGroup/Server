@@ -17,7 +17,7 @@ public interface OrderSearchService {
 
 	List<OrderVO> findByHotelAndUsername(int hotelID, String username);
 
-	List<OrderVO> findByOrderType(OrderStatus status);
+	List<OrderVO> findByOrderStatus(OrderStatus status);
 
 	List<OrderVO> findByHotelAndTime(int hotelID, Date begin, Date end);
 }

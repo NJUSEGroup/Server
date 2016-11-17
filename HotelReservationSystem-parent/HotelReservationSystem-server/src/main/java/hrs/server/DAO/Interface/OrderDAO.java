@@ -12,7 +12,7 @@ public interface OrderDAO {
 	 List<OrderPO> findByUsernameAndType(String username,OrderStatus status);
 	 List<OrderPO> findByHotelAndUsername(int hotelID,String username);
 	 List<OrderPO> findByUsername(String username);
-	 List<OrderPO> findByOrderType(OrderStatus status);
+	 List<OrderPO> findByOrderStatus(OrderStatus status);
 	 List<OrderPO> findByHotelAndTime(int hotelID,Date begin,Date end);
 	 ResultMessage add(OrderPO orderpo);
 	 ResultMessage update(OrderPO orderpo);

@@ -54,4 +54,10 @@ public class WebDiscountServiceImpl implements WebDiscountService {
 	public ResultMessage delete(int id) {
 		return dao.delete(id);
 	}
+
+	@Override
+	public List<WebDiscount> createAllStrategies() {
+		
+		return null;
+	}
 }

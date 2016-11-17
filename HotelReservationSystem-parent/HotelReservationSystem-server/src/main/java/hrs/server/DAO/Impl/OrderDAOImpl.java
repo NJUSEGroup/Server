@@ -54,7 +54,7 @@ public class OrderDAOImpl implements OrderDAO {
 	}
 
 	@Override
-	public List<OrderPO> findByOrderType(OrderStatus status) {
+	public List<OrderPO> findByOrderStatus(OrderStatus status) {
 		String hql = "from OrderPO o where o.status = :status";
 		List<OrderPO> list = getSession().createQuery(hql).setParameter("status", status).getResultList();
 

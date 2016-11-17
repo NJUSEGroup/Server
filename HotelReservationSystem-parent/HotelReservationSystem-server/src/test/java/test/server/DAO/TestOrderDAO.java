@@ -70,7 +70,7 @@ public class TestOrderDAO {
 	@Transactional
 	@Test
 	public void testFindByOrderType() {
-		List<OrderPO> list = dao.findByOrderType(OrderStatus.Unexecuted);
+		List<OrderPO> list = dao.findByOrderStatus(OrderStatus.Unexecuted);
 		for (OrderPO po : list) {
 			System.out.println(po);
 			assertEquals(po.getStatus(), OrderStatus.Unexecuted);

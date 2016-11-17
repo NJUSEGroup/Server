@@ -48,9 +48,10 @@ public class OrderSearchServiceImpl implements OrderSearchService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
 	@Transactional
 	@Override
-	public List<OrderVO> findByOrderType(OrderStatus status) {
+	public List<OrderVO> findByOrderStatus(OrderStatus status) {
 		// TODO Auto-generated method stub
 		return null;
 	}
