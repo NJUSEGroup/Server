@@ -45,8 +45,8 @@ public class OfflineRecordServiceImpl implements OfflineRecordService {
 	 */
 	@Transactional
 	@Override
-	public ResultMessage checkin(OfflineRecordVO vo) {
-		return dao.add(new OfflineRecordPO(vo));
+	public void checkin(OfflineRecordVO vo) {
+		dao.add(new OfflineRecordPO(vo));
 	}
 	
 	/**
@@ -59,9 +59,9 @@ public class OfflineRecordServiceImpl implements OfflineRecordService {
 	 */
 	@Transactional
 	@Override
-	public ResultMessage checkout(OfflineRecordVO vo) {
+	public void checkout(OfflineRecordVO vo) {
 		vo.checkoutTime = new Date();
-		return dao.update(new OfflineRecordPO(vo));
+		dao.update(new OfflineRecordPO(vo));
 	}
 	
 

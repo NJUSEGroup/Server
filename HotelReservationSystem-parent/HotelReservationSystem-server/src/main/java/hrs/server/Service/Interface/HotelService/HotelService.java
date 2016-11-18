@@ -14,9 +14,9 @@ import hrs.common.util.type.OrderRule;
 public interface HotelService {
 	HotelVO findByID(int hotelID);
 
-	ResultMessage update(HotelVO hotelvo);
+	void update(HotelVO hotelvo);
 
-	ResultMessage add(HotelVO hotelvo);
+	void add(HotelVO hotelvo);
 
 	Map<HotelVO, List<OrderVO>> findOrderedHotelAndOrder(String username);
 
@@ -28,5 +28,5 @@ public interface HotelService {
 
 	List<RoomVO> getRoomDetail(int hotelID);
 
-	ResultMessage addRemark(HotelVO hotel, int score);
+	void  addRemark(HotelVO hotel, int score);
 }

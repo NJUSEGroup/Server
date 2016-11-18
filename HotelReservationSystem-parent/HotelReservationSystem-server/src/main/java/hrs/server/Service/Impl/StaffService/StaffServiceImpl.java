@@ -33,18 +33,16 @@ public class StaffServiceImpl implements StaffService {
 
 	@Transactional
 	@Override
-	public ResultMessage update(StaffVO staffvo) {
-		return dao.update(new StaffPO(staffvo));
+	public void update(StaffVO staffvo) {
+		dao.update(new StaffPO(staffvo));
 	}
 
 	@Transactional
 	@Override
-	public ResultMessage add(StaffVO staffvo) {
+	public void add(StaffVO staffvo) {
 		if (dao.add(new StaffPO(staffvo)) == ResultMessage.EXISTED) {
 			throw new StaffExistedException();
-		} else {
-			return ResultMessage.SUCCESS;
-		}
+		} 
 	}
 
 	@Transactional

@@ -7,12 +7,12 @@ import hrs.common.util.type.RestoreValueType;
 public interface OrderService {
 
 	OrderVO placeOrder(OrderVO ordervo);
-	ResultMessage add(OrderVO ordervo);
-	ResultMessage checkin(OrderVO ordervo);
-	ResultMessage checkout(OrderVO ordervo);
-	ResultMessage revokeByUser(OrderVO ordervo);
-	ResultMessage revokeByWebMarketer(OrderVO ordervo,RestoreValueType type);
-	ResultMessage remark(OrderVO ordervo,int score, String evaluation);
-	ResultMessage delayCheckin(OrderVO ordervo);
+	void add(OrderVO ordervo);
+	void checkin(OrderVO ordervo);
+	void checkout(OrderVO ordervo);
+	void revokeByUser(OrderVO ordervo);
+	void revokeByWebMarketer(OrderVO ordervo,RestoreValueType type);
+	void remark(OrderVO ordervo,int score, String evaluation);
+	void delayCheckin(OrderVO ordervo);
 	void checkAbNormalOrder();
 }

@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import hrs.common.Exception.Promotion.WebDiscountService.WebDiscountNotFoundException;
 import hrs.common.POJO.WebDiscountPO;
 import hrs.common.VO.WebDiscountVO;
-import hrs.common.util.ResultMessage;
 import hrs.server.DAO.Interface.PromotionDAO.WebDiscountDAO;
 import hrs.server.Service.Interface.PromotionService.WebDiscountService;
 import hrs.server.util.DateFormatter;
@@ -41,7 +40,7 @@ public class WebDiscountServiceImpl implements WebDiscountService {
 
 	@Transactional
 	@Override
-	public ResultMessage add(WebDiscountVO vo) {
+	public void add(WebDiscountVO vo) {
 		try {
 			if (vo.beginTime != null && vo.endTime != null) {
 				vo.beginTime = DateFormatter.parse(DateFormatter.format(vo.beginTime));
@@ -50,19 +49,19 @@ public class WebDiscountServiceImpl implements WebDiscountService {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		return dao.add(new WebDiscountPO(vo));
+		dao.add(new WebDiscountPO(vo));
 	}
 
 	@Transactional
 	@Override
-	public ResultMessage update(WebDiscountVO vo) {
-		return dao.update(new WebDiscountPO(vo));
+	public void update(WebDiscountVO vo) {
+		dao.update(new WebDiscountPO(vo));
 	}
 
 	@Transactional
 	@Override
-	public ResultMessage delete(int id) {
-		return dao.delete(id);
+	public void delete(int id) {
+		dao.delete(id);
 	}
 
 	@Transactional

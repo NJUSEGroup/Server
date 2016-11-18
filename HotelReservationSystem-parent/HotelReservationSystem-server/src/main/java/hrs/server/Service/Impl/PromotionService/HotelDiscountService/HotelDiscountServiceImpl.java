@@ -23,7 +23,7 @@ public class HotelDiscountServiceImpl implements HotelDiscountService {
 
 	@Transactional
 	@Override
-	public ResultMessage add(HotelDiscountVO vo) {
+	public void add(HotelDiscountVO vo) {
 		try {
 			if (vo.beginTime != null && vo.endTime != null) {
 				vo.beginTime = DateFormatter.parse(DateFormatter.format(vo.beginTime));
@@ -32,19 +32,19 @@ public class HotelDiscountServiceImpl implements HotelDiscountService {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		return dao.add(new HotelDiscountPO(vo));
+		dao.add(new HotelDiscountPO(vo));
 	}
 
 	@Transactional
 	@Override
-	public ResultMessage update(HotelDiscountVO vo) {
-		return dao.update(new HotelDiscountPO(vo));
+	public void update(HotelDiscountVO vo) {
+		dao.update(new HotelDiscountPO(vo));
 	}
 
 	@Transactional
 	@Override
-	public ResultMessage delete(int id) {
-		return dao.delete(id);
+	public void delete(int id) {
+		dao.delete(id);
 	}
 
 	@Transactional

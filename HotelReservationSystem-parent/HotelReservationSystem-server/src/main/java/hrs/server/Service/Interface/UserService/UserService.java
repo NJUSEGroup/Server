@@ -5,8 +5,8 @@ import hrs.common.util.ResultMessage;
 
 public interface UserService {
 	UserVO findByUsername(String username);
-	ResultMessage register(UserVO uservo);
-	ResultMessage update(UserVO uservo);
+	void register(UserVO uservo);
+	void update(UserVO uservo);
 	UserVO login(String username,String password);
 	boolean validateCredit(String username);
 }

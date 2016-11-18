@@ -60,13 +60,12 @@ public class CreditRecordServiceImpl implements CreditRecordService {
 	 */
 	@Transactional
 	@Override
-	public ResultMessage add(CreditRecordVO vo) {
+	public void add(CreditRecordVO vo) {
 		UserVO user = vo.user;
 		vo.currCredit = vo.variation + user.credit;
 		user.credit = vo.currCredit;
 		user.VIPLevel = VIPLevel.getLevel(user.credit);
 		userService.update(user);
-		System.out.println("更新用户 : "+user);
-		return dao.add(new CreditRecordPO(vo));
+		dao.add(new CreditRecordPO(vo));
 	}
 }

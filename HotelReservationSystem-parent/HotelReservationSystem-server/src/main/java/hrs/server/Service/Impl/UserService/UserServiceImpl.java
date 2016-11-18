@@ -36,22 +36,21 @@ public class UserServiceImpl implements UserService {
 
 	@Transactional
 	@Override
-	public ResultMessage register(UserVO uservo) {
+	public void register(UserVO uservo) {
 		UserPO po = new UserPO(uservo);
 		if(dao.add(po) == ResultMessage.EXISTED){
 			throw new UserExistedException();
 		}else{
 			//这里还需要测试一下
 			enterpriseService.add(new EnterpriseVO(po.getEnterprise()));
-			return ResultMessage.SUCCESS;
 		}
 	}
 
 	
 	@Transactional
 	@Override
-	public ResultMessage update(UserVO uservo) {
-		return dao.update(new UserPO(uservo));
+	public void update(UserVO uservo) {
+		dao.update(new UserPO(uservo));
 	}
 
 	@Transactional

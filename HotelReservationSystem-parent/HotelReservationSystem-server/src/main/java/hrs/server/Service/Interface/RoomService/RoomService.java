@@ -11,8 +11,8 @@ public interface RoomService {
 	List<RoomVO> findByHotelID(int hotelID);
 	RoomVO findByHotelAndType(int hotelID, RoomType type);
 	List<RoomVO> findAvailableByHotelID(int hotelID,Date begin,Date end);
-	ResultMessage update(RoomVO roomvo);
-	ResultMessage add(RoomVO roomvo);
+	void update(RoomVO roomvo);
+	void add(RoomVO roomvo);
 	List<RoomType> findNotAddedRoomType(int hotelID);
 	int findAvailableRoomNum(int hotelID,RoomType type,Date begin,Date end);
 }

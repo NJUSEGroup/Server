@@ -49,14 +49,14 @@ public class HotelServiceImpl implements HotelService {
 
 	@Transactional
 	@Override
-	public ResultMessage update(HotelVO hotelvo) {
-		return dao.update(new HotelPO(hotelvo));
+	public void update(HotelVO hotelvo) {
+		dao.update(new HotelPO(hotelvo));
 	}
 
 	@Transactional
 	@Override
-	public ResultMessage add(HotelVO hotelvo) {
-		return dao.add(new HotelPO(hotelvo));
+	public void add(HotelVO hotelvo) {
+		dao.add(new HotelPO(hotelvo));
 	}
 
 	/**
@@ -154,8 +154,8 @@ public class HotelServiceImpl implements HotelService {
 	}
 
 	@Override
-	public ResultMessage addRemark(HotelVO hotel, int score) {
+	public void addRemark(HotelVO hotel, int score) {
 		hotel.score = (hotel.score*hotel.remarkNum+score)/(hotel.remarkNum+1);
-		return update(hotel);
+		update(hotel);
 	}
 }

@@ -59,8 +59,8 @@ public class RoomServiceImpl implements RoomService {
 	 */
 	@Transactional
 	@Override
-	public ResultMessage update(RoomVO roomvo) {
-		return dao.update(new RoomPO(roomvo));
+	public void update(RoomVO roomvo) {
+		dao.update(new RoomPO(roomvo));
 	}
 	/**
 	 * 
@@ -72,8 +72,8 @@ public class RoomServiceImpl implements RoomService {
 	 */
 	@Transactional
 	@Override
-	public ResultMessage add(RoomVO roomvo) {
-		return dao.add(new RoomPO(roomvo));
+	public void add(RoomVO roomvo) {
+		dao.add(new RoomPO(roomvo));
 	}
 	/**
 	 * 

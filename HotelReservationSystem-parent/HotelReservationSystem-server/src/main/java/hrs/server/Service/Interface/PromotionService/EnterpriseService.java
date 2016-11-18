@@ -7,5 +7,5 @@ import hrs.common.util.ResultMessage;
 
 public interface EnterpriseService {
 	List<EnterpriseVO> getAllEnterprises();
-	ResultMessage add(EnterpriseVO vo);
+	void add(EnterpriseVO vo);
 }

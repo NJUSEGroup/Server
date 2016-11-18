@@ -75,8 +75,8 @@ public class OrderServiceImpl implements OrderService {
 	
 	@Transactional
 	@Override
-	public ResultMessage add(OrderVO ordervo) {
-		return dao.add(new OrderPO(ordervo));
+	public void add(OrderVO ordervo) {
+		dao.add(new OrderPO(ordervo));
 	}
 	
 	/**
@@ -89,31 +89,31 @@ public class OrderServiceImpl implements OrderService {
 	 */
 	@Transactional
 	@Override
-	public ResultMessage checkin(OrderVO ordervo) {
+	public void checkin(OrderVO ordervo) {
 		ordervo.checkinTime = new Date();
 		ordervo.status = OrderStatus.Executed;
 		creditRecordService.add(new CreditRecordVO(ordervo, ordervo.user, CreditRecordType.Execute, (int)ordervo.value));
-		return dao.update(new OrderPO(ordervo));
+		dao.update(new OrderPO(ordervo));
 	}
 
 	
 	@Transactional
 	@Override
-	public ResultMessage checkout(OrderVO ordervo) {
+	public void checkout(OrderVO ordervo) {
 		ordervo.checkoutTime = new Date();
-		return dao.update(new OrderPO(ordervo));
+		dao.update(new OrderPO(ordervo));
 	}
 	
 	
 	@Transactional
 	@Override
-	public ResultMessage revokeByUser(OrderVO ordervo) {
+	public void revokeByUser(OrderVO ordervo) {
 		ordervo.revokeTime = new Date();
 		ordervo.status = OrderStatus.UserRevoked;
 		if(isOverTime(ordervo.revokeTime,ordervo.expectedCheckoutTime)){
 			creditRecordService.add(new CreditRecordVO(ordervo,ordervo.user,CreditRecordType.Revoke,(int) (ordervo.value/2)));
 		}
-		return dao.update(new OrderPO(ordervo));
+		dao.update(new OrderPO(ordervo));
 	}
 	
 	/**
@@ -144,7 +144,7 @@ public class OrderServiceImpl implements OrderService {
 	 */
 	@Transactional
 	@Override
-	public ResultMessage revokeByWebMarketer(OrderVO ordervo,RestoreValueType type) {
+	public void revokeByWebMarketer(OrderVO ordervo,RestoreValueType type) {
 		ordervo.revokeTime = new Date();
 		if(type == RestoreValueType.Full){
 			ordervo.status = OrderStatus.RevokedFullValue;
@@ -153,7 +153,7 @@ public class OrderServiceImpl implements OrderService {
 			ordervo.status = OrderStatus.RevokedHalfValue;
 			creditRecordService.add(new CreditRecordVO(ordervo,ordervo.user,CreditRecordType.Revoke,(int)(ordervo.value/2)));
 		}
-		return dao.update(new OrderPO(ordervo));
+		dao.update(new OrderPO(ordervo));
 	}
 	
 	/**
@@ -166,11 +166,11 @@ public class OrderServiceImpl implements OrderService {
 	 */
 	@Transactional
 	@Override
-	public ResultMessage remark(OrderVO ordervo,int score, String evaluation) {
+	public void remark(OrderVO ordervo,int score, String evaluation) {
 		ordervo.score = score;
 		ordervo.evaluation = evaluation;
 		hotelService.addRemark(ordervo.hotel,score);
-		return dao.update(new OrderPO(ordervo));
+		dao.update(new OrderPO(ordervo));
 	}
 	
 	/**
@@ -183,11 +183,11 @@ public class OrderServiceImpl implements OrderService {
 	 */
 	@Transactional
 	@Override
-	public ResultMessage delayCheckin(OrderVO ordervo) {
+	public void delayCheckin(OrderVO ordervo) {
 		ordervo.status = OrderStatus.Executed;
 		ordervo.checkinTime = new Date();
 		creditRecordService.add(new CreditRecordVO(ordervo,ordervo.user,CreditRecordType.Execute,(int)ordervo.value));
-		return dao.update(new OrderPO(ordervo));
+		dao.update(new OrderPO(ordervo));
 	}
 	
 	/**

@@ -52,8 +52,8 @@ public class EnterpriseServiceImpl implements EnterpriseService {
 	 */
 	@Transactional
 	@Override
-	public ResultMessage add(EnterpriseVO vo) {
-		return dao.add(new EnterprisePO(vo));
+	public void add(EnterpriseVO vo) {
+		dao.add(new EnterprisePO(vo));
 	}
 
 }

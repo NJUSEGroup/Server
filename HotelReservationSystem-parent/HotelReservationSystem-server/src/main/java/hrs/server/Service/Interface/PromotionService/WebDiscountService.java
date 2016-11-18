@@ -8,8 +8,8 @@ import hrs.server.Service.Impl.PromotionService.WebDiscountService.WebDiscount;
 
 public interface WebDiscountService {
 	List<WebDiscountVO> findAll();
-	ResultMessage add (WebDiscountVO webdiscountvo);
-	ResultMessage update(WebDiscountVO webdiscountvo);
-	ResultMessage delete(int id);
+	void add (WebDiscountVO webdiscountvo);
+	void update(WebDiscountVO webdiscountvo);
+	void delete(int id);
 	List<WebDiscount> createAllStrategies();
 }
