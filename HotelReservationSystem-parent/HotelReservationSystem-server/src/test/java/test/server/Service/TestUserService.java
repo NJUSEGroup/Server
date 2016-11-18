@@ -17,7 +17,6 @@ import hrs.common.Exception.UserService.UserNotFoundException;
 import hrs.common.Exception.UserService.UserPasswordErrorException;
 import hrs.common.VO.EnterpriseVO;
 import hrs.common.VO.UserVO;
-import hrs.common.util.ResultMessage;
 import hrs.common.util.type.UserType;
 import hrs.server.Service.Interface.PromotionService.EnterpriseService;
 import hrs.server.Service.Interface.UserService.UserService;
@@ -34,7 +33,7 @@ public class TestUserService {
 	public void testFindByUsername() {
 		UserVO vo = service.findByUsername("admin");
 		System.out.println(vo);
-		assertEquals(vo.password, "admin");
+		assertEquals(vo.password,"admin");
 	}
 	
 	@Test
@@ -45,15 +44,15 @@ public class TestUserService {
 
 	@Test(expected = UserExistedException.class)
 	public void testRegister1() {
-		service.register(new UserVO("admin","admin"));
+		service.register(new UserVO("admin","admin","宋欣建","232131"));
 	}
 	
 	@Test
 	public void testRegister2() {
-		UserVO vo = new UserVO("admin666", "admin666", "123123", "呵呵", 0, 1, UserType.Enterprise,"酒店ttt");
+		UserVO vo = new UserVO("admin661", "admin661", "123123", "呵呵", 0, 1, UserType.Enterprise,"酒店ttt");
 		service.register(vo);
-		vo = service.findByUsername("admin666");
-		assertEquals(vo.password,"admin666");
+		vo = service.findByUsername("admin661");
+		assertEquals(vo.password,"admin661");
 		List<EnterpriseVO> list = enterpriseService.getAllEnterprises();
 		for(EnterpriseVO enterprise:list){
 			if(enterprise.name.equals("酒店ttt")){

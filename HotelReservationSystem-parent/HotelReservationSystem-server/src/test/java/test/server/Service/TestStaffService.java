@@ -7,7 +7,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.transaction.annotation.Transactional;
 
 import hrs.common.Exception.StaffService.StaffNotFoundExceptioon;
 import hrs.common.Exception.StaffService.StaffPasswordErrorException;
@@ -24,7 +23,7 @@ public class TestStaffService {
 
 	@Test(expected = StaffPasswordErrorException.class)
 	public void testLogin1() {
-		service.login("admin", "111");
+		service.login("admin3", "12321311");
 	}
 
 	@Test(expected = StaffNotFoundExceptioon.class)
@@ -34,16 +33,16 @@ public class TestStaffService {
 
 	@Test
 	public void testLogin3() {
-		assertEquals(service.login("admin", "admin").username, "admin");
+		assertEquals(service.login("admin3", "111").username, "admin3");
 	}
 
 	@Test
 	public void testAdd() {
 		HotelVO hotel = new HotelVO();
 		hotel.id = 4;
-		StaffVO staff = new StaffVO("staff233", "110", "老王", StaffType.WebsiteMarketer, hotel);
+		StaffVO staff = new StaffVO("staff234", "110", "老王", StaffType.WebsiteMarketer, hotel);
 		service.add(staff);
-		assertEquals(service.findByUsername("staff233").password, "110");
+		assertEquals(service.findByUsername("staff234").password, "110");
 	}
 
 	@Test
@@ -57,7 +56,7 @@ public class TestStaffService {
 	@Test
 	public void testFindByUsername() {
 		StaffVO staff = service.findByUsername("admin3");
-		assertEquals(staff.password, "admin3");
+		assertEquals(staff.password, "111");
 	}
 
 	@Test

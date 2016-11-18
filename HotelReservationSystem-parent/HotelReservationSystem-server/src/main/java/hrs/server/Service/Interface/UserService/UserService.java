@@ -1,7 +1,6 @@
 package hrs.server.Service.Interface.UserService;
 
 import hrs.common.VO.UserVO;
-import hrs.common.util.ResultMessage;
 
 public interface UserService {
 	UserVO findByUsername(String username);

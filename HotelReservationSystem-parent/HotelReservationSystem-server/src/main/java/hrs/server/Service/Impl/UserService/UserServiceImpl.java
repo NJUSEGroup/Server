@@ -14,60 +14,81 @@ import hrs.common.util.ResultMessage;
 import hrs.server.DAO.Interface.UserDAO;
 import hrs.server.Service.Interface.PromotionService.EnterpriseService;
 import hrs.server.Service.Interface.UserService.UserService;
+import hrs.server.util.DesUtil;
+
 @Service
 public class UserServiceImpl implements UserService {
-	
+
 	@Autowired
 	private UserDAO dao;
 	@Autowired
 	private EnterpriseService enterpriseService;
 
-
 	@Transactional
 	@Override
 	public UserVO findByUsername(String username) {
-		UserPO po = dao.findByUserName(username);
-		if(po == null){
+
+		UserPO po = dao.findByUserName(DesUtil.encodeStr(username));
+		if (po == null) {
 			throw new UserNotFoundException();
-		}else{
-			return new UserVO(po);
+		} else {
+			// 从数据库取出的要解密
+			return decrypt(new UserVO((po)));
 		}
 	}
 
 	@Transactional
 	@Override
 	public void register(UserVO uservo) {
-		UserPO po = new UserPO(uservo);
-		if(dao.add(po) == ResultMessage.EXISTED){
+		// 从界面拿到的要加密
+		UserPO po = new UserPO(encrypt(uservo));
+		if (dao.add(po) == ResultMessage.EXISTED) {
 			throw new UserExistedException();
-		}else{
-			//这里还需要测试一下
+		} else {
 			enterpriseService.add(new EnterpriseVO(po.getEnterprise()));
 		}
 	}
 
-	
 	@Transactional
 	@Override
 	public void update(UserVO uservo) {
-		dao.update(new UserPO(uservo));
+		// 从界面拿到的要加密
+		dao.update((new UserPO(encrypt(uservo))));
 	}
 
 	@Transactional
 	@Override
 	public UserVO login(String username, String password) {
-		UserPO po = dao.findByUserName(username);
-		if(po == null ){
+		UserPO po = dao.findByUserName(DesUtil.encodeStr(username));
+		if (po == null) {
 			throw new UserNotFoundException();
-		}else if ( !po.getPassword().equals(password)) {
+		} else if (!po.getPassword().equals(DesUtil.encodeStr(password))) {
 			throw new UserPasswordErrorException();
 		} else {
-			return new UserVO(po);
+			return decrypt(new UserVO((po)));
+			// 从数据库取出的要解密
 		}
 	}
+
 	@Transactional
 	@Override
 	public boolean validateCredit(String username) {
 		return findByUsername(username).credit >= 0;
+	}
+
+	private UserVO decrypt(UserVO vo) {
+		vo.username = DesUtil.decodeStr(vo.username);
+		vo.password = DesUtil.decodeStr(vo.password);
+		vo.phone = DesUtil.decodeStr(vo.phone);
+		vo.name = DesUtil.decodeStr(vo.name);
+		return vo;
+	}
+
+	private UserVO encrypt(UserVO vo) {
+		vo.username = DesUtil.encodeStr(vo.username);
+		vo.password = DesUtil.encodeStr(vo.password);
+		vo.phone = DesUtil.encodeStr(vo.phone);
+		vo.name = DesUtil.encodeStr(vo.name);
+		return vo;
 	}
 }

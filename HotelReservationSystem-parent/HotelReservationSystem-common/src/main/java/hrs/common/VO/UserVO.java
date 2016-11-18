@@ -38,10 +38,12 @@ public class UserVO implements Serializable {
 		this.type = po.getType();
 	}
 	
-	public UserVO(String username, String password) {
+	public UserVO(String username, String password,String phone,String name) {
 		super();
 		this.username = username;
 		this.password = password;
+		this.phone = phone;
+		this.name = name;
 	}
 
 	public UserVO(String username, String password, String phone, String name, int credit, int vIPLevel,
