@@ -1,6 +1,7 @@
 package hrs.server.Service.Impl.HotelService;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -17,7 +18,6 @@ import hrs.common.POJO.HotelPO;
 import hrs.common.VO.HotelVO;
 import hrs.common.VO.OrderVO;
 import hrs.common.VO.RoomVO;
-import hrs.common.util.ResultMessage;
 import hrs.common.util.FilterCondition.FilterCondition;
 import hrs.common.util.type.OrderRule;
 import hrs.server.DAO.Interface.HotelDAO.HotelDAO;
@@ -34,7 +34,6 @@ public class HotelServiceImpl implements HotelService {
 	private OrderSearchService orderSearchService;
 	
 	private AvailableHotel hotel = new AvailableHotel();
-	
 	
 	@Transactional
 	@Override
@@ -103,7 +102,7 @@ public class HotelServiceImpl implements HotelService {
 	 */
 	@Transactional
 	@Override
-	public Map<HotelVO, List<RoomVO>> find(int loc, int circle, Date begin, Date end) {
+	public Map<HotelVO, List<RoomVO>> find(int loc, int circle, Date begin, Date end,String username) {
 		List<HotelPO> pos = dao.find(loc, circle);
 		if (pos.size() == 0) {
 			throw new HotelNotFoundException();
@@ -112,9 +111,18 @@ public class HotelServiceImpl implements HotelService {
 		Map<HotelVO, List<RoomVO>> map = new HashMap<>();
 		for (HotelPO po : pos) {
 			vo = new HotelVO(po);
+			//获得酒店的相关订单类型集合
+			for(OrderVO order:orderSearchService.findByHotelAndUsername(vo.id, username)){
+				vo.status.add(order.status);
+			}
+			
+			//获得酒店所对应的房间列表
 			List<RoomVO> rooms = roomService.findAvailableByHotelID(vo.id, begin, end);
+			vo.lowValue = Collections.min(rooms).roomValue;
+			vo.highValue = Collections.max(rooms).roomValue;
 			map.put(vo, rooms);
 		}
+		hotel.setData(map);
 		return map;
 	}
 
@@ -147,15 +155,18 @@ public class HotelServiceImpl implements HotelService {
 		throw new HotelNotFoundException();
 	}
 
+	
 	@Transactional
 	@Override
 	public Map<HotelVO, List<RoomVO>> order(OrderRule rule, boolean isDecrease) {
 		return hotel.order(rule, isDecrease);
 	}
-
+	
+	@Transactional
 	@Override
 	public void addRemark(HotelVO hotel, int score) {
 		hotel.score = (hotel.score*hotel.remarkNum+score)/(hotel.remarkNum+1);
 		update(hotel);
 	}
+
 }

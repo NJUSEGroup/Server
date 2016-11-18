@@ -98,7 +98,6 @@ public class HotelServiceStub implements HotelService {
 		return map;
 	}
 
-	*
 
 	@Override
 	public Map<HotelVO, List<RoomVO>> filterName(Map<HotelVO, List<RoomVO>> map, String hotelname) {

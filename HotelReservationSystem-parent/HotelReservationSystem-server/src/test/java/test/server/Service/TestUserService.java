@@ -45,12 +45,15 @@ public class TestUserService {
 
 	@Test(expected = UserExistedException.class)
 	public void testRegister1() {
-		assertEquals(service.register(new UserVO("admin", "admin")), ResultMessage.SUCCESS);
+		service.register(new UserVO("admin","admin"));
 	}
+	
 	@Test
 	public void testRegister2() {
 		UserVO vo = new UserVO("admin666", "admin666", "123123", "呵呵", 0, 1, UserType.Enterprise,"酒店ttt");
-		assertEquals(service.register(vo), ResultMessage.SUCCESS);
+		service.register(vo);
+		vo = service.findByUsername("admin666");
+		assertEquals(vo.password,"admin666");
 		List<EnterpriseVO> list = enterpriseService.getAllEnterprises();
 		for(EnterpriseVO enterprise:list){
 			if(enterprise.name.equals("酒店ttt")){
@@ -64,8 +67,8 @@ public class TestUserService {
 	public void testUpdate() {
 		UserVO vo = service.findByUsername("admin");
 		vo.credit = 3000;
-//		service.update(vo);
-//		assertEquals(service.findByUsername("admin").credit, 3000);
+		service.update(vo);
+		assertEquals(service.findByUsername("admin").credit, 3000);
 	}
 
 	@Test(expected = UserPasswordErrorException.class)

@@ -5,7 +5,7 @@ import java.io.Serializable;
 import hrs.common.POJO.RoomPO;
 import hrs.common.util.type.RoomType;
 
-public class RoomVO implements Serializable {
+public class RoomVO implements Serializable,Comparable<RoomVO> {
 	/**
 	 * 
 	 */
@@ -73,12 +73,18 @@ public class RoomVO implements Serializable {
 		return true;
 	}
 
+	
+	
 	@Override
 	public String toString() {
 		return "RoomVO [hotel=" + hotel + ", type=" + type + ", roomNum=" + roomNum + ", roomValue=" + roomValue
 				+ ", availableRoomNum=" + availableRoomNum + "]";
 	}
-	
+
+	@Override
+	public int compareTo(RoomVO o) {
+		return (int) (roomValue-o.roomNum);
+	}
 	
 
 }

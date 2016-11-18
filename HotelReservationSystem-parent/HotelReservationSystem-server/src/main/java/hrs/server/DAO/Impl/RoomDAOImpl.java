@@ -40,7 +40,7 @@ public class RoomDAOImpl implements RoomDAO {
 
 	@Override
 	public List<RoomPO> findByHotelID(int hotelID) {
-		String hql = "from RoomPO room inner join fetch room.hotel hotel where hotel.id = ?";
+		String hql = "from RoomPO room inner join fetch room.hotel hotel where hotel.id = ? order by room.roomValue";
 		List<RoomPO> list = null;
 		try {
 			list = getSession().createQuery(hql).setParameter(0, hotelID).getResultList();

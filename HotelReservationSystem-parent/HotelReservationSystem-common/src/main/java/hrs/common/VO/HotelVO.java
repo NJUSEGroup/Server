@@ -1,7 +1,8 @@
 package hrs.common.VO;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import hrs.common.POJO.HotelPO;
 import hrs.common.util.type.OrderStatus;
@@ -21,9 +22,13 @@ public class HotelVO implements Serializable {
 	public String service;
 	public StaffVO staff;
 	public String street;
-	public List<OrderStatus> status;
+	public Set<OrderStatus> status = new HashSet();
 	public int remarkNum;
-
+	public double lowValue;
+	public double highValue;
+	
+	
+	
 	public HotelVO() {
 		// TODO Auto-generated constructor stub
 	}
