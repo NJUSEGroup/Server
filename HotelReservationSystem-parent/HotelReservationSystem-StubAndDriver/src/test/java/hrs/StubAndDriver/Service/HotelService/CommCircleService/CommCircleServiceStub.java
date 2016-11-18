@@ -6,9 +6,9 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 
 import hrs.StubAndDriver.DAO.HotelDAO.CommCircleDAO.CommCircleDAOStub;
-import hrs.common.POJO.CommercialCirclePO;
 import hrs.common.VO.CommercialCircleVO;
 import hrs.server.DAO.Interface.HotelDAO.CommCircleDAO;
+import hrs.server.POJO.CommercialCirclePO;
 import hrs.server.Service.Interface.HotelService.CommCircleService;
 
 public class CommCircleServiceStub implements CommCircleService {

@@ -5,10 +5,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import hrs.common.POJO.HotelPO;
-import hrs.common.POJO.OfflineRecordPO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.RoomType;
+import hrs.server.POJO.HotelPO;
+import hrs.server.POJO.OfflineRecordPO;
 
 public class OfflineRecordDAOStub implements hrs.server.DAO.Interface.OfflineRecordDAO{
 	private Map<Integer, OfflineRecordPO> map;

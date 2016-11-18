@@ -43,6 +43,7 @@ public class OrderVO implements Serializable {
 		this.execTime = po.getExecTime();
 		this.checkinTime = po.getCheckinTime();
 		this.checkoutTime = po.getCheckoutTime();
+		this.expectedCheckoutTime = po.getExpectedCheckoutTime();
 		this.revokeTime = po.getRevokeTime();
 		this.status = po.getStatus();
 		this.hotel = po.getHotel() != null ? new HotelVO(po.getHotel()):null;
@@ -56,11 +57,10 @@ public class OrderVO implements Serializable {
 		this.peopleNum = po.getPeopleNum();
 	}
 	
-	public OrderVO(int id, Date placeTime, Date execTime, Date checkinTime, Date expectedCheckoutTime,
+	public OrderVO(Date placeTime, Date execTime, Date checkinTime, Date expectedCheckoutTime,
 			Date checkoutTime, Date revokeTime, OrderStatus status, HotelVO hotel, double value, RoomType type,
 			int roomNum, boolean hasChild, UserVO user, int score, String evaluation, int peopleNum) {
 		super();
-		this.id = id;
 		this.placeTime = placeTime;
 		this.execTime = execTime;
 		this.checkinTime = checkinTime;
@@ -78,6 +78,17 @@ public class OrderVO implements Serializable {
 		this.evaluation = evaluation;
 		this.peopleNum = peopleNum;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

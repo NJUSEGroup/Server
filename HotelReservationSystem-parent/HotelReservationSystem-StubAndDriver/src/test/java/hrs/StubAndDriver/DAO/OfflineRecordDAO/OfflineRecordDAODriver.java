@@ -31,7 +31,7 @@ public class OfflineRecordDAODriver {
 		OfflineRecordPO po = dao.findByID(0);
 		HotelPO hotel = new HotelPO();
 		hotel.setId(1);
-		assertEquals(po,new OfflineRecordPO( hotel, date, date, , RoomType.Single, 1));
+		assertEquals(po,new OfflineRecordPO(0, hotel, date, date, null, RoomType.Single, 1));
 	}
 	
 	@Test

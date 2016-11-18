@@ -10,7 +10,15 @@ public class DateFormatter {
 	public static String format(Date date) {
 		return formatter.format(date);
 	}
-
+	
+	public static String formatWithMD(Date date){
+		String res = null;
+		formatter.applyPattern("MM-dd");
+		res = formatter.format(date);
+		formatter.applyPattern("yyyy-MM-dd");
+		return res;
+	}
+	
 	public static Date parse(String date) throws ParseException {
 		return formatter.parse(date);
 	}

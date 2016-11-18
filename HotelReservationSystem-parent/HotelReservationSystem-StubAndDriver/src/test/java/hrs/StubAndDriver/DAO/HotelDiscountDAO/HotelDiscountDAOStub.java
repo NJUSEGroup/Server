@@ -5,12 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import hrs.common.POJO.EnterprisePO;
-import hrs.common.POJO.HotelDiscountPO;
-import hrs.common.POJO.HotelPO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.HotelDiscountType;
 import hrs.server.DAO.Interface.PromotionDAO.HotelDiscountDAO;
+import hrs.server.POJO.EnterprisePO;
+import hrs.server.POJO.HotelDiscountPO;
+import hrs.server.POJO.HotelPO;
 
 public class HotelDiscountDAOStub implements HotelDiscountDAO {
 	private Map<Integer, HotelDiscountPO> map;

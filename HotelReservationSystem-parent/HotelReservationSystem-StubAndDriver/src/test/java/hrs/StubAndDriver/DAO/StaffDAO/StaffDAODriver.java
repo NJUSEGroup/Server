@@ -6,11 +6,11 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import hrs.common.POJO.HotelPO;
-import hrs.common.POJO.StaffPO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.StaffType;
 import hrs.server.DAO.Interface.StaffDAO;
+import hrs.server.POJO.HotelPO;
+import hrs.server.POJO.StaffPO;
 
 public class StaffDAODriver {
 	private StaffDAO dao;

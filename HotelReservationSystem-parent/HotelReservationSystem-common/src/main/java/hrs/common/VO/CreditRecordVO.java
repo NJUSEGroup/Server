@@ -40,12 +40,14 @@ public class CreditRecordVO implements Serializable{
 		this.variation = variation;
 	}
 
-
 	@Override
 	public String toString() {
-		return "CreditRecordVO [id=" + id + ", order=" + order + ", user=" + user + ", type=" + type + ", variation="
-				+ variation + ", currCredit=" + currCredit + "]";
+		return "CreditRecordVO [id=" + id + ", order=" + order + ", type=" + type + ", variation=" + variation
+				+ ", currCredit=" + currCredit + "]";
 	}
+
+
+	
 
 	
 }

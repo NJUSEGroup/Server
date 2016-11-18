@@ -7,8 +7,8 @@ public class EnterpriseHotelDiscount extends HotelDiscount{
 	
 	@Override
 	public OrderVO discount(OrderVO order) {
-		if(order.user.enterprise.equals(hotelDiscount.enterprise)){
-			order.hotelDiscounts.put(hotelDiscount, hotelDiscount.discount*order.value*order.roomNum);
+		if(order.user.enterprise.equals(hotelDiscount.enterprise.name)){
+			order.hotelDiscounts.put(hotelDiscount, (1-hotelDiscount.discount)*order.value);
 		}
 		return order;
 	}

@@ -9,13 +9,13 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import hrs.common.POJO.HotelPO;
-import hrs.common.POJO.OrderPO;
-import hrs.common.POJO.UserPO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.OrderStatus;
 import hrs.common.util.type.RoomType;
 import hrs.server.DAO.Interface.OrderDAO;
+import hrs.server.POJO.HotelPO;
+import hrs.server.POJO.OrderPO;
+import hrs.server.POJO.UserPO;
 
 public class OrderDAODriver {
 	private OrderDAO dao;

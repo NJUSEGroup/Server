@@ -7,7 +7,7 @@ public class LargeQtyHotelDiscount extends HotelDiscount {
 	@Override
 	public OrderVO discount(OrderVO order) {
 		if(order.roomNum >= hotelDiscount.minQty){
-			order.hotelDiscounts.put(hotelDiscount, hotelDiscount.discount*order.value*order.roomNum);
+			order.hotelDiscounts.put(hotelDiscount, (1-hotelDiscount.discount)*order.value);
 		}
 		return order;
 	}

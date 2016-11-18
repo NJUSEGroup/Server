@@ -2,6 +2,9 @@ package test.server.Service;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,8 +15,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import hrs.common.Exception.UserService.UserExistedException;
 import hrs.common.Exception.UserService.UserNotFoundException;
 import hrs.common.Exception.UserService.UserPasswordErrorException;
+import hrs.common.VO.EnterpriseVO;
 import hrs.common.VO.UserVO;
 import hrs.common.util.ResultMessage;
+import hrs.common.util.type.UserType;
+import hrs.server.Service.Interface.PromotionService.EnterpriseService;
 import hrs.server.Service.Interface.UserService.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -21,6 +27,8 @@ import hrs.server.Service.Interface.UserService.UserService;
 public class TestUserService {
 	@Autowired
 	private UserService service;
+	@Autowired
+	private EnterpriseService enterpriseService;
 
 	@Test
 	public void testFindByUsername() {
@@ -36,10 +44,22 @@ public class TestUserService {
 	
 
 	@Test(expected = UserExistedException.class)
-	public void testRegister() {
+	public void testRegister1() {
 		assertEquals(service.register(new UserVO("admin", "admin")), ResultMessage.SUCCESS);
 	}
-
+	@Test
+	public void testRegister2() {
+		UserVO vo = new UserVO("admin666", "admin666", "123123", "呵呵", 0, 1, UserType.Enterprise,"酒店ttt");
+		assertEquals(service.register(vo), ResultMessage.SUCCESS);
+		List<EnterpriseVO> list = enterpriseService.getAllEnterprises();
+		for(EnterpriseVO enterprise:list){
+			if(enterprise.name.equals("酒店ttt")){
+				return;
+			}
+		}
+		fail();
+	}
+	
 	@Test
 	public void testUpdate() {
 		UserVO vo = service.findByUsername("admin");

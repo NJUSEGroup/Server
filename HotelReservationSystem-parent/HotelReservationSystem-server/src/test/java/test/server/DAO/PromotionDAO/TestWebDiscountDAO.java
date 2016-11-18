@@ -23,7 +23,7 @@ import hrs.server.DAO.Interface.PromotionDAO.WebDiscountDAO;
 public class TestWebDiscountDAO {
 	@Autowired
 	private WebDiscountDAO dao;
-
+	
 	@Transactional
 	@Test
 	public void testAdd() {
@@ -31,7 +31,6 @@ public class TestWebDiscountDAO {
 		dao.add(po);
 		assertTrue(dao.findAll().contains(po));
 	}
-
 	@Transactional
 	@Test
 	public void testUpdate() {
@@ -40,7 +39,6 @@ public class TestWebDiscountDAO {
 		dao.update(po);
 		assertEquals(dao.findAll().get(0).getDiscount(), 0.9, 0.001);
 	}
-
 	@Transactional
 	@Test
 	public void testFindAll() {
@@ -50,7 +48,6 @@ public class TestWebDiscountDAO {
 		}
 		assertNotNull(pos);
 	}
-
 	@Transactional
 	@Test
 	public void testDelete() {
@@ -59,4 +56,6 @@ public class TestWebDiscountDAO {
 		dao.delete(po.getId());
 		assertFalse(dao.findAll().contains(po.getId()));
 	}
+	
+	
 }

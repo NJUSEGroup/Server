@@ -18,13 +18,15 @@
 			<column name="HOTEL_SCORE" />
 		</property>
 
-		<many-to-one name="commercialCircle" class="CommercialCirclePO"
-			fetch="join">
-			<column name="HOTEL_CIRCLE"></column>
-		</many-to-one>
+		
 		<many-to-one name="location" class="LocationPO" fetch="join">
 			<column name="HOTEL_LOC"></column>
 		</many-to-one>
+		
+		<many-to-one name="commercialCircle" class="CommercialCirclePO" fetch="join">
+			<column name="HOTEL_CIRCLE"></column>
+		</many-to-one>
+		
 		<property name="profile" type="java.lang.String">
 			<column name="HOTEL_PROFILE" />
 		</property>
@@ -34,6 +36,9 @@
 		<one-to-one name="staff" class="StaffPO" property-ref="hotel"></one-to-one>
 		<property name="street" type="java.lang.String">
 			<column name="HOTEL_STREET" />
+		</property>
+		<property name="remarkNum" type="int">
+			<column name="HOTEL_REMARK_NUM"></column>
 		</property>
 	</class>
 </hibernate-mapping>

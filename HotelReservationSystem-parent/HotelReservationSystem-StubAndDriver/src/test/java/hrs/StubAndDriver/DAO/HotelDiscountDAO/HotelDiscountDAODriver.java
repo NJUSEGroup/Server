@@ -8,11 +8,11 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import hrs.common.POJO.EnterprisePO;
-import hrs.common.POJO.HotelDiscountPO;
-import hrs.common.POJO.HotelPO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.HotelDiscountType;
+import hrs.server.POJO.EnterprisePO;
+import hrs.server.POJO.HotelDiscountPO;
+import hrs.server.POJO.HotelPO;
 
 public class HotelDiscountDAODriver {
 	private hrs.server.DAO.Interface.PromotionDAO.HotelDiscountDAO dao;

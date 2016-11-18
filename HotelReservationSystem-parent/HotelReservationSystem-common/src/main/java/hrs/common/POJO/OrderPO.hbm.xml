@@ -33,7 +33,7 @@
                 <param name="enumClass">hrs.common.util.type.OrderStatus</param>
             </type>
         </property>
-        <many-to-one name="hotel" class="HotelPO" fetch="join">
+        <many-to-one name="hotel" class="HotelPO" lazy="proxy">
             <column name="ORDER_HOTEL" />
         </many-to-one>
         <property name="value" type="double">
@@ -52,7 +52,7 @@
         <property name="hasChild" type="boolean">
             <column name="ORDER_HAS_CHILD" />
         </property>
-        <many-to-one name="user" class="UserPO" fetch="join">
+        <many-to-one name="user" class="UserPO" lazy="false">
             <column name="order_tenant" />
         </many-to-one>
         <property name="score" type="int">

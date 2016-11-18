@@ -9,6 +9,5 @@ protected WebDiscountVO webDiscount;
 	public void setWebDiscountVO(WebDiscountVO webDiscount) {
 		this.webDiscount = webDiscount;
 	}
-
 	public abstract OrderVO discount(OrderVO order);
 }

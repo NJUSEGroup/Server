@@ -1,4 +1,5 @@
 package hrs.server.util;
+
 /**
  * 
  * @author NewSong
@@ -9,19 +10,30 @@ package hrs.server.util;
 	>5000      5
  */
 public class VIPLevel {
-	
+	public static final int [] low  = {0,500,1500,3000,5000};
+	public static final int [] high  = {500,1500,3000,5000,Integer.MAX_VALUE};
+	public static final int [] level = {1,2,3,4,5};
+	/**
+	 * 
+	 * @Title: getLevel 
+	 * @Description 表驱动
+	 * @param @param credit
+	 * @param @return     
+	 * @return int     
+	 * @throws
+	 */
 	public static int getLevel(int credit){
-		if(credit < 500){
-			return 1;
-		}else if(credit < 1500){
-			return 2;
-		}else if(credit < 3000){
-			return 3;
-		}else if(credit < 5000){
-			return 4;
-		}else{
-			return 5;
+		assert credit >=0;
+		for(int i = 0; i < low.length;++i){
+			if(credit >= low[i] && credit < high[i]){
+				return level[i];
+			}
 		}
+		return 1;
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(getLevel(6000));
 	}
 }
 

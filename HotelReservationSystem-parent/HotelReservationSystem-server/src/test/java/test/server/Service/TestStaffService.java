@@ -46,13 +46,12 @@ public class TestStaffService {
 		assertEquals(service.findByUsername("staff233").password, "110");
 	}
 
-	
 	@Test
 	public void testUpdate() {
 		StaffVO staff = service.findByUsername("admin3");
 		staff.password = "111";
-		// service.update(staff);
-		// assertEquals(service.findByUsername("admin3").password,"111");
+		service.update(staff);
+		assertEquals(service.findByUsername("admin3").password, "111");
 	}
 
 	@Test

@@ -3,10 +3,7 @@ package hrs.common.VO;
 import java.io.Serializable;
 import java.util.List;
 
-import hrs.common.POJO.CommercialCirclePO;
 import hrs.common.POJO.HotelPO;
-import hrs.common.POJO.LocationPO;
-import hrs.common.POJO.StaffPO;
 import hrs.common.util.type.OrderStatus;
 
 public class HotelVO implements Serializable {
@@ -22,42 +19,48 @@ public class HotelVO implements Serializable {
 	public CommercialCircleVO commercialCircle;
 	public String profile;
 	public String service;
-	public  StaffVO staff;
+	public StaffVO staff;
 	public String street;
 	public List<OrderStatus> status;
+	public int remarkNum;
+
 	public HotelVO() {
 		// TODO Auto-generated constructor stub
 	}
-	public HotelVO(HotelPO po,StaffVO staff){
+
+	public HotelVO(HotelPO po, StaffVO staff) {
 		this.id = po.getId();
 		this.name = po.getName();
 		this.star = po.getStar();
 		this.score = po.getScore();
-		this.location =  (po.getLocation() != null) ? new LocationVO(po.getLocation()):null;
-		this.commercialCircle = (po.getCommercialCircle() != null) ? new CommercialCircleVO(po.getCommercialCircle()):null;
+		this.location = (po.getLocation() != null) ? new LocationVO(po.getLocation()) : null;
+		this.commercialCircle = (po.getCommercialCircle() != null) ? new CommercialCircleVO(po.getCommercialCircle())
+				: null;
 		this.profile = po.getProfile();
 		this.staff = staff;
 		this.service = po.getService();
 		this.street = po.getStreet();
+		this.remarkNum = po.getRemarkNum();
 	}
-	
-	public HotelVO(HotelPO po){
+
+	public HotelVO(HotelPO po) {
 		this.id = po.getId();
 		this.name = po.getName();
 		this.star = po.getStar();
 		this.score = po.getScore();
-		this.location = po.getLocation() != null? new LocationVO(po.getLocation()):null;
-		this.commercialCircle = po.getCommercialCircle() != null? new CommercialCircleVO(po.getCommercialCircle()):null;
-		this.staff = po.getStaff() != null ? new StaffVO(po.getStaff()):null;
+		this.location = po.getLocation() != null ? new LocationVO(po.getLocation()) : null;
+		this.commercialCircle = po.getCommercialCircle() != null ? new CommercialCircleVO(po.getCommercialCircle())
+				: null;
+		this.staff = po.getStaff() != null ? new StaffVO(po.getStaff()) : null;
 		this.profile = po.getProfile();
 		this.service = po.getService();
 		this.street = po.getStreet();
+		this.remarkNum = po.getRemarkNum();
 	}
-	
-	public HotelVO(int id, String name, int star, double score, LocationVO location,
-			CommercialCircleVO commercialCircle, String profile, String service, String street) {
+
+	public HotelVO(String name, int star, double score, LocationVO location, CommercialCircleVO commercialCircle,
+			String profile, String service, String street,int remarkNum) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.star = star;
 		this.score = score;
@@ -66,18 +69,7 @@ public class HotelVO implements Serializable {
 		this.profile = profile;
 		this.service = service;
 		this.street = street;
-	}
-
-	
-
-	public HotelVO(int id, String name, int star, double score, String profile, String service) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.star = star;
-		this.score = score;
-		this.profile = profile;
-		this.service = service;
+		this.remarkNum = remarkNum;
 	}
 
 	@Override
@@ -89,10 +81,12 @@ public class HotelVO implements Serializable {
 		result = prime * result + ((location == null) ? 0 : location.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((profile == null) ? 0 : profile.hashCode());
+		result = prime * result + remarkNum;
 		long temp;
 		temp = Double.doubleToLongBits(score);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((service == null) ? 0 : service.hashCode());
+		result = prime * result + ((staff == null) ? 0 : staff.hashCode());
 		result = prime * result + star;
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		result = prime * result + ((street == null) ? 0 : street.hashCode());
@@ -130,12 +124,19 @@ public class HotelVO implements Serializable {
 				return false;
 		} else if (!profile.equals(other.profile))
 			return false;
+		if (remarkNum != other.remarkNum)
+			return false;
 		if (Double.doubleToLongBits(score) != Double.doubleToLongBits(other.score))
 			return false;
 		if (service == null) {
 			if (other.service != null)
 				return false;
 		} else if (!service.equals(other.service))
+			return false;
+		if (staff == null) {
+			if (other.staff != null)
+				return false;
+		} else if (!staff.equals(other.staff))
 			return false;
 		if (star != other.star)
 			return false;
@@ -151,5 +152,14 @@ public class HotelVO implements Serializable {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "HotelVO [id=" + id + ", name=" + name + ", star=" + star + ", score=" + score + ", location=" + location
+				+ ", commercialCircle=" + commercialCircle + ", profile=" + profile + ", service=" + service
+			    + ", street=" + street + ", status=" + status + ", remarkNum=" + remarkNum + "]";
+	}
+
 	
+
 }

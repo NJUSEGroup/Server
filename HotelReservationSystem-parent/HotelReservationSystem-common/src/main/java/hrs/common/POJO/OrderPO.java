@@ -39,6 +39,7 @@ public class OrderPO implements Serializable {
 		this.placeTime = vo.placeTime;
 		this.execTime = vo.execTime;
 		this.checkinTime = vo.checkinTime;
+		this.expectedCheckoutTime = vo.expectedCheckoutTime;
 		this.checkoutTime = vo.checkoutTime;
 		this.revokeTime  = vo.revokeTime;
 		this.status = vo.status;

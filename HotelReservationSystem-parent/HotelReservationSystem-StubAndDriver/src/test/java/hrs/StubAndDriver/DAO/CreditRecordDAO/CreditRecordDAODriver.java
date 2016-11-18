@@ -9,11 +9,11 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import hrs.common.POJO.CreditRecordPO;
-import hrs.common.POJO.UserPO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.CreditRecordType;
 import hrs.server.DAO.Interface.CreditRecordDAO;
+import hrs.server.POJO.CreditRecordPO;
+import hrs.server.POJO.UserPO;
 
 public class CreditRecordDAODriver {
 	private CreditRecordDAO dao;

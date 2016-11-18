@@ -6,8 +6,9 @@ public class VIPWebDiscount extends WebDiscount{
 
 	@Override
 	public OrderVO discount(OrderVO order) {
-		// TODO Auto-generated method stub
-		return null;
+		if(order.user.VIPLevel == webDiscount.VIPlevel){
+			order.webDiscounts.put(webDiscount, order.value*(1-webDiscount.discount));
+		}
+		return order;
 	}
-
 }

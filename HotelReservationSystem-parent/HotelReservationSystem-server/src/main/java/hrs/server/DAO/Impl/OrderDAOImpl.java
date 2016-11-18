@@ -29,7 +29,7 @@ public class OrderDAOImpl implements OrderDAO {
 	}
 
 	@Override
-	public List<OrderPO> findByUsernameAndType(String username, OrderStatus status) {
+	public List<OrderPO> findByUsernameAndStatus(String username, OrderStatus status) {
 		String hql = "from OrderPO o inner join fetch o.user u "
 				+ "where u.username = :username and o.status = :status";
 		List<OrderPO> list = getSession().createQuery(hql).setParameter("username", username)
@@ -73,7 +73,19 @@ public class OrderDAOImpl implements OrderDAO {
 										 .setParameter("hotelID", hotelID).getResultList();
 		return list;
 	}
-
+	
+	@Override
+	public List<OrderPO> findByHotelAndStatus(int hotelID, OrderStatus type) {
+		String hql = "from OrderPO o inner join fetch o.hotel hotel "
+				 + "where hotel.id = :hotelID "
+				 + "and o.status = :type";
+		List<OrderPO> list = getSession().createQuery(hql)
+				 .setParameter("hotelID", hotelID)
+				 .setParameter("type", type)
+				 .getResultList();
+		return list;
+	}
+	
 	@Override
 	public ResultMessage add(OrderPO orderpo) {
 		getSession().save(orderpo);
@@ -85,5 +97,7 @@ public class OrderDAOImpl implements OrderDAO {
 		getSession().update(orderpo);
 		return ResultMessage.SUCCESS;
 	}
+
+	
 
 }

@@ -39,6 +39,7 @@ public class TestHotelDAO {
 	public void testFindByID() {
 		HotelPO po = dao.findByID(1);
 		assertEquals(po.getId(),1);
+		System.out.println("TestHotelDAO:"+po.getCommercialCircle());
 	}
 
 	@Transactional
@@ -58,7 +59,7 @@ public class TestHotelDAO {
 		circle.setId(2);
 		StaffPO staff = new StaffPO();
 		staff.setId(2);
-		HotelPO po = new HotelPO("wuli韬韬",5,3, loc, circle, "good", "good",staff,"街道");
+		HotelPO po = new HotelPO("wuli韬韬",5,3, loc, circle, "good", "good",staff,"街道",1);
 		dao.add(po);
 		assertEquals(po, dao.findByID(po.getId()));
 	}

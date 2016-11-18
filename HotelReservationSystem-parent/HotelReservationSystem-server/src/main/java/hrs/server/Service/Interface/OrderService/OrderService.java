@@ -14,5 +14,5 @@ public interface OrderService {
 	ResultMessage revokeByWebMarketer(OrderVO ordervo,RestoreValueType type);
 	ResultMessage remark(OrderVO ordervo,int score, String evaluation);
 	ResultMessage delayCheckin(OrderVO ordervo);
-	void checkAbNormal();
+	void checkAbNormalOrder();
 }

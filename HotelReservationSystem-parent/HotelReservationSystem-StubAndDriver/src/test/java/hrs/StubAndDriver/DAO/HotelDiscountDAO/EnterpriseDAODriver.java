@@ -7,8 +7,8 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import hrs.common.POJO.EnterprisePO;
 import hrs.server.DAO.Interface.PromotionDAO.EnterpriseDAO;
+import hrs.server.POJO.EnterprisePO;
 
 public class EnterpriseDAODriver {
 	private EnterpriseDAO dao;

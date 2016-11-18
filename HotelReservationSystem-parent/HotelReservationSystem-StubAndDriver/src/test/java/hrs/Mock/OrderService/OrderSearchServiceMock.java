@@ -7,10 +7,10 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 
 import hrs.StubAndDriver.DAO.OrderDAO.OrderDAOStub;
-import hrs.common.POJO.OrderPO;
 import hrs.common.VO.OrderVO;
 import hrs.common.util.type.OrderStatus;
 import hrs.server.DAO.Interface.OrderDAO;
+import hrs.server.POJO.OrderPO;
 import hrs.server.Service.Interface.OrderService.OrderSearchService;
 
 public class OrderSearchServiceMock implements OrderSearchService {

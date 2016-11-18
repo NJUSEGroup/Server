@@ -45,15 +45,16 @@ public class UserVO implements Serializable {
 	}
 
 	public UserVO(String username, String password, String phone, String name, int credit, int vIPLevel,
-			UserType type) {
+			UserType type,String enterprise) {
 		super();
 		this.username = username;
 		this.password = password;
 		this.phone = phone;
 		this.name = name;
 		this.credit = credit;
-		VIPLevel = vIPLevel;
+		this.VIPLevel = vIPLevel;
 		this.type = type;
+		this.enterprise = enterprise;
 	}
 	
 

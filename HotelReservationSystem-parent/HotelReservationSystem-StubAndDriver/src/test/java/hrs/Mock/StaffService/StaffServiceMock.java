@@ -3,10 +3,10 @@ package hrs.Mock.StaffService;
 import org.springframework.beans.BeanUtils;
 
 import hrs.StubAndDriver.DAO.StaffDAO.StaffDAOStub;
-import hrs.common.POJO.StaffPO;
 import hrs.common.VO.StaffVO;
 import hrs.common.util.ResultMessage;
 import hrs.server.DAO.Interface.StaffDAO;
+import hrs.server.POJO.StaffPO;
 import hrs.server.Service.Interface.StaffService.StaffService;
 
 public class StaffServiceMock implements StaffService {

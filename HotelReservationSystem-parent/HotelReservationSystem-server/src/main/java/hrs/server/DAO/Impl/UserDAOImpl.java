@@ -43,7 +43,7 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public ResultMessage update(UserPO userpo) {
-		getSession().update(userpo);
+		getSession().merge(userpo);
 		return ResultMessage.SUCCESS;
 	}
 

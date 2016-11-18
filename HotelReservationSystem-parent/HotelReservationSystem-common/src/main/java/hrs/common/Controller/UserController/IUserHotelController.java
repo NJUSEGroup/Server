@@ -9,6 +9,7 @@ import hrs.common.VO.HotelVO;
 import hrs.common.VO.LocationVO;
 import hrs.common.VO.OrderVO;
 import hrs.common.VO.RoomVO;
+import hrs.common.util.FilterCondition.FilterCondition;
 import hrs.common.util.type.OrderRule;
 
 public interface IUserHotelController {

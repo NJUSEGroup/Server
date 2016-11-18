@@ -1,5 +1,6 @@
 package hrs.server.Service.Impl.PromotionService.HotelDiscountService;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,14 +14,24 @@ import hrs.common.VO.HotelDiscountVO;
 import hrs.common.util.ResultMessage;
 import hrs.server.DAO.Interface.PromotionDAO.HotelDiscountDAO;
 import hrs.server.Service.Interface.PromotionService.HotelDiscountService;
+import hrs.server.util.DateFormatter;
+
 @Service
 public class HotelDiscountServiceImpl implements HotelDiscountService {
 	@Autowired
 	private HotelDiscountDAO dao;
-	
+
 	@Transactional
 	@Override
 	public ResultMessage add(HotelDiscountVO vo) {
+		try {
+			if (vo.beginTime != null && vo.endTime != null) {
+				vo.beginTime = DateFormatter.parse(DateFormatter.format(vo.beginTime));
+				vo.endTime = DateFormatter.parse(DateFormatter.format(vo.endTime));
+			}
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		return dao.add(new HotelDiscountPO(vo));
 	}
 
@@ -39,14 +50,14 @@ public class HotelDiscountServiceImpl implements HotelDiscountService {
 	@Transactional
 	@Override
 	public List<HotelDiscountVO> findAllByHotelID(int hotelID) {
-		List<HotelDiscountPO> pos  = dao.findAllByHotelID(hotelID);
+		List<HotelDiscountPO> pos = dao.findAllByHotelID(hotelID);
 		List<HotelDiscountVO> vos = null;
-		if(pos.size() == 0){
+		if (pos.size() == 0) {
 			throw new HotelDiscountNotFoundException();
-		}else{
+		} else {
 			vos = new ArrayList<>();
 			HotelDiscountVO vo = null;
-			for(HotelDiscountPO po:pos){
+			for (HotelDiscountPO po : pos) {
 				vo = new HotelDiscountVO(po);
 				vos.add(vo);
 			}
@@ -61,7 +72,7 @@ public class HotelDiscountServiceImpl implements HotelDiscountService {
 	@Override
 	public List<HotelDiscount> createAllStrategies(int hotelID) {
 		List<HotelDiscountVO> vos = findAllByHotelID(hotelID);
-		if(vos.size() == 0){
+		if (vos.size() == 0) {
 			return new ArrayList<>();
 		}
 		List<HotelDiscount> strategies = new ArrayList<>();
@@ -70,7 +81,7 @@ public class HotelDiscountServiceImpl implements HotelDiscountService {
 		try {
 			for (HotelDiscountVO vo : vos) {
 				clazz = Class.forName("hrs.server.Service.Impl.PromotionService.HotelDiscountService."
-										+vo.type.toString() + "HotelDiscount");
+						+ vo.type.toString() + "HotelDiscount");
 				strategy = (HotelDiscount) clazz.newInstance();
 				strategy.setHotelDiscount(vo);
 				strategies.add(strategy);

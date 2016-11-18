@@ -38,7 +38,7 @@ public class TestOrderDAO {
 	@Transactional
 	@Test
 	public void testFindByUsernameAndType() {
-		List<OrderPO> list = dao.findByUsernameAndType("admin", OrderStatus.Unexecuted);
+		List<OrderPO> list = dao.findByUsernameAndStatus("admin", OrderStatus.Unexecuted);
 		for (OrderPO po : list) {
 			System.out.println(po);
 			assertEquals(po.getUser().getUsername(), "admin");
@@ -90,7 +90,18 @@ public class TestOrderDAO {
 			assertTrue(po.getExpectedCheckoutTime().before(end));
 		}
 	}
-
+	
+	@Transactional
+	@Test
+	public void testFindByHotelAndType(){
+		List<OrderPO> list = dao.findByHotelAndStatus(1, OrderStatus.Unexecuted);
+		for(OrderPO po:list){
+			System.out.println(po);
+			assertEquals(po.getHotel().getId(),1);
+			assertEquals(po.getStatus(),OrderStatus.Unexecuted);
+		}
+	}
+	
 	@Transactional
 	@Test
 	public void testAdd() throws ParseException {
@@ -115,4 +126,6 @@ public class TestOrderDAO {
 		dao.update(po);
 		assertEquals(dao.findByID(10).getNum(), 10);
 	}
+	
+	
 }

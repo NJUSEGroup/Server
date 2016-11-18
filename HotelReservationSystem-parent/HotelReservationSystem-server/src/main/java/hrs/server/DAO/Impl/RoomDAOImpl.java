@@ -16,8 +16,6 @@ import hrs.common.POJO.RoomPO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.RoomType;
 import hrs.server.DAO.Interface.RoomDAO;
-import hrs.server.util.DateFormatter;
-import hrs.server.util.SpringUtils;
 
 @Repository
 public class RoomDAOImpl implements RoomDAO {
@@ -30,7 +28,7 @@ public class RoomDAOImpl implements RoomDAO {
 
 	@Override
 	public ResultMessage update(RoomPO roompo) {
-		getSession().update(roompo);
+		getSession().merge(roompo);
 		return ResultMessage.SUCCESS;
 	}
 

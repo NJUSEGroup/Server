@@ -1,65 +1,109 @@
 package hrs.server.Service.Impl.OrderService;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import hrs.common.Exception.OrderService.OrderNotFoundException;
+import hrs.common.POJO.OrderPO;
 import hrs.common.VO.OrderVO;
 import hrs.common.util.type.OrderStatus;
 import hrs.server.DAO.Interface.OrderDAO;
-//github.com/NJUSEGroup/HotelManagementSystem.git
 import hrs.server.Service.Interface.OrderService.OrderSearchService;
 
-public class OrderSearchServiceImpl implements OrderSearchService{
+@Service
+public class OrderSearchServiceImpl implements OrderSearchService {
+	@Autowired
 	private OrderDAO dao;
-	
-	public void setDao(OrderDAO dao) {
-		this.dao = dao;
-	}
 	
 	@Transactional
 	@Override
 	public OrderVO findByID(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		OrderPO po  = dao.findByID(id);
+		if(po == null){
+			throw new OrderNotFoundException();
+		}else{
+			return new OrderVO(po);
+		}
 	}
+
 	@Transactional
 	@Override
-	public List<OrderVO> findByHotelAndType(int hotelID, OrderStatus type) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<OrderVO> findByHotelAndStatus(int hotelID, OrderStatus status) {
+		List<OrderPO> pos = dao.findByHotelAndStatus(hotelID,status);
+		if(pos.size() == 0){
+			throw new OrderNotFoundException();
+		}else{
+			return tranfer(pos);
+		}
 	}
+
 	@Transactional
 	@Override
-	public List<OrderVO> findByUsernameAndType(String username, OrderStatus type) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<OrderVO> findByUsernameAndStatus(String username, OrderStatus status) {
+		List<OrderPO> pos = dao.findByUsernameAndStatus(username,status);
+		if(pos.size() == 0){
+			throw new OrderNotFoundException();
+		}else{
+			return tranfer(pos);
+		}
 	}
+
 	@Transactional
 	@Override
 	public List<OrderVO> findByUsername(String username) {
-		// TODO Auto-generated method stub
-		return null;
+		List<OrderPO> pos = dao.findByUsername(username);
+		if(pos.size() == 0){
+			throw new OrderNotFoundException();
+		}else{
+			return tranfer(pos);
+		}
 	}
+
 	@Transactional
 	@Override
 	public List<OrderVO> findByHotelAndUsername(int hotelID, String username) {
-		// TODO Auto-generated method stub
-		return null;
+		List<OrderPO> pos = dao.findByHotelAndUsername(hotelID, username);
+		if(pos.size() == 0){
+			throw new OrderNotFoundException();
+		}else{
+			return tranfer(pos);
+		}
 	}
-	
+
 	@Transactional
 	@Override
 	public List<OrderVO> findByOrderStatus(OrderStatus status) {
-		// TODO Auto-generated method stub
-		return null;
+		List<OrderPO> pos = dao.findByOrderStatus(status);
+		if(pos.size() == 0){
+			throw new OrderNotFoundException();
+		}else{
+			return tranfer(pos);
+		}
 	}
+
 	@Transactional
 	@Override
 	public List<OrderVO> findByHotelAndTime(int hotelID, Date begin, Date end) {
-		// TODO Auto-generated method stub
-		return null;
+		List<OrderPO> pos = dao.findByHotelAndTime(hotelID, begin, end);
+		if(pos.size() == 0){
+			throw new OrderNotFoundException();
+		}else{
+			return tranfer(pos);
+		}
 	}
-
+	
+	private List<OrderVO> tranfer(List<OrderPO> pos){
+		List<OrderVO> vos = new ArrayList<>();
+		OrderVO vo = null;
+		for(OrderPO po : pos){
+			vo = new OrderVO(po);
+			vos.add(vo);
+		}
+		return vos;
+	}
 }

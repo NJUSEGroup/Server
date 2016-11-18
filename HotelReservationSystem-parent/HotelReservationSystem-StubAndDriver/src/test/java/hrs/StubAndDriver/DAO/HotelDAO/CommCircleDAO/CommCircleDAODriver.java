@@ -7,8 +7,8 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import hrs.common.POJO.CommercialCirclePO;
 import hrs.server.DAO.Interface.HotelDAO.CommCircleDAO;
+import hrs.server.POJO.CommercialCirclePO;
 
 public class CommCircleDAODriver {
 	private CommCircleDAO dao;

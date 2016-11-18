@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import hrs.common.POJO.CommercialCirclePO;
-import hrs.common.POJO.HotelPO;
-import hrs.common.POJO.LocationPO;
 import hrs.common.util.ResultMessage;
 import hrs.server.DAO.Interface.HotelDAO.HotelDAO;
+import hrs.server.POJO.CommercialCirclePO;
+import hrs.server.POJO.HotelPO;
+import hrs.server.POJO.LocationPO;
 
 public class HotelDAOStub implements HotelDAO {
 	private Map<Integer,HotelPO> map;

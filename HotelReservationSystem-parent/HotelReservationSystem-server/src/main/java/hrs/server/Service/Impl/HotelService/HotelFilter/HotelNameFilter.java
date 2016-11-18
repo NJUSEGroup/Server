@@ -5,17 +5,18 @@ import java.util.Map;
 
 import hrs.common.VO.HotelVO;
 import hrs.common.VO.RoomVO;
-import hrs.server.Service.Interface.HotelService.Filter.NameFilterCondition;
+import hrs.common.util.FilterCondition.NameFilterCondition;
 
-public class HotelNameFilter extends  HotelFilter {
+public class HotelNameFilter extends HotelFilter {
 	public HotelNameFilter() {
-	}
 	
+	}
+
 	@Override
 	public void doFilter(Map<HotelVO, List<RoomVO>> hotels) {
-		NameFilterCondition condition  = (NameFilterCondition)super.condition;
-		for(HotelVO vo:hotels.keySet()){
-			if(!vo.name.matches("^.*\\["+condition.getHotelName()+"\\].*$")){
+		NameFilterCondition condition = (NameFilterCondition) super.condition;
+		for (HotelVO vo : hotels.keySet()) {
+			if (!vo.name.matches("^.*\\[" + condition.getHotelName() + "\\].*$")) {
 				hotels.remove(vo);
 			}
 		}

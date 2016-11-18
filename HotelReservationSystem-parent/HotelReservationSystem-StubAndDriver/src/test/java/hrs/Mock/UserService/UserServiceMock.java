@@ -3,10 +3,10 @@ package hrs.Mock.UserService;
 import org.springframework.beans.BeanUtils;
 
 import hrs.StubAndDriver.DAO.UserDAO.UserDAOStub;
-import hrs.common.POJO.UserPO;
 import hrs.common.VO.UserVO;
 import hrs.common.util.ResultMessage;
 import hrs.server.DAO.Interface.UserDAO;
+import hrs.server.POJO.UserPO;
 import hrs.server.Service.Interface.UserService.UserService;
 
 public class UserServiceMock implements UserService{

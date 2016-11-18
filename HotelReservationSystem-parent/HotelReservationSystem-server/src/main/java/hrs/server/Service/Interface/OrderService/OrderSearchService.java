@@ -9,9 +9,9 @@ import hrs.common.util.type.OrderStatus;
 public interface OrderSearchService {
 	OrderVO findByID(int id);
 
-	List<OrderVO> findByHotelAndType(int hotelID, OrderStatus type);
+	List<OrderVO> findByHotelAndStatus(int hotelID, OrderStatus type);
 
-	List<OrderVO> findByUsernameAndType(String username, OrderStatus type);
+	List<OrderVO> findByUsernameAndStatus(String username, OrderStatus type);
 
 	List<OrderVO> findByUsername(String username);
 

@@ -135,15 +135,11 @@ public class RoomServiceImpl implements RoomService {
 		List<RoomPO> pos = dao.findByHotelID(hotelID);
 		if(pos.size() == 0){
 			throw new RoomNotFoundException();
+		}else{
+			return transfer(pos);
 		}
-		List<RoomVO> vos = new ArrayList<>();
-		RoomVO vo = null;
-		for(RoomPO po:pos){
-			vo = new RoomVO(po);
-			vos.add(vo);
-		}
-		return vos;
 	}
+	
 	/**
 	 * 
 	 * @Title: findByHotelAndType 
@@ -162,5 +158,13 @@ public class RoomServiceImpl implements RoomService {
 			return new RoomVO(po);
 		}
 	}
-	
+	private List<RoomVO> transfer(List<RoomPO> pos){
+		List<RoomVO> vos = new ArrayList<>();
+		RoomVO vo = null;
+		for(RoomPO po:pos){
+			vo = new RoomVO(po);
+			vos.add(vo);
+		}
+		return vos;
+	}
 }

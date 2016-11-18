@@ -24,13 +24,13 @@ import hrs.server.util.DateFormatter;
 public class TestRoomService {
 	@Autowired
 	private RoomService service;
-
+	@Transactional
 	@Test
 	public void testUpdate() {
 		RoomVO vo = service.findByHotelAndType(1, RoomType.Single);
 		vo.roomNum = 9;
-//		service.update(vo);
-//		assertEquals(9, service.findByHotelAndType(1, RoomType.Single).roomNum);
+		service.update(vo);
+		assertEquals(9, service.findByHotelAndType(1, RoomType.Single).roomNum);
 	}
 
 	@Test
@@ -62,17 +62,17 @@ public class TestRoomService {
 		Date begin = DateFormatter.parseWithHMS("2016-10-05 12:00:00");
 		Date end = DateFormatter.parseWithHMS("2016-10-28 00:00:00");
 		List<RoomVO> list = service.findAvailableByHotelID(1, begin, end);
-		for(RoomVO vo:list){
+		for (RoomVO vo : list) {
 			System.out.println(vo);
 		}
 		assertNotNull(list);
 	}
-	
+
 	@Test
 	public void testFindAvailableRoomNum() throws ParseException {
 		Date begin = DateFormatter.parseWithHMS("2016-10-05 12:00:00");
 		Date end = DateFormatter.parseWithHMS("2016-10-28 00:00:00");
-		assertEquals(service.findAvailableRoomNum(1, RoomType.Single, begin, end),5);
+		assertEquals(service.findAvailableRoomNum(1, RoomType.Single, begin, end), 5);
 	}
 
 	@Test

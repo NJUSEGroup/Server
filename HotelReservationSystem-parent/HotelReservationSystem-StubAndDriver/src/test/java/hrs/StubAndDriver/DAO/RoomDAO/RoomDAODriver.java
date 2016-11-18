@@ -9,11 +9,11 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import hrs.common.POJO.HotelPO;
-import hrs.common.POJO.RoomPO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.RoomType;
 import hrs.server.DAO.Interface.RoomDAO;
+import hrs.server.POJO.HotelPO;
+import hrs.server.POJO.RoomPO;
 
 public class RoomDAODriver {
 	private RoomDAO dao;

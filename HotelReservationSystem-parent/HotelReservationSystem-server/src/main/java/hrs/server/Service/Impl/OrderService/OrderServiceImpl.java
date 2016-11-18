@@ -11,13 +11,16 @@ import hrs.common.POJO.OrderPO;
 import hrs.common.VO.CreditRecordVO;
 import hrs.common.VO.HotelDiscountVO;
 import hrs.common.VO.OrderVO;
+import hrs.common.VO.WebDiscountVO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.CreditRecordType;
 import hrs.common.util.type.OrderStatus;
 import hrs.common.util.type.RestoreValueType;
 import hrs.server.DAO.Interface.OrderDAO;
 import hrs.server.Service.Impl.PromotionService.HotelDiscountService.HotelDiscount;
+import hrs.server.Service.Impl.PromotionService.WebDiscountService.WebDiscount;
 import hrs.server.Service.Interface.CreditRecordService.CreditRecordService;
+import hrs.server.Service.Interface.HotelService.HotelService;
 import hrs.server.Service.Interface.OrderService.OrderService;
 import hrs.server.Service.Interface.PromotionService.HotelDiscountService;
 import hrs.server.Service.Interface.PromotionService.WebDiscountService;
@@ -31,8 +34,18 @@ public class OrderServiceImpl implements OrderService {
 	private WebDiscountService webDiscountService;
 	@Autowired
 	private CreditRecordService creditRecordService;
-
+	@Autowired
+	private HotelService hotelService;
 	
+	
+	/**
+	 * 
+	 * @Title: placeOrder 
+	 * @Description: 前置条件是order的value已经被正确设置
+	 * @param order
+	 * @return OrderVO
+	 * @see hrs.server.Service.Interface.OrderService.OrderService#placeOrder(hrs.common.VO.OrderVO)
+	 */
 	@Transactional
 	@Override
 	public OrderVO placeOrder(OrderVO order) {
@@ -42,22 +55,30 @@ public class OrderServiceImpl implements OrderService {
 		// 读取用户的信息：生日、所在企业、原始信用值
 		// 合并后进行优惠
 		// 每种优惠策略都设置优惠值
-		List<HotelDiscount> strategies = hotelDiscountService.createAllStrategies(order.hotel.id);
-		for (HotelDiscount strategy : strategies) {
+		List<HotelDiscount> hotelStrategies = hotelDiscountService.createAllStrategies(order.hotel.id);
+		for (HotelDiscount strategy : hotelStrategies) {
 			strategy.discount(order);//这里传入对象是为了保持一致，因为不同策略需要不同的数据
 		}
 		for (HotelDiscountVO vo : order.hotelDiscounts.keySet()) {
 			order.value -= order.hotelDiscounts.get(vo);
 		}
 		
+		List<WebDiscount> webStrategies = webDiscountService.createAllStrategies();
+		for (WebDiscount strategy : webStrategies) {
+			strategy.discount(order);//这里传入对象是为了保持一致，因为不同策略需要不同的数据
+		}
+		for (WebDiscountVO vo : order.webDiscounts.keySet()) {
+			order.value -= order.webDiscounts.get(vo);
+		}
 		return order;
 	}
-
+	
 	@Transactional
 	@Override
 	public ResultMessage add(OrderVO ordervo) {
 		return dao.add(new OrderPO(ordervo));
 	}
+	
 	/**
 	 * 
 	 * @Title: checkin 
@@ -100,14 +121,16 @@ public class OrderServiceImpl implements OrderService {
 	 * @Title: isOverTime 
 	 * @Description: 判断是否撤销的订单距离最晚订单执行时间不足6小时 
 	 * 				 不存在撤销时间比最晚订单执行时间还晚的情况，因为那个时候订单状态已经被置为异常了，并且只有未执行订单才有撤销选项
-	 * @param @param revokeTime
-	 * @param @param expectedCheckoutTime
-	 * @param @return     
+	 * @param  revokeTime
+	 * @param  expectedCheckoutTime
+	 * @param      
 	 * @return boolean     
 	 * @throws
 	 */
 	private boolean isOverTime(Date revokeTime,Date expectedCheckoutTime) {
-		return (expectedCheckoutTime.getTime()-revokeTime.getTime()/(60*60*1000)) >= 6;
+		System.out.println(revokeTime);
+		System.out.println(expectedCheckoutTime);
+		return ((expectedCheckoutTime.getTime()-revokeTime.getTime())/(60*60*1000)) >= 6;
 	}
 	
 	/**
@@ -146,6 +169,7 @@ public class OrderServiceImpl implements OrderService {
 	public ResultMessage remark(OrderVO ordervo,int score, String evaluation) {
 		ordervo.score = score;
 		ordervo.evaluation = evaluation;
+		hotelService.addRemark(ordervo.hotel,score);
 		return dao.update(new OrderPO(ordervo));
 	}
 	
@@ -165,24 +189,28 @@ public class OrderServiceImpl implements OrderService {
 		creditRecordService.add(new CreditRecordVO(ordervo,ordervo.user,CreditRecordType.Execute,(int)ordervo.value));
 		return dao.update(new OrderPO(ordervo));
 	}
+	
 	/**
 	 * 
 	 * @Title: checkAbNormal 
-	 * @Description:定期检查是否存在用户的未执行订单超时 
+	 * @Description 定期检查是否存在用户的未执行订单超时 
 	 * @see hrs.server.Service.Interface.OrderService.OrderService#checkAbNormal()
 	 */
 	@Transactional
 	@Override
-	public void checkAbNormal() {
+	public void checkAbNormalOrder() {
 		Date curr = new Date();
 		List<OrderPO> pos = dao.findByOrderStatus(OrderStatus.Unexecuted);
+		System.out.println(pos.size());
 		OrderVO vo = null;
 		for(OrderPO po:pos){
 			if(po.getExecTime().after(curr)){
 				po.setStatus(OrderStatus.Abnormal);
 				vo = new OrderVO(po);
+				System.out.println("超时:"+vo.id);
 				creditRecordService.add(new CreditRecordVO(vo,vo.user,CreditRecordType.Overtime,(int)vo.value));
 			}
 		}
 	}
+	
 }

@@ -2,6 +2,8 @@ package test.server.Service.PromotionService;
 
 import static org.junit.Assert.*;
 
+import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
@@ -15,6 +17,7 @@ import hrs.common.VO.HotelVO;
 import hrs.common.util.type.HotelDiscountType;
 import hrs.server.Service.Impl.PromotionService.HotelDiscountService.HotelDiscount;
 import hrs.server.Service.Interface.PromotionService.HotelDiscountService;
+import hrs.server.util.DateFormatter;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:applicationContext.xml" })
@@ -23,7 +26,7 @@ public class TestHotelDiscountService {
 	private HotelDiscountService service;
 
 	@Test
-	public void testAdd() {
+	public void testAdd1() {
 		HotelVO hotel = new HotelVO();
 		hotel.id = 4;
 		HotelDiscountVO vo = new HotelDiscountVO(hotel, 0.95, HotelDiscountType.Birthday, null, 0, null,null);
@@ -37,7 +40,23 @@ public class TestHotelDiscountService {
 		}
 		fail();
 	}
-	
+	@Test
+	public void testAdd2() throws ParseException {
+		HotelVO hotel = new HotelVO();
+		hotel.id = 4;
+		Date begin = DateFormatter.parseWithHMS("2016-10-01 08:18:12");
+		Date end = DateFormatter.parseWithHMS("2016-10-23 20:24:09");
+		HotelDiscountVO vo = new HotelDiscountVO(hotel, 0.95, HotelDiscountType.SpecialPeriod, null, 0, begin,end);
+		service.add(vo);
+		List<HotelDiscountVO> vos = service.findAllByHotelID(4);
+		for(HotelDiscountVO v:vos){
+			if(v.type == HotelDiscountType.SpecialPeriod){
+				System.out.println(v);
+				return;
+			}
+		}
+		fail();
+	}
 
 	@Test
 	public void testUpdate() {

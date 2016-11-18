@@ -6,10 +6,12 @@ public class SpecialPeriodHotelDiscount extends HotelDiscount {
 
 	@Override
 	public OrderVO discount(OrderVO order) {
-		if(hotelDiscount.beginTime.after(order.placeTime) && hotelDiscount.endTime.before(order.placeTime)){
-			order.hotelDiscounts.put(hotelDiscount, hotelDiscount.discount*order.value*order.roomNum);
+		System.out.println(order.placeTime);
+		System.out.println(hotelDiscount.beginTime);
+		System.out.println(hotelDiscount.endTime);
+		if(hotelDiscount.beginTime.before(order.placeTime) && hotelDiscount.endTime.after(order.placeTime)){
+			order.hotelDiscounts.put(hotelDiscount, (1-hotelDiscount.discount)*order.value);
 		}
 		return order;
 	}
-
 }

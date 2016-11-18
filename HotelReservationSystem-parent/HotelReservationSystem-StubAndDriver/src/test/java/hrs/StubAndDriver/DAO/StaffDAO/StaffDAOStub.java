@@ -3,10 +3,10 @@ package hrs.StubAndDriver.DAO.StaffDAO;
 import java.util.HashMap;
 import java.util.Map;
 
-import hrs.common.POJO.StaffPO;
 import hrs.common.util.ResultMessage;
 import hrs.common.util.type.StaffType;
 import hrs.server.DAO.Interface.StaffDAO;
+import hrs.server.POJO.StaffPO;
 
 public class StaffDAOStub implements StaffDAO {
 	private Map<Integer,StaffPO> map;
@@ -45,4 +45,5 @@ public class StaffDAOStub implements StaffDAO {
 		}
 		return null;
 	}
+	
 }
