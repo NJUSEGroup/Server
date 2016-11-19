@@ -1,5 +1,7 @@
 package hrs.server.DAO.Impl;
 
+import java.util.List;
+
 import javax.persistence.NoResultException;
 
 import org.hibernate.Session;
@@ -44,14 +46,13 @@ public class StaffDAOImpl implements StaffDAO {
 		return po;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public StaffPO findByHotelName(String hotelName) {
-		String hql = "from StaffPO staff inner join fetch staff.hotel hotel where hotel.name = ?";
-		StaffPO po = null;
-		try{
-			po = (StaffPO) getSession().createQuery(hql).setParameter(0, hotelName).getSingleResult();
-		}catch(NoResultException e){}
-		return po;
+	public List<StaffPO> findByHotelName(String hotelName) {
+		String hql = "from StaffPO staff inner join fetch staff.hotel hotel where hotel.name like :hotelName";
+		return getSession().createQuery(hql)
+				.setParameter("hotelName", "%"+hotelName+"%")
+				.getResultList();
 	}
 
 }

@@ -1,6 +1,6 @@
 package hrs.common.Exception.HotelService;
 
-public class HotelNotFoundException extends RuntimeException {
+public class HotelNotFoundException extends Exception {
 
 	/**
 	 * 

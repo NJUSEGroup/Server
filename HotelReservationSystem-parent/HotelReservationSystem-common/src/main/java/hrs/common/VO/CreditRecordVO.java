@@ -5,7 +5,7 @@ import java.io.Serializable;
 import hrs.common.POJO.CreditRecordPO;
 import hrs.common.util.type.CreditRecordType;
 
-public class CreditRecordVO implements Serializable{
+public class CreditRecordVO implements Serializable,Cloneable{
 	
 	/**
 	 * 

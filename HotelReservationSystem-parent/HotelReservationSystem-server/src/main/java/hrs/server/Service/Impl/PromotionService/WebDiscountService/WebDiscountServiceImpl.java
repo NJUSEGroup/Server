@@ -13,7 +13,7 @@ import hrs.common.POJO.WebDiscountPO;
 import hrs.common.VO.WebDiscountVO;
 import hrs.server.DAO.Interface.PromotionDAO.WebDiscountDAO;
 import hrs.server.Service.Interface.PromotionService.WebDiscountService;
-import hrs.server.util.DateFormatter;
+import hrs.server.util.DateHelper;
 
 @Service
 public class WebDiscountServiceImpl implements WebDiscountService {
@@ -43,8 +43,8 @@ public class WebDiscountServiceImpl implements WebDiscountService {
 	public void add(WebDiscountVO vo) {
 		try {
 			if (vo.beginTime != null && vo.endTime != null) {
-				vo.beginTime = DateFormatter.parse(DateFormatter.format(vo.beginTime));
-				vo.endTime = DateFormatter.parse(DateFormatter.format(vo.endTime));
+				vo.beginTime = DateHelper.parse(DateHelper.format(vo.beginTime));
+				vo.endTime = DateHelper.parse(DateHelper.format(vo.endTime));
 			}
 		} catch (ParseException e) {
 			e.printStackTrace();

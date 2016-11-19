@@ -17,7 +17,7 @@ import hrs.common.POJO.HotelPO;
 import hrs.common.POJO.RoomPO;
 import hrs.common.util.type.RoomType;
 import hrs.server.DAO.Interface.RoomDAO;
-import hrs.server.util.DateFormatter;
+import hrs.server.util.DateHelper;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:applicationContext.xml" })
@@ -79,7 +79,7 @@ public class TestRoomDAO {
 	@Transactional
 	@Test
 	public void testFindAvailableRoomNum() throws ParseException {
-		assertEquals(dao.findAvailableRoomNum(1, RoomType.Single, DateFormatter.parseWithHMS("2016-10-5 00:00:00"),DateFormatter.parseWithHMS("2016-10-28 00:00:00")), 5);
+		assertEquals(dao.findAvailableRoomNum(1, RoomType.Single, DateHelper.parseWithHMS("2016-10-5 00:00:00"),DateHelper.parseWithHMS("2016-10-28 00:00:00")), 5);
 	}
 	
 	@Transactional

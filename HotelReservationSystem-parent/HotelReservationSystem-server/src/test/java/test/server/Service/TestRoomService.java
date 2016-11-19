@@ -17,7 +17,7 @@ import hrs.common.VO.HotelVO;
 import hrs.common.VO.RoomVO;
 import hrs.common.util.type.RoomType;
 import hrs.server.Service.Interface.RoomService.RoomService;
-import hrs.server.util.DateFormatter;
+import hrs.server.util.DateHelper;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:applicationContext.xml" })
@@ -59,8 +59,8 @@ public class TestRoomService {
 
 	@Test
 	public void testFindAvailableByHotelID() throws ParseException {
-		Date begin = DateFormatter.parseWithHMS("2016-10-05 12:00:00");
-		Date end = DateFormatter.parseWithHMS("2016-10-28 00:00:00");
+		Date begin = DateHelper.parseWithHMS("2016-10-05 12:00:00");
+		Date end = DateHelper.parseWithHMS("2016-10-28 00:00:00");
 		List<RoomVO> list = service.findAvailableByHotelID(1, begin, end);
 		for (RoomVO vo : list) {
 			System.out.println(vo);
@@ -70,8 +70,8 @@ public class TestRoomService {
 
 	@Test
 	public void testFindAvailableRoomNum() throws ParseException {
-		Date begin = DateFormatter.parseWithHMS("2016-10-05 12:00:00");
-		Date end = DateFormatter.parseWithHMS("2016-10-28 00:00:00");
+		Date begin = DateHelper.parseWithHMS("2016-10-05 12:00:00");
+		Date end = DateHelper.parseWithHMS("2016-10-28 00:00:00");
 		assertEquals(service.findAvailableRoomNum(1, RoomType.Single, begin, end), 5);
 	}
 

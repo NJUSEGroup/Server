@@ -14,9 +14,9 @@ public class ValueComparator extends HotelComparator {
 	@Override
 	public int compare(HotelVO o1, HotelVO o2) {
 		if (isDecrease) {
-			return o1.highValue >= o2.highValue ? 1 : -1;
+			return o1.highValue <= o2.highValue ? 1 : -1;
 		} else {
-			return o2.lowValue >= o1.lowValue ? 1 : -1;
+			return o1.lowValue >= o2.lowValue ? 1 : -1;
 		}
 	}
 

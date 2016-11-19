@@ -7,9 +7,9 @@ public class ScoreComparator extends HotelComparator {
 	@Override
 	public int compare(HotelVO o1, HotelVO o2) {
 		if (super.isDecrease) {
-			return o1.score >= o2.score ? 1 : -1;
+			return o1.score <= o2.score ? 1 : -1;
 		} else {
-			return o2.score >= o1.score ? 1 : -1;
+			return o1.score >= o2.score ? 1 : -1;
 		}
 	}
 

@@ -23,11 +23,12 @@ public class OfflineRecordServiceImpl implements OfflineRecordService {
 	 * @Description: 按id查找线下订单
 	 * @param id
 	 * @return 
+	 * @throws OfflineRecordNotFoundException 
 	 * @see hrs.server.Service.Interface.OfflineRecordService.OfflineRecordService#findByID(int)
 	 */
 	@Transactional	
 	@Override
-	public OfflineRecordVO findByID(int id) {
+	public OfflineRecordVO findByID(int id) throws OfflineRecordNotFoundException {
 		OfflineRecordPO po = dao.findByID(id);
 		if(po == null){
 			throw new OfflineRecordNotFoundException();

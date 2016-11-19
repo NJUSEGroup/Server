@@ -18,6 +18,7 @@ public class LocationDAOImpl implements LocationDAO {
 		return sessionFactory.getCurrentSession();
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<LocationPO> findAll() {
 		String hql = "from LocationPO";

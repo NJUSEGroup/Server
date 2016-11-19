@@ -16,7 +16,7 @@ import hrs.common.POJO.HotelPO;
 import hrs.common.POJO.OfflineRecordPO;
 import hrs.common.util.type.RoomType;
 import hrs.server.DAO.Interface.OfflineRecordDAO;
-import hrs.server.util.DateFormatter;
+import hrs.server.util.DateHelper;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:applicationContext.xml" })
@@ -37,8 +37,8 @@ public class TestOfflineRecordDAO {
 	public void testAdd() throws ParseException {
 		HotelPO hotel = new HotelPO();
 		hotel.setId(1);
-		Date begin = DateFormatter.parseWithHMS("2016-10-01 08:18:12");
-		Date end = DateFormatter.parseWithHMS("2016-10-02 20:24:09");
+		Date begin = DateHelper.parseWithHMS("2016-10-01 08:18:12");
+		Date end = DateHelper.parseWithHMS("2016-10-02 20:24:09");
 		OfflineRecordPO po = new OfflineRecordPO(hotel, begin, end, RoomType.Single, 1);
 		dao.add(po);
 		assertEquals(dao.findByID(po.getId()), po);

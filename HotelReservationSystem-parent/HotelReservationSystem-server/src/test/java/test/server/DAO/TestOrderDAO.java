@@ -20,7 +20,7 @@ import hrs.common.POJO.UserPO;
 import hrs.common.util.type.OrderStatus;
 import hrs.common.util.type.RoomType;
 import hrs.server.DAO.Interface.OrderDAO;
-import hrs.server.util.DateFormatter;
+import hrs.server.util.DateHelper;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:applicationContext.xml" })
@@ -80,8 +80,8 @@ public class TestOrderDAO {
 	@Transactional
 	@Test
 	public void testFindByHotelAndTime() throws ParseException {
-		Date begin = DateFormatter.parseWithHMS("2016-10-01 08:18:12");
-		Date end = DateFormatter.parseWithHMS("2016-10-23 20:24:09");
+		Date begin = DateHelper.parseWithHMS("2016-10-01 08:18:12");
+		Date end = DateHelper.parseWithHMS("2016-10-23 20:24:09");
 		List<OrderPO> list = dao.findByHotelAndTime(1, begin, end);
 		System.out.println(list.size());
 		for (OrderPO po : list) {
@@ -105,9 +105,9 @@ public class TestOrderDAO {
 	@Transactional
 	@Test
 	public void testAdd() throws ParseException {
-		Date curr = DateFormatter.parseWithHMS("2016-10-01 02:18:12");
-		Date begin = DateFormatter.parseWithHMS("2016-10-01 08:18:12");
-		Date end = DateFormatter.parseWithHMS("2016-10-23 20:24:09");
+		Date curr = DateHelper.parseWithHMS("2016-10-01 02:18:12");
+		Date begin = DateHelper.parseWithHMS("2016-10-01 08:18:12");
+		Date end = DateHelper.parseWithHMS("2016-10-23 20:24:09");
 		HotelPO hotel = new HotelPO();
 		hotel.setId(1);
 		UserPO user = new UserPO();

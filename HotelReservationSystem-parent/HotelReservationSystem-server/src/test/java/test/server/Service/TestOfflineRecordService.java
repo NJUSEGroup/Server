@@ -12,11 +12,12 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import hrs.common.Exception.OfflineRecordService.OfflineRecordNotFoundException;
 import hrs.common.VO.HotelVO;
 import hrs.common.VO.OfflineRecordVO;
 import hrs.common.util.type.RoomType;
 import hrs.server.Service.Interface.OfflineRecordService.OfflineRecordService;
-import hrs.server.util.DateFormatter;
+import hrs.server.util.DateHelper;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:applicationContext.xml" })
@@ -25,18 +26,18 @@ public class TestOfflineRecordService {
 	private OfflineRecordService service;
 	
 	@Test
-	public void testFindByID(){
+	public void testFindByID() throws OfflineRecordNotFoundException{
 		OfflineRecordVO vo = service.findByID(5);
 		System.out.println(vo);
 		assertEquals(vo.num,3);
 	}
 
 	@Test
-	public void testCheckin() throws ParseException{
+	public void testCheckin() throws ParseException, OfflineRecordNotFoundException{
 		HotelVO hotel = new HotelVO();
 		hotel.id = 1;
-		Date begin = DateFormatter.parseWithHMS("2016-10-05 12:00:00");
-		Date end = DateFormatter.parseWithHMS("2016-10-28 00:00:00");
+		Date begin = DateHelper.parseWithHMS("2016-10-05 12:00:00");
+		Date end = DateHelper.parseWithHMS("2016-10-28 00:00:00");
 		OfflineRecordVO vo = new OfflineRecordVO(hotel, begin, end, RoomType.Single, 3);
 		service.checkin(vo);
 		OfflineRecordVO res = service.findByID(6);
@@ -47,7 +48,7 @@ public class TestOfflineRecordService {
 	}
 	
 	@Test
-	public void testCheckout(){
+	public void testCheckout() throws OfflineRecordNotFoundException{
 		OfflineRecordVO vo = service.findByID(5);
 //		service.checkout(vo);
 //		assertNotNull(service.findByID(5).checkoutTime);

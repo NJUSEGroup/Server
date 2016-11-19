@@ -2,17 +2,16 @@ package hrs.common.Controller.UserController;
 
 import java.util.List;
 
-import hrs.common.VO.CreditRecordVO;
 import hrs.common.VO.OrderVO;
-import hrs.common.util.ResultMessage;
+import hrs.common.VO.UserVO;
 import hrs.common.util.type.OrderStatus;
 
 public interface IUserOrderController {
-	List<OrderVO> findOrdersByUsernameAndType(String username, OrderStatus type);
+	List<OrderVO> findOrdersByUsernameAndStatus(String username, OrderStatus type);
 	boolean validateCredit(String username);
 	OrderVO placeOrder(OrderVO ordervo);
-	ResultMessage addOrder(OrderVO ordervo);
-	ResultMessage remark(OrderVO ordervo);
-	ResultMessage revoke(OrderVO ordervo);
-	ResultMessage addCreditRecord(CreditRecordVO creditrecordvo);
+	void addOrder(OrderVO ordervo);
+	void remark(OrderVO ordervo,int score,String evaluation);
+	void revoke(OrderVO ordervo);
+	void recharge(UserVO user,int money);
 }

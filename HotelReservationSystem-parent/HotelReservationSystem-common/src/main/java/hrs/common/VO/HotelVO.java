@@ -162,7 +162,8 @@ public class HotelVO implements Serializable {
 	public String toString() {
 		return "HotelVO [id=" + id + ", name=" + name + ", star=" + star + ", score=" + score + ", location=" + location
 				+ ", commercialCircle=" + commercialCircle + ", profile=" + profile + ", service=" + service
-			    + ", street=" + street + ", status=" + status + ", remarkNum=" + remarkNum + "]";
+				+ ", street=" + street + ", remarkNum=" + remarkNum + ", lowValue=" + lowValue + ", highValue="
+				+ highValue + "]";
 	}
 
 	

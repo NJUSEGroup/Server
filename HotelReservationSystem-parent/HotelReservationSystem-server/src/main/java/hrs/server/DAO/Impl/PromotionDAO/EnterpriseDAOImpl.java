@@ -20,6 +20,7 @@ public class EnterpriseDAOImpl implements EnterpriseDAO {
 		return sessionFactory.getCurrentSession();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<EnterprisePO> findAll() {
 		String hql = "from EnterprisePO ";

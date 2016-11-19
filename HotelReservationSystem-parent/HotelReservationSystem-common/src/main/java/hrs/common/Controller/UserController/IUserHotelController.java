@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import hrs.common.Exception.HotelService.HotelNotFoundException;
 import hrs.common.VO.CommercialCircleVO;
 import hrs.common.VO.HotelVO;
 import hrs.common.VO.LocationVO;
@@ -23,11 +24,11 @@ public interface IUserHotelController {
 	 */
 	List<OrderVO> findOrderByHotelAndUsername(int hotelID, String username);
 
-	List<RoomVO> getRoomDetail(int hotelID);
+	List<RoomVO> getRoomDetail(int hotelID) throws HotelNotFoundException;
 
 	Map<HotelVO, List<OrderVO>> findOrderedHotelAndOrder(String username);
 
-	Map<HotelVO, List<RoomVO>> findHotels(int loc, int circle, Date begin, Date end);
+	Map<HotelVO, List<RoomVO>> findHotels(int loc, int circle, Date begin, Date end,String username) throws HotelNotFoundException;
 
 	Map<HotelVO, List<RoomVO>> filterHotels(List<FilterCondition> conditions);
 

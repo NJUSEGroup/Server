@@ -6,7 +6,7 @@ import java.util.Date;
 import hrs.common.POJO.WebDiscountPO;
 import hrs.common.util.type.WebsiteDiscountType;
 
-public class WebDiscountVO implements Serializable {
+public class WebDiscountVO implements Serializable, Cloneable {
 	/**
 	 * 
 	 */
@@ -23,19 +23,19 @@ public class WebDiscountVO implements Serializable {
 	public WebDiscountVO() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	public WebDiscountVO(WebDiscountPO po){
+
+	public WebDiscountVO(WebDiscountPO po) {
 		this.id = po.getId();
 		this.discount = po.getDiscount();
 		this.type = po.getType();
-		this.location = po.getLocation() != null ? new LocationVO(po.getLocation()):null;
-		this.commercialCircle = po.getCommercialCircle() != null ? new CommercialCircleVO(po.getCommercialCircle()):null;
+		this.location = po.getLocation() != null ? new LocationVO(po.getLocation()) : null;
+		this.commercialCircle = po.getCommercialCircle() != null ? new CommercialCircleVO(po.getCommercialCircle())
+				: null;
 		this.beginTime = po.getBeginTime();
 		this.endTime = po.getEndTime();
 		this.VIPlevel = po.getVIPlevel();
 	}
-	
-	
+
 	public WebDiscountVO(double discount, WebsiteDiscountType type, LocationVO location,
 			CommercialCircleVO commercialCircle, Date beginTime, Date endTime, int vIPlevel) {
 		super();
@@ -111,6 +111,5 @@ public class WebDiscountVO implements Serializable {
 				+ ", commercialCircle=" + commercialCircle + ", beginTime=" + beginTime + ", endTime=" + endTime
 				+ ", VIPlevel=" + VIPlevel + "]";
 	}
-	
-	
+
 }

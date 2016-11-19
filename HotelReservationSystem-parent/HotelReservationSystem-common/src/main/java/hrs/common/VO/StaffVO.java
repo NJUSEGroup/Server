@@ -6,7 +6,7 @@ import hrs.common.POJO.StaffPO;
 import hrs.common.util.DesUtil;
 import hrs.common.util.type.StaffType;
 
-public class StaffVO implements Serializable {
+public class StaffVO implements Serializable,Cloneable {
 
 	/**
 	 * 

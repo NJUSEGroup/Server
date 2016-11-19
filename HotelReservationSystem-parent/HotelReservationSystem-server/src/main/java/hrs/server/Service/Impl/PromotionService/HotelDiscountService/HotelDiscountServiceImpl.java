@@ -11,10 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 import hrs.common.Exception.Promotion.HotelDiscountService.HotelDiscountNotFoundException;
 import hrs.common.POJO.HotelDiscountPO;
 import hrs.common.VO.HotelDiscountVO;
-import hrs.common.util.ResultMessage;
 import hrs.server.DAO.Interface.PromotionDAO.HotelDiscountDAO;
 import hrs.server.Service.Interface.PromotionService.HotelDiscountService;
-import hrs.server.util.DateFormatter;
+import hrs.server.util.DateHelper;
 
 @Service
 public class HotelDiscountServiceImpl implements HotelDiscountService {
@@ -26,8 +25,8 @@ public class HotelDiscountServiceImpl implements HotelDiscountService {
 	public void add(HotelDiscountVO vo) {
 		try {
 			if (vo.beginTime != null && vo.endTime != null) {
-				vo.beginTime = DateFormatter.parse(DateFormatter.format(vo.beginTime));
-				vo.endTime = DateFormatter.parse(DateFormatter.format(vo.endTime));
+				vo.beginTime = DateHelper.parse(DateHelper.format(vo.beginTime));
+				vo.endTime = DateHelper.parse(DateHelper.format(vo.endTime));
 			}
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -49,7 +48,7 @@ public class HotelDiscountServiceImpl implements HotelDiscountService {
 
 	@Transactional
 	@Override
-	public List<HotelDiscountVO> findAllByHotelID(int hotelID) {
+	public List<HotelDiscountVO> findAllByHotelID(int hotelID) throws HotelDiscountNotFoundException {
 		List<HotelDiscountPO> pos = dao.findAllByHotelID(hotelID);
 		List<HotelDiscountVO> vos = null;
 		if (pos.size() == 0) {
@@ -67,10 +66,11 @@ public class HotelDiscountServiceImpl implements HotelDiscountService {
 
 	/**
 	 * 使用反射实现动态性
+	 * @throws HotelDiscountNotFoundException 
 	 */
 	@Transactional
 	@Override
-	public List<HotelDiscount> createAllStrategies(int hotelID) {
+	public List<HotelDiscount> createAllStrategies(int hotelID) throws HotelDiscountNotFoundException {
 		List<HotelDiscountVO> vos = findAllByHotelID(hotelID);
 		if (vos.size() == 0) {
 			return new ArrayList<>();

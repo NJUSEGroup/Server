@@ -1,5 +1,6 @@
 package hrs.server.Service.Impl.HotelService;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -15,6 +16,9 @@ public class AvailableHotel {
 	private Map<HotelVO, List<RoomVO>> data;
 
 	public Map<HotelVO, List<RoomVO>> filter(List<FilterCondition> conditions) {
+		//拷贝一份，每次过滤都不修改原始的缓存
+		Map<HotelVO, List<RoomVO>> res = new HashMap<>();
+		res.putAll(data);
 		HotelFilter filter = null;
 		Class<?> clazz = null;
 		try {
@@ -22,34 +26,30 @@ public class AvailableHotel {
 				clazz = Class.forName("hrs.server.Service.Impl.HotelService.HotelFilter.Hotel"
 						+ condition.getType().toString() + "Filter");
 				filter = (HotelFilter) clazz.newInstance();
-
 				filter.setFilterCondition(condition);
-				filter.doFilter(data);
+				filter.doFilter(res);
 			}
 		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		return data;
+		return res;
 	}
 
 	public Map<HotelVO, List<RoomVO>> order(OrderRule rule, boolean isDecrease) {
 		HotelComparator comp = null;
 		try {
 			comp = (HotelComparator) Class
-					.forName("hrs.server.Service.Impl.HotelService.HotelComparator." 
-					+ rule.toString() + "Comparator")
+					.forName("hrs.server.Service.Impl.HotelService.HotelComparator." + rule.toString() + "Comparator")
 					.newInstance();
 		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 		comp.setDecrease(isDecrease);
 		Map<HotelVO, List<RoomVO>> res = new TreeMap<>(comp);
-		for (HotelVO vo : data.keySet()) {
-			res.put(vo, data.get(vo));
-		}
+		res.putAll(data);
 		return res;
 	}
-	
+
 	public Map<HotelVO, List<RoomVO>> getData() {
 		return data;
 	}

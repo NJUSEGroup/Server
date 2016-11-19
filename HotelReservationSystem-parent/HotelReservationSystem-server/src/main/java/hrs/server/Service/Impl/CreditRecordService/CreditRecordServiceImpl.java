@@ -13,6 +13,7 @@ import hrs.common.VO.CreditRecordVO;
 import hrs.common.VO.UserVO;
 import hrs.common.util.DesUtil;
 import hrs.common.util.ResultMessage;
+import hrs.common.util.type.CreditRecordType;
 import hrs.server.DAO.Interface.CreditRecordDAO;
 import hrs.server.Service.Interface.CreditRecordService.CreditRecordService;
 import hrs.server.Service.Interface.UserService.UserService;
@@ -31,11 +32,12 @@ public class CreditRecordServiceImpl implements CreditRecordService {
 	 * @Description:按用户名查找信用记录
 	 * @param username
 	 * @return List<CreditRecordVO>
+	 * @throws CreditRecordNotFoundException 
 	 * @see hrs.server.Service.Interface.CreditRecordService.CreditRecordService#findByUsername(java.lang.String)
 	 */
 	@Transactional
 	@Override
-	public List<CreditRecordVO> findByUsername(String username) {
+	public List<CreditRecordVO> findByUsername(String username) throws CreditRecordNotFoundException {
 		List<CreditRecordPO> pos = dao.findByUsername(DesUtil.encode(username));
 		List<CreditRecordVO> vos = null;
 		if (pos.size() == 0) {
@@ -68,5 +70,11 @@ public class CreditRecordServiceImpl implements CreditRecordService {
 		user.VIPLevel = VIPLevel.getLevel(user.credit);
 		userService.update(user);
 		dao.add(new CreditRecordPO(vo));
+	}
+
+	@Override
+	public void recharge(UserVO user, int value) {
+		CreditRecordVO vo = new CreditRecordVO(null, user, CreditRecordType.Recharge, value*100);
+		add(vo);
 	}
 }

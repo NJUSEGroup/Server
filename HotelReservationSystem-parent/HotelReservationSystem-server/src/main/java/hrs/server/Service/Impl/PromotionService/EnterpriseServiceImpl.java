@@ -10,13 +10,14 @@ import org.springframework.transaction.annotation.Transactional;
 import hrs.common.Exception.PromotionService.EnterpriseNotFoundException;
 import hrs.common.POJO.EnterprisePO;
 import hrs.common.VO.EnterpriseVO;
-import hrs.common.util.ResultMessage;
 import hrs.server.DAO.Interface.PromotionDAO.EnterpriseDAO;
 import hrs.server.Service.Interface.PromotionService.EnterpriseService;
 
 @Service
 public class EnterpriseServiceImpl implements EnterpriseService {
+	
 	@Autowired
+	
 	private EnterpriseDAO dao;
 	/**
 	 * 
@@ -42,14 +43,7 @@ public class EnterpriseServiceImpl implements EnterpriseService {
 		}
 		return vos;
 	}
-	/**
-	 * 
-	 * @Title: add 
-	 * @Description:添加一个企业
-	 * @param vo
-	 * @return 
-	 * @see hrs.server.Service.Interface.PromotionService.EnterpriseService#add(hrs.common.VO.EnterpriseVO)
-	 */
+	
 	@Transactional
 	@Override
 	public void add(EnterpriseVO vo) {

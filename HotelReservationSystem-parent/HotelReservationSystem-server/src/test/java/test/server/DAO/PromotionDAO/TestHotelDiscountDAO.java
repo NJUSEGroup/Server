@@ -18,7 +18,7 @@ import hrs.common.POJO.HotelDiscountPO;
 import hrs.common.POJO.HotelPO;
 import hrs.common.util.type.HotelDiscountType;
 import hrs.server.DAO.Interface.PromotionDAO.HotelDiscountDAO;
-import hrs.server.util.DateFormatter;
+import hrs.server.util.DateHelper;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:applicationContext.xml" })
@@ -29,8 +29,8 @@ public class TestHotelDiscountDAO {
 	@Transactional
 	@Test
 	public void testAdd() throws ParseException {
-		Date begin = DateFormatter.parseWithHMS("2016-10-01 08:18:12");
-		Date end = DateFormatter.parseWithHMS("2016-10-23 20:24:09");
+		Date begin = DateHelper.parseWithHMS("2016-10-01 08:18:12");
+		Date end = DateHelper.parseWithHMS("2016-10-23 20:24:09");
 		HotelPO hotel = new HotelPO();
 		hotel.setId(5);
 		HotelDiscountPO po = new HotelDiscountPO(hotel, 0.9, HotelDiscountType.Birthday, null, 0, begin, end);

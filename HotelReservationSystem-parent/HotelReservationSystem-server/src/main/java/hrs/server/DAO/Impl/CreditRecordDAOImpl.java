@@ -11,7 +11,6 @@ import hrs.common.POJO.CreditRecordPO;
 import hrs.common.util.ResultMessage;
 import hrs.server.DAO.Interface.CreditRecordDAO;
 
-
 @SuppressWarnings("all")
 @Repository
 public class CreditRecordDAOImpl implements CreditRecordDAO {
@@ -24,12 +23,11 @@ public class CreditRecordDAOImpl implements CreditRecordDAO {
 
 	@Override
 	public List<CreditRecordPO> findByUsername(String username) {
-		String hql = "from CreditRecordPO c inner join fetch c.user user "
-											+ "where user.username = :username";
-		List<CreditRecordPO> list = getSession().createQuery(hql)
-												.setParameter("username", username)
-												.getResultList();
-		return list;
+		String hql = "from CreditRecordPO c inner join fetch c.user user " + "where user.username = :username";
+		return getSession().createQuery(hql)
+				.setParameter("username", username)
+				.getResultList();
+
 	}
 
 	@Override

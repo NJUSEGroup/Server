@@ -5,7 +5,7 @@ import java.io.Serializable;
 import hrs.common.POJO.RoomPO;
 import hrs.common.util.type.RoomType;
 
-public class RoomVO implements Serializable,Comparable<RoomVO> {
+public class RoomVO implements Serializable,Comparable<RoomVO> ,Cloneable{
 	/**
 	 * 
 	 */
@@ -86,5 +86,9 @@ public class RoomVO implements Serializable,Comparable<RoomVO> {
 		return (int) (roomValue-o.roomNum);
 	}
 	
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		return super.clone();
+	}
 
 }

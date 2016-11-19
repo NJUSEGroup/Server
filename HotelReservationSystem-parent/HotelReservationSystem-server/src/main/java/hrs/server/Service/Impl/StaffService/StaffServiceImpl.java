@@ -1,5 +1,8 @@
 package hrs.server.Service.Impl.StaffService;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -59,13 +62,20 @@ public class StaffServiceImpl implements StaffService {
 
 	@Transactional
 	@Override
-	public StaffVO findByHotelName(String hotelName) {
-		StaffPO po = dao.findByHotelName(hotelName);
-		if (po == null) {
+	public List<StaffVO> findByHotelName(String hotelName) {
+		List<StaffPO> pos = dao.findByHotelName(hotelName);
+		List<StaffVO> vos = null;
+		if(pos.size() == 0){
 			throw new StaffNotFoundExceptioon();
-		} else {
-			return new StaffVO(po);
+		}else{
+			vos = new ArrayList<>();
+			StaffVO vo = null;
+			for(StaffPO po :pos){
+				vo = new StaffVO(po);
+				vos.add(vo);
+			}
 		}
+		return vos;
 	}
 
 }

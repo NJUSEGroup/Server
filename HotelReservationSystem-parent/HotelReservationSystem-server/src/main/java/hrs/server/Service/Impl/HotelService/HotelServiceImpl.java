@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 import hrs.common.Exception.HotelService.HotelNotFoundException;
 import hrs.common.Exception.HotelService.HotelQueryNotExecutedException;
 import hrs.common.Exception.OrderService.OrderNotFoundException;
-import hrs.common.Exception.RoomService.AvailableRoomNotFoundException;
 import hrs.common.POJO.HotelPO;
 import hrs.common.VO.HotelVO;
 import hrs.common.VO.OrderVO;
@@ -38,7 +37,7 @@ public class HotelServiceImpl implements HotelService {
 	
 	@Transactional
 	@Override
-	public HotelVO findByID(int hotelID) {
+	public HotelVO findByID(int hotelID) throws HotelNotFoundException {
 		HotelPO po = dao.findByID(hotelID);
 		if(po == null){
 			throw new HotelNotFoundException();
@@ -90,6 +89,7 @@ public class HotelServiceImpl implements HotelService {
 	}
 	
 	/**
+	 * @throws HotelNotFoundException 
 	 * 
 	 * @Title: find 
 	 * @Description 按照城市、商圈、开始结束时间进行查询
@@ -103,7 +103,7 @@ public class HotelServiceImpl implements HotelService {
 	 */
 	@Transactional
 	@Override
-	public Map<HotelVO, List<RoomVO>> find(int loc, int circle, Date begin, Date end,String username) {
+	public Map<HotelVO, List<RoomVO>> find(int loc, int circle, Date begin, Date end,String username) throws HotelNotFoundException {
 		List<HotelPO> pos = dao.find(loc, circle);
 		if (pos.size() == 0) {
 			throw new HotelNotFoundException();
@@ -114,13 +114,13 @@ public class HotelServiceImpl implements HotelService {
 		
 		for (HotelPO po : pos) {
 			//获得酒店所对应的房间列表
-			try{
-				rooms = roomService.findAvailableByHotelID(po.getId(), begin, end);
-			}catch(AvailableRoomNotFoundException e){
-				//如果没有的话，那么不将该酒店加入到结果集
+			rooms = roomService.findAvailableByHotelID(po.getId(), begin, end);
+			if(rooms == null){
+				//如果没有可用房间，那么不将该酒店加入到结果集
+				System.out.println("退出当前循环");
 				continue;
 			}
-			System.out.println(rooms.size());
+			System.out.println("DEBUG:"+rooms.size());
 			vo = new HotelVO(po);
 			//设置该酒店对应房间的价格区间
 			vo.lowValue = Collections.min(rooms).roomValue;
@@ -148,11 +148,12 @@ public class HotelServiceImpl implements HotelService {
 	 * @Description 获得某个酒店的房间详细信息
 	 * @param hotelID
 	 * @return 
+	 * @throws HotelNotFoundException 
 	 * @see hrs.server.Service.Interface.HotelService.HotelService#getRoomDetail(int)
 	 */
 	@Transactional
 	@Override
-	public List<RoomVO> getRoomDetail(int hotelID) {
+	public List<RoomVO> getRoomDetail(int hotelID) throws HotelNotFoundException {
 		if(hotel.getData() == null){
 			throw new HotelQueryNotExecutedException();
 		}

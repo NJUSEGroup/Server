@@ -40,6 +40,7 @@ public class WebDiscountDAOImpl implements WebDiscountDAO {
 		return ResultMessage.SUCCESS;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<WebDiscountPO> findAll() {
 		String hql = "from WebDiscountPO";

@@ -6,7 +6,7 @@ import java.util.Date;
 import hrs.common.POJO.HotelDiscountPO;
 import hrs.common.util.type.HotelDiscountType;
 
-public  class HotelDiscountVO implements Serializable{
+public  class HotelDiscountVO implements Serializable,Cloneable{
 	/**
 	 * 
 	 */

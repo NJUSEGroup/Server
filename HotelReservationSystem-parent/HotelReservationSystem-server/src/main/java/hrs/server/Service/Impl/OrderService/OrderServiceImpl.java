@@ -7,12 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import hrs.common.Exception.Promotion.HotelDiscountService.HotelDiscountNotFoundException;
 import hrs.common.POJO.OrderPO;
 import hrs.common.VO.CreditRecordVO;
 import hrs.common.VO.HotelDiscountVO;
 import hrs.common.VO.OrderVO;
 import hrs.common.VO.WebDiscountVO;
-import hrs.common.util.ResultMessage;
 import hrs.common.util.type.CreditRecordType;
 import hrs.common.util.type.OrderStatus;
 import hrs.common.util.type.RestoreValueType;
@@ -44,6 +44,7 @@ public class OrderServiceImpl implements OrderService {
 	 * @Description: 前置条件是order的value已经被正确设置
 	 * @param order
 	 * @return OrderVO
+	 * @throws HotelDiscountNotFoundException 
 	 * @see hrs.server.Service.Interface.OrderService.OrderService#placeOrder(hrs.common.VO.OrderVO)
 	 */
 	@Transactional
@@ -55,12 +56,18 @@ public class OrderServiceImpl implements OrderService {
 		// 读取用户的信息：生日、所在企业、原始信用值
 		// 合并后进行优惠
 		// 每种优惠策略都设置优惠值
-		List<HotelDiscount> hotelStrategies = hotelDiscountService.createAllStrategies(order.hotel.id);
-		for (HotelDiscount strategy : hotelStrategies) {
-			strategy.discount(order);//这里传入对象是为了保持一致，因为不同策略需要不同的数据
+		List<HotelDiscount> hotelStrategies = null;
+		try {
+			hotelStrategies = hotelDiscountService.createAllStrategies(order.hotel.id);
+		} catch (HotelDiscountNotFoundException e) {
 		}
-		for (HotelDiscountVO vo : order.hotelDiscounts.keySet()) {
-			order.value -= order.hotelDiscounts.get(vo);
+		if(hotelStrategies != null){
+			for (HotelDiscount strategy : hotelStrategies) {
+				strategy.discount(order);//这里传入对象是为了保持一致，因为不同策略需要不同的数据
+			}
+			for (HotelDiscountVO vo : order.hotelDiscounts.keySet()) {
+				order.value -= order.hotelDiscounts.get(vo);
+			}
 		}
 		
 		List<WebDiscount> webStrategies = webDiscountService.createAllStrategies();

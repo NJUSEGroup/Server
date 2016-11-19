@@ -1,9 +1,8 @@
 package hrs.common.Controller.WebStaffController;
 
 import hrs.common.VO.UserVO;
-import hrs.common.util.ResultMessage;
 
-public interface WebUserController {
+public interface IWebUserController {
 	UserVO findUserByUsername(String username);
-	ResultMessage updateUser(UserVO uservo);
+	void updateUser(UserVO uservo);
 }

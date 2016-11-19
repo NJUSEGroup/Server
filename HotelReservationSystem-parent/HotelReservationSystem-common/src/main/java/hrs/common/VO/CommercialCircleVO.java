@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import hrs.common.POJO.CommercialCirclePO;
 
-public class CommercialCircleVO implements Serializable {
+public class CommercialCircleVO implements Serializable,Cloneable {
 
 	/**
 	 * 

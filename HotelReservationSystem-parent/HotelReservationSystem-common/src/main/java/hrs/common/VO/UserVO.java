@@ -7,7 +7,7 @@ import hrs.common.POJO.UserPO;
 import hrs.common.util.DesUtil;
 import hrs.common.util.type.UserType;
 
-public class UserVO implements Serializable {
+public class UserVO implements Serializable ,Cloneable{
 	/**
 	 * 
 	 */

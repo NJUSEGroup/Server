@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import hrs.common.POJO.LocationPO;
 
-public class LocationVO implements Serializable{
+public class LocationVO implements Serializable,Cloneable{
 	/**
 	 * 
 	 */

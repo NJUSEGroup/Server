@@ -2,11 +2,13 @@ package hrs.server.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
-public class DateFormatter {
+public class DateHelper {
 	private static SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-
+	private static Calendar c = new GregorianCalendar();
 	public static String format(Date date) {
 		return formatter.format(date);
 	}
@@ -39,5 +41,12 @@ public class DateFormatter {
 		formatter.applyPattern("yyyy-MM-dd");
 		return res;
 	}
-
+	
+	public static Date setHMSZero(Date date){
+		c.setTime(date);
+		c.set(Calendar.HOUR,0);
+		c.set(Calendar.MINUTE, 0);
+		c.set(Calendar.SECOND, 0);
+		return c.getTime();
+	}
 }

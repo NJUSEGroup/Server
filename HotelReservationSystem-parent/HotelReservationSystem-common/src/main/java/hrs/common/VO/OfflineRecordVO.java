@@ -6,7 +6,7 @@ import java.util.Date;
 import hrs.common.POJO.OfflineRecordPO;
 import hrs.common.util.type.RoomType;
 
-public class OfflineRecordVO implements Serializable {
+public class OfflineRecordVO implements Serializable,Cloneable {
 	/**
 	 * 
 	 */

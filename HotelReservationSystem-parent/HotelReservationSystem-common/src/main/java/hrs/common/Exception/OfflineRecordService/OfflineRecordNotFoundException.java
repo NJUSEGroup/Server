@@ -1,6 +1,6 @@
 package hrs.common.Exception.OfflineRecordService;
 
-public class OfflineRecordNotFoundException extends RuntimeException {
+public class OfflineRecordNotFoundException extends Exception {
 
 	/**
 	 * 

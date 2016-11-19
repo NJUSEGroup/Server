@@ -17,7 +17,7 @@ import hrs.common.VO.HotelVO;
 import hrs.common.util.type.HotelDiscountType;
 import hrs.server.Service.Impl.PromotionService.HotelDiscountService.HotelDiscount;
 import hrs.server.Service.Interface.PromotionService.HotelDiscountService;
-import hrs.server.util.DateFormatter;
+import hrs.server.util.DateHelper;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:applicationContext.xml" })
@@ -44,8 +44,8 @@ public class TestHotelDiscountService {
 	public void testAdd2() throws ParseException {
 		HotelVO hotel = new HotelVO();
 		hotel.id = 4;
-		Date begin = DateFormatter.parseWithHMS("2016-10-01 08:18:12");
-		Date end = DateFormatter.parseWithHMS("2016-10-23 20:24:09");
+		Date begin = DateHelper.parseWithHMS("2016-10-01 08:18:12");
+		Date end = DateHelper.parseWithHMS("2016-10-23 20:24:09");
 		HotelDiscountVO vo = new HotelDiscountVO(hotel, 0.95, HotelDiscountType.SpecialPeriod, null, 0, begin,end);
 		service.add(vo);
 		List<HotelDiscountVO> vos = service.findAllByHotelID(4);

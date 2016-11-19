@@ -19,6 +19,7 @@ public class CommCircleDAOImpl implements CommCircleDAO {
 		return sessionFactory.getCurrentSession();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<CommercialCirclePO> findByLoc(int locID) {
 		String hql = "from CommercialCirclePO cc inner join fetch cc.location  location where location.id = :locID";

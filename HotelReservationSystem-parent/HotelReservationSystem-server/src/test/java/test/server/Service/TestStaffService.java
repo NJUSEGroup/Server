@@ -2,6 +2,8 @@ package test.server.Service;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,6 +63,9 @@ public class TestStaffService {
 
 	@Test
 	public void testFindByHotelName() {
-		assertEquals(service.findByHotelName("仙林大酒店").hotel.name, "仙林大酒店");
+		List<StaffVO> vos = service.findByHotelName("酒店");
+		for(StaffVO vo:vos){
+			System.out.println(vo);
+		}
 	}
 }

@@ -14,13 +14,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import hrs.common.Exception.CreditRecordService.CreditRecordNotFoundException;
+import hrs.common.Exception.HotelService.HotelNotFoundException;
 import hrs.common.VO.CreditRecordVO;
 import hrs.common.VO.HotelDiscountVO;
 import hrs.common.VO.HotelVO;
 import hrs.common.VO.OrderVO;
 import hrs.common.VO.UserVO;
 import hrs.common.VO.WebDiscountVO;
-import hrs.common.util.type.CreditRecordType;
 import hrs.common.util.type.OrderStatus;
 import hrs.common.util.type.RestoreValueType;
 import hrs.common.util.type.RoomType;
@@ -29,7 +30,7 @@ import hrs.server.Service.Interface.HotelService.HotelService;
 import hrs.server.Service.Interface.OrderService.OrderSearchService;
 import hrs.server.Service.Interface.OrderService.OrderService;
 import hrs.server.Service.Interface.UserService.UserService;
-import hrs.server.util.DateFormatter;
+import hrs.server.util.DateHelper;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:applicationContext.xml" })
@@ -52,9 +53,9 @@ public class TestOrderService {
 		hotel.id = 1;
 		UserVO user = new UserVO();
 		user.id = 1;
-		Date placeTime = DateFormatter.parseWithHMS("2016-10-05 12:00:00");
-		Date execTime = DateFormatter.parseWithHMS("2016-10-29 00:00:00");
-		Date expectedCheckoutTime = DateFormatter.parseWithHMS("2016-10-30 00:00:00");
+		Date placeTime = DateHelper.parseWithHMS("2016-10-05 12:00:00");
+		Date execTime = DateHelper.parseWithHMS("2016-10-29 00:00:00");
+		Date expectedCheckoutTime = DateHelper.parseWithHMS("2016-10-30 00:00:00");
 		OrderVO vo = new OrderVO(placeTime, execTime,null,expectedCheckoutTime,null,null, OrderStatus.Unexecuted, hotel, 300, RoomType.Single, 1,
 				false, user, 1,"ok",1);
 		service.add(vo);
@@ -76,13 +77,13 @@ public class TestOrderService {
 	}
 	
 	@Test
-	public void testPlaceOrder() throws ParseException{
+	public void testPlaceOrder() throws ParseException, HotelNotFoundException{
 		HotelVO hotel = hotelService.findByID(1);
 		System.out.println("DEBUG:"+hotel.commercialCircle);
 		UserVO user = userService.findByUsername("admin");
-		Date placeTime = DateFormatter.parseWithHMS("2016-11-17 12:00:00");
-		Date execTime = DateFormatter.parseWithHMS("2016-11-20 00:00:00");
-		Date expectedCheckoutTime = DateFormatter.parseWithHMS("2016-11-30 00:00:00");
+		Date placeTime = DateHelper.parseWithHMS("2016-11-17 12:00:00");
+		Date execTime = DateHelper.parseWithHMS("2016-11-20 00:00:00");
+		Date expectedCheckoutTime = DateHelper.parseWithHMS("2016-11-30 00:00:00");
 		OrderVO vo = new OrderVO(placeTime, execTime,null,expectedCheckoutTime,null,null, OrderStatus.Unexecuted, hotel, 300, RoomType.Single, 3,
 				false, user, 1,"ok",1);
 		vo = service.placeOrder(vo);
@@ -107,7 +108,7 @@ public class TestOrderService {
 	}
 	
 	@Test
-	public void testRevokeByUser(){
+	public void testRevokeByUser() throws CreditRecordNotFoundException{
 		OrderVO vo = searchService.findByID(29);
 		service.revokeByUser(vo);
 		vo = searchService.findByID(29);
@@ -119,7 +120,7 @@ public class TestOrderService {
 	}
 	
 	@Test
-	public void testRevokeByWebMarketer(){
+	public void testRevokeByWebMarketer() throws CreditRecordNotFoundException{
 		OrderVO vo = searchService.findByID(27);
 		service.revokeByWebMarketer(vo, RestoreValueType.Full);
 		vo = searchService.findByID(27);
@@ -131,7 +132,7 @@ public class TestOrderService {
 	}
 	
 	@Test
-	public void testRemark(){
+	public void testRemark() throws HotelNotFoundException{
 		OrderVO vo = searchService.findByID(25);
 		service.remark(vo, 10, "呵呵哒");
 		assertEquals(searchService.findByID(25).evaluation,"呵呵哒");
@@ -142,7 +143,7 @@ public class TestOrderService {
 	}
 	
 	@Test
-	public void testDelayCheckin(){
+	public void testDelayCheckin() throws CreditRecordNotFoundException{
 		OrderVO vo = searchService.findByID(30);
 		service.delayCheckin(vo);
 		vo = searchService.findByID(30);
@@ -155,7 +156,7 @@ public class TestOrderService {
 	}
 	
 	@Test
-	public void testCheckAbNormal(){
+	public void testCheckAbNormal() throws CreditRecordNotFoundException{
 		service.checkAbNormalOrder();
 		assertEquals(searchService.findByID(31).status,OrderStatus.Abnormal);
 		List<CreditRecordVO> list = creditRecordService.findByUsername("admin2");

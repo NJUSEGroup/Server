@@ -1,6 +1,6 @@
 package hrs.common.Exception.CreditRecordService;
 
-public class CreditRecordNotFoundException extends RuntimeException {
+public class CreditRecordNotFoundException extends Exception {
 
 	/**
 	 * 

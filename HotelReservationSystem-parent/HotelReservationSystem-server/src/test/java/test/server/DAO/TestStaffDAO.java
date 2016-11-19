@@ -2,6 +2,8 @@ package test.server.DAO;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +50,9 @@ public class TestStaffDAO {
 	@Transactional
 	@Test
 	public void testFindByHotelName() {
-		assertEquals(dao.findByHotelName("仙林大酒店").getHotel().getName(),"仙林大酒店");
+		List<StaffPO> list = dao.findByHotelName("酒店");
+		for(StaffPO po : list){
+			System.out.println(po);
+		}
 	}
 }

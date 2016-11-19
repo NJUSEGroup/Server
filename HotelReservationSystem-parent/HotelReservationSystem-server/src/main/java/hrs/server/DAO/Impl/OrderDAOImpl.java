@@ -32,60 +32,53 @@ public class OrderDAOImpl implements OrderDAO {
 	public List<OrderPO> findByUsernameAndStatus(String username, OrderStatus status) {
 		String hql = "from OrderPO o inner join fetch o.user u "
 				+ "where u.username = :username and o.status = :status";
-		List<OrderPO> list = getSession().createQuery(hql).setParameter("username", username)
-				.setParameter("status", status).getResultList();
-		return list;
+		return getSession().createQuery(hql)
+				.setParameter("username", username)
+				.setParameter("status", status)
+				.getResultList();
+
 	}
 
 	@Override
 	public List<OrderPO> findByHotelAndUsername(int hotelID, String username) {
 		String hql = "from OrderPO o " + "inner join fetch o.hotel hotel " + "inner join fetch o.user u "
 				+ "where hotel.id = :hotelID and u.username = :username";
-		List<OrderPO> list = getSession().createQuery(hql).setParameter("hotelID", hotelID)
-				.setParameter("username", username).getResultList();
-		return list;
+		return getSession().createQuery(hql).setParameter("hotelID", hotelID).setParameter("username", username)
+				.getResultList();
+
 	}
 
 	@Override
 	public List<OrderPO> findByUsername(String username) {
 		String hql = "from OrderPO o inner join fetch o.user u " + "where u.username = :username";
-		List<OrderPO> list = getSession().createQuery(hql).setParameter("username", username).getResultList();
-		return list;
+		return getSession().createQuery(hql).setParameter("username", username).getResultList();
+
 	}
 
 	@Override
 	public List<OrderPO> findByOrderStatus(OrderStatus status) {
 		String hql = "from OrderPO o where o.status = :status";
-		List<OrderPO> list = getSession().createQuery(hql).setParameter("status", status).getResultList();
-
-		return list;
+		return getSession().createQuery(hql).setParameter("status", status).getResultList();
 	}
 
 	@Override
 	public List<OrderPO> findByHotelAndTime(int hotelID, Date begin, Date end) {
-		String hql = "from OrderPO o inner join fetch o.hotel hotel "
-										 + "where hotel.id = :hotelID "
-										 + "and o.execTime >= :begin "
-										 + "and o.expectedCheckoutTime <= :end";
-		List<OrderPO> list = getSession().createQuery(hql)
-										 .setParameter("begin", begin)
-										 .setParameter("end", end)
-										 .setParameter("hotelID", hotelID).getResultList();
-		return list;
+		String hql = "from OrderPO o inner join fetch o.hotel hotel " + "where hotel.id = :hotelID "
+				+ "and o.execTime >= :begin " + "and o.expectedCheckoutTime <= :end";
+		return getSession().createQuery(hql).setParameter("begin", begin).setParameter("end", end)
+				.setParameter("hotelID", hotelID).getResultList();
+
 	}
-	
+
 	@Override
 	public List<OrderPO> findByHotelAndStatus(int hotelID, OrderStatus type) {
-		String hql = "from OrderPO o inner join fetch o.hotel hotel "
-				 + "where hotel.id = :hotelID "
-				 + "and o.status = :type";
-		List<OrderPO> list = getSession().createQuery(hql)
-				 .setParameter("hotelID", hotelID)
-				 .setParameter("type", type)
-				 .getResultList();
-		return list;
+		String hql = "from OrderPO o inner join fetch o.hotel hotel " + "where hotel.id = :hotelID "
+				+ "and o.status = :type";
+		return getSession().createQuery(hql).setParameter("hotelID", hotelID).setParameter("type", type)
+				.getResultList();
+
 	}
-	
+
 	@Override
 	public ResultMessage add(OrderPO orderpo) {
 		getSession().save(orderpo);
@@ -97,7 +90,5 @@ public class OrderDAOImpl implements OrderDAO {
 		getSession().update(orderpo);
 		return ResultMessage.SUCCESS;
 	}
-
-	
 
 }

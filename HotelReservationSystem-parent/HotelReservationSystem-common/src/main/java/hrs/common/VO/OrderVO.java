@@ -9,7 +9,7 @@ import hrs.common.POJO.OrderPO;
 import hrs.common.util.type.OrderStatus;
 import hrs.common.util.type.RoomType;
 
-public class OrderVO implements Serializable {
+public class OrderVO implements Serializable,Cloneable {
 	/**
 	 * 
 	 */

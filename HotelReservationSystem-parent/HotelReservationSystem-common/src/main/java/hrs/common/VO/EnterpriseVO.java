@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import hrs.common.POJO.EnterprisePO;
 
-public class EnterpriseVO implements Serializable {
+public class EnterpriseVO implements Serializable,Cloneable {
 	/**
 	 * 
 	 */

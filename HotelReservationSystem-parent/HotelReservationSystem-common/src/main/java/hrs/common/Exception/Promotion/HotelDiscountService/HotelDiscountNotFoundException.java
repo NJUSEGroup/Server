@@ -1,6 +1,6 @@
 package hrs.common.Exception.Promotion.HotelDiscountService;
 
-public class HotelDiscountNotFoundException extends RuntimeException{
+public class HotelDiscountNotFoundException extends Exception{
 
 	/**
 	 * 

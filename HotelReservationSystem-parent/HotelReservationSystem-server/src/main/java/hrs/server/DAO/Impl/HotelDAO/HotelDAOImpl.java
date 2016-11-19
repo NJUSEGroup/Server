@@ -37,6 +37,7 @@ public class HotelDAOImpl implements HotelDAO {
 		return ResultMessage.SUCCESS;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<HotelPO> find(int loc, int circle) {
 		String hql = "from HotelPO hotel inner join fetch hotel.location loc "

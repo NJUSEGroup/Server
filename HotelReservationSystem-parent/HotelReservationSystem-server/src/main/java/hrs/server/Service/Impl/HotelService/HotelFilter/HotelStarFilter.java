@@ -1,5 +1,6 @@
 package hrs.server.Service.Impl.HotelService.HotelFilter;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -11,10 +12,13 @@ public class HotelStarFilter extends HotelFilter{
 
 	@Override
 	public void doFilter(Map<HotelVO, List<RoomVO>> hotels) {
-		StarFilterCondition condition = (StarFilterCondition) super.condition;
-		for(HotelVO vo: hotels.keySet()){
+		StarFilterCondition condition = (StarFilterCondition) super.condition;	
+		Iterator<HotelVO> it = hotels.keySet().iterator();
+		HotelVO vo = null;
+		while(it.hasNext()){
+			vo = it.next();
 			if(vo.star != condition.getStar()){
-				hotels.remove(vo);
+				it.remove();
 			}
 		}
 	}
