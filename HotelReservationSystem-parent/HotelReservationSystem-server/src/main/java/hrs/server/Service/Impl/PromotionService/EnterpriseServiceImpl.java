@@ -12,7 +12,14 @@ import hrs.common.POJO.EnterprisePO;
 import hrs.common.VO.EnterpriseVO;
 import hrs.server.DAO.Interface.PromotionDAO.EnterpriseDAO;
 import hrs.server.Service.Interface.PromotionService.EnterpriseService;
-
+/**
+ * 
+* @ClassName: EnterpriseServiceImpl
+* @Description: TODO
+* @author NewSong
+* @date 2016年11月19日 下午9:50:04
+*
+ */
 @Service
 public class EnterpriseServiceImpl implements EnterpriseService {
 	
@@ -21,10 +28,10 @@ public class EnterpriseServiceImpl implements EnterpriseService {
 	private EnterpriseDAO dao;
 	/**
 	 * 
-	 * @Title: getAllEnterprises 
+	 * @Title: getAllEnterprises
 	 * @Description:返回所有企业
-	 * @return 
-	 * @throws EnterpriseNotFoundException 
+	 * @return
+	 * @throws EnterpriseNotFoundException  
 	 * @see hrs.server.Service.Interface.PromotionService.EnterpriseService#getAllEnterprises()
 	 */
 	@Transactional
@@ -44,7 +51,13 @@ public class EnterpriseServiceImpl implements EnterpriseService {
 		}
 		return vos;
 	}
-	
+	/**
+	 * 
+	 * @Title: add
+	 * @Description: 添加企业
+	 * @param vo  
+	 * @see hrs.server.Service.Interface.PromotionService.EnterpriseService#add(hrs.common.VO.EnterpriseVO)
+	 */
 	@Transactional
 	@Override
 	public void add(EnterpriseVO vo) {

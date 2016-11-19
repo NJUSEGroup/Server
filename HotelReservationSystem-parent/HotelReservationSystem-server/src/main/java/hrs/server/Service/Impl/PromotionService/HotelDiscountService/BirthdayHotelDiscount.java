@@ -3,9 +3,12 @@ package hrs.server.Service.Impl.PromotionService.HotelDiscountService;
 import hrs.common.VO.OrderVO;
 import hrs.server.util.DateHelper;
 /**
- * 生日折扣
- * @author NewSong
- *
+ * 
+* @ClassName: BirthdayHotelDiscount
+* @Description: 会员生日优惠策略
+* @author NewSong
+* @date 2016年11月19日 下午9:54:29
+*
  */
 public class BirthdayHotelDiscount extends HotelDiscount {
 	

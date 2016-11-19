@@ -13,6 +13,14 @@ import hrs.common.util.ResultMessage;
 import hrs.common.util.type.OrderStatus;
 import hrs.server.DAO.Interface.OrderDAO;
 
+/**
+ * 
+ * @ClassName: OrderDAOImpl
+ * @Description: TODO
+ * @author NewSong
+ * @date 2016年11月19日 下午10:15:33
+ *
+ */
 @SuppressWarnings("all")
 @Repository
 public class OrderDAOImpl implements OrderDAO {
@@ -23,22 +31,48 @@ public class OrderDAOImpl implements OrderDAO {
 		return sessionFactory.getCurrentSession();
 	}
 
+	/**
+	 * 
+	 * @Title: findByID
+	 * @Description: 按id查找订单
+	 * @param id
+	 * @return OrderPO
+	 * @see hrs.server.DAO.Interface.OrderDAO#findByID(int)
+	 */
 	@Override
 	public OrderPO findByID(int id) {
 		return getSession().get(OrderPO.class, id);
 	}
 
+	/**
+	 * 
+	 * @Title: findByUsernameAndStatus
+	 * @Description: 按用户名查找订单
+	 * @param username
+	 * @param status
+	 * @return List<OrderPO>
+	 * @see hrs.server.DAO.Interface.OrderDAO#findByUsernameAndStatus(java.lang.String,
+	 *      hrs.common.util.type.OrderStatus)
+	 */
 	@Override
 	public List<OrderPO> findByUsernameAndStatus(String username, OrderStatus status) {
 		String hql = "from OrderPO o inner join fetch o.user u "
 				+ "where u.username = :username and o.status = :status";
-		return getSession().createQuery(hql)
-				.setParameter("username", username)
-				.setParameter("status", status)
+		return getSession().createQuery(hql).setParameter("username", username).setParameter("status", status)
 				.getResultList();
 
 	}
 
+	/**
+	 * 
+	 * @Title: findByHotelAndUsername
+	 * @Description: 按酒店和用户名查找订单列表
+	 * @param hotelID
+	 * @param username
+	 * @return List<OrderPO>
+	 * @see hrs.server.DAO.Interface.OrderDAO#findByHotelAndUsername(int,
+	 *      java.lang.String)
+	 */
 	@Override
 	public List<OrderPO> findByHotelAndUsername(int hotelID, String username) {
 		String hql = "from OrderPO o " + "inner join fetch o.hotel hotel " + "inner join fetch o.user u "
@@ -48,6 +82,14 @@ public class OrderDAOImpl implements OrderDAO {
 
 	}
 
+	/**
+	 * 
+	 * @Title: findByUsername
+	 * @Description: 按用户名查找订单
+	 * @param username
+	 * @return List<OrderPO>
+	 * @see hrs.server.DAO.Interface.OrderDAO#findByUsername(java.lang.String)
+	 */
 	@Override
 	public List<OrderPO> findByUsername(String username) {
 		String hql = "from OrderPO o inner join fetch o.user u " + "where u.username = :username";
@@ -55,12 +97,31 @@ public class OrderDAOImpl implements OrderDAO {
 
 	}
 
+	/**
+	 * 
+	 * @Title: findByOrderStatus
+	 * @Description: 按订单状态查找订单
+	 * @param status
+	 * @return List<OrderPO>
+	 * @see hrs.server.DAO.Interface.OrderDAO#findByOrderStatus(hrs.common.util.type.OrderStatus)
+	 */
 	@Override
 	public List<OrderPO> findByOrderStatus(OrderStatus status) {
 		String hql = "from OrderPO o where o.status = :status";
 		return getSession().createQuery(hql).setParameter("status", status).getResultList();
 	}
 
+	/**
+	 * 
+	 * @Title: findByHotelAndTime
+	 * @Description: 按酒店和时间查找订单
+	 * @param hotelID
+	 * @param begin
+	 * @param end
+	 * @return List<OrderPO>
+	 * @see hrs.server.DAO.Interface.OrderDAO#findByHotelAndTime(int,
+	 *      java.util.Date, java.util.Date)
+	 */
 	@Override
 	public List<OrderPO> findByHotelAndTime(int hotelID, Date begin, Date end) {
 		String hql = "from OrderPO o inner join fetch o.hotel hotel " + "where hotel.id = :hotelID "
@@ -70,6 +131,16 @@ public class OrderDAOImpl implements OrderDAO {
 
 	}
 
+	/**
+	 * 
+	 * @Title: findByHotelAndStatus
+	 * @Description: 按酒店和订单状态查找订单
+	 * @param hotelID
+	 * @param type
+	 * @return List<OrderPO>
+	 * @see hrs.server.DAO.Interface.OrderDAO#findByHotelAndStatus(int,
+	 *      hrs.common.util.type.OrderStatus)
+	 */
 	@Override
 	public List<OrderPO> findByHotelAndStatus(int hotelID, OrderStatus type) {
 		String hql = "from OrderPO o inner join fetch o.hotel hotel " + "where hotel.id = :hotelID "
@@ -79,12 +150,28 @@ public class OrderDAOImpl implements OrderDAO {
 
 	}
 
+	/**
+	 * 
+	 * @Title: add
+	 * @Description: 添加订单
+	 * @param orderpo
+	 * @return ResultMessage
+	 * @see hrs.server.DAO.Interface.OrderDAO#add(hrs.common.POJO.OrderPO)
+	 */
 	@Override
 	public ResultMessage add(OrderPO orderpo) {
 		getSession().save(orderpo);
 		return ResultMessage.SUCCESS;
 	}
 
+	/**
+	 * 
+	 * @Title: update
+	 * @Description: 更新订单
+	 * @param orderpo
+	 * @return ResultMessage
+	 * @see hrs.server.DAO.Interface.OrderDAO#update(hrs.common.POJO.OrderPO)
+	 */
 	@Override
 	public ResultMessage update(OrderPO orderpo) {
 		getSession().update(orderpo);

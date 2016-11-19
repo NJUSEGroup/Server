@@ -1,7 +1,14 @@
 package hrs.server.Service.Impl.HotelService.HotelComparator;
 
 import hrs.common.VO.HotelVO;
-
+/**
+ * 
+* @ClassName: ScoreComparator
+* @Description: 评分比较器
+* @author NewSong
+* @date 2016年11月19日 下午10:07:06
+*
+ */
 public class ScoreComparator extends HotelComparator {
 	
 	@Override

@@ -1,6 +1,14 @@
 package hrs.server.Service.Impl.PromotionService.HotelDiscountService;
 
 import hrs.common.VO.OrderVO;
+/**
+ * 
+* @ClassName: LargeQtyHotelDiscount
+* @Description: 量大从优
+* @author NewSong
+* @date 2016年11月19日 下午9:53:34
+*
+ */
 public class LargeQtyHotelDiscount extends HotelDiscount {
 
 

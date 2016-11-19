@@ -12,13 +12,19 @@ import hrs.common.POJO.CreditRecordPO;
 import hrs.common.VO.CreditRecordVO;
 import hrs.common.VO.UserVO;
 import hrs.common.util.DesUtil;
-import hrs.common.util.ResultMessage;
 import hrs.common.util.type.CreditRecordType;
 import hrs.server.DAO.Interface.CreditRecordDAO;
 import hrs.server.Service.Interface.CreditRecordService.CreditRecordService;
 import hrs.server.Service.Interface.UserService.UserService;
 import hrs.server.util.VIPLevel;
-
+/**
+ * 
+* @ClassName: CreditRecordServiceImpl
+* @Description: 
+* @author NewSong
+* @date 2016年11月19日 下午10:10:46
+*
+ */
 @Service
 public class CreditRecordServiceImpl implements CreditRecordService {
 	@Autowired
@@ -29,10 +35,10 @@ public class CreditRecordServiceImpl implements CreditRecordService {
 	/**
 	 * 
 	 * @Title: findByUsername
-	 * @Description:按用户名查找信用记录
+	 * @Description: 按用户名查找信用记录
 	 * @param username
-	 * @return List<CreditRecordVO>
-	 * @throws CreditRecordNotFoundException 
+	 * @return
+	 * @throws CreditRecordNotFoundException  
 	 * @see hrs.server.Service.Interface.CreditRecordService.CreditRecordService#findByUsername(java.lang.String)
 	 */
 	@Transactional
@@ -56,9 +62,8 @@ public class CreditRecordServiceImpl implements CreditRecordService {
 	/**
 	 * 
 	 * @Title: add
-	 * @Description:添加一条信用记录，与此同时更新相关用户的信用值和会员等级
-	 * @param vo
-	 * @return ResultMessage
+	 * @Description: 添加一条信用记录，与此同时更新相关用户的信用值和会员等级
+	 * @param vo  
 	 * @see hrs.server.Service.Interface.CreditRecordService.CreditRecordService#add(hrs.common.VO.CreditRecordVO)
 	 */
 	@Transactional
@@ -71,7 +76,14 @@ public class CreditRecordServiceImpl implements CreditRecordService {
 		userService.update(user);
 		dao.add(new CreditRecordPO(vo));
 	}
-
+	/**
+	 * 
+	 * @Title: recharge
+	 * @Description: 信用充值，传入的是充值金额
+	 * @param user
+	 * @param value  
+	 * @see hrs.server.Service.Interface.CreditRecordService.CreditRecordService#recharge(hrs.common.VO.UserVO, int)
+	 */
 	@Override
 	public void recharge(UserVO user, int value) {
 		CreditRecordVO vo = new CreditRecordVO(null, user, CreditRecordType.Recharge, value*100);

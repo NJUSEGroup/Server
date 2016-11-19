@@ -7,7 +7,14 @@ import java.util.Map;
 import hrs.common.VO.HotelVO;
 import hrs.common.VO.RoomVO;
 import hrs.common.util.FilterCondition.StarFilterCondition;
-
+/**
+ * 
+* @ClassName: HotelStarFilter
+* @Description: 按酒店星级进行过滤
+* @author NewSong
+* @date 2016年11月19日 下午10:06:30
+*
+ */
 public class HotelStarFilter extends HotelFilter{
 
 	@Override

@@ -16,12 +16,29 @@ import hrs.common.util.DesUtil;
 import hrs.common.util.ResultMessage;
 import hrs.server.DAO.Interface.StaffDAO;
 import hrs.server.Service.Interface.StaffService.StaffService;
-
+/**
+ * 
+* @ClassName: StaffServiceImpl
+* @Description: TODO
+* @author NewSong
+* @date 2016年11月19日 下午9:45:51
+*
+ */
 @Service
 public class StaffServiceImpl implements StaffService {
 	@Autowired
 	private StaffDAO dao;
-
+	/**
+	 * 
+	 * @Title: login
+	 * @Description: 职员登录
+	 * @param username
+	 * @param password
+	 * @return StaffVO
+	 * @throws StaffNotFoundExceptioon
+	 * @throws StaffPasswordErrorException  
+	 * @see hrs.server.Service.Interface.StaffService.StaffService#login(java.lang.String, java.lang.String)
+	 */
 	@Transactional
 	@Override
 	public StaffVO login(String username, String password) throws StaffNotFoundExceptioon, StaffPasswordErrorException {
@@ -34,13 +51,26 @@ public class StaffServiceImpl implements StaffService {
 			return new StaffVO(po);
 		}
 	}
-
+	/**
+	 * 
+	 * @Title: update
+	 * @Description: 更新职员
+	 * @param staffvo  
+	 * @see hrs.server.Service.Interface.StaffService.StaffService#update(hrs.common.VO.StaffVO)
+	 */
 	@Transactional
 	@Override
 	public void update(StaffVO staffvo) {
 		dao.update(new StaffPO(staffvo));
 	}
-
+	/**
+	 * 
+	 * @Title: add
+	 * @Description: 添加职员
+	 * @param staffvo
+	 * @throws StaffExistedException  
+	 * @see hrs.server.Service.Interface.StaffService.StaffService#add(hrs.common.VO.StaffVO)
+	 */
 	@Transactional
 	@Override
 	public void add(StaffVO staffvo) throws StaffExistedException {
@@ -48,7 +78,15 @@ public class StaffServiceImpl implements StaffService {
 			throw new StaffExistedException();
 		}
 	}
-
+	/**
+	 * 
+	 * @Title: findByUsername
+	 * @Description: 按用户名查找职员
+	 * @param username
+	 * @return
+	 * @throws StaffNotFoundExceptioon  
+	 * @see hrs.server.Service.Interface.StaffService.StaffService#findByUsername(java.lang.String)
+	 */
 	@Transactional
 	@Override
 	public StaffVO findByUsername(String username) throws StaffNotFoundExceptioon {
@@ -59,7 +97,15 @@ public class StaffServiceImpl implements StaffService {
 			return new StaffVO(po);
 		}
 	}
-
+	/**
+	 * 
+	 * @Title: findByHotelName
+	 * @Description: 按酒店名查询酒店工作人员，仅限于酒店工作人员，模糊查询
+	 * @param hotelName
+	 * @return
+	 * @throws StaffNotFoundExceptioon  
+	 * @see hrs.server.Service.Interface.StaffService.StaffService#findByHotelName(java.lang.String)
+	 */
 	@Transactional
 	@Override
 	public List<StaffVO> findByHotelName(String hotelName) throws StaffNotFoundExceptioon {

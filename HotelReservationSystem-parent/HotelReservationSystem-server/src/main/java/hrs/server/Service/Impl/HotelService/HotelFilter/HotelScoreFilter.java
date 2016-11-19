@@ -7,7 +7,14 @@ import java.util.Map;
 import hrs.common.VO.HotelVO;
 import hrs.common.VO.RoomVO;
 import hrs.common.util.FilterCondition.ScoreFilterCondition;
-
+/**
+ * 
+* @ClassName: HotelScoreFilter
+* @Description: 按酒店评分区间进行过滤
+* @author NewSong
+* @date 2016年11月19日 下午10:06:17
+*
+ */
 public class HotelScoreFilter extends HotelFilter {
 
 	@Override

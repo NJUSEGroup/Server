@@ -15,7 +15,14 @@ import hrs.common.util.ResultMessage;
 import hrs.server.DAO.Interface.UserDAO;
 import hrs.server.Service.Interface.PromotionService.EnterpriseService;
 import hrs.server.Service.Interface.UserService.UserService;
-
+/**
+ * 
+* @ClassName: UserServiceImpl
+* @Description: 
+* @author NewSong
+* @date 2016年11月19日 下午9:41:06
+*
+ */
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -23,7 +30,16 @@ public class UserServiceImpl implements UserService {
 	private UserDAO dao;
 	@Autowired
 	private EnterpriseService enterpriseService;
-
+	
+	/**
+	 * 
+	 * @Title: findByUsername
+	 * @Description: 按用户名查找用户
+	 * @param username
+	 * @return
+	 * @throws UserNotFoundException  
+	 * @see hrs.server.Service.Interface.UserService.UserService#findByUsername(java.lang.String)
+	 */
 	@Transactional
 	@Override
 	public UserVO findByUsername(String username) throws UserNotFoundException {
@@ -35,7 +51,14 @@ public class UserServiceImpl implements UserService {
 			return new UserVO((po));
 		}
 	}
-
+	/**
+	 * 
+	 * @Title: register
+	 * @Description: 用户注册
+	 * @param uservo
+	 * @throws UserExistedException  
+	 * @see hrs.server.Service.Interface.UserService.UserService#register(hrs.common.VO.UserVO)
+	 */
 	@Transactional
 	@Override
 	public void register(UserVO uservo) throws UserExistedException {
@@ -47,14 +70,30 @@ public class UserServiceImpl implements UserService {
 			enterpriseService.add(new EnterpriseVO(po.getEnterprise()));
 		}
 	}
-
+	/**
+	 * 
+	 * @Title: update
+	 * @Description: 用户更新
+	 * @param uservo  
+	 * @see hrs.server.Service.Interface.UserService.UserService#update(hrs.common.VO.UserVO)
+	 */
 	@Transactional
 	@Override
 	public void update(UserVO uservo) {
 		// 从界面拿到的要加密
 		dao.update((new UserPO(uservo)));
 	}
-
+	/**
+	 * 
+	 * @Title: login
+	 * @Description: 用户登录
+	 * @param username
+	 * @param password
+	 * @return UserVO
+	 * @throws UserNotFoundException
+	 * @throws UserPasswordErrorException  
+	 * @see hrs.server.Service.Interface.UserService.UserService#login(java.lang.String, java.lang.String)
+	 */
 	@Transactional
 	@Override
 	public UserVO login(String username, String password) throws UserNotFoundException, UserPasswordErrorException {
@@ -68,7 +107,14 @@ public class UserServiceImpl implements UserService {
 			// 从数据库取出的要解密
 		}
 	}
-
+	/**
+	 * 
+	 * @Title: validateCredit
+	 * @Description: 验证用户信用值是否大于等于0
+	 * @param username
+	 * @return  
+	 * @see hrs.server.Service.Interface.UserService.UserService#validateCredit(java.lang.String)
+	 */
 	@Transactional
 	@Override
 	public boolean validateCredit(String username) {

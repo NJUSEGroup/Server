@@ -24,6 +24,14 @@ import hrs.server.Service.Interface.HotelService.HotelService;
 import hrs.server.Service.Interface.OrderService.OrderService;
 import hrs.server.Service.Interface.PromotionService.HotelDiscountService;
 import hrs.server.Service.Interface.PromotionService.WebDiscountService;
+/**
+ * 
+* @ClassName: OrderServiceImpl
+* @Description: 
+* @author NewSong
+* @date 2016年11月19日 下午9:57:04
+*
+ */
 @Service
 public class OrderServiceImpl implements OrderService {
 	@Autowired
@@ -40,11 +48,10 @@ public class OrderServiceImpl implements OrderService {
 	
 	/**
 	 * 
-	 * @Title: placeOrder 
-	 * @Description: 前置条件是order的value已经被正确设置
+	 * @Title: placeOrder
+	 * @Description: 下订单，对订单进行打折 ;前置条件是order的value已经被正确设置
 	 * @param order
-	 * @return OrderVO
-	 * @throws HotelDiscountNotFoundException 
+	 * @return  
 	 * @see hrs.server.Service.Interface.OrderService.OrderService#placeOrder(hrs.common.VO.OrderVO)
 	 */
 	@Transactional
@@ -79,7 +86,13 @@ public class OrderServiceImpl implements OrderService {
 		}
 		return order;
 	}
-	
+	/**
+	 * 
+	 * @Title: add
+	 * @Description: 添加订单
+	 * @param ordervo  
+	 * @see hrs.server.Service.Interface.OrderService.OrderService#add(hrs.common.VO.OrderVO)
+	 */
 	@Transactional
 	@Override
 	public void add(OrderVO ordervo) {
@@ -88,10 +101,9 @@ public class OrderServiceImpl implements OrderService {
 	
 	/**
 	 * 
-	 * @Title: checkin 
-	 * @Description:入住，更新信用记录
-	 * @param ordervo
-	 * @return ResultMessage
+	 * @Title: checkin
+	 * @Description: 入住，更新信用记录
+	 * @param ordervo  
 	 * @see hrs.server.Service.Interface.OrderService.OrderService#checkin(hrs.common.VO.OrderVO)
 	 */
 	@Transactional
@@ -103,7 +115,13 @@ public class OrderServiceImpl implements OrderService {
 		dao.update(new OrderPO(ordervo));
 	}
 
-	
+	/**
+	 * 
+	 * @Title: checkout
+	 * @Description: 退房
+	 * @param ordervo  
+	 * @see hrs.server.Service.Interface.OrderService.OrderService#checkout(hrs.common.VO.OrderVO)
+	 */
 	@Transactional
 	@Override
 	public void checkout(OrderVO ordervo) {
@@ -111,7 +129,13 @@ public class OrderServiceImpl implements OrderService {
 		dao.update(new OrderPO(ordervo));
 	}
 	
-	
+	/**
+	 * 
+	 * @Title: revokeByUser
+	 * @Description: 由用户撤销订单
+	 * @param ordervo  
+	 * @see hrs.server.Service.Interface.OrderService.OrderService#revokeByUser(hrs.common.VO.OrderVO)
+	 */
 	@Transactional
 	@Override
 	public void revokeByUser(OrderVO ordervo) {
@@ -125,13 +149,12 @@ public class OrderServiceImpl implements OrderService {
 	
 	/**
 	 * 
-	 * @Title: isOverTime 
+	 * @Title: isOverTime
 	 * @Description: 判断是否撤销的订单距离最晚订单执行时间不足6小时 
 	 * 				 不存在撤销时间比最晚订单执行时间还晚的情况，因为那个时候订单状态已经被置为异常了，并且只有未执行订单才有撤销选项
 	 * @param  revokeTime
 	 * @param  expectedCheckoutTime
-	 * @param      
-	 * @return boolean     
+	 * @return boolean   
 	 * @throws
 	 */
 	private boolean isOverTime(Date revokeTime,Date expectedCheckoutTime) {
@@ -142,11 +165,10 @@ public class OrderServiceImpl implements OrderService {
 	
 	/**
 	 * 
-	 * @Title: revokeByWebMarketer 
-	 * @Description: 网站营销人员撤销订单
+	 * @Title: revokeByWebMarketer
+	 * @Description: 由网站营销人员撤销订单
 	 * @param ordervo
-	 * @param type
-	 * @return ResultMessage 
+	 * @param type  
 	 * @see hrs.server.Service.Interface.OrderService.OrderService#revokeByWebMarketer(hrs.common.VO.OrderVO, hrs.common.util.type.RestoreValueType)
 	 */
 	@Transactional
@@ -165,11 +187,12 @@ public class OrderServiceImpl implements OrderService {
 	
 	/**
 	 * 
-	 * @Title: remark 
-	 * @Description:前置条件是评价和评分已经set进入order
+	 * @Title: remark
+	 * @Description: 对订单进行评价，同时更新酒店评分
 	 * @param ordervo
-	 * @return 
-	 * @see hrs.server.Service.Interface.OrderService.OrderService#remark(hrs.common.VO.OrderVO)
+	 * @param score
+	 * @param evaluation  
+	 * @see hrs.server.Service.Interface.OrderService.OrderService#remark(hrs.common.VO.OrderVO, int, java.lang.String)
 	 */
 	@Transactional
 	@Override
@@ -182,10 +205,9 @@ public class OrderServiceImpl implements OrderService {
 	
 	/**
 	 * 
-	 * @Title: delayCheckin 
-	 * @Description: 设置用户延迟入住
-	 * @param ordervo
-	 * @return 
+	 * @Title: delayCheckin
+	 * @Description: 延迟入住
+	 * @param ordervo  
 	 * @see hrs.server.Service.Interface.OrderService.OrderService#delayCheckin(hrs.common.VO.OrderVO)
 	 */
 	@Transactional
@@ -199,9 +221,9 @@ public class OrderServiceImpl implements OrderService {
 	
 	/**
 	 * 
-	 * @Title: checkAbNormal 
-	 * @Description 定期检查是否存在用户的未执行订单超时 
-	 * @see hrs.server.Service.Interface.OrderService.OrderService#checkAbNormal()
+	 * @Title: checkAbNormalOrder
+	 * @Description: 定期检查是否存在用户的未执行订单超时 
+	 * @see hrs.server.Service.Interface.OrderService.OrderService#checkAbNormalOrder()
 	 */
 	@Transactional
 	@Override

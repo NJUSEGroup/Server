@@ -4,6 +4,14 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
+/**
+ * 
+* @ClassName: SpringUtils
+* @Description: Spring的加载器和bean生成器
+* @author NewSong
+* @date 2016年11月19日 下午9:40:26
+*
+ */
 @Component
 public class SpringUtils {
 

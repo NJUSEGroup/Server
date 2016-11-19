@@ -15,12 +15,28 @@ import hrs.common.util.DesUtil;
 import hrs.common.util.type.OrderStatus;
 import hrs.server.DAO.Interface.OrderDAO;
 import hrs.server.Service.Interface.OrderService.OrderSearchService;
-
+/**
+ * 
+* @ClassName: OrderSearchServiceImpl
+* @Description: TODO
+* @author NewSong
+* @date 2016年11月19日 下午9:59:47
+*
+ */
 @Service
 public class OrderSearchServiceImpl implements OrderSearchService {
 	@Autowired
 	private OrderDAO dao;
 	
+	/**
+	 * 
+	 * @Title: findByID
+	 * @Description: 按id查找订单
+	 * @param id
+	 * @return OrderVO
+	 * @throws OrderNotFoundException  
+	 * @see hrs.server.Service.Interface.OrderService.OrderSearchService#findByID(int)
+	 */
 	@Transactional
 	@Override
 	public OrderVO findByID(int id) throws OrderNotFoundException {
@@ -32,6 +48,16 @@ public class OrderSearchServiceImpl implements OrderSearchService {
 		}
 	}
 
+	/**
+	 * 
+	 * @Title: findByHotelAndStatus
+	 * @Description: 按酒店和订单状态查询订单
+	 * @param hotelID
+	 * @param status
+	 * @return
+	 * @throws OrderNotFoundException  
+	 * @see hrs.server.Service.Interface.OrderService.OrderSearchService#findByHotelAndStatus(int, hrs.common.util.type.OrderStatus)
+	 */
 	@Transactional
 	@Override
 	public List<OrderVO> findByHotelAndStatus(int hotelID, OrderStatus status) throws OrderNotFoundException {
@@ -43,6 +69,16 @@ public class OrderSearchServiceImpl implements OrderSearchService {
 		}
 	}
 
+	/**
+	 * 
+	 * @Title: findByUsernameAndStatus
+	 * @Description: 按用户名和订单状态查询订单
+	 * @param username
+	 * @param status
+	 * @return
+	 * @throws OrderNotFoundException  
+	 * @see hrs.server.Service.Interface.OrderService.OrderSearchService#findByUsernameAndStatus(java.lang.String, hrs.common.util.type.OrderStatus)
+	 */
 	@Transactional
 	@Override
 	public List<OrderVO> findByUsernameAndStatus(String username, OrderStatus status) throws OrderNotFoundException {
@@ -52,8 +88,16 @@ public class OrderSearchServiceImpl implements OrderSearchService {
 		}else{
 			return tranfer(pos);
 		}
-	}
-
+	}	
+	/**
+	 * 
+	 * @Title: findByUsername
+	 * @Description: 按用户名查询订单
+	 * @param username
+	 * @return
+	 * @throws OrderNotFoundException  
+	 * @see hrs.server.Service.Interface.OrderService.OrderSearchService#findByUsername(java.lang.String)
+	 */
 	@Transactional
 	@Override
 	public List<OrderVO> findByUsername(String username) throws OrderNotFoundException {
@@ -64,7 +108,16 @@ public class OrderSearchServiceImpl implements OrderSearchService {
 			return tranfer(pos);
 		}
 	}
-
+	/**
+	 * 
+	 * @Title: findByHotelAndUsername
+	 * @Description: 按酒店id和用户名查询订单
+	 * @param hotelID
+	 * @param username
+	 * @return
+	 * @throws OrderNotFoundException  
+	 * @see hrs.server.Service.Interface.OrderService.OrderSearchService#findByHotelAndUsername(int, java.lang.String)
+	 */
 	@Transactional
 	@Override
 	public List<OrderVO> findByHotelAndUsername(int hotelID, String username) throws OrderNotFoundException {
@@ -74,8 +127,17 @@ public class OrderSearchServiceImpl implements OrderSearchService {
 		}else{
 			return tranfer(pos);
 		}
-	}
-
+	}	
+	
+	/**
+	 * 
+	 * @Title: findByOrderStatus
+	 * @Description: 按订单状态查询订单
+	 * @param status
+	 * @return
+	 * @throws OrderNotFoundException  
+	 * @see hrs.server.Service.Interface.OrderService.OrderSearchService#findByOrderStatus(hrs.common.util.type.OrderStatus)
+	 */
 	@Transactional
 	@Override
 	public List<OrderVO> findByOrderStatus(OrderStatus status) throws OrderNotFoundException {
@@ -86,7 +148,18 @@ public class OrderSearchServiceImpl implements OrderSearchService {
 			return tranfer(pos);
 		}
 	}
-
+	
+	/**
+	 * 
+	 * @Title: findByHotelAndTime
+	 * @Description: 按用户名和时间查询订单
+	 * @param hotelID
+	 * @param begin
+	 * @param end
+	 * @return
+	 * @throws OrderNotFoundException  
+	 * @see hrs.server.Service.Interface.OrderService.OrderSearchService#findByHotelAndTime(int, java.util.Date, java.util.Date)
+	 */
 	@Transactional
 	@Override
 	public List<OrderVO> findByHotelAndTime(int hotelID, Date begin, Date end) throws OrderNotFoundException {
@@ -98,6 +171,14 @@ public class OrderSearchServiceImpl implements OrderSearchService {
 		}
 	}
 	
+	/**
+	 * 
+	 * @Title: tranfer
+	 * @Description: 将PO的List转为VO的List
+	 * @param  List<OrderPO>
+	 * @return List<OrderVO>   
+	 * @throws
+	 */
 	private List<OrderVO> tranfer(List<OrderPO> pos){
 		List<OrderVO> vos = new ArrayList<>();
 		OrderVO vo = null;

@@ -1,7 +1,14 @@
 package hrs.server.Service.Impl.PromotionService.HotelDiscountService;
 
 import hrs.common.VO.OrderVO;
-
+/**
+ * 
+* @ClassName: SpecialPeriodHotelDiscount
+* @Description: 特定日期优惠策略
+* @author NewSong
+* @date 2016年11月19日 下午9:53:13
+*
+ */
 public class SpecialPeriodHotelDiscount extends HotelDiscount {
 
 	@Override

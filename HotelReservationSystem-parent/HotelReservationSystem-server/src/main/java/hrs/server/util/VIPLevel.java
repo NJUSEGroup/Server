@@ -1,7 +1,7 @@
 package hrs.server.util;
 
 /**
- * 
+ * 用于根据信用值计算会员等级
  * @author NewSong
 	<0 ~ 500  1
 	500       2

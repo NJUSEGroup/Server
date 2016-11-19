@@ -11,12 +11,26 @@ import hrs.common.POJO.LocationPO;
 import hrs.common.VO.LocationVO;
 import hrs.server.DAO.Interface.HotelDAO.LocationDAO;
 import hrs.server.Service.Interface.HotelService.LocationService;
+/**
+ * 
+* @ClassName: LocationServiceImpl
+* @Description: TODO
+* @author NewSong
+* @date 2016年11月19日 下午10:02:51
+*
+ */
 @Service
 public class LocationServiceImpl implements LocationService{
 	@Autowired
 	private LocationDAO dao;
 	
-	
+	/**
+	 * 
+	 * @Title: findAll
+	 * @Description: 查找所有城市
+	 * @return  
+	 * @see hrs.server.Service.Interface.HotelService.LocationService#findAll()
+	 */
 	@Transactional
 	@Override
 	public List<LocationVO> findAll() {

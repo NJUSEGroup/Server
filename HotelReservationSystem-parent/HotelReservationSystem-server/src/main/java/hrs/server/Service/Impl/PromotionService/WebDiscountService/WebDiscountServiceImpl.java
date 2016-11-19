@@ -14,12 +14,26 @@ import hrs.common.VO.WebDiscountVO;
 import hrs.server.DAO.Interface.PromotionDAO.WebDiscountDAO;
 import hrs.server.Service.Interface.PromotionService.WebDiscountService;
 import hrs.server.util.DateHelper;
-
+/**
+ * 
+* @ClassName: WebDiscountServiceImpl
+* @Description: TODO
+* @author NewSong
+* @date 2016年11月19日 下午9:54:43
+*
+ */
 @Service
 public class WebDiscountServiceImpl implements WebDiscountService {
 	@Autowired
 	private WebDiscountDAO dao;
-
+	/**
+	 * 
+	 * @Title: findAll
+	 * @Description: 返回网站的所有优惠策略
+	 * @return
+	 * @throws WebDiscountNotFoundException  
+	 * @see hrs.server.Service.Interface.PromotionService.WebDiscountService#findAll()
+	 */
 	@Transactional
 	@Override
 	public List<WebDiscountVO> findAll() throws WebDiscountNotFoundException {
@@ -37,7 +51,13 @@ public class WebDiscountServiceImpl implements WebDiscountService {
 		}
 		return vos;
 	}
-
+	/**
+	 * 
+	 * @Title: add
+	 * @Description: 添加网站优惠策略
+	 * @param vo  
+	 * @see hrs.server.Service.Interface.PromotionService.WebDiscountService#add(hrs.common.VO.WebDiscountVO)
+	 */
 	@Transactional
 	@Override
 	public void add(WebDiscountVO vo) {
@@ -51,19 +71,37 @@ public class WebDiscountServiceImpl implements WebDiscountService {
 		}
 		dao.add(new WebDiscountPO(vo));
 	}
-
+	/**
+	 * 
+	 * @Title: update
+	 * @Description: 更新网站优惠策略
+	 * @param vo  
+	 * @see hrs.server.Service.Interface.PromotionService.WebDiscountService#update(hrs.common.VO.WebDiscountVO)
+	 */
 	@Transactional
 	@Override
 	public void update(WebDiscountVO vo) {
 		dao.update(new WebDiscountPO(vo));
 	}
-
+	/**
+	 *
+	 * @Title: delete
+	 * @Description: 删除网站优惠策略
+	 * @param id  
+	 * @see hrs.server.Service.Interface.PromotionService.WebDiscountService#delete(int)
+	 */
 	@Transactional
 	@Override
 	public void delete(int id) {
 		dao.delete(id);
 	}
-
+	/**
+	 * 
+	 * @Title: createAllStrategies
+	 * @Description: 创建网站优惠策略的领域类
+	 * @return  
+	 * @see hrs.server.Service.Interface.PromotionService.WebDiscountService#createAllStrategies()
+	 */
 	@Transactional
 	@Override
 	public List<WebDiscount> createAllStrategies() {
@@ -84,14 +122,9 @@ public class WebDiscountServiceImpl implements WebDiscountService {
 				strategy.setWebDiscountVO(vo);
 				strategies.add(strategy);
 			}
-		} catch (ClassNotFoundException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		}
+		} 
 		return strategies;
 	}
-
 }

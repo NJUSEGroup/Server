@@ -6,7 +6,7 @@ import hrs.server.Initial.NetInitial;
  * @author NewSong
  *
  */
-public class Launcher {
+public class ServerLauncher {
 	public static void main(String[] args) {
 		NetInitial.init();
 	}

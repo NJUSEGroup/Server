@@ -11,12 +11,27 @@ import hrs.common.POJO.CommercialCirclePO;
 import hrs.common.VO.CommercialCircleVO;
 import hrs.server.DAO.Interface.HotelDAO.CommCircleDAO;
 import hrs.server.Service.Interface.HotelService.CommCircleService;
+/**
+ * 
+* @ClassName: CommCircleServiceImpl
+* @Description: TODO
+* @author NewSong
+* @date 2016年11月19日 下午10:03:09
+*
+ */
 @Service
 public class CommCircleServiceImpl implements CommCircleService {
 	@Autowired
 	private CommCircleDAO dao;
 	
-	
+	/**
+	 * 
+	 * @Title: findByLoc
+	 * @Description: 按城市id查找对应的商圈列表
+	 * @param locID
+	 * @return  
+	 * @see hrs.server.Service.Interface.HotelService.CommCircleService#findByLoc(int)
+	 */
 	@Transactional
 	@Override
 	public List<CommercialCircleVO> findByLoc(int locID) {

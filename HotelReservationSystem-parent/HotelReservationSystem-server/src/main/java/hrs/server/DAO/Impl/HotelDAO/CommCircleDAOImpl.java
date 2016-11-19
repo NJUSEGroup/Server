@@ -9,7 +9,14 @@ import org.springframework.stereotype.Repository;
 
 import hrs.common.POJO.CommercialCirclePO;
 import hrs.server.DAO.Interface.HotelDAO.CommCircleDAO;
-
+/**
+ * 
+* @ClassName: CommCircleDAOImpl
+* @Description: TODO
+* @author NewSong
+* @date 2016年11月19日 下午10:21:17
+*
+ */
 @Repository
 public class CommCircleDAOImpl implements CommCircleDAO {
 	@Autowired
@@ -18,7 +25,15 @@ public class CommCircleDAOImpl implements CommCircleDAO {
 	private Session getSession() {
 		return sessionFactory.getCurrentSession();
 	}
-
+	
+	/**
+	 * 
+	 * @Title: findByLoc
+	 * @Description: 按城市id查找对应的商圈
+	 * @param locID
+	 * @return  
+	 * @see hrs.server.DAO.Interface.HotelDAO.CommCircleDAO#findByLoc(int)
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<CommercialCirclePO> findByLoc(int locID) {

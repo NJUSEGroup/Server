@@ -1,7 +1,14 @@
 package hrs.server.Service.Impl.PromotionService.WebDiscountService;
 
 import hrs.common.VO.OrderVO;
-
+/**
+ * 
+* @ClassName: SpecialCommercialCircleWebDiscount
+* @Description: 特定商圈优惠策略
+* @author NewSong
+* @date 2016年11月19日 下午9:56:16
+*
+ */
 public class SpecialCommercialCircleWebDiscount extends WebDiscount {
 
 	@Override

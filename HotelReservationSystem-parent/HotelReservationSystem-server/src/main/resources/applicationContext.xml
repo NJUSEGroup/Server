@@ -80,7 +80,7 @@
 	<bean id="userOrderController"  class="hrs.server.Controller.UserController.UserOrderController"></bean>
 	<bean id="hotelController" class="hrs.server.Controller.HotelController.HotelController"></bean>
 	<bean id="hotelDiscountController" class="hrs.server.Controller.HotelController.HotelDiscountController"></bean>
-	<bean id="hotelOrderController" class="hrs.server.Controller.HotelController.HotelDiscountController"></bean>
+	<bean id="hotelOrderController" class="hrs.server.Controller.HotelController.HotelOrderController"></bean>
 	<bean id="offlineRecordController" class="hrs.server.Controller.HotelController.OfflineRecordController"></bean>
 	<bean id="roomController" class="hrs.server.Controller.HotelController.RoomController"></bean>
 	<bean id="webCreditController" class="hrs.server.Controller.WebMarketController.WebCreditController"></bean>

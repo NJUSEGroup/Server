@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import hrs.server.Service.Interface.OrderService.OrderService;
 /**
- * 
+ *  定时任务执行类
 	QuartzJobBean 抽象类
 	JobDetailBean
 	SimpleTriggerBean

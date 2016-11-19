@@ -5,7 +5,14 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-
+/**
+ * 
+* @ClassName: DateHelper
+* @Description: 日期处理工具类
+* @author NewSong
+* @date 2016年11月19日 下午9:40:05
+*
+ */
 public class DateHelper {
 	private static SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 	private static Calendar c = new GregorianCalendar();

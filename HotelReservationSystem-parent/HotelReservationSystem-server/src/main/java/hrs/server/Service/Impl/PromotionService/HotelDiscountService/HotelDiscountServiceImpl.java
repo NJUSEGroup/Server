@@ -15,11 +15,26 @@ import hrs.server.DAO.Interface.PromotionDAO.HotelDiscountDAO;
 import hrs.server.Service.Interface.PromotionService.HotelDiscountService;
 import hrs.server.util.DateHelper;
 
+/**
+ * 
+ * @ClassName: HotelDiscountServiceImpl
+ * @Description: 
+ * @author NewSong
+ * @date 2016年11月19日 下午9:50:28
+ *
+ */
 @Service
 public class HotelDiscountServiceImpl implements HotelDiscountService {
 	@Autowired
 	private HotelDiscountDAO dao;
 
+	/**
+	 * 
+	 * @Title: add
+	 * @Description: 添加酒店优惠策略
+	 * @param vo
+	 * @see hrs.server.Service.Interface.PromotionService.HotelDiscountService#add(hrs.common.VO.HotelDiscountVO)
+	 */
 	@Transactional
 	@Override
 	public void add(HotelDiscountVO vo) {
@@ -34,18 +49,41 @@ public class HotelDiscountServiceImpl implements HotelDiscountService {
 		dao.add(new HotelDiscountPO(vo));
 	}
 
+	/**
+	 * 
+	 * @Title: update
+	 * @Description: 更新酒店优惠策略
+	 * @param vo
+	 * @see hrs.server.Service.Interface.PromotionService.HotelDiscountService#update(hrs.common.VO.HotelDiscountVO)
+	 */
 	@Transactional
 	@Override
 	public void update(HotelDiscountVO vo) {
 		dao.update(new HotelDiscountPO(vo));
 	}
 
+	/**
+	 * 
+	 * @Title: delete
+	 * @Description: 删除酒店优惠策略
+	 * @param id
+	 * @see hrs.server.Service.Interface.PromotionService.HotelDiscountService#delete(int)
+	 */
 	@Transactional
 	@Override
 	public void delete(int id) {
 		dao.delete(id);
 	}
 
+	/**
+	 * 
+	 * @Title: findAllByHotelID
+	 * @Description: 根据酒店id找到该酒店的所有优惠策略
+	 * @param hotelID
+	 * @return
+	 * @throws HotelDiscountNotFoundException
+	 * @see hrs.server.Service.Interface.PromotionService.HotelDiscountService#findAllByHotelID(int)
+	 */
 	@Transactional
 	@Override
 	public List<HotelDiscountVO> findAllByHotelID(int hotelID) throws HotelDiscountNotFoundException {
@@ -65,8 +103,12 @@ public class HotelDiscountServiceImpl implements HotelDiscountService {
 	}
 
 	/**
-	 * 使用反射实现动态性
-	 * @throws HotelDiscountNotFoundException 
+	 * 
+	 * @Title: createAllStrategies
+	 * @Description: 创建对应酒店的优惠策略的领域类
+	 * @param hotelID
+	 * @return  
+	 * @see hrs.server.Service.Interface.PromotionService.HotelDiscountService#createAllStrategies(int)
 	 */
 	@Transactional
 	@Override
@@ -87,12 +129,8 @@ public class HotelDiscountServiceImpl implements HotelDiscountService {
 				strategy = (HotelDiscount) clazz.newInstance();
 				strategy.setHotelDiscount(vo);
 				strategies.add(strategy);
-			}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
+			} 
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return strategies;

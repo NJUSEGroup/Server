@@ -1,7 +1,14 @@
 package hrs.server.Service.Impl.PromotionService.WebDiscountService;
 
 import hrs.common.VO.OrderVO;
-
+/**
+ * 
+* @ClassName: VIPWebDiscount
+* @Description: 会员等级优惠策略
+* @author NewSong
+* @date 2016年11月19日 下午9:56:40
+*
+ */
 public class VIPWebDiscount extends WebDiscount{
 
 	@Override

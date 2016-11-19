@@ -7,7 +7,14 @@ import java.util.Map;
 import hrs.common.VO.HotelVO;
 import hrs.common.VO.RoomVO;
 import hrs.common.util.FilterCondition.NameFilterCondition;
-
+/**
+ * 
+* @ClassName: HotelNameFilter
+* @Description: 按酒店名称进行过滤，模糊查询
+* @author NewSong
+* @date 2016年11月19日 下午10:05:49
+*
+ */
 public class HotelNameFilter extends HotelFilter {
 	public HotelNameFilter() {
 

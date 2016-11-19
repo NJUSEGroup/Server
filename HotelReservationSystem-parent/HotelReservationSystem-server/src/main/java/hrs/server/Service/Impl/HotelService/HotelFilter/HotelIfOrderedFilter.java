@@ -6,7 +6,14 @@ import java.util.Map;
 
 import hrs.common.VO.HotelVO;
 import hrs.common.VO.RoomVO;
-
+/**
+ * 
+* @ClassName: HotelIfOrderedFilter
+* @Description: 按是否用户曾经预定过进行过滤
+* @author NewSong
+* @date 2016年11月19日 下午10:05:33
+*
+ */
 public class HotelIfOrderedFilter extends HotelFilter{
 	
  	@Override
