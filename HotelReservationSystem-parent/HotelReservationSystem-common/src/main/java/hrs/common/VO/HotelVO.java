@@ -22,10 +22,10 @@ public class HotelVO implements Serializable {
 	public String service;
 	public StaffVO staff;
 	public String street;
-	public Set<OrderStatus> status = new HashSet();
 	public int remarkNum;
 	public double lowValue;
 	public double highValue;
+	public Set<OrderStatus> status = new HashSet<>();
 	
 	
 	

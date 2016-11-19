@@ -13,7 +13,6 @@ import hrs.common.Exception.RoomService.AvailableRoomNotFoundException;
 import hrs.common.Exception.RoomService.RoomNotFoundException;
 import hrs.common.POJO.RoomPO;
 import hrs.common.VO.RoomVO;
-import hrs.common.util.ResultMessage;
 import hrs.common.util.type.RoomType;
 import hrs.server.DAO.Interface.RoomDAO;
 import hrs.server.Service.Interface.RoomService.RoomService;

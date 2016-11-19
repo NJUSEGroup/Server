@@ -74,33 +74,25 @@
 
 
 	<!-- 配置bean 注意使用xml的自动装配 -->
-	<!-- 
-	<bean id="userService" class="hrs.server.Service.Impl.UserService.UserServiceImpl"></bean>
-	<bean id="enterpriseService"
-		class="hrs.server.Service.Impl.PromotionService.EnterpriseServiceImpl"></bean>
-	<bean id="staffService" class="hrs.server.Service.Impl.StaffService.StaffServiceImpl"></bean>
-	<bean id="roomService" class="hrs.server.Service.Impl.RoomService.RoomServiceImpl"></bean>
-	<bean id="hotelDiscountService"
-		class="hrs.server.Service.Impl.PromotionService.HotelDiscountService.HotelDiscountServiceImpl"></bean>
-	<bean id="webDiscountService"
-		class="hrs.server.Service.Impl.PromotionService.WebDiscountService.WebDiscountServiceImpl"></bean>
-	<bean id="orderService" class="hrs.server.Service.Impl.OrderService.OrderServiceImpl"></bean>
-	<bean id="orderSearchService"
-		class="hrs.server.Service.Impl.OrderService.OrderSearchServiceImpl"></bean>
-	<bean id="offlineRecordService"
-		class="hrs.server.Service.Impl.OfflineRecordService.OfflineRecordServiceImpl"></bean>
-	<bean id="locationService"
-		class="hrs.server.Service.Impl.HotelService.LocationServiceImpl"></bean>
-	<bean id="commCircleService"
-		class="hrs.server.Service.Impl.HotelService.CommCircleServiceImpl"></bean>
-	<bean id="hotelService" class="hrs.server.Service.Impl.HotelService.HotelServiceImpl"></bean>
-	<bean id="creditRecordService"
-		class="hrs.server.Service.Impl.CreditRecordService.CreditRecordServiceImpl"></bean>
- 	-->
+	<!-- <bean id="userService" class="hrs.server.Service.Impl.UserService.UserServiceImpl"></bean> 
+		<bean id="enterpriseService" class="hrs.server.Service.Impl.PromotionService.EnterpriseServiceImpl"></bean> 
+		<bean id="staffService" class="hrs.server.Service.Impl.StaffService.StaffServiceImpl"></bean> 
+		<bean id="roomService" class="hrs.server.Service.Impl.RoomService.RoomServiceImpl"></bean> 
+		<bean id="hotelDiscountService" class="hrs.server.Service.Impl.PromotionService.HotelDiscountService.HotelDiscountServiceImpl"></bean> 
+		<bean id="webDiscountService" class="hrs.server.Service.Impl.PromotionService.WebDiscountService.WebDiscountServiceImpl"></bean> 
+		<bean id="orderService" class="hrs.server.Service.Impl.OrderService.OrderServiceImpl"></bean> 
+		<bean id="orderSearchService" class="hrs.server.Service.Impl.OrderService.OrderSearchServiceImpl"></bean> 
+		<bean id="offlineRecordService" class="hrs.server.Service.Impl.OfflineRecordService.OfflineRecordServiceImpl"></bean> 
+		<bean id="locationService" class="hrs.server.Service.Impl.HotelService.LocationServiceImpl"></bean> 
+		<bean id="commCircleService" class="hrs.server.Service.Impl.HotelService.CommCircleServiceImpl"></bean> 
+		<bean id="hotelService" class="hrs.server.Service.Impl.HotelService.HotelServiceImpl"></bean> 
+		<bean id="creditRecordService" class="hrs.server.Service.Impl.CreditRecordService.CreditRecordServiceImpl"></bean> -->
 	<!-- ************************以上为Service的配置***************** -->
 	<bean id="loginController" class="hrs.server.Controller.LoginController.LoginController"></bean>
 
 	<!-- ************************以上为Controller的配置***************** -->
+
+
 
 
 	<!-- 配置RMI -->
@@ -115,4 +107,44 @@
 		<!-- spring默认使用1099端口 -->
 		<property name="registryPort" value="1199" />
 	</bean>
+
+
+
+
+	<!-- ***************************************************************** -->
+	<!-- 配置Quartz触发器 -->
+	<bean name="startQuertz" lazy-init="false" autowire="no"
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="myJobTrigger" />
+			</list>
+		</property>
+	</bean>
+	<!-- 配置调度 -->
+	<bean id="myJobTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="myJobDetail" />
+		</property>
+		<property name="cronExpression">
+			<!--middle night 24. do it -->
+			<value>0 */1 * * * ?</value>
+		</property>
+	</bean>
+	
+	<!-- job的配置开始 -->
+	<bean id="myJobDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="checkAbNormalOrderJob" />
+		</property>
+		<property name="targetMethod">
+			<value>execute</value>
+		</property>
+	</bean>
+	<!-- 任务类 -->
+	<bean id="checkAbNormalOrderJob" class="hrs.server.util.CheckAbNormalOrderJob" />
+
+
 </beans>

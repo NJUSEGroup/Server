@@ -37,6 +37,7 @@ public class OrderVO implements Serializable {
 	public OrderVO() {
 		// TODO Auto-generated constructor stub
 	}
+	
 	public OrderVO(OrderPO po){
 		this.id = po.getId();
 		this.placeTime = po.getPlaceTime();

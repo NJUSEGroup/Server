@@ -11,6 +11,7 @@ import hrs.common.Exception.CreditRecordService.CreditRecordNotFoundException;
 import hrs.common.POJO.CreditRecordPO;
 import hrs.common.VO.CreditRecordVO;
 import hrs.common.VO.UserVO;
+import hrs.common.util.DesUtil;
 import hrs.common.util.ResultMessage;
 import hrs.server.DAO.Interface.CreditRecordDAO;
 import hrs.server.Service.Interface.CreditRecordService.CreditRecordService;
@@ -35,7 +36,7 @@ public class CreditRecordServiceImpl implements CreditRecordService {
 	@Transactional
 	@Override
 	public List<CreditRecordVO> findByUsername(String username) {
-		List<CreditRecordPO> pos = dao.findByUsername(username);
+		List<CreditRecordPO> pos = dao.findByUsername(DesUtil.encode(username));
 		List<CreditRecordVO> vos = null;
 		if (pos.size() == 0) {
 			throw new CreditRecordNotFoundException();

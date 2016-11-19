@@ -3,6 +3,7 @@ package hrs.common.POJO;
 import java.io.Serializable;
 
 import hrs.common.VO.StaffVO;
+import hrs.common.util.DesUtil;
 import hrs.common.util.type.StaffType;
 
 public class StaffPO implements Serializable {
@@ -23,9 +24,9 @@ public class StaffPO implements Serializable {
 	}
 	public StaffPO(StaffVO vo){
 		this.id = vo.id;
-		this.username = vo.username;
-		this.password = vo.password;
-		this.name = vo.name;
+		this.username = DesUtil.encode(vo.username);
+		this.password = DesUtil.encode(vo.password);
+		this.name = DesUtil.encode(vo.name);
 		this.type = vo.type;
 		this.hotel = vo.hotel != null ? new HotelPO(vo.hotel,this):null;
 	}

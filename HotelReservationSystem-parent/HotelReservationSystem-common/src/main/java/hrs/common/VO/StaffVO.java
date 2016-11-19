@@ -3,6 +3,7 @@ package hrs.common.VO;
 import java.io.Serializable;
 
 import hrs.common.POJO.StaffPO;
+import hrs.common.util.DesUtil;
 import hrs.common.util.type.StaffType;
 
 public class StaffVO implements Serializable {
@@ -24,9 +25,9 @@ public class StaffVO implements Serializable {
 	
 	public StaffVO(StaffPO po){
 		this.id = po.getId();
-		this.username = po.getUsername();
-		this.password = po.getPassword();
-		this.name = po.getName();
+		this.username = DesUtil.decode(po.getUsername());
+		this.password = DesUtil.decode(po.getPassword());
+		this.name = DesUtil.decode(po.getName());
 		this.type = po.getType();
 		this.hotel = po.getHotel() != null ? new HotelVO(po.getHotel(),this):null;
 	}
@@ -45,7 +46,6 @@ public class StaffVO implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((hotel == null) ? 0 : hotel.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
@@ -63,11 +63,6 @@ public class StaffVO implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		StaffVO other = (StaffVO) obj;
-		if (hotel == null) {
-			if (other.hotel != null)
-				return false;
-		} else if (!hotel.equals(other.hotel))
-			return false;
 		if (id != other.id)
 			return false;
 		if (name == null) {

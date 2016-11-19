@@ -42,7 +42,7 @@ public class TestStaffDAO {
 	@Transactional
 	@Test
 	public void testFindByUsername() {
-		assertEquals(dao.findByUsername("admin3").getUsername(),"admin3");
+		assertEquals(dao.findByUsername("BB3FDC628A6D0E98").getUsername(),"BB3FDC628A6D0E98");
 	}
 
 	@Transactional

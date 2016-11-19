@@ -2,6 +2,8 @@ package test.server.Service.HotelService;
 
 import static org.junit.Assert.assertEquals;
 
+import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -11,9 +13,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import hrs.common.VO.CommercialCircleVO;
 import hrs.common.VO.HotelVO;
+import hrs.common.VO.LocationVO;
 import hrs.common.VO.OrderVO;
+import hrs.common.VO.RoomVO;
 import hrs.server.Service.Interface.HotelService.HotelService;
+import hrs.server.util.DateFormatter;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:applicationContext.xml" })
@@ -23,40 +29,63 @@ public class TestHotelService {
 
 	@Test
 	public void testFindByID() {
-		HotelVO vo = service.findByID(0);
-		// assertEquals(vo,new HotelVO(0,"嘻嘻",0,0,"","",1));
+		HotelVO vo = service.findByID(1);
+		assertEquals(vo.star, 3);
+		System.out.println(vo);
 	}
 
 	@Test
 	public void testUpdate() {
-		HotelVO vo = service.findByID(0);
-		vo.name = "呼呼呼";
+		HotelVO vo = service.findByID(1);
+		vo.name = "呼呼呼酒店";
 		service.update(vo);
-		assertEquals(vo, service.findByID(0));
+		assertEquals("呼呼呼酒店", service.findByID(1).name);
 	}
 
 	@Test
 	public void testAdd() {
-		// HotelVO vo = new HotelVO(3,"啦啦啦",1,1,"","");
-		// service.add(vo);
-		// assertEquals(vo, service.findByID(3));
+		LocationVO loc = new LocationVO();
+		loc.id = 1;
+		CommercialCircleVO circle = new CommercialCircleVO();
+		circle.id = 1;
+		HotelVO vo = new HotelVO("啦啦啦酒店", 2, 0, loc, circle, "简介", "服务优质", "仙林大道", 0);
+		service.add(vo);
+		vo = service.findByID(7);
+		assertEquals(vo.name, "啦啦啦酒店");
+		assertEquals(vo.profile, "简介");
+		System.out.println(vo);
 	}
 
 	@Test
 	public void testFindOrderedHotelAndOrder() {
 		Map<HotelVO, List<OrderVO>> map = service.findOrderedHotelAndOrder("admin");
 		for (HotelVO hotel : map.keySet()) {
+			System.out.println(hotel);
 			for (OrderVO order : map.get(hotel)) {
+				System.out.println(order);
 				assertEquals(order.user.username, "admin");
 			}
+			System.out.println();
 		}
 	}
 
 	@Test
-	public void testFind() {
-
+	public void testFind1() throws ParseException {
+		Date begin = DateFormatter.parseWithHMS("2016-10-19 00:00:00");
+		Date end = DateFormatter.parseWithHMS("2016-10-20 00:00:00");
+		Map<HotelVO, List<RoomVO>> map = service.find(1, 1, begin, end, "admin");
+		assertEquals(map.size(),0);
 	}
-
+	
+	@Test
+	public void testFind2() throws ParseException {
+		Date begin = DateFormatter.parseWithHMS("2016-10-19 00:00:00");
+		Date end = DateFormatter.parseWithHMS("2016-10-20 00:00:00");
+		Map<HotelVO, List<RoomVO>> map = service.find(1, 1, begin, end, "admin");
+		assertEquals(map.size(),0);
+	}
+	
+	
 	@Test
 	public void testGetRoomDetail() {
 
@@ -96,4 +125,5 @@ public class TestHotelService {
 	public void testFilter4() {
 
 	}
+
 }

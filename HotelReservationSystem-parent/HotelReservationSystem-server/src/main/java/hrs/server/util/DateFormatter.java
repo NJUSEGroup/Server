@@ -10,7 +10,11 @@ public class DateFormatter {
 	public static String format(Date date) {
 		return formatter.format(date);
 	}
-	
+	/**
+	 * 按照MM-dd的格式format日期
+	 * @param date
+	 * @return
+	 */
 	public static String formatWithMD(Date date){
 		String res = null;
 		formatter.applyPattern("MM-dd");
@@ -18,7 +22,12 @@ public class DateFormatter {
 		formatter.applyPattern("yyyy-MM-dd");
 		return res;
 	}
-	
+	/**
+	 * 
+	 * @param date
+	 * @return
+	 * @throws ParseException
+	 */
 	public static Date parse(String date) throws ParseException {
 		return formatter.parse(date);
 	}

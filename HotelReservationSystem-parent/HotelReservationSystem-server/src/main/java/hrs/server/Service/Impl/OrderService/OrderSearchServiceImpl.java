@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import hrs.common.Exception.OrderService.OrderNotFoundException;
 import hrs.common.POJO.OrderPO;
 import hrs.common.VO.OrderVO;
+import hrs.common.util.DesUtil;
 import hrs.common.util.type.OrderStatus;
 import hrs.server.DAO.Interface.OrderDAO;
 import hrs.server.Service.Interface.OrderService.OrderSearchService;
@@ -45,7 +46,7 @@ public class OrderSearchServiceImpl implements OrderSearchService {
 	@Transactional
 	@Override
 	public List<OrderVO> findByUsernameAndStatus(String username, OrderStatus status) {
-		List<OrderPO> pos = dao.findByUsernameAndStatus(username,status);
+		List<OrderPO> pos = dao.findByUsernameAndStatus(DesUtil.encode(username),status);
 		if(pos.size() == 0){
 			throw new OrderNotFoundException();
 		}else{
@@ -56,7 +57,7 @@ public class OrderSearchServiceImpl implements OrderSearchService {
 	@Transactional
 	@Override
 	public List<OrderVO> findByUsername(String username) {
-		List<OrderPO> pos = dao.findByUsername(username);
+		List<OrderPO> pos = dao.findByUsername(DesUtil.encode(username));
 		if(pos.size() == 0){
 			throw new OrderNotFoundException();
 		}else{
@@ -67,7 +68,7 @@ public class OrderSearchServiceImpl implements OrderSearchService {
 	@Transactional
 	@Override
 	public List<OrderVO> findByHotelAndUsername(int hotelID, String username) {
-		List<OrderPO> pos = dao.findByHotelAndUsername(hotelID, username);
+		List<OrderPO> pos = dao.findByHotelAndUsername(hotelID, DesUtil.encode(username));
 		if(pos.size() == 0){
 			throw new OrderNotFoundException();
 		}else{

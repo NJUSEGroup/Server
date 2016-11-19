@@ -23,17 +23,17 @@ public class TestStaffService {
 
 	@Test(expected = StaffPasswordErrorException.class)
 	public void testLogin1() {
-		service.login("admin3", "12321311");
+		service.login("admin", "12321311");
 	}
 
 	@Test(expected = StaffNotFoundExceptioon.class)
 	public void testLogin2() {
-		service.login("staff", "aaa");
+		service.login("admin213", "aaa");
 	}
 
 	@Test
 	public void testLogin3() {
-		assertEquals(service.login("admin3", "111").username, "admin3");
+		assertEquals(service.login("admin", "admin").username, "admin");
 	}
 
 	@Test
@@ -47,16 +47,16 @@ public class TestStaffService {
 
 	@Test
 	public void testUpdate() {
-		StaffVO staff = service.findByUsername("admin3");
+		StaffVO staff = service.findByUsername("admin");
 		staff.password = "111";
 		service.update(staff);
-		assertEquals(service.findByUsername("admin3").password, "111");
+		assertEquals(service.findByUsername("admin").password, "111");
 	}
 
 	@Test
 	public void testFindByUsername() {
-		StaffVO staff = service.findByUsername("admin3");
-		assertEquals(staff.password, "111");
+		StaffVO staff = service.findByUsername("admin");
+		assertEquals(staff.password, "admin");
 	}
 
 	@Test

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import hrs.common.POJO.UserPO;
+import hrs.common.util.DesUtil;
 import hrs.common.util.type.UserType;
 
 public class UserVO implements Serializable {
@@ -25,12 +26,16 @@ public class UserVO implements Serializable {
 	public UserVO() {
 		// TODO Auto-generated constructor stub
 	}
+	/**
+	 * PO转VO时要解密
+	 * @param po
+	 */
 	public UserVO(UserPO po){
 		this.id = po.getId();
-		this.username = po.getUsername();
-		this.password = po.getPassword();
-		this.phone = po.getPhone();
-		this.name = po.getName();
+		this.username = DesUtil.decode(po.getUsername());
+		this.password = DesUtil.decode(po.getPassword());
+		this.phone = DesUtil.decode(po.getPhone());
+		this.name = DesUtil.decode(po.getName());
 		this.credit = po.getCredit();
 		this.birthDate = po.getBirthDate();
 		this.enterprise = po.getEnterprise();

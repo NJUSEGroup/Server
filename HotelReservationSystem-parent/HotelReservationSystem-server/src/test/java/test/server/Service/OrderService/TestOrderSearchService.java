@@ -29,11 +29,11 @@ public class TestOrderSearchService {
 
 	@Test
 	public void testFindByUsernameAndStatus() {
-		List<OrderVO> list = service.findByUsernameAndStatus("admin", OrderStatus.Unexecuted);
+		List<OrderVO> list = service.findByUsernameAndStatus("admin", OrderStatus.Executed);
 		for (OrderVO vo : list) {
 			System.out.println(vo);
 			assertEquals(vo.user.username, "admin");
-			assertEquals(vo.status, OrderStatus.Unexecuted);
+			assertEquals(vo.status, OrderStatus.Executed);
 		}
 	}
 

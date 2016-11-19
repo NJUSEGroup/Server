@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import hrs.common.Exception.HotelService.HotelNotFoundException;
 import hrs.common.Exception.HotelService.HotelQueryNotExecutedException;
 import hrs.common.Exception.OrderService.OrderNotFoundException;
+import hrs.common.Exception.RoomService.AvailableRoomNotFoundException;
 import hrs.common.POJO.HotelPO;
 import hrs.common.VO.HotelVO;
 import hrs.common.VO.OrderVO;
@@ -107,19 +108,28 @@ public class HotelServiceImpl implements HotelService {
 		if (pos.size() == 0) {
 			throw new HotelNotFoundException();
 		}
-		HotelVO vo = null;
 		Map<HotelVO, List<RoomVO>> map = new HashMap<>();
+		HotelVO vo = null;
+		List<RoomVO> rooms = null;
+		
 		for (HotelPO po : pos) {
+			//获得酒店所对应的房间列表
+			try{
+				rooms = roomService.findAvailableByHotelID(po.getId(), begin, end);
+			}catch(AvailableRoomNotFoundException e){
+				//如果没有的话，那么不将该酒店加入到结果集
+				continue;
+			}
+			System.out.println(rooms.size());
 			vo = new HotelVO(po);
-			//获得酒店的相关订单类型集合
+			//设置该酒店对应房间的价格区间
+			vo.lowValue = Collections.min(rooms).roomValue;
+			vo.highValue = Collections.max(rooms).roomValue;
+			
+			//获得酒店的相关订单类型的集合
 			for(OrderVO order:orderSearchService.findByHotelAndUsername(vo.id, username)){
 				vo.status.add(order.status);
 			}
-			
-			//获得酒店所对应的房间列表
-			List<RoomVO> rooms = roomService.findAvailableByHotelID(vo.id, begin, end);
-			vo.lowValue = Collections.min(rooms).roomValue;
-			vo.highValue = Collections.max(rooms).roomValue;
 			map.put(vo, rooms);
 		}
 		hotel.setData(map);

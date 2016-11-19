@@ -22,11 +22,12 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public UserPO findByUserName(String username) {
-		String hql = "from UserPO as user  where user.username = ?";
+		String hql = "from UserPO as user  where user.username = :username";
 		UserPO po = null;
 		try {
-			po = (UserPO) getSession().createQuery(hql).setParameter(0, username).getSingleResult();
+			po = (UserPO) getSession().createQuery(hql).setParameter("username", username).getSingleResult();
 		} catch (NoResultException e) {
+			
 		}
 		return po;
 	}

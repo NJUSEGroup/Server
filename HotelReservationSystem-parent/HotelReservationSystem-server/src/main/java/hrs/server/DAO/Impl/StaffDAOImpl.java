@@ -36,10 +36,10 @@ public class StaffDAOImpl implements StaffDAO {
 
 	@Override
 	public StaffPO findByUsername(String username) {
-		String hql = "from StaffPO staff where staff.username = ?";
+		String hql = "from StaffPO staff where staff.username = :username";
 		StaffPO po = null;
 		try{
-			po = (StaffPO) getSession().createQuery(hql).setParameter(0, username).getSingleResult();
+			po = (StaffPO) getSession().createQuery(hql).setParameter("username", username).getSingleResult();
 		}catch(NoResultException e){}
 		return po;
 	}
