@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import hrs.common.Exception.PromotionService.EnterpriseNotFoundException;
 import hrs.common.Exception.UserService.UserExistedException;
 import hrs.common.Exception.UserService.UserNotFoundException;
 import hrs.common.Exception.UserService.UserPasswordErrorException;
@@ -30,7 +31,7 @@ public class TestUserService {
 	private EnterpriseService enterpriseService;
 
 	@Test
-	public void testFindByUsername() {
+	public void testFindByUsername() throws UserNotFoundException {
 		UserVO vo = service.findByUsername("admin");
 		System.out.println(vo);
 		assertEquals(vo.password,"admin");
@@ -43,12 +44,12 @@ public class TestUserService {
 	
 
 	@Test(expected = UserExistedException.class)
-	public void testRegister1() {
+	public void testRegister1() throws UserExistedException {
 		service.register(new UserVO("admin","admin","宋欣建","232131"));
 	}
 	
 	@Test
-	public void testRegister2() {
+	public void testRegister2() throws UserExistedException, UserNotFoundException, EnterpriseNotFoundException {
 		UserVO vo = new UserVO("admin661", "admin661", "123123", "呵呵", 0, 1, UserType.Enterprise,"酒店ttt");
 		service.register(vo);
 		vo = service.findByUsername("admin661");
@@ -63,7 +64,7 @@ public class TestUserService {
 	}
 	
 	@Test
-	public void testUpdate() {
+	public void testUpdate() throws UserNotFoundException {
 		UserVO vo = service.findByUsername("admin");
 		vo.credit = 3000;
 		service.update(vo);
@@ -71,17 +72,17 @@ public class TestUserService {
 	}
 
 	@Test(expected = UserPasswordErrorException.class)
-	public void testLogin1() {
+	public void testLogin1() throws UserNotFoundException, UserPasswordErrorException {
 		service.login("admin", "2222");
 	}
 
 	@Test(expected = UserNotFoundException.class)
-	public void testLogin2() {
+	public void testLogin2() throws UserNotFoundException, UserPasswordErrorException {
 		service.login("admin111", "2222");
 	}
 
 	@Test
-	public void testLogin3() {
+	public void testLogin3() throws UserNotFoundException, UserPasswordErrorException {
 		assertEquals(service.login("admin", "admin").username, "admin");
 	}
 

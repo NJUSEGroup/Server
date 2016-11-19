@@ -23,7 +23,7 @@ public class OrderSearchServiceImpl implements OrderSearchService {
 	
 	@Transactional
 	@Override
-	public OrderVO findByID(int id) {
+	public OrderVO findByID(int id) throws OrderNotFoundException {
 		OrderPO po  = dao.findByID(id);
 		if(po == null){
 			throw new OrderNotFoundException();
@@ -34,7 +34,7 @@ public class OrderSearchServiceImpl implements OrderSearchService {
 
 	@Transactional
 	@Override
-	public List<OrderVO> findByHotelAndStatus(int hotelID, OrderStatus status) {
+	public List<OrderVO> findByHotelAndStatus(int hotelID, OrderStatus status) throws OrderNotFoundException {
 		List<OrderPO> pos = dao.findByHotelAndStatus(hotelID,status);
 		if(pos.size() == 0){
 			throw new OrderNotFoundException();
@@ -45,7 +45,7 @@ public class OrderSearchServiceImpl implements OrderSearchService {
 
 	@Transactional
 	@Override
-	public List<OrderVO> findByUsernameAndStatus(String username, OrderStatus status) {
+	public List<OrderVO> findByUsernameAndStatus(String username, OrderStatus status) throws OrderNotFoundException {
 		List<OrderPO> pos = dao.findByUsernameAndStatus(DesUtil.encode(username),status);
 		if(pos.size() == 0){
 			throw new OrderNotFoundException();
@@ -56,7 +56,7 @@ public class OrderSearchServiceImpl implements OrderSearchService {
 
 	@Transactional
 	@Override
-	public List<OrderVO> findByUsername(String username) {
+	public List<OrderVO> findByUsername(String username) throws OrderNotFoundException {
 		List<OrderPO> pos = dao.findByUsername(DesUtil.encode(username));
 		if(pos.size() == 0){
 			throw new OrderNotFoundException();
@@ -67,7 +67,7 @@ public class OrderSearchServiceImpl implements OrderSearchService {
 
 	@Transactional
 	@Override
-	public List<OrderVO> findByHotelAndUsername(int hotelID, String username) {
+	public List<OrderVO> findByHotelAndUsername(int hotelID, String username) throws OrderNotFoundException {
 		List<OrderPO> pos = dao.findByHotelAndUsername(hotelID, DesUtil.encode(username));
 		if(pos.size() == 0){
 			throw new OrderNotFoundException();
@@ -78,7 +78,7 @@ public class OrderSearchServiceImpl implements OrderSearchService {
 
 	@Transactional
 	@Override
-	public List<OrderVO> findByOrderStatus(OrderStatus status) {
+	public List<OrderVO> findByOrderStatus(OrderStatus status) throws OrderNotFoundException {
 		List<OrderPO> pos = dao.findByOrderStatus(status);
 		if(pos.size() == 0){
 			throw new OrderNotFoundException();
@@ -89,7 +89,7 @@ public class OrderSearchServiceImpl implements OrderSearchService {
 
 	@Transactional
 	@Override
-	public List<OrderVO> findByHotelAndTime(int hotelID, Date begin, Date end) {
+	public List<OrderVO> findByHotelAndTime(int hotelID, Date begin, Date end) throws OrderNotFoundException {
 		List<OrderPO> pos = dao.findByHotelAndTime(hotelID, begin, end);
 		if(pos.size() == 0){
 			throw new OrderNotFoundException();

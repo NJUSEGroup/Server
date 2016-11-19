@@ -16,6 +16,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import hrs.common.Exception.CreditRecordService.CreditRecordNotFoundException;
 import hrs.common.Exception.HotelService.HotelNotFoundException;
+import hrs.common.Exception.OrderService.OrderNotFoundException;
+import hrs.common.Exception.UserService.UserNotFoundException;
 import hrs.common.VO.CreditRecordVO;
 import hrs.common.VO.HotelDiscountVO;
 import hrs.common.VO.HotelVO;
@@ -48,7 +50,7 @@ public class TestOrderService {
 	
 
 	@Test
-	public void testAdd() throws ParseException {
+	public void testAdd() throws ParseException, OrderNotFoundException {
 		HotelVO hotel = new HotelVO();
 		hotel.id = 1;
 		UserVO user = new UserVO();
@@ -69,7 +71,7 @@ public class TestOrderService {
 	}
 
 	@Test
-	public void testCheckin() {
+	public void testCheckin() throws OrderNotFoundException {
 		service.revokeByUser(searchService.findByID(28));
 		OrderVO vo = searchService.findByID(28);
 		assertNotNull(vo.revokeTime);
@@ -77,7 +79,7 @@ public class TestOrderService {
 	}
 	
 	@Test
-	public void testPlaceOrder() throws ParseException, HotelNotFoundException{
+	public void testPlaceOrder() throws ParseException, HotelNotFoundException, UserNotFoundException{
 		HotelVO hotel = hotelService.findByID(1);
 		System.out.println("DEBUG:"+hotel.commercialCircle);
 		UserVO user = userService.findByUsername("admin");
@@ -99,7 +101,7 @@ public class TestOrderService {
 	
 	
 	@Test
-	public void testCheckout(){
+	public void testCheckout() throws OrderNotFoundException{
 		OrderVO vo = searchService.findByID(16);
 		service.checkout(vo);
 		vo = searchService.findByID(16);
@@ -108,7 +110,7 @@ public class TestOrderService {
 	}
 	
 	@Test
-	public void testRevokeByUser() throws CreditRecordNotFoundException{
+	public void testRevokeByUser() throws CreditRecordNotFoundException, OrderNotFoundException{
 		OrderVO vo = searchService.findByID(29);
 		service.revokeByUser(vo);
 		vo = searchService.findByID(29);
@@ -120,7 +122,7 @@ public class TestOrderService {
 	}
 	
 	@Test
-	public void testRevokeByWebMarketer() throws CreditRecordNotFoundException{
+	public void testRevokeByWebMarketer() throws CreditRecordNotFoundException, OrderNotFoundException{
 		OrderVO vo = searchService.findByID(27);
 		service.revokeByWebMarketer(vo, RestoreValueType.Full);
 		vo = searchService.findByID(27);
@@ -132,7 +134,7 @@ public class TestOrderService {
 	}
 	
 	@Test
-	public void testRemark() throws HotelNotFoundException{
+	public void testRemark() throws HotelNotFoundException, OrderNotFoundException{
 		OrderVO vo = searchService.findByID(25);
 		service.remark(vo, 10, "呵呵哒");
 		assertEquals(searchService.findByID(25).evaluation,"呵呵哒");
@@ -143,7 +145,7 @@ public class TestOrderService {
 	}
 	
 	@Test
-	public void testDelayCheckin() throws CreditRecordNotFoundException{
+	public void testDelayCheckin() throws CreditRecordNotFoundException, OrderNotFoundException{
 		OrderVO vo = searchService.findByID(30);
 		service.delayCheckin(vo);
 		vo = searchService.findByID(30);
@@ -156,7 +158,7 @@ public class TestOrderService {
 	}
 	
 	@Test
-	public void testCheckAbNormal() throws CreditRecordNotFoundException{
+	public void testCheckAbNormal() throws CreditRecordNotFoundException, OrderNotFoundException{
 		service.checkAbNormalOrder();
 		assertEquals(searchService.findByID(31).status,OrderStatus.Abnormal);
 		List<CreditRecordVO> list = creditRecordService.findByUsername("admin2");

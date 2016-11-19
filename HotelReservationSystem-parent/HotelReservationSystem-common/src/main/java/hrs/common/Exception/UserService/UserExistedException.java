@@ -1,6 +1,6 @@
 package hrs.common.Exception.UserService;
 
-public class UserExistedException extends RuntimeException{
+public class UserExistedException extends Exception{
 
 	/**
 	 * 

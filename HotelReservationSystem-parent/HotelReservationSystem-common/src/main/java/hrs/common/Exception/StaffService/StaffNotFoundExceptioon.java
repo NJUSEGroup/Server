@@ -1,6 +1,6 @@
 package hrs.common.Exception.StaffService;
 
-public class StaffNotFoundExceptioon extends RuntimeException{
+public class StaffNotFoundExceptioon extends Exception{
 
 	/**
 	 * 

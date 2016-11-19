@@ -1,6 +1,6 @@
 package hrs.common.Exception.PromotionService;
 
-public class EnterpriseNotFoundException extends RuntimeException{
+public class EnterpriseNotFoundException extends Exception{
 
 	/**
 	 * 

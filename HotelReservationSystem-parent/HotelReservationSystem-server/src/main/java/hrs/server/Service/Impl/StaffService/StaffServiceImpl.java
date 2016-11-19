@@ -24,7 +24,7 @@ public class StaffServiceImpl implements StaffService {
 
 	@Transactional
 	@Override
-	public StaffVO login(String username, String password) {
+	public StaffVO login(String username, String password) throws StaffNotFoundExceptioon, StaffPasswordErrorException {
 		StaffPO po = dao.findByUsername(DesUtil.encode(username));
 		if (po == null) {
 			throw new StaffNotFoundExceptioon();
@@ -43,7 +43,7 @@ public class StaffServiceImpl implements StaffService {
 
 	@Transactional
 	@Override
-	public void add(StaffVO staffvo) {
+	public void add(StaffVO staffvo) throws StaffExistedException {
 		if (dao.add(new StaffPO(staffvo)) == ResultMessage.EXISTED) {
 			throw new StaffExistedException();
 		}
@@ -51,7 +51,7 @@ public class StaffServiceImpl implements StaffService {
 
 	@Transactional
 	@Override
-	public StaffVO findByUsername(String username) {
+	public StaffVO findByUsername(String username) throws StaffNotFoundExceptioon {
 		StaffPO po = dao.findByUsername(DesUtil.encode(username));
 		if (po == null) {
 			throw new StaffNotFoundExceptioon();
@@ -62,7 +62,7 @@ public class StaffServiceImpl implements StaffService {
 
 	@Transactional
 	@Override
-	public List<StaffVO> findByHotelName(String hotelName) {
+	public List<StaffVO> findByHotelName(String hotelName) throws StaffNotFoundExceptioon {
 		List<StaffPO> pos = dao.findByHotelName(hotelName);
 		List<StaffVO> vos = null;
 		if(pos.size() == 0){

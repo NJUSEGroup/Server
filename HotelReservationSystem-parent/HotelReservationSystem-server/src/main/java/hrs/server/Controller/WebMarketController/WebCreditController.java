@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import hrs.common.Controller.WebMarketController.IWebCreditController;
+import hrs.common.Exception.UserService.UserNotFoundException;
 import hrs.common.VO.UserVO;
 import hrs.server.Service.Interface.CreditRecordService.CreditRecordService;
 import hrs.server.Service.Interface.UserService.UserService;
@@ -15,7 +16,7 @@ public class WebCreditController implements IWebCreditController{
 	private UserService userService;
 	
 	@Override
-	public UserVO findUserByUsername(String username) {
+	public UserVO findUserByUsername(String username) throws UserNotFoundException {
 		return userService.findByUsername(username);
 	}
 

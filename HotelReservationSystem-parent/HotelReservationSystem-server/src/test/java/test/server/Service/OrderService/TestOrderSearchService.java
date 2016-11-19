@@ -9,6 +9,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import hrs.common.Exception.OrderService.OrderNotFoundException;
 import hrs.common.VO.OrderVO;
 import hrs.common.util.type.OrderStatus;
 import hrs.server.Service.Interface.OrderService.OrderSearchService;
@@ -21,14 +23,14 @@ public class TestOrderSearchService {
 	
 	
 	@Test
-	public void testFindByID() {
+	public void testFindByID() throws OrderNotFoundException {
 		OrderVO vo = service.findByID(20);
 		System.out.println(vo);
 		assertEquals(vo.id,20);
 	}
 
 	@Test
-	public void testFindByUsernameAndStatus() {
+	public void testFindByUsernameAndStatus() throws OrderNotFoundException {
 		List<OrderVO> list = service.findByUsernameAndStatus("admin", OrderStatus.Executed);
 		for (OrderVO vo : list) {
 			System.out.println(vo);
@@ -38,7 +40,7 @@ public class TestOrderSearchService {
 	}
 
 	@Test
-	public void testFindByHotelAndUsername() {
+	public void testFindByHotelAndUsername() throws OrderNotFoundException {
 		List<OrderVO> list = service.findByHotelAndUsername(1, "admin");
 		for (OrderVO vo : list) {
 			System.out.println(vo);
@@ -48,7 +50,7 @@ public class TestOrderSearchService {
 	}
 	
 	@Test
-	public void testFindByUsername() {
+	public void testFindByUsername() throws OrderNotFoundException {
 		List<OrderVO> list = service.findByUsername("admin");
 		for (OrderVO vo : list) {
 			System.out.println(vo);
@@ -57,7 +59,7 @@ public class TestOrderSearchService {
 	}
 	
 	@Test
-	public void testFindByOrderStatus() {
+	public void testFindByOrderStatus() throws OrderNotFoundException {
 		List<OrderVO> list = service.findByOrderStatus(OrderStatus.Unexecuted);
 		for (OrderVO vo : list) {
 			System.out.println(vo);

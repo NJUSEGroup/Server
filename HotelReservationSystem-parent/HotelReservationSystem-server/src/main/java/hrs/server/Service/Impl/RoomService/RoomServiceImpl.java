@@ -4,12 +4,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.hibernate.engine.transaction.jta.platform.internal.SynchronizationRegistryBasedSynchronizationStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import hrs.common.Exception.RoomService.AvailableRoomNotFoundException;
 import hrs.common.Exception.RoomService.RoomNotFoundException;
 import hrs.common.POJO.RoomPO;
 import hrs.common.VO.RoomVO;
@@ -34,10 +32,8 @@ public class RoomServiceImpl implements RoomService {
 	@Transactional
 	@Override
 	public List<RoomVO> findAvailableByHotelID(int hotelID, Date begin, Date end) {
-		List<RoomPO> pos = null;
-		try{
-			pos = dao.findByHotelID(hotelID);
-		}catch(RoomNotFoundException e){
+		List<RoomPO> pos = dao.findByHotelID(hotelID);
+		if(pos.size() == 0){
 			return null;
 		}
 		List<RoomVO> vos = new ArrayList<>();
@@ -57,7 +53,6 @@ public class RoomServiceImpl implements RoomService {
 		if (vos.size() == 0) {
 			return null;
 		}
-		System.out.println("Valid:vos"+vos.size());
 		return vos;
 	}
 
@@ -138,11 +133,12 @@ public class RoomServiceImpl implements RoomService {
 	 * @Description:根据酒店id查询所有房间信息
 	 * @param hotelID
 	 * @return
+	 * @throws RoomNotFoundException 
 	 * @see hrs.server.Service.Interface.RoomService.RoomService#findByHotelID(int)
 	 */
 	@Transactional
 	@Override
-	public List<RoomVO> findByHotelID(int hotelID) {
+	public List<RoomVO> findByHotelID(int hotelID) throws RoomNotFoundException {
 		List<RoomPO> pos = dao.findByHotelID(hotelID);
 		if (pos.size() == 0) {
 			throw new RoomNotFoundException();
@@ -158,11 +154,12 @@ public class RoomServiceImpl implements RoomService {
 	 * @param hotelID
 	 * @param type
 	 * @return
+	 * @throws RoomNotFoundException 
 	 * @see hrs.server.Service.Interface.RoomService.RoomService#findByHotelAndType(int,
 	 *      hrs.common.util.type.RoomType)
 	 */
 	@Override
-	public RoomVO findByHotelAndType(int hotelID, RoomType type) {
+	public RoomVO findByHotelAndType(int hotelID, RoomType type) throws RoomNotFoundException {
 		RoomPO po = dao.findByHotelAndType(hotelID, type);
 		if (po == null) {
 			throw new RoomNotFoundException();

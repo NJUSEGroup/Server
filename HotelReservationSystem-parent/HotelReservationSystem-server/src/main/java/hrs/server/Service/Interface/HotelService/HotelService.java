@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import hrs.common.Exception.HotelService.HotelNotFoundException;
+import hrs.common.Exception.OrderService.OrderNotFoundException;
 import hrs.common.VO.HotelVO;
 import hrs.common.VO.OrderVO;
 import hrs.common.VO.RoomVO;
@@ -18,7 +19,7 @@ public interface HotelService {
 
 	void add(HotelVO hotelvo);
 
-	Map<HotelVO, List<OrderVO>> findOrderedHotelAndOrder(String username);
+	Map<HotelVO, List<OrderVO>> findOrderedHotelAndOrder(String username) throws OrderNotFoundException;
 
 	Map<HotelVO, List<RoomVO>> find(int loc, int circle, Date begin, Date end,String username) throws HotelNotFoundException;
 

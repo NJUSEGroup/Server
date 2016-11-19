@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import hrs.common.Exception.StaffService.StaffExistedException;
 import hrs.common.Exception.StaffService.StaffNotFoundExceptioon;
 import hrs.common.Exception.StaffService.StaffPasswordErrorException;
 import hrs.common.VO.HotelVO;
@@ -24,22 +25,22 @@ public class TestStaffService {
 	private StaffService service;
 
 	@Test(expected = StaffPasswordErrorException.class)
-	public void testLogin1() {
+	public void testLogin1() throws StaffNotFoundExceptioon, StaffPasswordErrorException {
 		service.login("admin", "12321311");
 	}
 
 	@Test(expected = StaffNotFoundExceptioon.class)
-	public void testLogin2() {
+	public void testLogin2() throws StaffNotFoundExceptioon, StaffPasswordErrorException {
 		service.login("admin213", "aaa");
 	}
 
 	@Test
-	public void testLogin3() {
+	public void testLogin3() throws StaffNotFoundExceptioon, StaffPasswordErrorException {
 		assertEquals(service.login("admin", "admin").username, "admin");
 	}
 
 	@Test
-	public void testAdd() {
+	public void testAdd() throws StaffNotFoundExceptioon, StaffExistedException {
 		HotelVO hotel = new HotelVO();
 		hotel.id = 4;
 		StaffVO staff = new StaffVO("staff234", "110", "老王", StaffType.WebsiteMarketer, hotel);
@@ -48,7 +49,7 @@ public class TestStaffService {
 	}
 
 	@Test
-	public void testUpdate() {
+	public void testUpdate() throws StaffNotFoundExceptioon {
 		StaffVO staff = service.findByUsername("admin");
 		staff.password = "111";
 		service.update(staff);
@@ -56,13 +57,13 @@ public class TestStaffService {
 	}
 
 	@Test
-	public void testFindByUsername() {
+	public void testFindByUsername() throws StaffNotFoundExceptioon {
 		StaffVO staff = service.findByUsername("admin");
 		assertEquals(staff.password, "admin");
 	}
 
 	@Test
-	public void testFindByHotelName() {
+	public void testFindByHotelName() throws StaffNotFoundExceptioon {
 		List<StaffVO> vos = service.findByHotelName("酒店");
 		for(StaffVO vo:vos){
 			System.out.println(vo);

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import hrs.common.Controller.HotelController.IRoomController;
+import hrs.common.Exception.RoomService.RoomNotFoundException;
 import hrs.common.VO.RoomVO;
 import hrs.common.util.type.RoomType;
 import hrs.server.Service.Interface.RoomService.RoomService;
@@ -29,7 +30,7 @@ public class RoomController implements IRoomController{
 	}
 
 	@Override
-	public List<RoomVO> findByHotelID(int hotelID) {
+	public List<RoomVO> findByHotelID(int hotelID) throws RoomNotFoundException {
 		return service.findByHotelID(hotelID);
 	}
 	

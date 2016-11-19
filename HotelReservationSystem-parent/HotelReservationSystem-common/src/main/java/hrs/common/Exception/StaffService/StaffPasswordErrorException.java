@@ -1,6 +1,6 @@
 package hrs.common.Exception.StaffService;
 
-public class StaffPasswordErrorException extends RuntimeException {
+public class StaffPasswordErrorException extends Exception {
 
 	/**
 	 * 

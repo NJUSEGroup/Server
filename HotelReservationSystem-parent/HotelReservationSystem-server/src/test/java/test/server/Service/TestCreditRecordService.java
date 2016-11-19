@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import hrs.common.Exception.CreditRecordService.CreditRecordNotFoundException;
+import hrs.common.Exception.UserService.UserNotFoundException;
 import hrs.common.VO.CreditRecordVO;
 import hrs.common.VO.OrderVO;
 import hrs.common.VO.UserVO;
@@ -38,7 +39,7 @@ public class TestCreditRecordService {
 	}
 
 	@Test
-	public void testAdd() throws CreditRecordNotFoundException {
+	public void testAdd() throws CreditRecordNotFoundException, UserNotFoundException {
 		OrderVO order = new OrderVO();
 		order.id = 22;
 		UserVO user = userService.findByUsername("admin");
@@ -57,7 +58,7 @@ public class TestCreditRecordService {
 	}
 	@Transactional
 	@Test
-	public void testRecharge() {
+	public void testRecharge() throws UserNotFoundException {
 		UserVO user = userService.findByUsername("admin");
 		System.out.println(user.credit);
 		service.recharge(user, 300); 

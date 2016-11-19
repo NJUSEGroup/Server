@@ -11,6 +11,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import hrs.common.Exception.PromotionService.EnterpriseNotFoundException;
 import hrs.common.VO.EnterpriseVO;
 import hrs.server.Service.Interface.PromotionService.EnterpriseService;
 
@@ -21,7 +22,7 @@ public class TestEnterpriseService {
 	private EnterpriseService service;
 
 	@Test
-	public void testgetAllEnterprises() {
+	public void testgetAllEnterprises() throws EnterpriseNotFoundException {
 		List<EnterpriseVO> list = service.getAllEnterprises();
 		for (EnterpriseVO vo : list) {
 			System.out.println(vo);
@@ -30,7 +31,7 @@ public class TestEnterpriseService {
 	}
 
 	@Test
-	public void testAdd() {
+	public void testAdd() throws EnterpriseNotFoundException {
 		EnterpriseVO enterprise = new EnterpriseVO("华为");
 		service.add(enterprise);
 		List<EnterpriseVO> list = service.getAllEnterprises();

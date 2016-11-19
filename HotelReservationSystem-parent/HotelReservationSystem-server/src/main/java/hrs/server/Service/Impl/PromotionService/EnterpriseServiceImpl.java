@@ -24,11 +24,12 @@ public class EnterpriseServiceImpl implements EnterpriseService {
 	 * @Title: getAllEnterprises 
 	 * @Description:返回所有企业
 	 * @return 
+	 * @throws EnterpriseNotFoundException 
 	 * @see hrs.server.Service.Interface.PromotionService.EnterpriseService#getAllEnterprises()
 	 */
 	@Transactional
 	@Override
-	public List<EnterpriseVO> getAllEnterprises() {
+	public List<EnterpriseVO> getAllEnterprises() throws EnterpriseNotFoundException {
 		List<EnterprisePO> pos = dao.findAll();
 		List<EnterpriseVO> vos = null;
 		if(pos.size() == 0){

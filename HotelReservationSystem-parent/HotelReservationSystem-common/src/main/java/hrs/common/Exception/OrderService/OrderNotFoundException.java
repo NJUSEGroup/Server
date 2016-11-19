@@ -1,6 +1,6 @@
 package hrs.common.Exception.OrderService;
 
-public class OrderNotFoundException extends RuntimeException {
+public class OrderNotFoundException extends Exception {
 
 	/**
 	 * 

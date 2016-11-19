@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import hrs.common.Controller.UserController.IUserOrderController;
+import hrs.common.Exception.OrderService.OrderNotFoundException;
 import hrs.common.VO.OrderVO;
 import hrs.common.VO.UserVO;
 import hrs.common.util.type.OrderStatus;
@@ -26,7 +27,7 @@ public class UserOrderController implements IUserOrderController {
 	
 	
 	@Override
-	public List<OrderVO> findOrdersByUsernameAndStatus(String username, OrderStatus type) {
+	public List<OrderVO> findOrdersByUsernameAndStatus(String username, OrderStatus type) throws OrderNotFoundException {
 		return orderSearchService.findByUsernameAndStatus(username, type);
 	}
 

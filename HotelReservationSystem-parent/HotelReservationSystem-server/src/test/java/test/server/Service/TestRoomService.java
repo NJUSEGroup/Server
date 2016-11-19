@@ -13,6 +13,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import hrs.common.Exception.RoomService.RoomNotFoundException;
 import hrs.common.VO.HotelVO;
 import hrs.common.VO.RoomVO;
 import hrs.common.util.type.RoomType;
@@ -26,7 +27,7 @@ public class TestRoomService {
 	private RoomService service;
 	@Transactional
 	@Test
-	public void testUpdate() {
+	public void testUpdate() throws RoomNotFoundException {
 		RoomVO vo = service.findByHotelAndType(1, RoomType.Single);
 		vo.roomNum = 9;
 		service.update(vo);
@@ -34,7 +35,7 @@ public class TestRoomService {
 	}
 
 	@Test
-	public void testAdd() {
+	public void testAdd() throws RoomNotFoundException {
 		HotelVO hotel = new HotelVO();
 		hotel.id = 6;
 		RoomVO vo = new RoomVO(hotel, RoomType.Business, 20, 800);
@@ -43,7 +44,7 @@ public class TestRoomService {
 	}
 
 	@Test
-	public void testFindByHotelAndType() {
+	public void testFindByHotelAndType() throws RoomNotFoundException {
 		RoomVO vo = service.findByHotelAndType(1, RoomType.Single);
 		assertEquals(8, vo.roomNum);
 	}
@@ -76,7 +77,7 @@ public class TestRoomService {
 	}
 
 	@Test
-	public void testFindByHotelID() {
+	public void testFindByHotelID() throws RoomNotFoundException {
 		List<RoomVO> list = service.findByHotelID(4);
 		for (RoomVO vo : list) {
 			System.out.println(vo);

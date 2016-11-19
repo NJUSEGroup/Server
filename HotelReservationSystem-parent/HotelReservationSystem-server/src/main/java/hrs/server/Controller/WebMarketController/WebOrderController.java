@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import hrs.common.Controller.WebMarketController.IWebOrderController;
+import hrs.common.Exception.OrderService.OrderNotFoundException;
 import hrs.common.VO.OrderVO;
 import hrs.common.util.type.OrderStatus;
 import hrs.common.util.type.RestoreValueType;
@@ -19,12 +20,12 @@ public class WebOrderController implements IWebOrderController{
 	private OrderSearchService orderSearchService;
 	
 	@Override
-	public List<OrderVO> findOrderByOrderStatus(OrderStatus status) {
+	public List<OrderVO> findOrderByOrderStatus(OrderStatus status) throws OrderNotFoundException {
 		return orderSearchService.findByOrderStatus(status);
 	}
 
 	@Override
-	public OrderVO findOrderByID(int id) {
+	public OrderVO findOrderByID(int id) throws OrderNotFoundException {
 		return orderSearchService.findByID(id);
 	}
 
@@ -34,7 +35,7 @@ public class WebOrderController implements IWebOrderController{
 	}
 
 	@Override
-	public List<OrderVO> findOrderByUsername(String username) {
+	public List<OrderVO> findOrderByUsername(String username) throws OrderNotFoundException {
 		return orderSearchService.findByUsername(username);
 	}
 }

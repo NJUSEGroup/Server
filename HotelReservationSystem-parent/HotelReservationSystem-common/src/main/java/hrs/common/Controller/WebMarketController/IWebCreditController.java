@@ -1,9 +1,10 @@
 package hrs.common.Controller.WebMarketController;
 
+import hrs.common.Exception.UserService.UserNotFoundException;
 import hrs.common.VO.UserVO;
 
 public interface IWebCreditController {
 
-	UserVO findUserByUsername(String username);
+	UserVO findUserByUsername(String username) throws UserNotFoundException;
 	void recharge(UserVO user,int money);
 }

@@ -18,6 +18,8 @@ import javax.swing.border.EmptyBorder;
 
 import hrs.client.util.ControllerFactory;
 import hrs.common.Controller.LoginController.ILoginController;
+import hrs.common.Exception.UserService.UserNotFoundException;
+import hrs.common.Exception.UserService.UserPasswordErrorException;
 import hrs.common.VO.UserVO;
 
 public class LoginFrame extends JFrame {
@@ -72,12 +74,15 @@ public class LoginFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String username = jtfUsername.getText().trim();
 				String password = String.valueOf(jtfPassword.getPassword());
-				UserVO user = controller.loginUser(username, password);
-				if(user != null){
-					JOptionPane.showMessageDialog(null, "登录成功!");
-				}else{
+				UserVO user = null;
+				try {
+					user = controller.loginUser(username, password);
+				} catch (UserNotFoundException e1) {
+					JOptionPane.showMessageDialog(null, "登录失败!");
+				} catch (UserPasswordErrorException e1) {
 					JOptionPane.showMessageDialog(null, "登录失败!");
 				}
+				JOptionPane.showMessageDialog(null, "登录成功!");
 			}
 		});
 		

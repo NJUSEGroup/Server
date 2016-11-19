@@ -1,6 +1,6 @@
 package hrs.common.Exception.UserService;
 
-public class UserPasswordErrorException extends RuntimeException {
+public class UserPasswordErrorException extends Exception {
 
 	/**
 	 * 

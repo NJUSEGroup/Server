@@ -26,20 +26,19 @@ public class UserServiceImpl implements UserService {
 
 	@Transactional
 	@Override
-	public UserVO findByUsername(String username) {
+	public UserVO findByUsername(String username) throws UserNotFoundException {
 
 		UserPO po = dao.findByUserName(DesUtil.encode(username));
 		if (po == null) {
 			throw new UserNotFoundException();
 		} else {
-			// 从数据库取出的要解密
 			return new UserVO((po));
 		}
 	}
 
 	@Transactional
 	@Override
-	public void register(UserVO uservo) {
+	public void register(UserVO uservo) throws UserExistedException {
 		// 从界面拿到的要加密
 		UserPO po = new UserPO(uservo);
 		if (dao.add(po) == ResultMessage.EXISTED) {
@@ -58,7 +57,7 @@ public class UserServiceImpl implements UserService {
 
 	@Transactional
 	@Override
-	public UserVO login(String username, String password) {
+	public UserVO login(String username, String password) throws UserNotFoundException, UserPasswordErrorException {
 		UserPO po = dao.findByUserName(DesUtil.encode(username));
 		if (po == null) {
 			throw new UserNotFoundException();
@@ -73,7 +72,11 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	@Override
 	public boolean validateCredit(String username) {
-		return findByUsername(username).credit >= 0;
+		try {
+			return findByUsername(username).credit >= 0;
+		} catch (UserNotFoundException e) {
+		}
+		return false;
 	}
 
 }

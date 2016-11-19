@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 
 import hrs.common.Controller.UserController.IUserHotelController;
 import hrs.common.Exception.HotelService.HotelNotFoundException;
+import hrs.common.Exception.OrderService.OrderNotFoundException;
 import hrs.common.VO.CommercialCircleVO;
 import hrs.common.VO.HotelVO;
 import hrs.common.VO.LocationVO;
@@ -32,7 +33,7 @@ public class UserHotelController implements IUserHotelController{
 	private OrderSearchService orderSearchService;
 
 	@Override
-	public List<OrderVO> findOrderByHotelAndUsername(int hotelID, String username) {
+	public List<OrderVO> findOrderByHotelAndUsername(int hotelID, String username) throws OrderNotFoundException {
 		return orderSearchService.findByHotelAndUsername(hotelID, username);
 	}
 
@@ -42,7 +43,7 @@ public class UserHotelController implements IUserHotelController{
 	}
 
 	@Override
-	public Map<HotelVO, List<OrderVO>> findOrderedHotelAndOrder(String username) {
+	public Map<HotelVO, List<OrderVO>> findOrderedHotelAndOrder(String username) throws OrderNotFoundException {
 		return hotelService.findOrderedHotelAndOrder(username);
 	}
 

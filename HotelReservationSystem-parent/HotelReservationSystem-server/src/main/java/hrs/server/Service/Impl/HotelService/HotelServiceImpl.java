@@ -59,6 +59,7 @@ public class HotelServiceImpl implements HotelService {
 	}
 
 	/**
+	 * @throws OrderNotFoundException 
 	 * 
 	 * @Title: findOrderedHotelAndOrder 
 	 * @Description 查找已预订的酒店和订单列表
@@ -69,12 +70,9 @@ public class HotelServiceImpl implements HotelService {
 	 */
 	@Transactional
 	@Override
-	public Map<HotelVO, List<OrderVO>> findOrderedHotelAndOrder(String username) {
+	public Map<HotelVO, List<OrderVO>> findOrderedHotelAndOrder(String username) throws OrderNotFoundException {
 		Map<HotelVO, List<OrderVO>> map = new HashMap<>();
 		List<OrderVO> orders = orderSearchService.findByUsername(username);
-		if (orders.size() == 0) {
-			throw new OrderNotFoundException();
-		}
 		List<OrderVO> orderWithCertainHotel = null;
 		for (OrderVO order : orders) {
 			if (map.containsKey(order.hotel)) {
@@ -127,8 +125,11 @@ public class HotelServiceImpl implements HotelService {
 			vo.highValue = Collections.max(rooms).roomValue;
 			
 			//获得酒店的相关订单类型的集合
-			for(OrderVO order:orderSearchService.findByHotelAndUsername(vo.id, username)){
-				vo.status.add(order.status);
+			try {
+				for(OrderVO order:orderSearchService.findByHotelAndUsername(vo.id, username)){
+					vo.status.add(order.status);
+				}
+			} catch (OrderNotFoundException e) {
 			}
 			map.put(vo, rooms);
 		}

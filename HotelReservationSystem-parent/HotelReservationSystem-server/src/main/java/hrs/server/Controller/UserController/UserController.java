@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 
 import hrs.common.Controller.UserController.IUserController;
 import hrs.common.Exception.CreditRecordService.CreditRecordNotFoundException;
+import hrs.common.Exception.UserService.UserNotFoundException;
 import hrs.common.VO.CreditRecordVO;
 import hrs.common.VO.UserVO;
 import hrs.server.Service.Interface.CreditRecordService.CreditRecordService;
@@ -25,7 +26,7 @@ public class UserController implements IUserController{
 	}
 	
 	@Override
-	public UserVO findUserByUsername(String username) {
+	public UserVO findUserByUsername(String username) throws UserNotFoundException {
 		return userService.findByUsername(username);
 	}
 	@Override

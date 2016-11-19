@@ -6,7 +6,7 @@ package hrs.common.Exception.RoomService;
  * @author NewSong
  *
  */
-public class AvailableRoomNotFoundException extends RuntimeException{
+public class AvailableRoomNotFoundException extends Exception{
 
 	/**
 	 * 

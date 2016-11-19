@@ -22,7 +22,7 @@ public class WebDiscountServiceImpl implements WebDiscountService {
 
 	@Transactional
 	@Override
-	public List<WebDiscountVO> findAll() {
+	public List<WebDiscountVO> findAll() throws WebDiscountNotFoundException {
 		List<WebDiscountPO> pos = dao.findAll();
 		List<WebDiscountVO> vos = null;
 		if (pos.size() == 0) {
@@ -67,8 +67,10 @@ public class WebDiscountServiceImpl implements WebDiscountService {
 	@Transactional
 	@Override
 	public List<WebDiscount> createAllStrategies() {
-		List<WebDiscountVO> vos = findAll();
-		if (vos.size() == 0) {
+		List<WebDiscountVO> vos;
+		try {
+			vos = findAll();
+		} catch (WebDiscountNotFoundException e1) {
 			return new ArrayList<>();
 		}
 		List<WebDiscount> strategies = new ArrayList<>();

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import hrs.common.Controller.HotelController.IHotelOrderController;
+import hrs.common.Exception.OrderService.OrderNotFoundException;
 import hrs.common.VO.OrderVO;
 import hrs.common.util.type.OrderStatus;
 import hrs.server.Service.Interface.OrderService.OrderSearchService;
@@ -35,17 +36,17 @@ public class HotelOrderController implements IHotelOrderController {
 	}
 
 	@Override
-	public List<OrderVO> findOrderByHotelAndStatus(int hotelID, OrderStatus type) {
+	public List<OrderVO> findOrderByHotelAndStatus(int hotelID, OrderStatus type) throws OrderNotFoundException {
 		return orderSearchService.findByHotelAndStatus(hotelID, type);
 	}
 
 	@Override
-	public List<OrderVO> findOrderByHotelAndUsername(int hotelID, String username) {
+	public List<OrderVO> findOrderByHotelAndUsername(int hotelID, String username) throws OrderNotFoundException {
 		return orderSearchService.findByHotelAndUsername(hotelID, username);
 	}
 
 	@Override
-	public OrderVO findOrderByID(int id) {
+	public OrderVO findOrderByID(int id) throws OrderNotFoundException {
 		return orderSearchService.findByID(id);
 	}
 }

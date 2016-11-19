@@ -70,9 +70,11 @@ public class HotelDiscountServiceImpl implements HotelDiscountService {
 	 */
 	@Transactional
 	@Override
-	public List<HotelDiscount> createAllStrategies(int hotelID) throws HotelDiscountNotFoundException {
-		List<HotelDiscountVO> vos = findAllByHotelID(hotelID);
-		if (vos.size() == 0) {
+	public List<HotelDiscount> createAllStrategies(int hotelID) {
+		List<HotelDiscountVO> vos;
+		try {
+			vos = findAllByHotelID(hotelID);
+		} catch (HotelDiscountNotFoundException e1) {
 			return new ArrayList<>();
 		}
 		List<HotelDiscount> strategies = new ArrayList<>();

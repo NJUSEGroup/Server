@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import hrs.common.Exception.Promotion.HotelDiscountService.HotelDiscountNotFoundException;
 import hrs.common.VO.HotelDiscountVO;
 import hrs.common.VO.HotelVO;
 import hrs.common.util.type.HotelDiscountType;
@@ -26,7 +27,7 @@ public class TestHotelDiscountService {
 	private HotelDiscountService service;
 
 	@Test
-	public void testAdd1() {
+	public void testAdd1() throws HotelDiscountNotFoundException {
 		HotelVO hotel = new HotelVO();
 		hotel.id = 4;
 		HotelDiscountVO vo = new HotelDiscountVO(hotel, 0.95, HotelDiscountType.Birthday, null, 0, null,null);
@@ -41,7 +42,7 @@ public class TestHotelDiscountService {
 		fail();
 	}
 	@Test
-	public void testAdd2() throws ParseException {
+	public void testAdd2() throws ParseException, HotelDiscountNotFoundException {
 		HotelVO hotel = new HotelVO();
 		hotel.id = 4;
 		Date begin = DateHelper.parseWithHMS("2016-10-01 08:18:12");
@@ -59,7 +60,7 @@ public class TestHotelDiscountService {
 	}
 
 	@Test
-	public void testUpdate() {
+	public void testUpdate() throws HotelDiscountNotFoundException {
 		HotelDiscountVO vo = service.findAllByHotelID(1).get(0);
 		vo.discount = 0.22;
 		service.update(vo);
@@ -68,7 +69,7 @@ public class TestHotelDiscountService {
 	}
 
 	@Test
-	public void testDelete() {
+	public void testDelete() throws HotelDiscountNotFoundException {
 		int deletedID  = service.findAllByHotelID(1).get(0).id;
 		service.delete(deletedID);
 		for(HotelDiscountVO vo:service.findAllByHotelID(1)){
@@ -79,7 +80,7 @@ public class TestHotelDiscountService {
 	}
 
 	@Test
-	public void testFindAllByHotelID() {
+	public void testFindAllByHotelID() throws HotelDiscountNotFoundException {
 		List<HotelDiscountVO> list = service.findAllByHotelID(1);
 		for (HotelDiscountVO vo : list) {
 			System.out.println(vo);
@@ -88,7 +89,7 @@ public class TestHotelDiscountService {
 	}
 	
 	@Test
-	public void testCreateAllStrategies(){
+	public void testCreateAllStrategies() throws HotelDiscountNotFoundException{
 		List<HotelDiscount> strategies = service.createAllStrategies(1);
 		for(HotelDiscount disc:strategies){
 			System.out.println(disc.getClass().getName());

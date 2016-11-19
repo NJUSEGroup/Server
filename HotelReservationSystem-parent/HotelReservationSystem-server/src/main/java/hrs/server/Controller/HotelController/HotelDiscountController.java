@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 
 import hrs.common.Controller.HotelController.IHotelDiscountController;
 import hrs.common.Exception.Promotion.HotelDiscountService.HotelDiscountNotFoundException;
+import hrs.common.Exception.PromotionService.EnterpriseNotFoundException;
 import hrs.common.VO.EnterpriseVO;
 import hrs.common.VO.HotelDiscountVO;
 import hrs.server.Service.Interface.PromotionService.EnterpriseService;
@@ -20,7 +21,7 @@ public class HotelDiscountController implements IHotelDiscountController{
 	
 	
 	@Override
-	public List<EnterpriseVO> getAllEnterprises() {
+	public List<EnterpriseVO> getAllEnterprises() throws EnterpriseNotFoundException {
 		return enterpriseService.getAllEnterprises();
 	}
 

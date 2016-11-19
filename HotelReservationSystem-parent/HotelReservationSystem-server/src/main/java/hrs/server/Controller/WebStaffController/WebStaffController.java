@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import hrs.common.Controller.WebStaffController.IWebStaffController;
+import hrs.common.Exception.StaffService.StaffExistedException;
+import hrs.common.Exception.StaffService.StaffNotFoundExceptioon;
 import hrs.common.VO.HotelVO;
 import hrs.common.VO.StaffVO;
 import hrs.server.Service.Interface.HotelService.HotelService;
@@ -29,17 +31,17 @@ public class WebStaffController implements IWebStaffController{
 	}
 
 	@Override
-	public void addStaff(StaffVO staffvo) {
+	public void addStaff(StaffVO staffvo) throws StaffExistedException {
 		staffService.add(staffvo);
 	}
 
 	@Override
-	public StaffVO findStaffByUsername(String username) {
+	public StaffVO findStaffByUsername(String username) throws StaffNotFoundExceptioon {
 		return staffService.findByUsername(username);
 	}
 
 	@Override
-	public List<StaffVO> findStaffByHotelName(String hotelName) {
+	public List<StaffVO> findStaffByHotelName(String hotelName) throws StaffNotFoundExceptioon {
 		return staffService.findByHotelName(hotelName);
 	}
 	

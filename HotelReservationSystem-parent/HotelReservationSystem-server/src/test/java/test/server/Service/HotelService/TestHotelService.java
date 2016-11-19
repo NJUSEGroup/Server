@@ -15,6 +15,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import hrs.common.Exception.HotelService.HotelNotFoundException;
+import hrs.common.Exception.OrderService.OrderNotFoundException;
 import hrs.common.VO.CommercialCircleVO;
 import hrs.common.VO.HotelVO;
 import hrs.common.VO.LocationVO;
@@ -68,7 +69,7 @@ public class TestHotelService {
 	}
 
 	@Test
-	public void testFindOrderedHotelAndOrder() {
+	public void testFindOrderedHotelAndOrder() throws OrderNotFoundException {
 		Map<HotelVO, List<OrderVO>> map = service.findOrderedHotelAndOrder("admin");
 		for (HotelVO hotel : map.keySet()) {
 			System.out.println(hotel);
