@@ -1,4 +1,4 @@
-package hrs.server.Service.Impl.HotelService;
+	package hrs.server.Service.Impl.HotelService;
 
 import java.util.HashMap;
 import java.util.List;

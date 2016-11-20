@@ -1,14 +1,17 @@
 package hrs.client.UI.LoginUI;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JTabbedPane;
+
+import hrs.client.UI.common.ImageLoader;
 
 public class LoginFrame extends JFrame {
 
@@ -17,7 +20,9 @@ public class LoginFrame extends JFrame {
 	*/ 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-
+	private JLabel jlTest;
+	private ImageLoader img = new ImageLoader();
+//	private ILoginController loginController = ControllerFactory.getLoginController();
 	/**
 	 * Launch the application.
 	 */
@@ -49,14 +54,41 @@ public class LoginFrame extends JFrame {
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		contentPane.add(tabbedPane, BorderLayout.WEST);
+		
 		
 		JPanel panel = new JPanel();
-		contentPane.add(panel, BorderLayout.EAST);
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(675)
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 675, GroupLayout.PREFERRED_SIZE))
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addComponent(panel, GroupLayout.PREFERRED_SIZE, 718, GroupLayout.PREFERRED_SIZE)
+		);
+		
+		jlTest = new JLabel("测试Label");
+		jlTest.setIcon(img.getIcon("UserUI/emoji.png"));
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(154)
+					.addComponent(jlTest)
+					.addContainerGap(440, Short.MAX_VALUE))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(227)
+					.addComponent(jlTest)
+					.addContainerGap(470, Short.MAX_VALUE))
+		);
+		panel.setLayout(gl_panel);
+		contentPane.setLayout(gl_contentPane);
 	}
-
 }
