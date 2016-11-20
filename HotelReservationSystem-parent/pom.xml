@@ -51,7 +51,7 @@
 			<artifactId>spring-web</artifactId>
 			<version>4.3.3.RELEASE</version>
 		</dependency>
-		
+
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -177,7 +177,12 @@
 			<artifactId>spring-orm</artifactId>
 			<version>4.3.3.RELEASE</version>
 		</dependency>
-
+		<!-- https://mvnrepository.com/artifact/org.java.net.substance/substance -->
+		<dependency>
+			<groupId>org.java.net.substance</groupId>
+			<artifactId>substance</artifactId>
+			<version>6.0</version>
+		</dependency>
 
 	</dependencies>
 

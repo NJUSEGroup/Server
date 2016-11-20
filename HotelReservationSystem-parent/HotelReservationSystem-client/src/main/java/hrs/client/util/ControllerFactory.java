@@ -1,7 +1,5 @@
 package hrs.client.util;
 
-import static org.hamcrest.CoreMatchers.sameInstance;
-
 import hrs.common.Controller.HotelController.IHotelController;
 import hrs.common.Controller.HotelController.IHotelDiscountController;
 import hrs.common.Controller.HotelController.IHotelOrderController;
