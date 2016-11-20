@@ -4,7 +4,6 @@ import java.util.List;
 
 import hrs.common.Exception.Promotion.HotelDiscountService.HotelDiscountNotFoundException;
 import hrs.common.VO.HotelDiscountVO;
-import hrs.common.util.ResultMessage;
 import hrs.server.Service.Impl.PromotionService.HotelDiscountService.HotelDiscount;
 
 public interface HotelDiscountService {
