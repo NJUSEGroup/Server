@@ -36,6 +36,6 @@ public class LocationDAOImpl implements LocationDAO {
 	@Override
 	public List<LocationPO> findAll() {
 		String hql = "from LocationPO";
-		return getSession().createQuery(hql).getResultList();
+		return getSession().createQuery(hql).setCacheable(true).getResultList();
 	}
 }

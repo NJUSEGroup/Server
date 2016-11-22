@@ -83,7 +83,7 @@ public class HotelDAOImpl implements HotelDAO {
 									  + "inner join fetch hotel.commercialCircle circle "
 									  + "where loc.id = :loc and circle.id = :circle";
 
-		return getSession().createQuery(hql).setParameter("loc", loc).setParameter("circle", circle).getResultList();
+		return getSession().createQuery(hql).setCacheable(true).setParameter("loc", loc).setParameter("circle", circle).getResultList();
 	}
 
 }

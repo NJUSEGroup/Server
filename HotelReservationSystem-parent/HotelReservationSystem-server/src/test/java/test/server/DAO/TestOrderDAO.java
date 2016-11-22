@@ -27,8 +27,7 @@ import hrs.server.util.DateHelper;
 public class TestOrderDAO {
 	@Autowired
 	private OrderDAO dao;
-
-	@Transactional
+	@Transactional	
 	@Test
 	public void testFindByID() {
 		OrderPO po = dao.findByID(15);

@@ -71,7 +71,10 @@ public class RoomDAOImpl implements RoomDAO {
 	@Override
 	public List<RoomPO> findByHotelID(int hotelID) {
 		String hql = "from RoomPO room inner join fetch room.hotel hotel where hotel.id = ? order by room.roomValue";
-		return getSession().createQuery(hql).setParameter(0, hotelID).getResultList();
+		return getSession().createQuery(hql)
+				.setCacheable(true)
+				.setParameter(0, hotelID)
+				.getResultList();
 
 	}
 
@@ -92,7 +95,9 @@ public class RoomDAOImpl implements RoomDAO {
 	public int findAvailableRoomNum(int hotelID, RoomType type, Date begin, Date end) {
 		String hql = "from AvailableRoomPO ar inner join fetch ar.hotel hotel where hotel.id = :hotelID and ar.type = :type and ar.roomDate >= :begin and ar.roomDate < :end";
 		List<AvailableRoomPO> list = null;
-		list = getSession().createQuery(hql).setParameter("hotelID", hotelID).setParameter("type", type)
+		list = getSession().createQuery(hql)
+				.setCacheable(true)
+				.setParameter("hotelID", hotelID).setParameter("type", type)
 				.setParameter("begin", begin).setParameter("end", end).getResultList();
 		if (list.size() == 0) {
 			return findByHotelAndType(hotelID, type).getRoomNum();
@@ -114,7 +119,9 @@ public class RoomDAOImpl implements RoomDAO {
 		String hql = "from RoomPO room inner join fetch room.hotel hotel where hotel.id = :hotelID and room.type = :type";
 		RoomPO po = null;
 		try {
-			po = (RoomPO) getSession().createQuery(hql).setParameter("hotelID", hotelID).setParameter("type", type)
+			po = (RoomPO) getSession().createQuery(hql)
+					.setCacheable(true)
+					.setParameter("hotelID", hotelID).setParameter("type", type)
 					.getSingleResult();
 		} catch (NoResultException e) {
 			
