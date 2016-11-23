@@ -105,12 +105,8 @@
 			<artifactId>spring-tx</artifactId>
 			<version>4.2.5.RELEASE</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId>
-			<version>4.3.3.RELEASE</version>
-		</dependency>
+		
+		
 		<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
 		<dependency>
 			<groupId>org.aspectj</groupId>

@@ -76,21 +76,38 @@
 	<!-- 配置bean 注意使用xml的自动装配 -->
 	<bean id="loginController" class="hrs.server.Controller.LoginController.LoginController"></bean>
 	<bean id="userController" class="hrs.server.Controller.UserController.UserController"></bean>
-	<bean id="userHotelController" class="hrs.server.Controller.UserController.UserHotelController"></bean>
-	<bean id="userOrderController"  class="hrs.server.Controller.UserController.UserOrderController"></bean>
+	<bean id="userHotelController"
+		class="hrs.server.Controller.UserController.UserHotelController"></bean>
+	<bean id="userOrderController"
+		class="hrs.server.Controller.UserController.UserOrderController"></bean>
 	<bean id="hotelController" class="hrs.server.Controller.HotelController.HotelController"></bean>
-	<bean id="hotelDiscountController" class="hrs.server.Controller.HotelController.HotelDiscountController"></bean>
-	<bean id="hotelOrderController" class="hrs.server.Controller.HotelController.HotelOrderController"></bean>
-	<bean id="offlineRecordController" class="hrs.server.Controller.HotelController.OfflineRecordController"></bean>
+	<bean id="hotelDiscountController"
+		class="hrs.server.Controller.HotelController.HotelDiscountController"></bean>
+	<bean id="hotelOrderController"
+		class="hrs.server.Controller.HotelController.HotelOrderController"></bean>
+	<bean id="offlineRecordController"
+		class="hrs.server.Controller.HotelController.OfflineRecordController"></bean>
 	<bean id="roomController" class="hrs.server.Controller.HotelController.RoomController"></bean>
-	<bean id="webCreditController" class="hrs.server.Controller.WebMarketController.WebCreditController"></bean>
-	<bean id="webDiscountController" class="hrs.server.Controller.WebMarketController.WebDiscountController"></bean>
-	<bean id="webOrderController" class="hrs.server.Controller.WebMarketController.WebOrderController"></bean>
-	<bean id="webStaffController" class="hrs.server.Controller.WebStaffController.WebStaffController"></bean>
-	<bean id="webUserController" class="hrs.server.Controller.WebStaffController.WebUserController"></bean>
+	<bean id="webCreditController"
+		class="hrs.server.Controller.WebMarketController.WebCreditController"></bean>
+	<bean id="webDiscountController"
+		class="hrs.server.Controller.WebMarketController.WebDiscountController"></bean>
+	<bean id="webOrderController"
+		class="hrs.server.Controller.WebMarketController.WebOrderController"></bean>
+	<bean id="webStaffController"
+		class="hrs.server.Controller.WebStaffController.WebStaffController"></bean>
+	<bean id="webUserController"
+		class="hrs.server.Controller.WebStaffController.WebUserController"></bean>
 	<!-- ************************以上为Controller的配置***************** -->
 
-	
+	<bean id="cacheManagerEhcache" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<property name="configLocation">
+        	<value>classpath:ehcache.xml</value>
+        </property>
+        <!-- 由于hibernate也使用了Ehcache, 保证双方都使用同一个缓存管理器 -->
+        <property name="shared" value="true"/>
+    </bean>
+
 	<!-- 配置RMI -->
 	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
 		<!-- RMI服务名称,可自定义服务名称 ，给客户端调用的 -->
@@ -103,7 +120,7 @@
 		<!-- spring默认使用1099端口 -->
 		<property name="registryPort" value="1199" />
 	</bean>
-		
+
 	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
 		<!-- RMI服务名称,可自定义服务名称 ，给客户端调用的 -->
 		<property name="serviceName" value="UserController" />
@@ -139,7 +156,7 @@
 		<!-- spring默认使用1099端口 -->
 		<property name="registryPort" value="1199" />
 	</bean>
-	
+
 	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
 		<!-- RMI服务名称,可自定义服务名称 ，给客户端调用的 -->
 		<property name="serviceName" value="HotelController" />
@@ -151,7 +168,7 @@
 		<!-- spring默认使用1099端口 -->
 		<property name="registryPort" value="1199" />
 	</bean>
-	
+
 	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
 		<!-- RMI服务名称,可自定义服务名称 ，给客户端调用的 -->
 		<property name="serviceName" value="HotelDiscountController" />
@@ -163,7 +180,7 @@
 		<!-- spring默认使用1099端口 -->
 		<property name="registryPort" value="1199" />
 	</bean>
-	
+
 	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
 		<!-- RMI服务名称,可自定义服务名称 ，给客户端调用的 -->
 		<property name="serviceName" value="HotelOrderController" />
@@ -175,8 +192,8 @@
 		<!-- spring默认使用1099端口 -->
 		<property name="registryPort" value="1199" />
 	</bean>
-	
-	
+
+
 	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
 		<!-- RMI服务名称,可自定义服务名称 ，给客户端调用的 -->
 		<property name="serviceName" value="OfflineRecordController" />
@@ -188,7 +205,7 @@
 		<!-- spring默认使用1099端口 -->
 		<property name="registryPort" value="1199" />
 	</bean>
-	
+
 	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
 		<!-- RMI服务名称,可自定义服务名称 ，给客户端调用的 -->
 		<property name="serviceName" value="RoomController" />
@@ -200,7 +217,7 @@
 		<!-- spring默认使用1099端口 -->
 		<property name="registryPort" value="1199" />
 	</bean>
-	
+
 	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
 		<!-- RMI服务名称,可自定义服务名称 ，给客户端调用的 -->
 		<property name="serviceName" value="WebCreditController" />
@@ -212,7 +229,7 @@
 		<!-- spring默认使用1099端口 -->
 		<property name="registryPort" value="1199" />
 	</bean>
-	
+
 	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
 		<!-- RMI服务名称,可自定义服务名称 ，给客户端调用的 -->
 		<property name="serviceName" value="WebDiscountController" />
@@ -224,7 +241,7 @@
 		<!-- spring默认使用1099端口 -->
 		<property name="registryPort" value="1199" />
 	</bean>
-	
+
 	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
 		<!-- RMI服务名称,可自定义服务名称 ，给客户端调用的 -->
 		<property name="serviceName" value="WebOrderController" />
@@ -236,7 +253,7 @@
 		<!-- spring默认使用1099端口 -->
 		<property name="registryPort" value="1199" />
 	</bean>
-	
+
 	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
 		<!-- RMI服务名称,可自定义服务名称 ，给客户端调用的 -->
 		<property name="serviceName" value="WebStaffController" />
@@ -248,7 +265,7 @@
 		<!-- spring默认使用1099端口 -->
 		<property name="registryPort" value="1199" />
 	</bean>
-	
+
 	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
 		<!-- RMI服务名称,可自定义服务名称 ，给客户端调用的 -->
 		<property name="serviceName" value="WebUserController" />
@@ -260,7 +277,7 @@
 		<!-- spring默认使用1099端口 -->
 		<property name="registryPort" value="1199" />
 	</bean>
-	
+
 	<!-- ***************************************************************** -->
 	<!-- 配置Quartz触发器 -->
 	<bean name="startQuertz" lazy-init="false" autowire="no"
@@ -271,7 +288,7 @@
 			</list>
 		</property>
 	</bean>
-	
+
 	<!-- 配置调度 -->
 	<bean id="myJobTrigger"
 		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
@@ -283,7 +300,7 @@
 			<value>0 */1 * * * ?</value>
 		</property>
 	</bean>
-	
+
 	<!-- job的配置开始 -->
 	<bean id="myJobDetail"
 		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
