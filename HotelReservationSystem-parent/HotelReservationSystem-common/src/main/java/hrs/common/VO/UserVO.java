@@ -17,7 +17,7 @@ public class UserVO implements Serializable ,Cloneable{
 	public String password;
 	public String phone;
 	public String name;
-	public int credit;
+	public double credit;
 	public Date birthDate;
 	public String enterprise;
 	public int VIPLevel;
@@ -63,7 +63,7 @@ public class UserVO implements Serializable ,Cloneable{
 		this.type = type;
 		this.enterprise = enterprise;
 	}
-	
+
 
 	@Override
 	public int hashCode() {
@@ -71,7 +71,9 @@ public class UserVO implements Serializable ,Cloneable{
 		int result = 1;
 		result = prime * result + VIPLevel;
 		result = prime * result + ((birthDate == null) ? 0 : birthDate.hashCode());
-		result = prime * result + credit;
+		long temp;
+		temp = Double.doubleToLongBits(credit);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((enterprise == null) ? 0 : enterprise.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
@@ -81,7 +83,6 @@ public class UserVO implements Serializable ,Cloneable{
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -98,7 +99,7 @@ public class UserVO implements Serializable ,Cloneable{
 				return false;
 		} else if (!birthDate.equals(other.birthDate))
 			return false;
-		if (credit != other.credit)
+		if (Double.doubleToLongBits(credit) != Double.doubleToLongBits(other.credit))
 			return false;
 		if (enterprise == null) {
 			if (other.enterprise != null)
@@ -131,7 +132,6 @@ public class UserVO implements Serializable ,Cloneable{
 			return false;
 		return true;
 	}
-
 	@Override
 	public String toString() {
 		return "UserVO [id=" + id + ", username=" + username + ", password=" + password + ", phone=" + phone + ", name="

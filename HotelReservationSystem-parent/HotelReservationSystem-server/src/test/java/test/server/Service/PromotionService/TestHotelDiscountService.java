@@ -1,6 +1,8 @@
 package test.server.Service.PromotionService;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
 
 import java.text.ParseException;
 import java.util.Date;
@@ -15,10 +17,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import hrs.common.Exception.Promotion.HotelDiscountService.HotelDiscountNotFoundException;
 import hrs.common.VO.HotelDiscountVO;
 import hrs.common.VO.HotelVO;
+import hrs.common.util.DateHelper;
 import hrs.common.util.type.HotelDiscountType;
 import hrs.server.Service.Impl.PromotionService.HotelDiscountService.HotelDiscount;
 import hrs.server.Service.Interface.PromotionService.HotelDiscountService;
-import hrs.server.util.DateHelper;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:applicationContext.xml" })

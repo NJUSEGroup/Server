@@ -11,5 +11,5 @@ public interface HotelDiscountService {
 	void update(HotelDiscountVO hoteldiscountvo);
 	void delete(int id);
 	List<HotelDiscountVO> findAllByHotelID(int hotelID) throws HotelDiscountNotFoundException;
-	List<HotelDiscount> createAllStrategies(int hotelID) throws HotelDiscountNotFoundException;
+	List<HotelDiscount> createAllStrategies(int hotelID) ;
 }

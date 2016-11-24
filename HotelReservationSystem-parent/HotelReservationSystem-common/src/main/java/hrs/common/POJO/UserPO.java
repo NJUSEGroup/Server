@@ -17,7 +17,7 @@ public class UserPO implements Serializable {
 	private String password;
 	private String phone;
 	private String name;
-	private int credit;
+	private double credit;
 	private Date birthDate;
 	private String enterprise;
 	private int VIPLevel;
@@ -26,11 +26,13 @@ public class UserPO implements Serializable {
 	public UserPO() {
 		// TODO Auto-generated constructor stub
 	}
+
 	/**
 	 * VO转PO时要加密
+	 * 
 	 * @param vo
 	 */
-	public UserPO(UserVO vo){
+	public UserPO(UserVO vo) {
 		this.id = vo.id;
 		this.username = DesUtil.encode(vo.username);
 		this.password = DesUtil.encode(vo.password);
@@ -39,10 +41,10 @@ public class UserPO implements Serializable {
 		this.credit = vo.credit;
 		this.birthDate = vo.birthDate;
 		this.enterprise = vo.enterprise;
-		this.VIPLevel  = vo.VIPLevel;
+		this.VIPLevel = vo.VIPLevel;
 		this.type = vo.type;
 	}
-	
+
 	public UserPO(String username, String password, String phone, String name, int credit, int vIPLevel,
 			UserType type) {
 		super();
@@ -54,8 +56,6 @@ public class UserPO implements Serializable {
 		this.VIPLevel = vIPLevel;
 		this.type = type;
 	}
-
-
 
 	public int getId() {
 		return id;
@@ -105,14 +105,6 @@ public class UserPO implements Serializable {
 		this.name = name;
 	}
 
-	public int getCredit() {
-		return credit;
-	}
-
-	public void setCredit(int credit) {
-		this.credit = credit;
-	}
-
 	public Date getBirthDate() {
 		return birthDate;
 	}
@@ -137,14 +129,27 @@ public class UserPO implements Serializable {
 		VIPLevel = vIPLevel;
 	}
 
+	public double getCredit() {
+		return credit;
+	}
+
+	public void setCredit(double credit) {
+		this.credit = credit;
+	}
+
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + VIPLevel;
 		result = prime * result + ((birthDate == null) ? 0 : birthDate.hashCode());
-		result = prime * result + credit;
+		long temp;
+		temp = Double.doubleToLongBits(credit);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((enterprise == null) ? 0 : enterprise.hashCode());
+		result = prime * result + id;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
@@ -169,12 +174,14 @@ public class UserPO implements Serializable {
 				return false;
 		} else if (!birthDate.equals(other.birthDate))
 			return false;
-		if (credit != other.credit)
+		if (Double.doubleToLongBits(credit) != Double.doubleToLongBits(other.credit))
 			return false;
 		if (enterprise == null) {
 			if (other.enterprise != null)
 				return false;
 		} else if (!enterprise.equals(other.enterprise))
+			return false;
+		if (id != other.id)
 			return false;
 		if (name == null) {
 			if (other.name != null)
@@ -207,5 +214,5 @@ public class UserPO implements Serializable {
 				+ name + ", credit=" + credit + ", birthDate=" + birthDate + ", enterprise=" + enterprise
 				+ ", VIPLevel=" + VIPLevel + ", type=" + type + "]";
 	}
-	
+
 }

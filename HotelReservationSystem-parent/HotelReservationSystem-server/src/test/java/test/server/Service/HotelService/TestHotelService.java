@@ -21,6 +21,7 @@ import hrs.common.VO.HotelVO;
 import hrs.common.VO.LocationVO;
 import hrs.common.VO.OrderVO;
 import hrs.common.VO.RoomVO;
+import hrs.common.util.DateHelper;
 import hrs.common.util.FilterCondition.FilterCondition;
 import hrs.common.util.FilterCondition.NameFilterCondition;
 import hrs.common.util.FilterCondition.RoomTypeFilterCondition;
@@ -31,7 +32,6 @@ import hrs.common.util.type.OrderRule;
 import hrs.common.util.type.OrderStatus;
 import hrs.common.util.type.RoomType;
 import hrs.server.Service.Interface.HotelService.HotelService;
-import hrs.server.util.DateHelper;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:applicationContext.xml" })

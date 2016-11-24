@@ -15,9 +15,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import hrs.common.POJO.HotelPO;
 import hrs.common.POJO.RoomPO;
+import hrs.common.util.DateHelper;
 import hrs.common.util.type.RoomType;
 import hrs.server.DAO.Interface.RoomDAO;
-import hrs.server.util.DateHelper;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:applicationContext.xml" })

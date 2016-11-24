@@ -24,6 +24,7 @@ import hrs.common.VO.HotelVO;
 import hrs.common.VO.OrderVO;
 import hrs.common.VO.UserVO;
 import hrs.common.VO.WebDiscountVO;
+import hrs.common.util.DateHelper;
 import hrs.common.util.type.OrderStatus;
 import hrs.common.util.type.RestoreValueType;
 import hrs.common.util.type.RoomType;
@@ -32,7 +33,6 @@ import hrs.server.Service.Interface.HotelService.HotelService;
 import hrs.server.Service.Interface.OrderService.OrderSearchService;
 import hrs.server.Service.Interface.OrderService.OrderService;
 import hrs.server.Service.Interface.UserService.UserService;
-import hrs.server.util.DateHelper;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:applicationContext.xml" })

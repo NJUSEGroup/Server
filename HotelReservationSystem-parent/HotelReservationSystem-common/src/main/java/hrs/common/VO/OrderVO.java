@@ -31,8 +31,14 @@ public class OrderVO implements Serializable,Cloneable {
 	public int score;
 	public String evaluation;
 	public int peopleNum;
+	
+	/**
+	 * Double是减的金额，可以叠加
+	 * value是打折之后的最终价格
+	 */
 	public Map<HotelDiscountVO,Double> hotelDiscounts = new HashMap<>();
 	public Map<WebDiscountVO,Double> webDiscounts = new HashMap<>();
+	
 	
 	public OrderVO() {
 		// TODO Auto-generated constructor stub

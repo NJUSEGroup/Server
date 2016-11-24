@@ -1,7 +1,7 @@
 package hrs.server.Service.Impl.PromotionService.HotelDiscountService;
 
 import hrs.common.VO.OrderVO;
-import hrs.server.util.DateHelper;
+import hrs.common.util.DateHelper;
 /**
  * 
 * @ClassName: BirthdayHotelDiscount

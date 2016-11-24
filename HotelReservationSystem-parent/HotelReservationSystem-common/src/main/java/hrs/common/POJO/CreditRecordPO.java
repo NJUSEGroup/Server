@@ -15,8 +15,8 @@ public class CreditRecordPO implements Serializable{
 	private OrderPO order;
 	private UserPO user;
 	private CreditRecordType type;
-	private int variation;
-	private int currCredit;
+	private double variation;
+	private double currCredit;
 
 	public CreditRecordPO() {
 		// TODO Auto-generated constructor stub
@@ -72,32 +72,39 @@ public class CreditRecordPO implements Serializable{
 		this.type = type;
 	}
 
-	public int getVariation() {
+	
+
+	public double getVariation() {
 		return variation;
 	}
 
-	public void setVariation(int variation) {
+	public void setVariation(double variation) {
 		this.variation = variation;
 	}
 
-	public int getCurrCredit() {
+	public double getCurrCredit() {
 		return currCredit;
 	}
 
-	public void setCurrCredit(int currCredit) {
+	public void setCurrCredit(double currCredit) {
 		this.currCredit = currCredit;
 	}
+
+	
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + currCredit;
+		long temp;
+		temp = Double.doubleToLongBits(currCredit);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + id;
 		result = prime * result + ((order == null) ? 0 : order.hashCode());
 		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		result = prime * result + ((user == null) ? 0 : user.hashCode());
-		result = prime * result + variation;
+		temp = Double.doubleToLongBits(variation);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
 
@@ -110,7 +117,7 @@ public class CreditRecordPO implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		CreditRecordPO other = (CreditRecordPO) obj;
-		if (currCredit != other.currCredit)
+		if (Double.doubleToLongBits(currCredit) != Double.doubleToLongBits(other.currCredit))
 			return false;
 		if (id != other.id)
 			return false;
@@ -126,7 +133,7 @@ public class CreditRecordPO implements Serializable{
 				return false;
 		} else if (!user.equals(other.user))
 			return false;
-		if (variation != other.variation)
+		if (Double.doubleToLongBits(variation) != Double.doubleToLongBits(other.variation))
 			return false;
 		return true;
 	}

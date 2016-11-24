@@ -24,10 +24,10 @@
             </type>
         </property>
         
-        <property name="variation" type="int">
+        <property name="variation" type="double">
             <column name="RECORD_VARIATION" />
         </property>
-        <property name="currCredit" type="int">
+        <property name="currCredit" type="double">
             <column name="RECORD_CURR_CREDIT" />
         </property>
         

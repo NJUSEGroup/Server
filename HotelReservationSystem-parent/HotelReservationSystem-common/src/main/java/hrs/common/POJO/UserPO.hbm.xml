@@ -20,7 +20,7 @@
         <property name="name" type="java.lang.String">
             <column name="USER_NAME" />
         </property>
-        <property name="credit" type="int">
+        <property name="credit" type="double">
             <column name="USER_CREDIT" />
         </property>
         <property name="birthDate" type="date">

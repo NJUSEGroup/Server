@@ -18,10 +18,10 @@ import hrs.common.Exception.Promotion.WebDiscountService.WebDiscountNotFoundExce
 import hrs.common.VO.CommercialCircleVO;
 import hrs.common.VO.LocationVO;
 import hrs.common.VO.WebDiscountVO;
+import hrs.common.util.DateHelper;
 import hrs.common.util.type.WebsiteDiscountType;
 import hrs.server.Service.Impl.PromotionService.WebDiscountService.WebDiscount;
 import hrs.server.Service.Interface.PromotionService.WebDiscountService;
-import hrs.server.util.DateHelper;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:applicationContext.xml" })

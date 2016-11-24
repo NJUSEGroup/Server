@@ -16,9 +16,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import hrs.common.POJO.HotelDiscountPO;
 import hrs.common.POJO.HotelPO;
+import hrs.common.util.DateHelper;
 import hrs.common.util.type.HotelDiscountType;
 import hrs.server.DAO.Interface.PromotionDAO.HotelDiscountDAO;
-import hrs.server.util.DateHelper;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:applicationContext.xml" })

@@ -14,9 +14,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import hrs.common.Exception.OfflineRecordService.OfflineRecordNotFoundException;
 import hrs.common.VO.HotelVO;
 import hrs.common.VO.OfflineRecordVO;
+import hrs.common.util.DateHelper;
 import hrs.common.util.type.RoomType;
 import hrs.server.Service.Interface.OfflineRecordService.OfflineRecordService;
-import hrs.server.util.DateHelper;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:applicationContext.xml" })

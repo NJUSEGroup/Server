@@ -22,7 +22,7 @@ public class VIPLevel {
 	 * @return int     
 	 * @throws
 	 */
-	public static int getLevel(int credit){
+	public static int getLevel(double credit){
 		assert credit >=0;
 		for(int i = 0; i < low.length;++i){
 			if(credit >= low[i] && credit < high[i]){

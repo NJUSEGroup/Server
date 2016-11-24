@@ -15,8 +15,8 @@ public class CreditRecordVO implements Serializable,Cloneable{
 	public OrderVO order;
 	public UserVO user;
 	public CreditRecordType type;
-	public int variation;
-	public int currCredit;
+	public double variation;
+	public double currCredit;
 
 	public CreditRecordVO() {
 		// TODO Auto-generated constructor stub
@@ -32,7 +32,7 @@ public class CreditRecordVO implements Serializable,Cloneable{
 	}
 	
 	
-	public CreditRecordVO(OrderVO order, UserVO user, CreditRecordType type, int variation) {
+	public CreditRecordVO(OrderVO order, UserVO user, CreditRecordType type, double variation) {
 		super();
 		this.order = order;
 		this.user = user;

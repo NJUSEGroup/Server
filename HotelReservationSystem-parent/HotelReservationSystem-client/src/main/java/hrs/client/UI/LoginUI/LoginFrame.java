@@ -11,8 +11,8 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.EmptyBorder;
 
-import hrs.client.UI.common.ImageLoader;
 import hrs.client.util.ControllerFactory;
+import hrs.client.util.ImageLoader;
 import hrs.common.Controller.LoginController.ILoginController;
 
 public class LoginFrame extends JFrame {
@@ -23,7 +23,7 @@ public class LoginFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JLabel jlTest;
-	private ImageLoader img = new ImageLoader();
+	private ImageLoader img = ImageLoader.getInstance();
 	private ILoginController loginController = ControllerFactory.getLoginController();
 	/**
 	 * Launch the application.

@@ -1,6 +1,8 @@
 package test.server.Service;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 
 import java.text.ParseException;
 import java.util.Date;
@@ -16,9 +18,9 @@ import org.springframework.transaction.annotation.Transactional;
 import hrs.common.Exception.RoomService.RoomNotFoundException;
 import hrs.common.VO.HotelVO;
 import hrs.common.VO.RoomVO;
+import hrs.common.util.DateHelper;
 import hrs.common.util.type.RoomType;
 import hrs.server.Service.Interface.RoomService.RoomService;
-import hrs.server.util.DateHelper;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:applicationContext.xml" })
