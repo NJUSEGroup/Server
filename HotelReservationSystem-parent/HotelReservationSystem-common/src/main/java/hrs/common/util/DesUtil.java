@@ -18,7 +18,7 @@ import javax.crypto.spec.IvParameterSpec;
  * 单例模式
  */
 public class DesUtil {
-	private static DesUtil instance;
+	private static volatile DesUtil instance;
 	public static DesUtil getInstance(){
 		if(instance == null){
 			synchronized (DesUtil.class) {
