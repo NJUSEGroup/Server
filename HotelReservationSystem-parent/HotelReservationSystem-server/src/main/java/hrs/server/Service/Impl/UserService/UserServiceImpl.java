@@ -30,6 +30,7 @@ public class UserServiceImpl implements UserService {
 	private UserDAO dao;
 	@Autowired
 	private EnterpriseService enterpriseService;
+	private DesUtil util;
 	
 	/**
 	 * 
@@ -43,8 +44,8 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	@Override
 	public UserVO findByUsername(String username) throws UserNotFoundException {
-
-		UserPO po = dao.findByUserName(DesUtil.encode(username));
+		util = DesUtil.getInstance();
+		UserPO po = dao.findByUserName(util.encode(username));
 		if (po == null) {
 			throw new UserNotFoundException();
 		} else {
@@ -97,10 +98,11 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	@Override
 	public UserVO login(String username, String password) throws UserNotFoundException, UserPasswordErrorException {
-		UserPO po = dao.findByUserName(DesUtil.encode(username));
+		util = DesUtil.getInstance();
+		UserPO po = dao.findByUserName(util.encode(username));
 		if (po == null) {
 			throw new UserNotFoundException();
-		} else if (!po.getPassword().equals(DesUtil.encode(password))) {
+		} else if (!po.getPassword().equals(util.encode(password))) {
 			throw new UserPasswordErrorException();
 		} else {
 			return new UserVO((po));

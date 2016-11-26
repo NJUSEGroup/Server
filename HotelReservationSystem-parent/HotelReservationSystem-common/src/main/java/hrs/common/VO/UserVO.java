@@ -22,7 +22,7 @@ public class UserVO implements Serializable ,Cloneable{
 	public String enterprise;
 	public int VIPLevel;
 	public UserType type;
-	
+	private DesUtil util;
 	public UserVO() {
 		// TODO Auto-generated constructor stub
 	}
@@ -31,11 +31,12 @@ public class UserVO implements Serializable ,Cloneable{
 	 * @param po
 	 */
 	public UserVO(UserPO po){
+		this.util = DesUtil.getInstance();
 		this.id = po.getId();
-		this.username = DesUtil.decode(po.getUsername());
-		this.password = DesUtil.decode(po.getPassword());
-		this.phone = DesUtil.decode(po.getPhone());
-		this.name = DesUtil.decode(po.getName());
+		this.username = util.decode(po.getUsername());
+		this.password = util.decode(po.getPassword());
+		this.phone = util.decode(po.getPhone());
+		this.name = util.decode(po.getName());
 		this.credit = po.getCredit();
 		this.birthDate = po.getBirthDate();
 		this.enterprise = po.getEnterprise();

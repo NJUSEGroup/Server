@@ -22,7 +22,7 @@ public class UserPO implements Serializable {
 	private String enterprise;
 	private int VIPLevel;
 	private UserType type;
-
+	private DesUtil util;
 	public UserPO() {
 		// TODO Auto-generated constructor stub
 	}
@@ -33,11 +33,12 @@ public class UserPO implements Serializable {
 	 * @param vo
 	 */
 	public UserPO(UserVO vo) {
+		this.util = DesUtil.getInstance();
 		this.id = vo.id;
-		this.username = DesUtil.encode(vo.username);
-		this.password = DesUtil.encode(vo.password);
-		this.phone = DesUtil.encode(vo.phone);
-		this.name = DesUtil.encode(vo.name);
+		this.username = util.encode(vo.username);
+		this.password = util.encode(vo.password);
+		this.phone = util.encode(vo.phone);
+		this.name = util.encode(vo.name);
 		this.credit = vo.credit;
 		this.birthDate = vo.birthDate;
 		this.enterprise = vo.enterprise;

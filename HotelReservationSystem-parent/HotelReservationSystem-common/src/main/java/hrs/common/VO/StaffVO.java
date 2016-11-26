@@ -18,16 +18,17 @@ public class StaffVO implements Serializable,Cloneable {
 	public String name;
 	public StaffType type;
 	public HotelVO hotel;
-
+	private DesUtil util;
 	public StaffVO() {
 		// TODO Auto-generated constructor stub
 	}
 	
 	public StaffVO(StaffPO po){
+		util = DesUtil.getInstance();
 		this.id = po.getId();
-		this.username = DesUtil.decode(po.getUsername());
-		this.password = DesUtil.decode(po.getPassword());
-		this.name = DesUtil.decode(po.getName());
+		this.username = util.decode(po.getUsername());
+		this.password = util.decode(po.getPassword());
+		this.name = util.decode(po.getName());
 		this.type = po.getType();
 		this.hotel = po.getHotel() != null ? new HotelVO(po.getHotel(),this):null;
 	}

@@ -15,11 +15,26 @@ import javax.crypto.spec.IvParameterSpec;
 
 /**
  * 加密解密工具包
+ * 单例模式
  */
 public class DesUtil {
-
-	public static final String ALGORITHM_DES = "DES/CBC/PKCS5Padding";
-	public static String key;
+	private static DesUtil instance;
+	public static DesUtil getInstance(){
+		if(instance == null){
+			synchronized (DesUtil.class) {
+				if(instance == null){
+					instance = new DesUtil();
+				}
+			}
+		}
+		return instance;
+	}
+	private DesUtil(){
+		
+	}
+	
+	private static final String ALGORITHM_DES = "DES/CBC/PKCS5Padding";
+	private static String key;
 	static{
 		BufferedReader br = null;
 		try {
@@ -41,7 +56,7 @@ public class DesUtil {
 	 * @throws InvalidAlgorithmParameterException
 	 * @throws Exception
 	 */
-	public static String encode(String data) {
+	public String encode(String data) {
 		if (data == null)
 			return null;
 		try {
@@ -72,7 +87,7 @@ public class DesUtil {
 	 * @throws Exception
 	 *             异常
 	 */
-	public static String decode(String data) {
+	public String decode(String data) {
 		if (data == null)
 			return null;
 		try {
@@ -97,7 +112,7 @@ public class DesUtil {
 	 * @param b
 	 * @return
 	 */
-	private static String byte2hex(byte[] b) {
+	private String byte2hex(byte[] b) {
 		StringBuilder hs = new StringBuilder();
 		String stmp;
 		for (int n = 0; b != null && n < b.length; n++) {
@@ -109,7 +124,7 @@ public class DesUtil {
 		return hs.toString().toUpperCase();
 	}
 
-	private static byte[] hex2byte(byte[] b) {
+	private byte[] hex2byte(byte[] b) {
 		if ((b.length % 2) != 0)
 			throw new IllegalArgumentException();
 		byte[] b2 = new byte[b.length / 2];
@@ -118,9 +133,5 @@ public class DesUtil {
 			b2[n / 2] = (byte) Integer.parseInt(item, 16);
 		}
 		return b2;
-	}
-
-	public static void main(String[] args) {
-		System.out.println(DesUtil.encode("admin"));
 	}
 }

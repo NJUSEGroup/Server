@@ -27,7 +27,7 @@ import hrs.server.Service.Interface.OrderService.OrderSearchService;
 public class OrderSearchServiceImpl implements OrderSearchService {
 	@Autowired
 	private OrderDAO dao;
-	
+	private DesUtil util;
 	/**
 	 * 
 	 * @Title: findByID
@@ -82,7 +82,8 @@ public class OrderSearchServiceImpl implements OrderSearchService {
 	@Transactional
 	@Override
 	public List<OrderVO> findByUsernameAndStatus(String username, OrderStatus status) throws OrderNotFoundException {
-		List<OrderPO> pos = dao.findByUsernameAndStatus(DesUtil.encode(username),status);
+		util = DesUtil.getInstance();
+		List<OrderPO> pos = dao.findByUsernameAndStatus(util.encode(username),status);
 		if(pos.size() == 0){
 			throw new OrderNotFoundException();
 		}else{
@@ -101,7 +102,8 @@ public class OrderSearchServiceImpl implements OrderSearchService {
 	@Transactional
 	@Override
 	public List<OrderVO> findByUsername(String username) throws OrderNotFoundException {
-		List<OrderPO> pos = dao.findByUsername(DesUtil.encode(username));
+		util = DesUtil.getInstance();
+		List<OrderPO> pos = dao.findByUsername(util.encode(username));
 		if(pos.size() == 0){
 			throw new OrderNotFoundException();
 		}else{
@@ -121,7 +123,8 @@ public class OrderSearchServiceImpl implements OrderSearchService {
 	@Transactional
 	@Override
 	public List<OrderVO> findByHotelAndUsername(int hotelID, String username) throws OrderNotFoundException {
-		List<OrderPO> pos = dao.findByHotelAndUsername(hotelID, DesUtil.encode(username));
+		util = DesUtil.getInstance();
+		List<OrderPO> pos = dao.findByHotelAndUsername(hotelID, util.encode(username));
 		if(pos.size() == 0){
 			throw new OrderNotFoundException();
 		}else{

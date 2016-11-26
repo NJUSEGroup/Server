@@ -31,7 +31,8 @@ public class CreditRecordServiceImpl implements CreditRecordService {
 	private CreditRecordDAO dao;
 	@Autowired
 	private UserService userService;
-
+	
+	private DesUtil util;
 	/**
 	 * 
 	 * @Title: findByUsername
@@ -44,7 +45,8 @@ public class CreditRecordServiceImpl implements CreditRecordService {
 	@Transactional
 	@Override
 	public List<CreditRecordVO> findByUsername(String username) throws CreditRecordNotFoundException {
-		List<CreditRecordPO> pos = dao.findByUsername(DesUtil.encode(username));
+		util = DesUtil.getInstance();
+		List<CreditRecordPO> pos = dao.findByUsername(util.encode(username));
 		List<CreditRecordVO> vos = null;
 		if (pos.size() == 0) {
 			throw new CreditRecordNotFoundException();

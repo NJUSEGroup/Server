@@ -28,6 +28,7 @@ import hrs.server.Service.Interface.StaffService.StaffService;
 public class StaffServiceImpl implements StaffService {
 	@Autowired
 	private StaffDAO dao;
+	private DesUtil util;
 	/**
 	 * 
 	 * @Title: login
@@ -42,10 +43,11 @@ public class StaffServiceImpl implements StaffService {
 	@Transactional
 	@Override
 	public StaffVO login(String username, String password) throws StaffNotFoundExceptioon, StaffPasswordErrorException {
-		StaffPO po = dao.findByUsername(DesUtil.encode(username));
+		util = DesUtil.getInstance();
+		StaffPO po = dao.findByUsername(util.encode(username));
 		if (po == null) {
 			throw new StaffNotFoundExceptioon();
-		} else if (!po.getPassword().equals(DesUtil.encode(password))) {
+		} else if (!po.getPassword().equals(util.encode(password))) {
 			throw new StaffPasswordErrorException();
 		} else {
 			return new StaffVO(po);
@@ -90,7 +92,8 @@ public class StaffServiceImpl implements StaffService {
 	@Transactional
 	@Override
 	public StaffVO findByUsername(String username) throws StaffNotFoundExceptioon {
-		StaffPO po = dao.findByUsername(DesUtil.encode(username));
+		util = DesUtil.getInstance();
+		StaffPO po = dao.findByUsername(util.encode(username));
 		if (po == null) {
 			throw new StaffNotFoundExceptioon();
 		} else {

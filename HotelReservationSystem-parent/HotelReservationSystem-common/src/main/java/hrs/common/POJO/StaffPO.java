@@ -18,15 +18,18 @@ public class StaffPO implements Serializable {
 	private String name;
 	private StaffType type;
 	private HotelPO hotel;
-
+	private DesUtil util;
+	
 	public StaffPO() {
 		// TODO Auto-generated constructor stub
 	}
+	
 	public StaffPO(StaffVO vo){
+		this.util = DesUtil.getInstance();
 		this.id = vo.id;
-		this.username = DesUtil.encode(vo.username);
-		this.password = DesUtil.encode(vo.password);
-		this.name = DesUtil.encode(vo.name);
+		this.username = util.encode(vo.username);
+		this.password = util.encode(vo.password);
+		this.name = util.encode(vo.name);
 		this.type = vo.type;
 		this.hotel = vo.hotel != null ? new HotelPO(vo.hotel,this):null;
 	}
