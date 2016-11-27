@@ -21,7 +21,7 @@ public class WebCreditController implements IWebCreditController{
 	}
 
 	@Override
-	public void recharge(UserVO user, int money) {
-		creditRecordService.recharge(user, money);
+	public void charge(UserVO user, int money) {
+		creditRecordService.charge(user, money);
 	}
 }

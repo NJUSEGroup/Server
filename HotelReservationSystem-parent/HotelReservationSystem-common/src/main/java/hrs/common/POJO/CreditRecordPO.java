@@ -1,6 +1,7 @@
 package hrs.common.POJO;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import hrs.common.VO.CreditRecordVO;
 import hrs.common.util.type.CreditRecordType;
@@ -17,7 +18,8 @@ public class CreditRecordPO implements Serializable{
 	private CreditRecordType type;
 	private double variation;
 	private double currCredit;
-
+	private Date date;
+	
 	public CreditRecordPO() {
 		// TODO Auto-generated constructor stub
 	}
@@ -29,6 +31,7 @@ public class CreditRecordPO implements Serializable{
 		this.type = vo.type;
 		this.variation = vo.variation;
 		this.currCredit = vo.currCredit;
+		this.date = vo.date;
 	}
 	
 	public CreditRecordPO( OrderPO order,UserPO user, CreditRecordType type, int variation, int currCredit) {
@@ -89,9 +92,16 @@ public class CreditRecordPO implements Serializable{
 	public void setCurrCredit(double currCredit) {
 		this.currCredit = currCredit;
 	}
-
 	
+	public Date getDate() {
+		return date;
+	}
 
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -99,6 +109,7 @@ public class CreditRecordPO implements Serializable{
 		long temp;
 		temp = Double.doubleToLongBits(currCredit);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((date == null) ? 0 : date.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((order == null) ? 0 : order.hashCode());
 		result = prime * result + ((type == null) ? 0 : type.hashCode());
@@ -118,6 +129,11 @@ public class CreditRecordPO implements Serializable{
 			return false;
 		CreditRecordPO other = (CreditRecordPO) obj;
 		if (Double.doubleToLongBits(currCredit) != Double.doubleToLongBits(other.currCredit))
+			return false;
+		if (date == null) {
+			if (other.date != null)
+				return false;
+		} else if (!date.equals(other.date))
 			return false;
 		if (id != other.id)
 			return false;

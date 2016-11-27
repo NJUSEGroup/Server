@@ -47,7 +47,7 @@ public class TestCreditRecordService {
 		service.add(vo);
 		List<CreditRecordVO> list = service.findByUsername("admin");
 
-		assertEquals(userService.findByUsername("admin").credit, 1200);
+		assertEquals(userService.findByUsername("admin").credit, 1200,0.01);
 		assertEquals(userService.findByUsername("admin").VIPLevel, 2);
 		for (CreditRecordVO record : list) {
 			if (record.variation == 400 && record.type == CreditRecordType.Execute) {
@@ -56,12 +56,13 @@ public class TestCreditRecordService {
 		}
 		fail();
 	}
+	
 	@Transactional
 	@Test
-	public void testRecharge() throws UserNotFoundException {
+	public void testCharge() throws UserNotFoundException {
 		UserVO user = userService.findByUsername("admin");
 		System.out.println(user.credit);
-		service.recharge(user, 300); 
+		service.charge(user, 300); 
 		UserVO u2 = userService.findByUsername("admin");
 		System.out.println(u2.credit);
 	}

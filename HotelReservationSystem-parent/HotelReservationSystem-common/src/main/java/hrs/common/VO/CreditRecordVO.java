@@ -1,6 +1,7 @@
 package hrs.common.VO;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import hrs.common.POJO.CreditRecordPO;
 import hrs.common.util.type.CreditRecordType;
@@ -17,7 +18,8 @@ public class CreditRecordVO implements Serializable,Cloneable{
 	public CreditRecordType type;
 	public double variation;
 	public double currCredit;
-
+	public Date date;
+	
 	public CreditRecordVO() {
 		// TODO Auto-generated constructor stub
 	}
@@ -29,6 +31,7 @@ public class CreditRecordVO implements Serializable,Cloneable{
 		this.type = po.getType();
 		this.variation = po.getVariation();
 		this.currCredit = po.getCurrCredit();
+		this.date = po.getDate();
 	}
 	
 	
@@ -42,11 +45,11 @@ public class CreditRecordVO implements Serializable,Cloneable{
 
 	@Override
 	public String toString() {
-		return "CreditRecordVO [id=" + id + ", order=" + order + ", type=" + type + ", variation=" + variation
-				+ ", currCredit=" + currCredit + "]";
+		return "CreditRecordVO [id=" + id + ", order=" + order + ", user=" + user + ", type=" + type + ", variation="
+				+ variation + ", currCredit=" + currCredit + ", date=" + date + "]";
 	}
 
-
+	
 	
 
 	

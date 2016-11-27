@@ -9,5 +9,5 @@ import hrs.common.VO.UserVO;
 public interface CreditRecordService {
 	List<CreditRecordVO> findByUsername(String username) throws CreditRecordNotFoundException;
 	void add(CreditRecordVO creditrecordvo);
-	void recharge(UserVO user,int money);
+	void charge(UserVO user,int money);
 }	

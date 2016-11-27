@@ -31,5 +31,10 @@
             <column name="RECORD_CURR_CREDIT" />
         </property>
         
+        <property name="date" type="java.util.Date">
+        	<column name="RECORD_DATE"></column>
+        </property>
+        
+        
     </class>
 </hibernate-mapping>

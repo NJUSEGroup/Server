@@ -14,5 +14,5 @@ public interface IUserOrderController {
 	void addOrder(OrderVO ordervo);
 	void remark(OrderVO ordervo,int score,String evaluation);
 	void revoke(OrderVO ordervo);
-	void recharge(UserVO user,int money);
+	void charge(UserVO user,int money);
 }

@@ -13,6 +13,7 @@ import java.util.GregorianCalendar;
 * @date 2016年11月19日 下午9:40:05
 *
  */
+
 public class DateHelper {
 	private static SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 	private static Calendar c = new GregorianCalendar();
@@ -32,6 +33,7 @@ public class DateHelper {
 		formatter.applyPattern("yyyy-MM-dd");
 		return res;
 	}
+	
 	/**
 	 * 
 	 * @param date

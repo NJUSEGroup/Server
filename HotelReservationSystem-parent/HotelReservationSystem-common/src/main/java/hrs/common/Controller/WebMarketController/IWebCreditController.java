@@ -6,5 +6,6 @@ import hrs.common.VO.UserVO;
 public interface IWebCreditController {
 
 	UserVO findUserByUsername(String username) throws UserNotFoundException;
-	void recharge(UserVO user,int money);
+
+	void charge(UserVO user, int money);
 }
