@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.Key;
 import java.security.spec.AlgorithmParameterSpec;
@@ -17,7 +18,12 @@ import javax.crypto.spec.IvParameterSpec;
  * 加密解密工具包
  * 单例模式
  */
-public class DesUtil {
+public class DesUtil implements Serializable{
+	
+	/**
+	* @Fields serialVersionUID : TODO
+	*/ 
+	private static final long serialVersionUID = 3564434080477033001L;
 	private static volatile DesUtil instance;
 	public static DesUtil getInstance(){
 		if(instance == null){
@@ -133,5 +139,9 @@ public class DesUtil {
 			b2[n / 2] = (byte) Integer.parseInt(item, 16);
 		}
 		return b2;
+	}
+	public static void main(String[] args) {
+		DesUtil util = DesUtil.getInstance();
+		System.out.println(util.decode("BB3FDC628A6D0E98"));
 	}
 }

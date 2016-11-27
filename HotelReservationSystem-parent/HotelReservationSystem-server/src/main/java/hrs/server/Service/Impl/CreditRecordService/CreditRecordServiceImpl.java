@@ -46,7 +46,7 @@ public class CreditRecordServiceImpl implements CreditRecordService {
 	@Override
 	public List<CreditRecordVO> findByUsername(String username) throws CreditRecordNotFoundException {
 		util = DesUtil.getInstance();
-		List<CreditRecordPO> pos = dao.findByUsername(util.encode(username));
+		List<CreditRecordPO> pos = dao.findByUserna me(util.encode(username));
 		List<CreditRecordVO> vos = null;
 		if (pos.size() == 0) {
 			throw new CreditRecordNotFoundException();
