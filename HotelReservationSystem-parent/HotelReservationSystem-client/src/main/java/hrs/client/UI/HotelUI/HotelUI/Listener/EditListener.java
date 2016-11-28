@@ -1,24 +1,26 @@
-package hrs.client.UI.HotelUI.HotelDiscountUI.Listener;
+package hrs.client.UI.HotelUI.HotelUI.Listener;
 
-
-import java.awt.CardLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import javax.swing.JPanel;
+import hrs.client.UI.HotelUI.HotelUI.HotelUIPanel;
+import hrs.client.util.ControllerFactory;
+import hrs.common.Controller.HotelController.IHotelController;
+import hrs.common.VO.HotelVO;
 
-public class HotelDiscountUIListener implements MouseListener{
-	CardLayout card;
-	JPanel cardPane;
+public class EditListener implements MouseListener{
 	
-	public HotelDiscountUIListener(CardLayout card, JPanel cardPane){
-		this.card = card;
-		this.cardPane = cardPane;
+	private IHotelController hotelController;
+	private HotelVO hotel;
+	
+	public EditListener(HotelVO hotel){
+		this.hotelController = ControllerFactory.getHotelController();
+		this.hotel = hotel;
 	}
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		card.show(cardPane,"4");
+		hotelController.updateHotel(hotel);
 	}
 
 	@Override
