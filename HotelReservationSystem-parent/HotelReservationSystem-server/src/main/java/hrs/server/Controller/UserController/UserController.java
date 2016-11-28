@@ -10,6 +10,7 @@ import hrs.common.Exception.CreditRecordService.CreditRecordNotFoundException;
 import hrs.common.Exception.UserService.UserNotFoundException;
 import hrs.common.VO.CreditRecordVO;
 import hrs.common.VO.UserVO;
+import hrs.common.util.DesUtil;
 import hrs.server.Service.Interface.CreditRecordService.CreditRecordService;
 import hrs.server.Service.Interface.UserService.UserService;
 
@@ -32,6 +33,9 @@ public class UserController implements IUserController{
 	@Override
 	
 	public List<CreditRecordVO> findCreditRecordByUsername(String username) throws CreditRecordNotFoundException {
+		System.out.println(username);
+		DesUtil util = DesUtil.getInstance();
+		System.out.println(util.encode(username));
 		return creditRecordService.findByUsername(username);
 	}
 	

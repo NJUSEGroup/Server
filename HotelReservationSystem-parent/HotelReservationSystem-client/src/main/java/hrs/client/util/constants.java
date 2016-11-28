@@ -1,4 +1,4 @@
-package hrs.common.util;
+package hrs.client.util;
 
 import java.awt.Color;
 import java.awt.Font;
