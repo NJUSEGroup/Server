@@ -1,24 +1,23 @@
-package hrs.client.UI.HotelUI.RoomUI.Listener;
+package hrs.client.UI.HotelUI.HotelFrame.Listener;
 
 
-import java.awt.CardLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import javax.swing.JPanel;
+import hrs.client.UI.HotelUI.HotelFrame.HotelFrame;
 
-public class RoomUIListener implements MouseListener{
-	CardLayout card;
-	JPanel cardPane;
+public class HotelDiscountUIListener implements MouseListener{
 	
-	public RoomUIListener(CardLayout card, JPanel cardPane){
-		this.card = card;
-		this.cardPane = cardPane;
+	private HotelFrame frame;
+	
+	public HotelDiscountUIListener(HotelFrame frame){
+		this.frame = frame;
 	}
+
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		card.show(cardPane,"3");
+		frame.showHotelDiscount();
 	}
 
 	@Override

@@ -1,24 +1,23 @@
-package hrs.client.UI.HotelUI.OfflineRecordUI.Listener;
+package hrs.client.UI.HotelUI.HotelUI.Listener;
 
-
-import java.awt.CardLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import javax.swing.JPanel;
+import hrs.client.UI.HotelUI.HotelUI.HotelUIPanel;
+import hrs.common.VO.HotelVO;
 
-public class OfflineRecordUIListener implements MouseListener{
-	CardLayout card;
-	JPanel cardPane;
+public class CancelListener implements MouseListener{
 	
-	public OfflineRecordUIListener(CardLayout card, JPanel cardPane){
-		this.card = card;
-		this.cardPane = cardPane;
+	HotelUIPanel jpHotelInfo;
+	
+	public CancelListener(HotelUIPanel jpHotelInfo){
+		this.jpHotelInfo = jpHotelInfo;
 	}
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		card.show(cardPane,"5");
+		jpHotelInfo.show();
 	}
 
 	@Override
