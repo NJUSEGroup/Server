@@ -8,8 +8,10 @@ import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import hrs.common.util.constants;
+
 public class MyLabelListener extends MouseAdapter {
-	Color frameColor = new Color(0, 160, 233);
+	Color color = constants.jlabel;
 	private JLabel jl = new JLabel();
 	private static CardLayout card ;
 	private static JPanel panel ;
@@ -24,8 +26,14 @@ public class MyLabelListener extends MouseAdapter {
 	 public void mouseClicked(MouseEvent e){
 		 jl = (JLabel)e.getSource();
 		 String s = jl.getText();
-		 if(s.equals("信用记录"))
+		 if(s.equals("信用记录")){
 			 card.show(panel, "creditInfoPanel");
+			 
+		 }
+		 if(s.equals("订单信息")){
+			 card.show(panel, "orderInfoPanel");
+
+		 }	 
 		 if(s.equals("个人信息"))
 			 card.show(panel, "userInfoPanel");
 		 System.out.println("已点击"+s);
@@ -34,7 +42,7 @@ public class MyLabelListener extends MouseAdapter {
 	 public void mouseExited(MouseEvent e){
 		 jl = (JLabel)e.getSource();
 		//鼠标离开标签时更换背景及字体色
-		 jl.setBackground(frameColor);
+		 jl.setBackground(color);
 		 jl.setForeground(Color.white);
 	 } 
 	 

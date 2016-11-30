@@ -8,8 +8,10 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JLabel;
 
+import hrs.common.util.constants;
+
 public class MyLabel extends JLabel {
-	Color frameColor = new Color(0, 160, 233);
+	Color color = constants.jlabel;
 	private MyLabelListener listener = MyLabelListenerFactory.getListener();
 	
 	public MyLabel(String s){
@@ -22,7 +24,7 @@ public class MyLabel extends JLabel {
 		this.setOpaque(true);
 		
 		//初始背景色
-		this.setBackground(frameColor);
+		this.setBackground(color);
 		//初始字体色
 		this.setForeground(Color.white);
 		//设置文字居中

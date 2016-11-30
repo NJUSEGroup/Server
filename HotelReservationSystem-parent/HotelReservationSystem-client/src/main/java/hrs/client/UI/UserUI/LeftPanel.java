@@ -10,9 +10,12 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class leftPanel extends JPanel {
+import hrs.common.util.constants;
+
+public class LeftPanel extends JPanel {
+	Font font = constants.jlabelChinese;
 	Color color = new Color(83, 83, 214);
-	JPanel menuJP = new menuPanel();
+	JPanel menuJP = new MenuPanel();
 	
 	JLabel infoLabel = new JLabel("个人中心",JLabel.CENTER);
 	
@@ -25,7 +28,7 @@ public class leftPanel extends JPanel {
 	private final int LABEL_HEIGHT = 40;
 	
 	
-	public leftPanel(){
+	public LeftPanel(){
 		setLayout(null);
 		//宽203，高768
 		setBounds(0,0,263,768);
@@ -56,7 +59,7 @@ public class leftPanel extends JPanel {
 
 	private void labelInit() {
 		//个人信息标签
-		infoLabel.setFont(new Font("宋体",Font.PLAIN,25));
+		infoLabel.setFont(font);
 		infoLabel.setForeground(Color.BLACK);
 		infoLabel.setPreferredSize(new Dimension(260,40)); 
 		infoLabel.setOpaque(true);
@@ -64,14 +67,14 @@ public class leftPanel extends JPanel {
 		infoLabel.setBounds(0,0,LABEL_WIDTH,LABEL_HEIGHT);
 		
 		//用户标签；置于userPanel (20,10)处
-		userJL.setFont(new Font("宋体",Font.PLAIN,25));
+		userJL.setFont(font);
 		userJL.setPreferredSize(new Dimension(LABEL_WIDTH,30)); 
 		userJL.setText("用户");
 		userJL.setBounds(20,10,LABEL_WIDTH,30);
 //		userJL.setOpaque(true);
 		
 		//用户昵称标签；置于userPanel(20,50)处
-		nameJL.setFont(new Font("宋体",Font.PLAIN,25));
+		nameJL.setFont(font);
 		nameJL.setPreferredSize(new Dimension(260,30)); 
 		nameJL.setText("NewSong");
 		nameJL.setBounds(20,50,LABEL_WIDTH,30);

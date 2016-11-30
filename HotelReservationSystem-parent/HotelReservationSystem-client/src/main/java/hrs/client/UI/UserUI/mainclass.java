@@ -9,20 +9,25 @@ import org.springframework.stereotype.Controller;
 import hrs.client.util.ControllerFactory;
 import hrs.common.Controller.UserController.IUserController;
 import hrs.common.Exception.CreditRecordService.CreditRecordNotFoundException;
+import hrs.common.Exception.UserService.UserNotFoundException;
 import hrs.common.VO.CreditRecordVO;
+import hrs.common.VO.UserVO;
 
 public class mainclass {
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws CreditRecordNotFoundException {
 		// TODO Auto-generated method stub
-		 IUserController controller = ControllerFactory.getUserController();
+		IUserController controller = ControllerFactory.getUserController();
 		List<CreditRecordVO> list = new ArrayList<>();
 		try {
-			controller.findCreditRecordByUsername("admin");
-		} catch (CreditRecordNotFoundException e) {
+			UserVO vo = controller.findUserByUsername("admin");
+			System.out.println(vo.name);
+		} catch (UserNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
 	}
 
 }
