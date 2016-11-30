@@ -1,4 +1,4 @@
-package hrs.client.UI.UserUI.creditInfoUI;
+package hrs.client.UI.UserUI.CreditInfoUI;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -68,11 +68,13 @@ public class creditTableModel implements TableModel {
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		// TODO Auto-generated method stub
 		CreditRecordVO info = creditList.get(rowIndex);
+		
 		// 第一列为日期
 		if (columnIndex == 0) {
 			Date d = info.date;
 			String s = DateHelper.format(d);
 			return s;
+		
 		}
 		// 第二列为id
 		else if (columnIndex == 1)

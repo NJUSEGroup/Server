@@ -7,7 +7,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class menuPanel extends JPanel {
+public class MenuPanel extends JPanel {
 	private JLabel searchJLabel = new MyLabel("搜索酒店");
 	private JLabel infoJLabel = new MyLabel("个人信息");
 	private JLabel orderJLabel = new MyLabel("订单信息");
@@ -18,7 +18,7 @@ public class menuPanel extends JPanel {
 	private final int LABEL_HEIGHT = 70;
 	
 	private MyLabelListener listener= MyLabelListenerFactory.getListener();
-	public menuPanel(){
+	public MenuPanel(){
 		setBounds(0, 140, 260, 628);
 //		jp.setBackground(frameColor);
 		setLayout(null);

@@ -1,13 +1,16 @@
-package hrs.client.UI.UserUI.userInfoUI;
+package hrs.client.UI.UserUI.UserInfoUI;
 
 import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.JLabel;
 
-public class userInfoLabel extends JLabel {
-	public userInfoLabel(String s){
-		setFont(new Font("微软雅黑",Font.PLAIN,24));
+import hrs.common.util.constants;
+
+public class UserInfoLabel extends JLabel {
+	Font font = constants.jzoneChinese;
+	public UserInfoLabel(String s){
+		setFont(font);
 		
 		//标签固定大小
 		setPreferredSize(new Dimension(100,60));
