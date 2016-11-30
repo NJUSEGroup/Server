@@ -1,17 +1,17 @@
 package hrs.client.UI.UserUI;
 
 public class MyLabelListenerFactory {
-private static MyLabelListener listener;
-	
-	static{
+	private static MyLabelListener listener;
+
+	static {
 		try {
-			listener=new MyLabelListener();
+			listener = new MyLabelListener();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public static MyLabelListener getListener(){
+
+	public static MyLabelListener getListener() {
 		return listener;
 	}
 }

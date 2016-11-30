@@ -3,21 +3,22 @@ package hrs.client.UI.UserUI.OrderInfoUI;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JLabel;
 import javax.swing.JTable;
-import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 
+import hrs.client.util.UIConstants;
 import hrs.common.VO.OrderVO;
-import hrs.common.util.constants;
-import javafx.scene.control.SelectionModel;
 
 public class OrderTable extends JTable {
-	Font font = constants.jlabelChinese;
+	/**
+	* @Fields serialVersionUID : TODO
+	*/ 
+	private static final long serialVersionUID = -257035589122720015L;
+	Font font = UIConstants.jlabelChinese;
 	private OrderTableModel model;
 	public OrderTable(List<OrderVO> orders){
 		

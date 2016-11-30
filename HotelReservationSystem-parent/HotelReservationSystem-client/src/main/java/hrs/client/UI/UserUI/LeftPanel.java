@@ -1,7 +1,5 @@
 package hrs.client.UI.UserUI;
 
-import java.awt.BorderLayout;
-import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -10,10 +8,10 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import hrs.common.util.constants;
+import hrs.client.util.UIConstants;
 
 public class LeftPanel extends JPanel {
-	Font font = constants.jlabelChinese;
+	Font font = UIConstants.jlabelChinese;
 	Color color = new Color(83, 83, 214);
 	JPanel menuJP = new MenuPanel();
 	

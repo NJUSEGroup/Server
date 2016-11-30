@@ -4,23 +4,21 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 
-import hrs.client.UI.UserUI.CommonComp.CommonPanel;
+import hrs.client.UI.UserUI.CommonComponents.CommonPanel;
 import hrs.client.util.ControllerFactory;
+import hrs.client.util.UIConstants;
 import hrs.common.Controller.UserController.IUserController;
 import hrs.common.Exception.CreditRecordService.CreditRecordNotFoundException;
 import hrs.common.VO.CreditRecordVO;
-import hrs.common.util.constants;
 
 public class creditInfoPanel extends CommonPanel {
 	private IUserController controller = ControllerFactory.getUserController();
@@ -28,7 +26,7 @@ public class creditInfoPanel extends CommonPanel {
 	private String username;
 	private JScrollPane scrollPane;
 	
-	Font font = constants.jlabelChinese;
+	Font font = UIConstants.jlabelChinese;
 	
 	public creditInfoPanel(String username){
 		

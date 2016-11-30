@@ -1,14 +1,13 @@
 package hrs.client.UI.UserUI.UserInfoUI;
 
-import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.JLabel;
 
-import hrs.common.util.constants;
+import hrs.client.util.UIConstants;
 
 public class DateLabel extends JLabel {
-	Font font = constants.jzoneChinese;
+	Font font = UIConstants.jzoneChinese;
 	public DateLabel(String s){
 		setFont(font);
 	

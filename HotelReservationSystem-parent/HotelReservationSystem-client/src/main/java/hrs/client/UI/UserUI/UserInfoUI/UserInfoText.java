@@ -5,10 +5,10 @@ import java.awt.Font;
 
 import javax.swing.JTextField;
 
-import hrs.common.util.constants;
+import hrs.client.util.UIConstants;
 
 public class UserInfoText extends JTextField {
-	Font font = constants.jlabelChinese;
+	Font font = UIConstants.jlabelChinese;
 	public UserInfoText(){
 		setFont(font);
 		setPreferredSize(new Dimension(180,40));

@@ -3,15 +3,13 @@ package hrs.client.UI.UserUI;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 import javax.swing.JLabel;
 
-import hrs.common.util.constants;
+import hrs.client.util.UIConstants;
 
 public class MyLabel extends JLabel {
-	Color color = constants.jlabel;
+	Color color = UIConstants.jlabel;
 	private MyLabelListener listener = MyLabelListenerFactory.getListener();
 	
 	public MyLabel(String s){

@@ -5,10 +5,10 @@ import java.awt.Font;
 
 import javax.swing.JLabel;
 
-import hrs.common.util.constants;
+import hrs.client.util.UIConstants;
 
 public class UserInfoLabel extends JLabel {
-	Font font = constants.jzoneChinese;
+	Font font = UIConstants.jzoneChinese;
 	public UserInfoLabel(String s){
 		setFont(font);
 		

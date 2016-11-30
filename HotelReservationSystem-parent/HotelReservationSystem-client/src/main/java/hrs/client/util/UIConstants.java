@@ -3,7 +3,7 @@ package hrs.client.util;
 import java.awt.Color;
 import java.awt.Font;
 
-public class constants {
+public class UIConstants {
 	final public static Color jframe=new Color(211,237,249);
 	final public static Color jlabel=new Color(0,160,233);
 	final public static Font jzoneChinese=new Font("Arial Unicode MS", Font.PLAIN, 25);

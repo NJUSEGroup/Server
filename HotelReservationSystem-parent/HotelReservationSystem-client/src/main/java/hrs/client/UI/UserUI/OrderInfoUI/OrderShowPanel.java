@@ -2,39 +2,37 @@ package hrs.client.UI.UserUI.OrderInfoUI;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.util.List;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 
-import org.springframework.util.concurrent.SettableListenableFuture;
-
-import com.mysql.cj.api.x.Table;
-
-import hrs.client.UI.UserUI.CommonComp.CommonLabel;
-import hrs.client.UI.UserUI.CommonComp.CommonPanel;
+import hrs.client.UI.UserUI.CommonComponents.CommonLabel;
+import hrs.client.UI.UserUI.CommonComponents.CommonPanel;
 import hrs.client.UI.UserUI.OrderInfoUI.Listener.statusBoxListener;
 import hrs.client.util.ControllerFactory;
+import hrs.client.util.UIConstants;
 import hrs.common.Controller.UserController.IUserOrderController;
 import hrs.common.Exception.OrderService.OrderNotFoundException;
 import hrs.common.VO.OrderVO;
 import hrs.common.VO.UserVO;
-import hrs.common.util.constants;
 import hrs.common.util.type.OrderStatus;
 
 public class OrderShowPanel extends CommonPanel {
+	/**
+	* @Fields serialVersionUID : TODO
+	*/ 
+	private static final long serialVersionUID = -1738046961448085289L;
+
 	private UserVO userVO;
 	
 	private IUserOrderController controller = ControllerFactory.getUserOrderController();
 	JComboBox<String> statusBox;
 	private OrderTable table;
 	
-	Font font = constants.jlabelChinese;
+	Font font = UIConstants.jlabelChinese;
 	private JScrollPane scrollPane;
 	
 	private static int GAP_WIDTH = 30;

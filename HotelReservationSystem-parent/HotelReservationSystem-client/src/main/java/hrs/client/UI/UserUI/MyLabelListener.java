@@ -8,10 +8,10 @@ import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import hrs.common.util.constants;
+import hrs.client.util.UIConstants;
 
 public class MyLabelListener extends MouseAdapter {
-	Color color = constants.jlabel;
+	Color color = UIConstants.jlabel;
 	private JLabel jl = new JLabel();
 	private static CardLayout card ;
 	private static JPanel panel ;

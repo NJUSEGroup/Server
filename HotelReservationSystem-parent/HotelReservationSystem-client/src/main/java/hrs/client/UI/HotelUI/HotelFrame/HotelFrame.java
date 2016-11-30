@@ -4,6 +4,12 @@ package hrs.client.UI.HotelUI.HotelFrame;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import hrs.client.UI.HotelUI.HotelDiscountUI.HotelDiscountUIPanel;
 import hrs.client.UI.HotelUI.HotelFrame.Listener.HotelDiscountUIListener;
@@ -15,20 +21,9 @@ import hrs.client.UI.HotelUI.HotelOrderUI.HotelOrderUIPanel;
 import hrs.client.UI.HotelUI.HotelUI.HotelUIPanel;
 import hrs.client.UI.HotelUI.OfflineRecordUI.OfflineRecordUIPanel;
 import hrs.client.UI.HotelUI.RoomUI.RoomUIPanel;
-import hrs.client.UI.UserUI.leftPanel;
-import hrs.client.util.ControllerFactory;
-import hrs.common.Controller.HotelController.IHotelController;
 import hrs.common.Exception.HotelService.HotelNotFoundException;
-import hrs.common.POJO.OfflineRecordPO;
 import hrs.common.VO.HotelVO;
 import hrs.common.VO.StaffVO;
-
-import java.awt.Font;
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 
 public class HotelFrame extends JFrame {
 	

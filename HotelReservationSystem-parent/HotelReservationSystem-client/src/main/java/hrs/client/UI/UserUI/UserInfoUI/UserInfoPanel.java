@@ -1,6 +1,5 @@
 package hrs.client.UI.UserUI.UserInfoUI;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.text.ParseException;
@@ -9,22 +8,17 @@ import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import org.omg.CosNaming.NamingContextExtPackage.StringNameHelper;
-import org.pushingpixels.substance.internal.utils.SubstanceTitleButton;
-import org.springframework.web.bind.annotation.InitBinder;
-
-import hrs.client.UI.UserUI.CommonComp.CommonPanel;
+import hrs.client.UI.UserUI.CommonComponents.CommonPanel;
 import hrs.client.UI.UserUI.UserInfoUI.UserInfoListener.CancelListener;
 import hrs.client.UI.UserUI.UserInfoUI.UserInfoListener.ConfirmListener;
 import hrs.client.util.ControllerFactory;
+import hrs.client.util.UIConstants;
 import hrs.common.Controller.UserController.IUserController;
 import hrs.common.Exception.UserService.UserNotFoundException;
 import hrs.common.VO.UserVO;
 import hrs.common.util.DateHelper;
-import hrs.common.util.constants;
 
 public class UserInfoPanel extends CommonPanel {
 
@@ -56,7 +50,7 @@ public class UserInfoPanel extends CommonPanel {
 
 	private UserVO user;
 	
-	Font font = constants.jlabelChinese;
+	Font font = UIConstants.jlabelChinese;
 
 	public UserInfoPanel(String username) {
 //		setFont(font);
