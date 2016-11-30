@@ -4,6 +4,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Component;
+
 import hrs.common.VO.HotelVO;
 import hrs.common.VO.RoomVO;
 import hrs.common.util.FilterCondition.ScoreFilterCondition;
@@ -15,6 +17,7 @@ import hrs.common.util.FilterCondition.ScoreFilterCondition;
 * @date 2016年11月19日 下午10:06:17
 *
  */
+@Component("ScoreFilter")
 public class HotelScoreFilter extends HotelFilter {
 
 	@Override

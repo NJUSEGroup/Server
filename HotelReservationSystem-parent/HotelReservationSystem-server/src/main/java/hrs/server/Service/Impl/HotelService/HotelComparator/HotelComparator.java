@@ -19,6 +19,5 @@ public abstract class HotelComparator implements Comparator<HotelVO> {
 
 	public void setDecrease(boolean isDecrease) {
 		this.isDecrease = isDecrease;
-	}
-	
+}
 }

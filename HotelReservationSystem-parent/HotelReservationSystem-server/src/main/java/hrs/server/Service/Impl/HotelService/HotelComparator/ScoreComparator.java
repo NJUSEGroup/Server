@@ -1,5 +1,7 @@
 package hrs.server.Service.Impl.HotelService.HotelComparator;
 
+import org.springframework.stereotype.Component;
+
 import hrs.common.VO.HotelVO;
 /**
  * 
@@ -9,6 +11,7 @@ import hrs.common.VO.HotelVO;
 * @date 2016年11月19日 下午10:07:06
 *
  */
+@Component("ScoreComparator")
 public class ScoreComparator extends HotelComparator {
 	
 	@Override

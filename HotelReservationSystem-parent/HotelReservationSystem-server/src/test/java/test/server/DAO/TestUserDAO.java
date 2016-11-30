@@ -10,6 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import hrs.common.POJO.UserPO;
+import hrs.common.util.DesUtil;
 import hrs.common.util.type.UserType;
 import hrs.server.DAO.Interface.UserDAO;
 
@@ -25,6 +26,8 @@ public class TestUserDAO {
 		UserPO po = dao.findByUserName("BB3FDC628A6D0E98");
 		System.out.println(po);
 		assertEquals(po.getPassword(),"BB3FDC628A6D0E98");
+		System.out.println(DesUtil.getInstance().decode("62705AD9289355ABD186E5A0C6DE4DA9"));
+		System.out.println(DesUtil.getInstance().encode("宋欣建"));
 	}
 
 	@Transactional

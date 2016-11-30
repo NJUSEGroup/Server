@@ -4,6 +4,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Component;
+
 import hrs.common.VO.HotelVO;
 import hrs.common.VO.RoomVO;
 /**
@@ -14,6 +16,7 @@ import hrs.common.VO.RoomVO;
 * @date 2016年11月19日 下午10:05:33
 *
  */
+@Component("IfOrderedFilter")
 public class HotelIfOrderedFilter extends HotelFilter{
 	
  	@Override

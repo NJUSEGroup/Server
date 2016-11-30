@@ -4,6 +4,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Component;
+
 import hrs.common.VO.HotelVO;
 import hrs.common.VO.RoomVO;
 import hrs.common.util.FilterCondition.NameFilterCondition;
@@ -15,6 +17,7 @@ import hrs.common.util.FilterCondition.NameFilterCondition;
 * @date 2016年11月19日 下午10:05:49
 *
  */
+@Component("NameFilter")
 public class HotelNameFilter extends HotelFilter {
 	public HotelNameFilter() {
 
