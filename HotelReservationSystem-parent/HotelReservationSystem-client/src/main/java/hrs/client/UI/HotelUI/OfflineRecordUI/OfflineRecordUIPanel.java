@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import hrs.common.VO.HotelVO;
+
 public class OfflineRecordUIPanel extends JPanel {
 
 	private JPanel jpSearch;
@@ -23,11 +25,11 @@ public class OfflineRecordUIPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public OfflineRecordUIPanel() {
-		init();
+	public OfflineRecordUIPanel(HotelVO hotel) {
+		init(hotel);
 	}
 	
-	public void init(){
+	public void init(HotelVO hotel){
 		this.setSize(1080, 722);
 		this.setLayout(null);
 		

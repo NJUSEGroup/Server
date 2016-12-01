@@ -10,17 +10,20 @@ import hrs.common.VO.HotelVO;
 
 public class EditListener implements MouseListener{
 	
-	private IHotelController hotelController;
-	private HotelVO hotel;
+	private HotelUIPanel jpHotelInfo;
 	
-	public EditListener(HotelVO hotel){
-		this.hotelController = ControllerFactory.getHotelController();
-		this.hotel = hotel;
+	public EditListener(HotelUIPanel jpHotelInfo){
+		this.jpHotelInfo = jpHotelInfo;
 	}
+	
+	/**
+	 * 修改并更新酒店信息
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		hotelController.updateHotel(hotel);
+		
+		jpHotelInfo.updateHotelInfo();
 	}
 
 	@Override

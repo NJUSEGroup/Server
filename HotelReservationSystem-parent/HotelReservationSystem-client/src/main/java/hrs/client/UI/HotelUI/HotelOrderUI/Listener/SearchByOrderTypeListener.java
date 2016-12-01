@@ -1,23 +1,28 @@
-package hrs.client.UI.HotelUI.HotelFrame.Listener;
-
+package hrs.client.UI.HotelUI.HotelOrderUI.Listener;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import hrs.client.UI.HotelUI.HotelFrame.HotelFrame;
+import hrs.client.UI.HotelUI.HotelOrderUI.HotelOrderUIPanel;
+import hrs.common.Exception.OrderService.OrderNotFoundException;
 
-public class OfflineRecordUIListener implements MouseListener{
+public class SearchByOrderTypeListener implements MouseListener{
 
-	private HotelFrame frame;
+	HotelOrderUIPanel jpHotelOrder;
 	
-	public OfflineRecordUIListener(HotelFrame frame){
-		this.frame = frame;
+	public SearchByOrderTypeListener(HotelOrderUIPanel jpHotelOrder){
+		this.jpHotelOrder = jpHotelOrder;
 	}
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		frame.showOfflineRecord();
+		try {
+			jpHotelOrder.searchByOrderType();
+		} catch (OrderNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	}
 
 	@Override

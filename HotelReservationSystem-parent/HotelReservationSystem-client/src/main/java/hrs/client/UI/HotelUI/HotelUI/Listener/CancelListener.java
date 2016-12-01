@@ -14,10 +14,13 @@ public class CancelListener implements MouseListener{
 		this.jpHotelInfo = jpHotelInfo;
 	}
 	
+	/**
+	 * 取消修改酒店信息，将酒店信息恢复为修改前的信息
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		jpHotelInfo.show();
+		jpHotelInfo.showHotelInfo();
 	}
 
 	@Override

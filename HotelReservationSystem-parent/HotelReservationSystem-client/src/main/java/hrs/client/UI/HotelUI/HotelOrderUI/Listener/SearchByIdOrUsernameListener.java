@@ -1,23 +1,29 @@
-package hrs.client.UI.HotelUI.HotelFrame.Listener;
-
+package hrs.client.UI.HotelUI.HotelOrderUI.Listener;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import hrs.client.UI.HotelUI.HotelFrame.HotelFrame;
+import hrs.client.UI.HotelUI.HotelOrderUI.HotelOrderUIPanel;
+import hrs.common.Exception.OrderService.OrderNotFoundException;
 
-public class HotelDiscountUIListener implements MouseListener{
+public class SearchByIdOrUsernameListener implements MouseListener{
+
+	HotelOrderUIPanel jpHotelOrder;
 	
-	private HotelFrame frame;
-	
-	public HotelDiscountUIListener(HotelFrame frame){
-		this.frame = frame;
+	public SearchByIdOrUsernameListener(HotelOrderUIPanel jpHotelOrder){
+		this.jpHotelOrder = jpHotelOrder;
 	}
-
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		frame.showHotelDiscount();
+		
+		try {
+			jpHotelOrder.searchByIdOrUsername();
+		} catch (OrderNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	}
 
 	@Override

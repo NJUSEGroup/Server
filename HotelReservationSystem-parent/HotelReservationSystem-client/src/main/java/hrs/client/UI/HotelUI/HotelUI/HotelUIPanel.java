@@ -2,27 +2,38 @@ package hrs.client.UI.HotelUI.HotelUI;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ItemListener;
+import java.awt.event.MouseListener;
+import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import hrs.client.UI.HotelUI.HotelUI.Listener.CancelListener;
+import hrs.client.UI.HotelUI.HotelUI.Listener.CityListener;
 import hrs.client.UI.HotelUI.HotelUI.Listener.EditListener;
 import hrs.client.util.ControllerFactory;
 import hrs.common.Controller.HotelController.IHotelController;
+import hrs.common.Controller.UserController.IUserHotelController;
+import hrs.common.VO.CommercialCircleVO;
 import hrs.common.VO.HotelVO;
+import hrs.common.VO.LocationVO;
 
 public class HotelUIPanel extends JPanel {
 
 	private JPanel jpHotelInfo;
 	private JPanel jpButton;
+	private JScrollPane jspIntro;
+	private JScrollPane jspService;
 	private JLabel jlHotelName;
 	private JLabel jlCity;
 	private JLabel jlCircle;
@@ -34,8 +45,8 @@ public class HotelUIPanel extends JPanel {
 	private JTextField jtfHotelName;
 	private JTextField jtfAddress;
 	private JTextField jtfScore;
-	private JComboBox jcbCity;
-	private JComboBox jcbCircle;
+	private JComboBox<String> jcbCity;
+	private JComboBox<String> jcbCircle;
 	private JTextArea jtaIntro;
 	private JTextArea jtaService;
 	private JComboBox jcbStar;
@@ -43,19 +54,28 @@ public class HotelUIPanel extends JPanel {
 	private JButton jbCancel;
 	private EditListener editListener;
 	private CancelListener cancelListener;
+	private CityListener cityListener;
 	private HotelVO hotel;
+	private IHotelController hotelController;
+	private IUserHotelController userHotelController;
+	private List<LocationVO> city;
+	List<CommercialCircleVO> circle;
 	
 	/**
-	 * Create the panel.
+	 * 初始化酒店信息界面面板
 	 */
 	public HotelUIPanel(HotelVO hotel) {
 		init(hotel);
+		showHotelInfo();
 	}
 
 	public void init(HotelVO hotel){
 		this.hotel = hotel;
 		this.setSize(1080, 722);
 		this.setLayout(null);
+		
+		hotelController = ControllerFactory.getHotelController();
+		userHotelController = ControllerFactory.getUserHotelController();
 		
 		jpHotelInfo = new JPanel();
 		jpHotelInfo.setBounds(0, 0, 1080, 642);
@@ -120,12 +140,15 @@ public class HotelUIPanel extends JPanel {
 		jtfHotelName.setFont(new Font("方正兰亭超细黑简体", Font.PLAIN, 19));
 		jtfHotelName.setEditable(true);
 		
+		cityListener = new CityListener(this);
+		
 		jcbCity = new JComboBox();
 		jcbCity.setBounds(150, 70, 172, 30);
 		jcbCity.setFont(new Font("方正兰亭超细黑简体", Font.PLAIN, 19));
 		jcbCity.setOpaque(true);
 		jcbCity.setBackground(Color.WHITE);
 		jcbCity.setEditable(false);
+		jcbCity.addItemListener((ItemListener) cityListener);
 		
 		jcbCircle = new JComboBox();
 		jcbCircle.setBounds(150, 120, 172, 30);
@@ -134,20 +157,44 @@ public class HotelUIPanel extends JPanel {
 		jcbCircle.setBackground(Color.WHITE);
 		jcbCircle.setEditable(false);
 		
+		city = userHotelController.findAllLocations();
+		circle = userHotelController.findCircleByLoc(hotel.location.id);
+		int citySize = city.size();
+		int circleSize = circle.size();
+		String[] citys = new String[citySize];
+		String[] circles = new String[circleSize];
+		
+		for(int i=0;i<citySize;i++){
+			citys[i] = city.get(i).name;
+			jcbCity.addItem(citys[i]);
+		}
+		for(int i=0;i<circleSize;i++){
+			circles[i] = circle.get(i).name;
+			jcbCircle.addItem(circles[i]);
+		}
+		
 		jtfAddress = new JTextField();
 		jtfAddress.setBounds(150, 170, 853, 30);
 		jtfAddress.setFont(new Font("方正兰亭超细黑简体", Font.PLAIN, 19));
 		jtfAddress.setEditable(true);
 		
 		jtaIntro = new JTextArea();
-		jtaIntro.setBounds(150, 220, 853, 180);
 		jtaIntro.setFont(new Font("方正兰亭超细黑简体", Font.PLAIN, 19));
 		jtaIntro.setEditable(true);
+		jtaIntro.setLineWrap(true);
+		
+		jspIntro = new JScrollPane(jtaIntro);
+		jspIntro.setBounds(150, 220, 853, 180);
+		jspIntro.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		
 		jtaService = new JTextArea();
-		jtaService.setBounds(150, 420, 853, 110);
 		jtaService.setFont(new Font("方正兰亭超细黑简体", Font.PLAIN, 19));
 		jtaService.setEditable(true);
+		jtaService.setLineWrap(true);
+		
+		jspService = new JScrollPane(jtaService);
+		jspService.setBounds(150, 420, 853, 110);
+		jspService.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		
 		jcbStar = new JComboBox(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5"}));
 		jcbStar.setBounds(150, 550, 105, 30);
@@ -163,8 +210,8 @@ public class HotelUIPanel extends JPanel {
 		jtfScore.setBackground(new Color(211, 237, 249));
 		jtfScore.setEditable(false);
 		
-		editListener = new EditListener(hotel);
-		
+		editListener = new EditListener(this);
+
 		cancelListener = new CancelListener(this);
 		
 		jbEdit = new JButton();
@@ -177,6 +224,7 @@ public class HotelUIPanel extends JPanel {
 		jbCancel.setBounds(606, 17, 110, 50);
 		jbCancel.setText("取消");
 		jbCancel.setFont(new Font("方正兰亭超细黑简体", Font.PLAIN, 19));
+		jbCancel.addMouseListener(cancelListener);
 		
 		jpHotelInfo.add(jlHotelName);
 		jpHotelInfo.add(jlCity);
@@ -190,8 +238,8 @@ public class HotelUIPanel extends JPanel {
 		jpHotelInfo.add(jcbCity);
 		jpHotelInfo.add(jcbCircle);
 		jpHotelInfo.add(jtfAddress);
-		jpHotelInfo.add(jtaIntro);
-		jpHotelInfo.add(jtaService);
+		jpHotelInfo.add(jspIntro);
+		jpHotelInfo.add(jspService);
 		jpHotelInfo.add(jcbStar);
 		jpHotelInfo.add(jtfScore);
 		
@@ -202,14 +250,59 @@ public class HotelUIPanel extends JPanel {
 		this.add(jpButton);
 	}
 	
-	public void show(){
-		this.jtfHotelName.setText(hotel.name);
-		this.jcbCity.setSelectedItem(hotel.location.name);
-		this.jcbCircle.setSelectedItem(hotel.commercialCircle.name);
-		this.jtfAddress.setText(hotel.street);
-		this.jtaIntro.setText(hotel.profile);
-		this.jtaService.setText(hotel.service);
-		this.jcbStar.setSelectedItem(Integer.toString(hotel.star));
-		this.jtfScore.setText(Double.toString(hotel.score));
+	/**
+	 * 显示酒店信息
+	 */
+	public void showHotelInfo(){
+		jtfHotelName.setText(hotel.name);
+		jcbCity.setSelectedItem(hotel.location.name);
+		jcbCircle.setSelectedItem(hotel.commercialCircle.name);
+		jtfAddress.setText(hotel.street);
+		jtaIntro.setText(hotel.profile);
+		jtaService.setText(hotel.service);
+		jcbStar.setSelectedItem(Integer.toString(hotel.star));
+		jtfScore.setText(Double.toString(hotel.score));
+	}
+	
+	/**
+	 * 更新酒店信息
+	 */
+	public void updateHotelInfo(){
+		int value = JOptionPane.showConfirmDialog(this, "您确定要修改酒店信息吗？", "请确认修改", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+		
+		if(value == JOptionPane.OK_OPTION){
+			hotelController.updateHotel(hotel);
+		}
+		else if(value == JOptionPane.CANCEL_OPTION){
+			this.showHotelInfo();
+		}
+	}
+	
+	/**
+	 * 酒店所选城市发生改变后，商圈下拉列表框中的选项也要发生改变
+	 */
+	public void changeCircle(){
+		jcbCircle.removeAllItems();
+		
+		int i, citySize, circleSize;
+		String newCity =(String)jcbCity.getSelectedItem();
+		LocationVO theNewCity = null;
+		
+		citySize = city.size();
+		
+		for(i=0;i<citySize;i++){
+			if(city.get(i).name.equals(newCity)){
+				theNewCity = city.get(i);
+				break;
+			}
+		}
+		
+		circle = userHotelController.findCircleByLoc(theNewCity.id);
+		circleSize = circle.size();
+		String[] circles = new String[circleSize];
+		for(i=0;i<circleSize;i++){
+			circles[i] = circle.get(i).name;
+			jcbCircle.addItem(circles[i]);
+		}
 	}
 }
