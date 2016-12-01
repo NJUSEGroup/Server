@@ -8,11 +8,11 @@ import javax.swing.JComboBox;
 import hrs.client.UI.UserUI.OrderInfoUI.OrderShowPanel;
 import hrs.common.util.type.OrderStatus;
 
-public class statusBoxListener implements ItemListener {
+public class StatusBoxListener implements ItemListener {
 
 	private JComboBox<String> jb;
 	private OrderShowPanel panel;
-	public statusBoxListener(JComboBox<String> jb,OrderShowPanel panel) {
+	public StatusBoxListener(JComboBox<String> jb,OrderShowPanel panel) {
 		this.jb = jb;
 		this.panel = panel;
 	}

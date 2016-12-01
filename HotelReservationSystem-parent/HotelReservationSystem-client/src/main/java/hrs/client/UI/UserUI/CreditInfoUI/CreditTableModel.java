@@ -14,10 +14,10 @@ import hrs.common.VO.CreditRecordVO;
 import hrs.common.util.DateHelper;
 import hrs.common.util.type.CreditRecordType;
 
-public class creditTableModel implements TableModel {
+public class CreditTableModel implements TableModel {
 	private List<CreditRecordVO> creditList;
 
-	public creditTableModel(List<CreditRecordVO> creditList) {
+	public CreditTableModel(List<CreditRecordVO> creditList) {
 		this.creditList = creditList;
 	}
 

@@ -10,7 +10,7 @@ import hrs.client.util.ControllerFactory;
 import hrs.common.Controller.UserController.IUserController;
 import hrs.common.Exception.UserService.UserNotFoundException;
 import hrs.common.VO.UserVO;
-import hrs.client.UI.UserUI.CreditInfoUI.creditInfoPanel;
+import hrs.client.UI.UserUI.CreditInfoUI.CreditInfoPanel;
 import hrs.client.UI.UserUI.OrderInfoUI.OrderInfoPanel;
 import hrs.client.UI.UserUI.OrderInfoUI.OrderShowPanel;
 import hrs.client.UI.UserUI.UserInfoUI.UserInfoPanel;
@@ -32,7 +32,7 @@ public class MainFrame extends JFrame{
 	public MainFrame(UserVO userVO){
 		this.username = userVO.username;
 		userInfoPanel = new UserInfoPanel(username);
-		creditInfoPanel = new creditInfoPanel(username);
+		creditInfoPanel = new CreditInfoPanel(username);
 		orderInfoPanel = new OrderInfoPanel(userVO);
 		//初始化操作
 		Init();

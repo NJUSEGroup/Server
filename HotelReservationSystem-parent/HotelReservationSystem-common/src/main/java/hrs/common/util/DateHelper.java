@@ -18,7 +18,10 @@ public class DateHelper {
 	private static SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 	private static Calendar c = new GregorianCalendar();
 	public static String format(Date date) {
-		return formatter.format(date);
+		if(date!=null)
+		    return formatter.format(date);
+		else
+			return "";
 	}
 	
 	/**

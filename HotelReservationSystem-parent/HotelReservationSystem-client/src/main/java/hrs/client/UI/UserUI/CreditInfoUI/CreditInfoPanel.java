@@ -20,7 +20,7 @@ import hrs.common.Controller.UserController.IUserController;
 import hrs.common.Exception.CreditRecordService.CreditRecordNotFoundException;
 import hrs.common.VO.CreditRecordVO;
 
-public class creditInfoPanel extends CommonPanel {
+public class CreditInfoPanel extends CommonPanel {
 	private IUserController controller = ControllerFactory.getUserController();
 	
 	private String username;
@@ -28,7 +28,7 @@ public class creditInfoPanel extends CommonPanel {
 	
 	Font font = UIConstants.jlabelChinese;
 	
-	public creditInfoPanel(String username){
+	public CreditInfoPanel(String username){
 		
 		this.username = username;
 		
@@ -42,7 +42,7 @@ public class creditInfoPanel extends CommonPanel {
 		//创建表格
 				JTable table = new JTable();
 				List<CreditRecordVO> creditList = getCreditList();//需要显示的数据
-				creditTableModel model = new creditTableModel(creditList);
+				CreditTableModel model = new CreditTableModel(creditList);
 				table.setModel(model);
 				table.setBackground(new Color(211, 237, 249));//背景色
 				table.setFont(font);//字体

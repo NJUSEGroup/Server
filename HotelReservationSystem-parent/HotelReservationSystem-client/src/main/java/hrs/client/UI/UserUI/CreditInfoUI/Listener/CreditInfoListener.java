@@ -1,5 +1,5 @@
 package hrs.client.UI.UserUI.CreditInfoUI.Listener;
 
-public class creditInfoListener {
+public class CreditInfoListener {
 
 }

@@ -7,6 +7,8 @@ import java.util.List;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
 
+import com.mysql.cj.fabric.xmlrpc.base.Array;
+
 import hrs.common.VO.OrderVO;
 import hrs.common.util.DateHelper;
 import hrs.common.util.type.RoomType;
@@ -71,44 +73,16 @@ public class OrderTableModel implements TableModel {
 	public Object getValueAt(int rowIndex, int columnIndex) {
 
 		OrderVO vo = orders.get(rowIndex);
+		List<String> l = new ArrayList<>();
+		l.add(vo.id + "");// 第一列为订单号
+		l.add(DateHelper.format(vo.placeTime));// 第二列为下单时间
+		l.add(vo.hotel.name);// 第三列为订单号
+		l.add(EnumHelper.RoomFormat(vo.type));// 第四列为房间类型
+		l.add(vo.roomNum + "");// 第五列为房间数量
+		l.add(vo.value + "");// 第六列为金额
+		l.add(EnumHelper.StatusFormat(vo.status));// 第七列为订单状态
 
-		// 第一列为订单号
-		if (columnIndex == 0) {
-			String s = vo.id + "";
-			return s;
-		}
-
-		// 第二列为下单时间
-		if (columnIndex == 1) {
-			Date date = vo.placeTime;
-			String s = DateHelper.format(date);
-			return s;
-		}
-		// 第三列为订单号
-		if (columnIndex == 2) {
-			return vo.hotel.name;
-		}
-
-		// 第四列为房间类型
-		if (columnIndex == 3) {
-			RoomType type = vo.type;
-
-			return TableHelper.RoomFormat(type);
-		}
-		// 第五列为房间数量
-		if (columnIndex == 4) {
-			return vo.roomNum + "";
-		}
-		// 第六列为金额
-		if (columnIndex == 5) {
-			return vo.value + "";
-		}
-		// 第七列为订单状态 TODO
-		if (columnIndex == 6) {
-			return "未执行";
-		}
-
-		return null;
+		return l.get(columnIndex);
 	}
 
 	@Override
