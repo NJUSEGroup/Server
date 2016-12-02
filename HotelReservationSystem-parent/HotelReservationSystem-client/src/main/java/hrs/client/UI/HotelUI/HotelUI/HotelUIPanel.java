@@ -57,7 +57,6 @@ public class HotelUIPanel extends JPanel {
 	private CityListener cityListener;
 	private HotelVO hotel;
 	private IHotelController hotelController;
-	private IUserHotelController userHotelController;
 	private List<LocationVO> city;
 	List<CommercialCircleVO> circle;
 	
@@ -75,7 +74,6 @@ public class HotelUIPanel extends JPanel {
 		this.setLayout(null);
 		
 		hotelController = ControllerFactory.getHotelController();
-		userHotelController = ControllerFactory.getUserHotelController();
 		
 		jpHotelInfo = new JPanel();
 		jpHotelInfo.setBounds(0, 0, 1080, 642);
@@ -157,8 +155,8 @@ public class HotelUIPanel extends JPanel {
 		jcbCircle.setBackground(Color.WHITE);
 		jcbCircle.setEditable(false);
 		
-		city = userHotelController.findAllLocations();
-		circle = userHotelController.findCircleByLoc(hotel.location.id);
+		city = hotelController.findAllLocations();
+		circle = hotelController.findCircleByLoc(hotel.location.id);
 		int citySize = city.size();
 		int circleSize = circle.size();
 		String[] citys = new String[citySize];
@@ -297,7 +295,7 @@ public class HotelUIPanel extends JPanel {
 			}
 		}
 		
-		circle = userHotelController.findCircleByLoc(theNewCity.id);
+		circle = hotelController.findCircleByLoc(theNewCity.id);
 		circleSize = circle.size();
 		String[] circles = new String[circleSize];
 		for(i=0;i<circleSize;i++){

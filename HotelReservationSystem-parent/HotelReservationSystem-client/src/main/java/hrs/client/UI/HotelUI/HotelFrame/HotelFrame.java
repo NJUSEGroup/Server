@@ -70,11 +70,11 @@ public class HotelFrame extends JFrame {
 	 * 初始化酒店管理中心界面主框架
 	 * @throws RoomNotFoundException 
 	 */
-	public HotelFrame(/**StaffVO staff**/)  throws HotelNotFoundException{
+	public HotelFrame(/**StaffVO staff**/)  throws HotelNotFoundException, RoomNotFoundException{
 		init(/**staff**/);
 	}
 	
-	public void init(/**StaffVO staff**/) throws HotelNotFoundException{
+	public void init(/**StaffVO staff**/) throws HotelNotFoundException, RoomNotFoundException{
 		//this.staff = staff;
 		//this.hotel = staff.hotel;
 		controller = ControllerFactory.getHotelController();

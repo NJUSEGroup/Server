@@ -240,6 +240,6 @@ public class HotelOrderUIPanel extends JPanel {
 		}
 		
 		orderListTableModel = new OrderListTableModel(orderList);
-		jtOrderList.setModel(orderListTableModel);
+		jtOrderList = new JTable(orderListTableModel);
 	}
 }
