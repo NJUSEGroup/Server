@@ -19,7 +19,7 @@ public class CommonLabel extends JLabel {
 	}
 	
 	public CommonLabel(String s, int horizontalAlignment){
-		init();
+		setFont(font);
 		setText(s);
 		setHorizontalAlignment(horizontalAlignment);
 	}

@@ -11,6 +11,7 @@ import hrs.common.Controller.UserController.IUserController;
 import hrs.common.Exception.UserService.UserNotFoundException;
 import hrs.common.VO.UserVO;
 import hrs.client.UI.UserUI.CreditInfoUI.CreditInfoPanel;
+import hrs.client.UI.UserUI.HotelSearchUI.HotelPanel;
 import hrs.client.UI.UserUI.OrderInfoUI.OrderInfoPanel;
 import hrs.client.UI.UserUI.OrderInfoUI.OrderShowPanel;
 import hrs.client.UI.UserUI.UserInfoUI.UserInfoPanel;
@@ -18,11 +19,12 @@ import hrs.client.UI.UserUI.UserInfoUI.UserInfoPanel;
 public class MainFrame extends JFrame{
 	Color frameColor = new Color(211, 237, 249);
 	private int height, width;
-	JPanel leftPanel = new LeftPanel();
+	private JPanel leftPanel = new LeftPanel();
 	
-	JPanel userInfoPanel ;
-	JPanel creditInfoPanel;
-	JPanel orderInfoPanel;
+	private JPanel userInfoPanel ;
+	private JPanel creditInfoPanel;
+	private JPanel orderInfoPanel;
+	private JPanel hotelPanel;
 	
 	JPanel cardPanel = new JPanel();
 	
@@ -34,6 +36,7 @@ public class MainFrame extends JFrame{
 		userInfoPanel = new UserInfoPanel(username);
 		creditInfoPanel = new CreditInfoPanel(username);
 		orderInfoPanel = new OrderInfoPanel(userVO);
+		hotelPanel = new HotelPanel(userVO);
 		//初始化操作
 		Init();
 		
@@ -45,7 +48,8 @@ public class MainFrame extends JFrame{
 		cardPanel.add("userInfoPanel",userInfoPanel);
 		cardPanel.add("creditInfoPanel",creditInfoPanel);
 		cardPanel.add("orderInfoPanel",orderInfoPanel);
-		card.show(cardPanel, "userInfoPanel");
+		cardPanel.add("hotelPanel",hotelPanel);
+		card.show(cardPanel, "hotelPanel");
 	
 		
 		MyLabelListenerFactory.getListener().setCard(card,cardPanel);

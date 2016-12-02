@@ -36,6 +36,8 @@ public class MyLabelListener extends MouseAdapter {
 		 }	 
 		 if(s.equals("个人信息"))
 			 card.show(panel, "userInfoPanel");
+		 if(s.equals("搜索酒店"))
+			 card.show(panel, "hotelPanel");
 		 System.out.println("已点击"+s);
 	 }
 

@@ -38,7 +38,7 @@ public class OrderInfoPanel extends CommonPanel {
 	
 	private void setCard() {
 		cardPanel.setLayout(card);
-		cardPanel.setBounds(0,0,1043,768);
+		cardPanel.setBounds(0,0,1103,768);
 		
 		cardPanel.add("orderShowPanel",orderShowPanel);
 		card.show(cardPanel, "orderShowPanel");
