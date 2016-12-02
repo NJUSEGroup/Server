@@ -22,6 +22,7 @@ import hrs.client.UI.UserUI.OrderInfoUI.Listener.EvalueButtonListener;
 import hrs.client.UI.UserUI.OrderInfoUI.Listener.StatusBoxListener;
 import hrs.client.UI.UserUI.OrderInfoUI.Listener.revokeListener;
 import hrs.client.util.ControllerFactory;
+import hrs.client.util.EnumHelper;
 import hrs.client.util.UIConstants;
 import hrs.common.Controller.UserController.IUserOrderController;
 import hrs.common.Exception.OrderService.OrderNotFoundException;

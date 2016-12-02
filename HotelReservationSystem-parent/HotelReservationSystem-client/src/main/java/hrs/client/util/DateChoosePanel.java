@@ -1,0 +1,106 @@
+package hrs.client.util;
+
+import java.util.Calendar;
+
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import android.R.integer;
+import hrs.client.UI.UserUI.HotelSearchUI.SearchPanel;
+/**
+ * 日期选择框
+ * 年份选项为当年和今年
+ * 日期选项根据年份和月份确定
+ * 各项均默认为当前日期
+ * 大小为330*40
+ * @author 涵
+ *
+ */
+public class DateChoosePanel extends JPanel {
+	private JComboBox<Integer> yearBox;
+	private JComboBox<Integer> monthBox;
+	private JComboBox<Integer> dayBox;
+	private DateChooseListener listener;
+	
+	private Calendar currentTm ;
+	
+	public DateChoosePanel(){
+		currentTm = Calendar.getInstance();
+		listener = new DateChooseListener(this);
+		Init();
+	}
+
+	private void Init() {
+		setSize(330,40);
+		setLayout(null);
+		setBackground(UIConstants.jframe);
+		
+		setLabel();
+		setBox();
+	}
+
+	private void setBox() {
+		yearBox = new JComboBox<>();
+		yearBox.addItem(currentTm.get(Calendar.YEAR));
+		yearBox.addItem(currentTm.get(Calendar.YEAR)+1);
+		yearBox.addItemListener(listener);
+		yearBox.setFont(UIConstants.jlabelChinese);
+		yearBox.setBounds(0,5,100,30);
+		yearBox.setSelectedItem(currentTm.get(Calendar.YEAR));
+		add(yearBox);
+		
+		monthBox = new JComboBox<>();
+		for(Integer i = 1;i<=12;i++){
+			monthBox.addItem(i);
+		}
+		monthBox.setFont(UIConstants.jlabelChinese);
+		monthBox.setBounds(130,5,70,30);
+		monthBox.setSelectedItem(currentTm.get(Calendar.MONTH)+1);
+		monthBox.addItemListener(listener);
+		add(monthBox);
+		
+		dayBox = new JComboBox<>();
+		int MaxDay = currentTm.getActualMaximum(Calendar.DATE);
+		for(Integer i = 1;i<=MaxDay;i++){
+			dayBox.addItem(i);
+		}
+		dayBox.setFont(UIConstants.jlabelChinese);
+		dayBox.setBounds(230,5,70,30);
+		dayBox.setSelectedItem(currentTm.get(Calendar.DATE));
+		add(dayBox);
+		
+	}
+
+	private void setLabel() {
+		JLabel yearJL = new JLabel("年");
+		yearJL.setFont(UIConstants.jlabelChinese);
+		yearJL.setBounds(100,0,30,40);
+		add(yearJL);
+		
+		JLabel monthJL = new JLabel("月");
+		monthJL.setFont(UIConstants.jlabelChinese);
+		monthJL.setBounds(200,0,30,40);
+		add(monthJL);
+		
+		JLabel dayJL = new JLabel("日");
+		dayJL.setFont(UIConstants.jlabelChinese);
+		dayJL.setBounds(300,0,30,40);
+		add(dayJL);
+		
+	}
+
+	public void change() {
+		currentTm.set(Calendar.YEAR, (Integer)yearBox.getSelectedItem());
+		currentTm.set(Calendar.MONTH, (Integer)monthBox.getSelectedItem()+1);
+		dayBox.removeAllItems();
+		int MaxDay = currentTm.getActualMaximum(Calendar.DATE);
+		for(Integer i = 1;i<=MaxDay;i++){
+			dayBox.addItem(i);
+		}
+		
+		
+	}
+	
+}

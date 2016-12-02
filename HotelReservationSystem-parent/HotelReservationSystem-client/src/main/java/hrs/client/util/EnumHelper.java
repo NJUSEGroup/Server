@@ -1,4 +1,4 @@
-package hrs.client.UI.UserUI.OrderInfoUI;
+package hrs.client.util;
 
 import java.util.HashMap;
 
