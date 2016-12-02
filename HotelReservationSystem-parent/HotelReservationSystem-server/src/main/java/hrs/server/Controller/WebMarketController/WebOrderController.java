@@ -38,4 +38,10 @@ public class WebOrderController implements IWebOrderController{
 	public List<OrderVO> findOrderByUsername(String username) throws OrderNotFoundException {
 		return orderSearchService.findByUsername(username);
 	}
+
+	@Override
+	public List<OrderVO> findOrderByUsernameAndStatus(String username, OrderStatus status)
+			throws OrderNotFoundException {
+		return orderSearchService.findByUsernameAndStatus(username, status);
+	}
 }

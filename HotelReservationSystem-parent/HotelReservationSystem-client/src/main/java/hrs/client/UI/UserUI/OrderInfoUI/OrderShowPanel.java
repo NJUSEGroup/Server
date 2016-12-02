@@ -2,9 +2,9 @@ package hrs.client.UI.UserUI.OrderInfoUI;
 
 import java.awt.Color;
 import java.awt.Dialog.ModalityType;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.Font;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -13,19 +13,11 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
-import org.apache.tools.ant.taskdefs.Sleep;
-
-import android.R.integer;
 import hrs.client.UI.UserUI.CommonComponents.CommonLabel;
 import hrs.client.UI.UserUI.CommonComponents.CommonPanel;
-import hrs.client.UI.UserUI.OrderInfoUI.Listener.DetailButtonLisener;
-import hrs.client.UI.UserUI.OrderInfoUI.Listener.EvalueButtonListener;
 import hrs.client.UI.UserUI.OrderInfoUI.Listener.StatusBoxListener;
-import hrs.client.UI.UserUI.OrderInfoUI.Listener.revokeListener;
 import hrs.client.util.ControllerFactory;
 import hrs.client.util.UIConstants;
 import hrs.common.Controller.UserController.IUserOrderController;

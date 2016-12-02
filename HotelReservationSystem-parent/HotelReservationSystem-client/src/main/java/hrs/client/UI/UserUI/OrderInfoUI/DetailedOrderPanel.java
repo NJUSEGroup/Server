@@ -1,19 +1,11 @@
 package hrs.client.UI.UserUI.OrderInfoUI;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import org.hibernate.tool.schema.spi.CommandAcceptanceException;
-import org.springframework.context.support.StaticApplicationContext;
-
 import hrs.client.UI.UserUI.CommonComponents.CommonLabel;
 import hrs.client.UI.UserUI.CommonComponents.CommonPanel;
-import hrs.client.UI.UserUI.OrderInfoUI.Listener.BackJBListener;
 import hrs.client.util.UIConstants;
 import hrs.common.VO.OrderVO;
 import hrs.common.util.DateHelper;
