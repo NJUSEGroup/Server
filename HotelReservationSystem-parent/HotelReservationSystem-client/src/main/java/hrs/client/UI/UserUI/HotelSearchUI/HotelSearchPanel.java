@@ -3,6 +3,7 @@ package hrs.client.UI.UserUI.HotelSearchUI;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.border.EmptyBorder;
 
 import hrs.client.UI.UserUI.CommonComponents.CommonPanel;
 import hrs.client.util.UIConstants;
@@ -20,7 +21,7 @@ public class HotelSearchPanel extends CommonPanel {
 	@Override
 	public void Init() {
 		contentPane = new JPanel();
-//		contentPane.setBounds(0, 30, this.getWidth(),this.getHeight()-30);
+		contentPane.setBounds(0, 30, this.getWidth(),this.getHeight()-30);
 		contentPane.setBackground(UIConstants.jframe);
 		contentPane.setLayout(null);
 		
@@ -32,6 +33,7 @@ public class HotelSearchPanel extends CommonPanel {
 		
 		scrollPane = new JScrollPane(contentPane);
 		scrollPane.setBounds(0, 30, this.getWidth(),this.getHeight()-30);
+		scrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		add(scrollPane);
 
 	}
