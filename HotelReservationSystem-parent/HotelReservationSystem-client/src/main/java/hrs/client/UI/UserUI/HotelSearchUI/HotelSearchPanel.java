@@ -20,7 +20,7 @@ public class HotelSearchPanel extends CommonPanel {
 	@Override
 	public void Init() {
 		contentPane = new JPanel();
-		contentPane.setBounds(0, 30, this.getWidth(),this.getHeight()-30);
+//		contentPane.setBounds(0, 30, this.getWidth(),this.getHeight()-30);
 		contentPane.setBackground(UIConstants.jframe);
 		contentPane.setLayout(null);
 		
@@ -31,6 +31,8 @@ public class HotelSearchPanel extends CommonPanel {
 		setButton();
 		
 		scrollPane = new JScrollPane(contentPane);
+		scrollPane.setBounds(0, 30, this.getWidth(),this.getHeight()-30);
+		add(scrollPane);
 
 	}
 	
