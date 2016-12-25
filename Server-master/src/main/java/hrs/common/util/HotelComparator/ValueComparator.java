@@ -1,4 +1,4 @@
-package hrs.server.Service.Impl.HotelComparator;
+package hrs.common.util.HotelComparator;
 
 import org.springframework.stereotype.Component;
 

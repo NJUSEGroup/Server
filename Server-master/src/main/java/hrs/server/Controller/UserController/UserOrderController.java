@@ -30,7 +30,12 @@ public class UserOrderController implements IUserOrderController {
 	public List<OrderVO> findOrdersByUsernameAndStatus(String username, OrderStatus type) throws OrderNotFoundException {
 		return orderSearchService.findByUsernameAndStatus(username, type);
 	}
-
+	
+	@Override
+	public List<OrderVO> findByUsername(String username) throws OrderNotFoundException{
+		return orderSearchService.findByUsername(username);
+	}
+	
 	@Override
 	public boolean validateCredit(String username) {
 		return userService.validateCredit(username);

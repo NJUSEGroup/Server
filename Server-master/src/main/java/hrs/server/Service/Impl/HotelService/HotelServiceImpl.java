@@ -19,9 +19,9 @@ import hrs.common.VO.HotelVO;
 import hrs.common.VO.OrderVO;
 import hrs.common.VO.RoomVO;
 import hrs.common.util.FilterCondition.FilterCondition;
+import hrs.common.util.HotelComparator.HotelComparator;
 import hrs.common.util.type.OrderRule;
 import hrs.server.DAO.Interface.HotelDAO.HotelDAO;
-import hrs.server.Service.Impl.HotelComparator.HotelComparator;
 import hrs.server.Service.Impl.HotelService.HotelFilter.HotelFilter;
 import hrs.server.Service.Interface.HotelService.HotelService;
 import hrs.server.Service.Interface.OrderService.OrderSearchService;
@@ -194,9 +194,7 @@ public class HotelServiceImpl implements HotelService {
 		comp.setDecrease(isDecrease);
 		Map<HotelVO, List<RoomVO>> res = new TreeMap<>(comp);
 		res.putAll(data);
-		data.clear();
-		data.putAll(res);
-		return data;
+		return res;
 	}
 	
 	

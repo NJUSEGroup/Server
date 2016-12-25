@@ -1,4 +1,4 @@
-package hrs.server.Service.Impl.HotelComparator;
+package hrs.common.util.HotelComparator;
 
 import java.io.Serializable;
 import java.util.Comparator;

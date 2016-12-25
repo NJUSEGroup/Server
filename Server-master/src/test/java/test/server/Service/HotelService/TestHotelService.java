@@ -5,9 +5,12 @@ import static org.junit.Assert.assertEquals;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
+import org.hibernate.engine.transaction.jta.platform.internal.SynchronizationRegistryBasedSynchronizationStrategy;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -139,10 +142,13 @@ public class TestHotelService {
 		}
 		System.out.println();
 
-		Map<HotelVO, List<RoomVO>> res = service.order(map,OrderRule.Score, true);
-		for (HotelVO vo : res.keySet()) {
-			System.out.println(vo);
-			for (RoomVO room : map.get(vo)) {
+		Map<HotelVO, List<RoomVO>> res = service.order(map,OrderRule.Score, false);
+		Iterator<Entry<HotelVO, List<RoomVO>>> it = res.entrySet().iterator();
+		Map.Entry<HotelVO, List<RoomVO>>  entry = null;
+		while(it.hasNext()){
+			entry = it.next();
+			System.out.println(entry.getKey());
+			for(RoomVO room:entry.getValue()){
 				System.out.println(room);
 			}
 			System.out.println();
@@ -164,9 +170,12 @@ public class TestHotelService {
 		System.out.println();
 
 		Map<HotelVO, List<RoomVO>> res = service.order(map,OrderRule.Star, true);
-		for (HotelVO vo : res.keySet()) {
-			System.out.println(vo);
-			for (RoomVO room : map.get(vo)) {
+		Iterator<Entry<HotelVO, List<RoomVO>>> it = res.entrySet().iterator();
+		Map.Entry<HotelVO, List<RoomVO>>  entry = null;
+		while(it.hasNext()){
+			entry = it.next();
+			System.out.println(entry.getKey());
+			for(RoomVO room:entry.getValue()){
 				System.out.println(room);
 			}
 			System.out.println();
@@ -187,10 +196,10 @@ public class TestHotelService {
 		}
 		System.out.println();
 
-		Map<HotelVO, List<RoomVO>> res = service.order(map,OrderRule.Value, true);
+		Map<HotelVO, List<RoomVO>> res = service.order(map,OrderRule.Value, false);
 		for (HotelVO vo : res.keySet()) {
 			System.out.println(vo);
-			for (RoomVO room : map.get(vo)) {
+			for (RoomVO room : res.get(vo)) {
 				System.out.println(room);
 			}
 			System.out.println();
@@ -219,7 +228,7 @@ public class TestHotelService {
 		System.out.println(res.size());
 		for (HotelVO vo : res.keySet()) {
 			System.out.println(vo);
-			for (RoomVO room : map.get(vo)) {
+			for (RoomVO room : res.get(vo)) {
 				System.out.println(room);
 			}
 			System.out.println();
@@ -248,7 +257,7 @@ public class TestHotelService {
 		System.out.println(res.size());
 		for (HotelVO vo : res.keySet()) {
 			System.out.println(vo);
-			for (RoomVO room : map.get(vo)) {
+			for (RoomVO room : res.get(vo)) {
 				assertEquals(room.type,RoomType.Single);
 				System.out.println(room);
 			}
@@ -278,7 +287,7 @@ public class TestHotelService {
 		System.out.println(res.size());
 		for (HotelVO vo : res.keySet()) {
 			System.out.println(vo);
-			for (RoomVO room : map.get(vo)) {
+			for (RoomVO room : res.get(vo)) {
 				assertEquals(room.type,RoomType.Standard);
 				System.out.println(room);
 			}
@@ -309,7 +318,7 @@ public class TestHotelService {
 		System.out.println(res.size());
 		for (HotelVO vo : res.keySet()) {
 			System.out.println(vo);
-			for (RoomVO room : map.get(vo)) {
+			for (RoomVO room : res.get(vo)) {
 				System.out.println(room);
 			}
 			System.out.println();
@@ -339,7 +348,7 @@ public class TestHotelService {
 		for (HotelVO vo : res.keySet()) {
 			assertEquals(vo.star,3);
 			System.out.println(vo);
-			for (RoomVO room : map.get(vo)) {
+			for (RoomVO room : res.get(vo)) {
 				System.out.println(room);
 			}
 		}
@@ -368,7 +377,7 @@ public class TestHotelService {
 		System.out.println(res.size());
 		for (HotelVO vo : res.keySet()) {
 			System.out.println(vo);
-			for (RoomVO room : map.get(vo)) {
+			for (RoomVO room : res.get(vo)) {
 				System.out.println(room);
 			}
 		}
@@ -396,7 +405,7 @@ public class TestHotelService {
 		System.out.println(res.size());
 		for (HotelVO vo : res.keySet()) {
 			System.out.println(vo);
-			for (RoomVO room : map.get(vo)) {
+			for (RoomVO room : res.get(vo)) {
 				System.out.println(room);
 			}
 		}

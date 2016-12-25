@@ -1,4 +1,4 @@
-package hrs.server.Service.Impl.HotelComparator;
+package hrs.common.util.HotelComparator;
 
 import org.springframework.stereotype.Component;
 
@@ -21,6 +21,9 @@ public class StarComparator extends HotelComparator {
 
 	@Override
 	public int compare(HotelVO o1, HotelVO o2) {
+		if(o1.star == o2.star){
+			return 1;
+		}
 		if (super.isDecrease) {
 			return o2.star - o1.star;
 		} else {
